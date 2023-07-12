@@ -1,8 +1,7 @@
 html{
 	--scrollbar-color: rgb(158, 158, 158);
-	--scrollbar-bg-color: rgb(240, 240, 240);
-	--nav-bg-color: rgb(240, 240, 240);
-	--nav-text-color: rgb(37, 37, 37);
+	--basic-text-color: rgb(37, 37, 37);
+	--basic-bg-color: rgb(240, 240, 240);
 }
 *{
 	margin: 0;
@@ -11,7 +10,8 @@ html{
 	user-select: none;
 	box-sizing: border-box;
 	text-decoration: none;
-	background-size: cover;
+	background: none;
+	border: none;
 }
 header > div, main, footer > div{ /* Limiter la taille à max 2000px et center */
 	margin: auto;
@@ -28,18 +28,18 @@ header > div, main, footer > div{ /* Limiter la taille à max 2000px et center *
 	background-color: var(--scrollbar-color);
 }
 ::-webkit-scrollbar-track{
-	background-color: var(--scrollbar-bg-color);
+	background-color: var(--basic-bg-color);
 }
 html{
 	scrollbar-width: thin;
-	scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
+	scrollbar-color: var(--scrollbar-color) var(--basic-bg-color);
 }
 
 /* Navbar */
 header{
 	position: sticky;
 	top: 0;
-	background-color: var(--nav-bg-color);
+	background-color: var(--basic-bg-color);
 	min-width: max-content;
 }
 header > div{
@@ -47,7 +47,7 @@ header > div{
 	padding: 5px 15px;
 }
 header a{
-	color: var(--nav-text-color);
+	color: var(--basic-text-color);
 }
 #topTitle{
 	display: grid;
@@ -66,6 +66,8 @@ header a{
 #menuBtn svg{
 	width: 3rem;
 	height: 3rem;
+	stroke: var(--basic-text-color);
+	fill: var(--basic-text-color);
 }
 #menuBtn{
 	cursor: pointer;
@@ -95,7 +97,7 @@ header nav a{
 	border-radius: 5px;
 }
 header nav a:hover{
-	border-color: var(--nav-text-color);
+	border-color: var(--basic-text-color);
 }
 
 @media screen and (max-width: 1340px) {
@@ -120,9 +122,13 @@ header nav a:hover{
 		margin: 0;
 		font-size: 2rem;
 	}
-	header nav a:hover{
-		background-color: var(--nav-text-color);
-		color: var(--nav-bg-color);
+	header nav a:hover, header nav a:focus{
+		background-color: var(--basic-text-color);
+		color: var(--basic-bg-color);
+		outline: none;
+	}
+	header nav:focus-within{
+		height: auto !important;
 	}
 	header nav:not(.visible){
 		height: 0;
