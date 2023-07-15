@@ -2,6 +2,7 @@ html{
 	--scrollbar-color: rgb(158, 158, 158);
 	--basic-text-color: rgb(37, 37, 37);
 	--basic-bg-color: rgb(240, 240, 240);
+	--legal-text-color: rgb(135, 135, 135);
 }
 *{
 	margin: 0;
@@ -9,9 +10,12 @@ html{
 	font-family: Arial, Helvetica, sans-serif;
 	user-select: none;
 	box-sizing: border-box;
+	font-size: 1rem;
 	text-decoration: none;
 	background: none;
 	border: none;
+	color: var(--basic-text-color);
+	scroll-behavior: smooth;
 }
 header > div, main, footer > div{ /* Limiter la taille à max 2000px et center */
 	margin: auto;
@@ -41,13 +45,11 @@ header{
 	top: 0;
 	background-color: var(--basic-bg-color);
 	min-width: max-content;
+	z-index: 100;
 }
 header > div{
 	display: flex;
 	padding: 5px 15px;
-}
-header a{
-	color: var(--basic-text-color);
 }
 #topTitle{
 	display: grid;
@@ -93,7 +95,7 @@ header nav a{
 	margin: 0 2px;
 	text-transform: capitalize;
 	white-space: nowrap;
-	border: #00000000 2px solid;
+	border: transparent 2px solid;
 	border-radius: 5px;
 }
 header nav a:hover{
@@ -133,4 +135,120 @@ header nav a:hover{
 	header nav:not(.visible){
 		height: 0;
 	}
+}
+
+/* Footer */
+@keyframes slide-in {
+	from{
+		transform: translateX(50px);
+		overflow-x: hidden;
+	}
+	to{
+		transform: translateX(0);
+		overflow-x: hidden;
+	}
+}
+footer{
+	background-color: var(--basic-bg-color);
+}
+footer a:hover{
+	text-decoration: underline;
+}
+footer h3{
+	font-size: 1.2rem;
+	margin-bottom: 5px;
+}
+#footer{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+#texts{
+	flex: 2;
+	display: grid;
+	min-width: 300px;
+	margin: 15px;
+}
+#texts p{
+	text-align: justify;
+}
+#texts section{
+	grid-row: 1/2;
+	grid-column: 1/2;
+	transition: visibility .4s,
+				opacity .4s;
+}
+#texts section:target{
+	visibility: visible !important;
+	opacity: 1 !important;
+	animation: slide-in .4s ease-out;
+}
+#texts section:not(:last-child), #texts section:target ~ section:not(:target){
+	visibility: hidden;
+	opacity: 0;
+}
+
+#texts ul{
+	padding-inline-start: 20px;
+}
+#credit li::first-letter{
+	text-transform: uppercase;
+}
+
+#links{
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+#utils, #legal{
+	margin: 15px;
+	min-width: max-content;
+	flex: 1;
+}
+#utils ul{
+	padding-inline-start: 15px;
+	margin: 7px 0;
+	border-right: solid 5px transparent;
+}
+#utils ul:hover{
+	border-right-color: var(--basic-text-color);
+}
+#utils li{
+	padding-left: .4rem;
+	text-transform: capitalize;
+}
+#utils li::marker{
+	content: url("/mainassets/mushroom-marker.svg") / ".";
+}
+#cmbLogo{
+	float: left;
+	margin: 0 5px 5px 0;
+}
+#cmbLogo svg{
+	width: 5rem;
+	height: 5rem;
+}
+
+#legal{
+	border-right: solid 5px transparent;
+	padding-right: 7px;
+	height: max-content;
+}
+#legal:hover{
+	border-color: var(--legal-text-color);
+}
+#legal a{
+	display: block;
+	color: var(--legal-text-color);
+}
+#legal a:not(:first-child){
+	margin-top: .3rem;
+}
+
+#copy{
+	flex: 100%;
+	margin: 7px auto;
+	text-align: center;
 }
