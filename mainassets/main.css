@@ -17,8 +17,19 @@ html{
 	color: var(--basic-text-color);
 	scroll-behavior: smooth;
 }
-header > div, main, footer > div{ /* Limiter la taille à max 2000px et center */
-	margin: auto;
+html, body{
+	height: 100%;
+}
+main{
+	flex-grow: 1;
+	width: 100%;
+}
+body{
+	display: flex;
+	flex-direction: column;
+}
+body > header > div, body > main, body > footer > div{ /* Limiter la taille à max 2400px et center */
+	margin-inline: auto;
 	max-width: 2400px;
 }
 
@@ -40,14 +51,14 @@ html{
 }
 
 /* Navbar */
-header{
+body > header{
 	position: sticky;
 	top: 0;
 	background-color: var(--basic-bg-color);
 	min-width: max-content;
 	z-index: 100;
 }
-header > div{
+body > header > div{
 	display: flex;
 	padding: 5px 15px;
 }
@@ -84,11 +95,11 @@ header > div{
 	font-size: .5em;
 	margin: 0 .2em;
 }
-header nav{
+body > header nav{
 	display: flex;
 	margin: auto;
 }
-header nav a{
+body > header nav a{
 	font-size: 1.5rem;
 	font-weight: bold;
 	padding: 5px 10px;
@@ -98,7 +109,7 @@ header nav a{
 	border: transparent 2px solid;
 	border-radius: 5px;
 }
-header nav a:hover{
+body > header nav a:hover{
 	border-color: var(--basic-text-color);
 }
 
@@ -112,27 +123,27 @@ header nav a:hover{
 		display: block;
 		width: max-content;
 	}
-	header > div, header nav{
+	body > header > div, body > header nav{
 		flex-direction: column;
 	}
-	header nav{
+	body > header nav{
 		width: 100%;
 		overflow: hidden;
 	}
-	header nav a{
+	body > header nav a{
 		width: 100%;
 		margin: 0;
 		font-size: 2rem;
 	}
-	header nav a:hover, header nav a:focus{
+	body > header nav a:hover, body > header nav a:focus{
 		background-color: var(--basic-text-color);
 		color: var(--basic-bg-color);
 		outline: none;
 	}
-	header nav:focus-within{
+	body > header nav:focus-within{
 		height: auto !important;
 	}
-	header nav:not(.visible){
+	body > header nav:not(.visible){
 		height: 0;
 	}
 }
@@ -148,13 +159,13 @@ header nav a:hover{
 		overflow-x: hidden;
 	}
 }
-footer{
+body > footer{
 	background-color: var(--basic-bg-color);
 }
-footer a:hover{
+body > footer a:hover{
 	text-decoration: underline;
 }
-footer h3{
+body > footer h3{
 	font-size: 1.2rem;
 	margin-bottom: 5px;
 }
@@ -162,6 +173,7 @@ footer h3{
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
+	overflow: hidden;
 }
 #texts{
 	flex: 2;

@@ -1,5 +1,5 @@
-var header = document.querySelector('header');
-var nav = document.querySelector('header nav');
+var header = document.querySelector('body > header');
+var nav = document.querySelector('body > header nav');
 var menuBtn = document.getElementById('menuBtn');
 
 menuBtn.addEventListener('click', ()=>{
