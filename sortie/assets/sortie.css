@@ -1,0 +1,18 @@
+#headTitle{
+	background-color: rgb(115, 168, 151); /* default */
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	padding: 45px;
+	mix-blend-mode: lighten;
+	font-size: min(4rem, 72px);
+}
+#headTitle h1{
+	font-size: 1em;
+	display: inline;
+	background-color: var(--basic-bg-color);
+	color: var(--basic-text-color);
+	padding-block: .1rem;
+	/* mix-blend-mode: lighten; */
+}
