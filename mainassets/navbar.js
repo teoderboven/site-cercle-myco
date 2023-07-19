@@ -1,6 +1,6 @@
-var header = document.querySelector('body > header');
-var nav = document.querySelector('body > header nav');
-var menuBtn = document.getElementById('menuBtn');
+const header = document.querySelector('body > header');
+const nav = document.querySelector('body > header nav');
+const menuBtn = document.getElementById('menuBtn');
 
 menuBtn.addEventListener('click', ()=>{
 	nav.classList.toggle('visible');

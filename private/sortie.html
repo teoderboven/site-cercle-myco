@@ -7,6 +7,7 @@
 	<link rel="shortcut icon" type="image/png" href="/mainassets/icon.png">
 	<link rel="stylesheet" href="/mainassets/main.css">
 	<link rel="stylesheet" href="/sortie/assets/sortie.css">
+	<script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
 </head>
 <body>
 	<header>
@@ -49,15 +50,32 @@
 	<main>
 		<article>
 			<header>
-				<div id="headTitle" style="background-image: url(/images/Mycena_inclinata_II1.JPG);">
+				<div id="headTitle" style="background-image: url(/images/Mycena_inclinata_II.JPG);">
 					<h1>Venez découvrir les champignons en notre compagnie!</h1>
 				</div>
 				
 				<section id="headerInfo">
 					<div id="date" class="info">
 						<h4>Quand?</h4>
-						<span class="calendar">21</span>
-						<time datetime="2023-07-21 10:00">Vendredi 21 juillet 2023 à 10h00</time>
+						<span class="calendar" aria-hidden="true"></span>
+						<time datetime="2023-07-22 10:05"></time>
+						<div id="calendarContainer">
+							<add-to-calendar-button
+								name="Sortie champignons à Charleroi"
+								location="Rue de Soignies 14, 6000 Charleroi"
+								startDate="2023-07-22"
+								endDate="2023-07-22"
+								startTime="10:05"
+								endTime="14:05"
+								label="Ajouter à l'agenda"
+								options="'Apple','Google','iCal|Fichier iCal','Microsoft365','MicrosoftTeams','Outlook.com'"
+								timeZone="Europe/Brussels"
+								buttonStyle="round"
+								hideCheckmark
+								debug="true"
+							></add-to-calendar-button>
+						</div>
+						
 					</div>
 					<div id="meteo" class="info">
 						<h4>Météo le jour de la sortie:</h4>

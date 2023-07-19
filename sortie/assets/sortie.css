@@ -16,3 +16,54 @@
 	padding-block: .1rem;
 	/* mix-blend-mode: lighten; */
 }
+#headerInfo{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-left: 35px;
+}
+#headerInfo .info{
+	background-color: var(--info-bg-color);
+	padding: 15px;
+	margin: 10px;
+	border-radius: 15px;
+	color: var(--info-text-color);
+	box-shadow: 5px 5px 10px rgb(37,37,37);
+	transition: box-shadow .5s;
+	width: max-content;
+}
+#headerInfo .info:hover{
+	box-shadow: 7px 7px 10px rgb(37,37,37);
+}
+#headerInfo .info *{
+	color: inherit;
+}
+.info h4{
+	margin-bottom: 4px;
+	font-size: 1.1rem;
+	text-decoration: underline;
+}
+
+.calendar{
+	background-image: url("/sortie/assets/calendar.svg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin-right: 5px;
+	padding-bottom: .1rem;
+	color: black !important;
+	font-weight: bold;
+	display: inline-flex;
+	justify-content: center;
+	align-items: flex-end;
+	width: 2rem;
+	height: 2rem;
+}
+#date time{
+	font-weight: bold;
+	color: var(--time-text-color) !important;
+}
+#date #calendarContainer{
+	display: flex;
+	justify-content: flex-end;
+	margin: 5px -10px -10px 0;
+}
