@@ -6,6 +6,8 @@ html{
 	--info-bg-color: rgb(65, 105, 225);
 	--info-text-color: rgb(240, 240, 240);
 	--time-text-color: rgb(226, 183, 43);
+	--time-text-past-event: var(--basic-text-color);
+	--time-bg-past-event: rgb(255, 87, 87);
 }
 *{
 	margin: 0;

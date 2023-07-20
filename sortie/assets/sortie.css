@@ -62,6 +62,12 @@
 	font-weight: bold;
 	color: var(--time-text-color) !important;
 }
+#date time.past{
+	background-color: var(--time-bg-past-event);
+	color: var(--time-text-past-event) !important;
+	padding: 3px;
+	border-radius: 5px;
+}
 #date #calendarContainer{
 	display: flex;
 	justify-content: flex-end;
