@@ -89,11 +89,25 @@ function _sortie(){
 						return;
 					}
 
-					const daysRemaining = getDaysDifference(new Date(), eventDate);
-					console.table({'Calculated days remaining': daysRemaining});
+					let daysRemaining = getDaysDifference(new Date(), eventDate);
+					console.log('\x1B[1m\x1B[32mCalculated days remaining :', daysRemaining);
 					
 					if(daysRemaining <= 4){
-						const fcst = res[`fcst_day_${daysRemaining}`].hourly_data[`${eventDate.getHours()}H00`];
+						let fcst_day = res[`fcst_day_${daysRemaining}`];
+
+						/*
+							sometimes the api may not be up to date (1 day delay)
+							Check that the day returned by the api is the same as the Date object
+						*/
+						while(parseInt(fcst_day.date.split(".")[0]) != eventDate.getDate()){
+							fcst_day = res[`fcst_day_${++daysRemaining}`];
+							console.warn('\x1B[36mWeather api is not up to date')
+							console.log('\x1B[31mRECALCULATING DAYS REMAINING :', daysRemaining);
+							if(daysRemaining > 4) return;
+						}
+						
+						const fcst = fcst_day.hourly_data[`${eventDate.getHours()}H00`];
+						console.log(`\x1B[1m\x1B[32mfcst_day_${daysRemaining} :`, fcst_day.date);
 						console.table(fcst);
 
 						const img = document.createElement('img');
