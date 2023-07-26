@@ -20,6 +20,7 @@
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	align-items: flex-start;
 }
 #headerInfo .info{
 	background-color: var(--info-bg-color);
@@ -55,6 +56,7 @@
 	align-items: flex-end;
 	width: 2rem;
 	height: 2rem;
+	user-select: none;
 }
 #date time{
 	font-weight: bold;
@@ -72,6 +74,29 @@
 	margin: 5px -10px -10px 0;
 }
 
+#lieu svg{
+	width: 3rem;
+	float: left;
+	fill: var(--info-location-icon);
+	margin-left: -.375rem;
+}
+#lieu address{
+	user-select: text; /* Safari */
+	user-select: all;
+	display: flex;
+	flex-direction: column;
+}
+#lieu address h5{
+	font-size: 1.2rem;
+}
+#lieu a{
+	display: block;
+	text-align: right;
+	text-decoration: underline;
+	margin: 5px 0 0 auto;
+	width: max-content;
+}
+
 #meteo:not(.ready){
 	display: none;
 }
@@ -83,6 +108,7 @@
 	height: 4.5rem;
 	margin-right: 7px;
 	padding: 2px;
+	user-select: none;
 }
 #meteo .tmp{
 	font-size: 2rem;
