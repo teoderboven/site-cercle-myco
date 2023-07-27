@@ -3,6 +3,7 @@ html{
 	--basic-text-color: rgb(37, 37, 37);
 	--basic-bg-color: rgb(240, 240, 240);
 	--legal-text-color: rgb(135, 135, 135);
+	/* article */
 	--info-bg-color: rgb(81, 113, 105);
 	--info-text-color: rgb(240, 240, 240);
 	--time-text-color: rgb(226, 183, 43);

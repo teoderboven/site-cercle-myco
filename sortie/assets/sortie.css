@@ -22,7 +22,7 @@
 	flex-wrap: wrap;
 	align-items: flex-start;
 }
-#headerInfo .info{
+.info{
 	background-color: var(--info-bg-color);
 	padding: 15px;
 	margin: 10px;
@@ -31,10 +31,10 @@
 	box-shadow: 5px 5px 10px rgb(37,37,37);
 	transition: box-shadow .5s;
 }
-#headerInfo .info:hover{
+.info:hover{
 	box-shadow: 7px 7px 10px rgb(37,37,37);
 }
-#headerInfo .info *{
+.info *{
 	color: inherit;
 }
 .info h4{
@@ -126,4 +126,41 @@
 }
 #meteo .credit a:hover{
 	text-decoration: underline;
+}
+
+/* body of the article*/
+article{
+	padding-bottom: 30px;
+}
+article > *:not(header){
+	margin: 30px !important;
+}
+article > p{
+	text-align: justify;
+}
+#map{
+	padding: 20px;
+	border-radius: 20px;
+	margin: 55px auto !important;
+	max-width: 1100px;
+	min-width: 360px;
+}
+#map p{
+	font-size: 1.3rem;
+	background-color: aliceblue;
+	color: var(--basic-text-color);
+	padding: 5px 5px 5px 8px;
+	border-left: solid 5px var(--basic-text-color);
+	border-radius: 5px;
+	font-weight: 600;
+}
+#map .iframecontent{
+	width: 100%;
+	margin-top: 10px;
+	display: flex;
+}
+#map .iframecontent iframe{
+	width: 100%;
+	height: 450px;
+	border-radius: 5px;
 }
