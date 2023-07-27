@@ -115,3 +115,15 @@
 	letter-spacing: 0;
 	display: block;
 }
+#meteo .credit{
+	clear: left;
+	font-size: 0.6rem;
+	width: max-content;
+	margin: 3px 0 0 auto;
+}
+#meteo .credit a{
+	font-size: inherit;
+}
+#meteo .credit a:hover{
+	text-decoration: underline;
+}

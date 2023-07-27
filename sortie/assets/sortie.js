@@ -123,9 +123,21 @@ function _sortie(){
 						cond.classList.add('cond');
 						cond.textContent = fcst.CONDITION;
 
+						const credit = document.createElement('div');
+						credit.classList.add('credit');
+						credit.textContent = "Météo par ";
+
+						const creditAnchor = document.createElement('a');
+						creditAnchor.href = 'https://prevision-meteo.ch/';
+						creditAnchor.textContent = 'prevision-meteo.ch';
+						creditAnchor.target = "_blank";
+
+						credit.appendChild(creditAnchor);
+
 						meteoElt.appendChild(img);
 						meteoElt.appendChild(tmp);
 						meteoElt.appendChild(cond);
+						meteoElt.appendChild(credit);
 						meteoElt.classList.add('ready');
 					}
 				}
