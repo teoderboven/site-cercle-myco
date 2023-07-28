@@ -10,6 +10,10 @@ html{
 	--time-text-past-event: var(--basic-text-color);
 	--time-bg-past-event: rgb(255, 87, 87);
 	--info-location-icon: rgb(209, 82, 82);
+	/* images */
+	--image-border-color: rgb(104, 101, 51);
+	--image-top-text-color: rgb(240, 240, 240);
+	--image-top-bg-color: rgb(37, 37, 37, .7);
 }
 *{
 	margin: 0;
@@ -20,11 +24,12 @@ html{
 	text-decoration: none;
 	background: none;
 	border: none;
-	color: var(--basic-text-color);
+	color: inherit;
 	scroll-behavior: smooth;
 }
 html, body{
 	height: 100%;
+	color: var(--basic-text-color);
 }
 main{
 	flex-grow: 1;
