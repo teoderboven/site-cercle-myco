@@ -243,7 +243,7 @@ body > footer h3{
 	text-transform: capitalize;
 }
 #utils li::marker{
-	content: url("/mainassets/img/mushroom-marker.svg") / ".";
+	content: url("/mainassets/img/svg/mushroom-marker.svg") / ".";
 }
 #cmbLogo{
 	float: left;

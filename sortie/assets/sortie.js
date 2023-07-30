@@ -13,6 +13,14 @@ function isToday(date){
 	date.getFullYear() === today.getFullYear();
 }
 /**
+ * Checks if a date is tomorrow
+ * @param {Date} date the date to check
+ * @return {boolean} true if the date is tomorrow, false else 
+ */
+function isTomorrow(date){
+	return isToday(new Date(date - (1000*60*60*24)));
+}
+/**
  * Calculates the number of days between 2 dates (excluding hours)
  * @param {Date} startDate the start date
  * @param {Date} endDate the end date
@@ -56,7 +64,9 @@ function _sortie(){
 		time.innerHTML = `${
 			isToday(eventDate)?
 			"Aujourd'hui" // event is today
-			: eventDate.toLocaleDateString("fr-BE",{ // event is not today
+			: isTomorrow(eventDate)?
+			"Demain": // event is tomorrow
+			eventDate.toLocaleDateString("fr-BE",{ // event is in >= 2 days
 			weekday: 'long',
 			year: 'numeric',
 			month: 'long',
@@ -67,7 +77,9 @@ function _sortie(){
 			eventDate.getMinutes() > 0? new String(eventDate.getMinutes()).padStart(2, '0'):'' // display minutes on 2 digits if not zero
 		}${
 			time.dataset.duration? ` (dure &#8776; ${time.dataset.duration})`:'' // display event duration
-		}`; 
+		}`;
+
+		time.title = eventDate.toLocaleDateString("fr-BE");
 
 		calendar.textContent = eventDate.getDate();
 		
@@ -78,21 +90,21 @@ function _sortie(){
 
 				return;
 			}
+			
+			let daysRemaining = getDaysDifference(new Date(), eventDate);
+			console.log('\x1B[1m\x1B[32mCalculated days remaining :', daysRemaining);
+			
+			if(daysRemaining <= 4){
+				const meteoReq = new XMLHttpRequest();
+				meteoReq.onreadystatechange = ()=>{
+					if(meteoReq.readyState === XMLHttpRequest.DONE && meteoReq.status === 200){
+						const res = JSON.parse(meteoReq.responseText);
 
-			const meteoReq = new XMLHttpRequest();
-			meteoReq.onreadystatechange = ()=>{
-				if(meteoReq.readyState === XMLHttpRequest.DONE && meteoReq.status === 200){
-					const res = JSON.parse(meteoReq.responseText);
+						if(res.errors){
+							meteoElt.style.display = 'none';
+							return;
+						}
 
-					if(res.errors){
-						meteoElt.style.display = 'none';
-						return;
-					}
-
-					let daysRemaining = getDaysDifference(new Date(), eventDate);
-					console.log('\x1B[1m\x1B[32mCalculated days remaining :', daysRemaining);
-					
-					if(daysRemaining <= 4){
 						let fcst_day = res[`fcst_day_${daysRemaining}`];
 
 						/*
@@ -141,9 +153,9 @@ function _sortie(){
 						meteoElt.classList.add('ready');
 					}
 				}
+				meteoReq.open('GET', `https://prevision-meteo.ch/services/json/${meteoElt.dataset.cityurl}`);
+				meteoReq.send();
 			}
-			meteoReq.open('GET', `https://prevision-meteo.ch/services/json/${meteoElt.dataset.cityurl}`);
-			meteoReq.send();
 		}
 	}
 }
