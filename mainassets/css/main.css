@@ -43,6 +43,9 @@ body > header > div, body > main, body > footer > div{ /* Limiter la taille à m
 	margin-inline: auto;
 	max-width: 2400px;
 }
+.no-scroll{
+	overflow: hidden;
+}
 
 /* ScrollBar */
 ::-webkit-scrollbar{ 
