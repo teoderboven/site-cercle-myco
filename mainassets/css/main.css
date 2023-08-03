@@ -3,17 +3,6 @@ html{
 	--basic-text-color: rgb(37, 37, 37);
 	--basic-bg-color: rgb(240, 240, 240);
 	--legal-text-color: rgb(135, 135, 135);
-	/* article */
-	--info-bg-color: rgb(81, 113, 105);
-	--info-text-color: rgb(240, 240, 240);
-	--time-text-color: rgb(226, 183, 43);
-	--time-text-past-event: var(--basic-text-color);
-	--time-bg-past-event: rgb(255, 87, 87);
-	--info-location-icon: rgb(209, 82, 82);
-	/* images */
-	--image-border-color: rgb(104, 101, 51);
-	--image-top-text-color: rgb(240, 240, 240);
-	--image-top-bg-color: rgb(37, 37, 37, .7);
 }
 *{
 	margin: 0;

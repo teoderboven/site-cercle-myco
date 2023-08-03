@@ -1,0 +1,88 @@
+html{
+	--carousel-item-default-bg: linear-gradient(50deg, #53ae8e, #2ab3cf);
+	--carousel-content-bg-color: rgba(240, 240, 240, .7);
+}
+#topCarousel{
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 25px;
+}
+.carousel-wrapper{
+	display: flex;
+}
+.carousel-border{
+	flex: auto;
+	width: auto;
+	z-index: 20;
+}
+.carousel-border.left{
+	background-image: linear-gradient(90deg, rgb(240, 240, 240, 0.6), rgb(240, 240, 240, 0.4));
+}																				
+.carousel-border.right{
+	background-image: linear-gradient(270deg, rgb(240, 240, 240, 0.6), rgb(240, 240, 240, 0.4));
+}
+.carousel-content{
+	flex: 0 0 100%;
+	max-width: 1080px;
+	overflow: visible;
+	user-select: none;
+}
+.carousel{
+	display: flex;
+	transition: transform 0.5s ease;
+}
+.carousel .item{
+	flex: 0 0 100%;
+	display: flex;
+	align-items: end;
+	overflow: hidden;
+	background-image: var(--carousel-item-default-bg);
+	background-size: cover;
+}
+.carousel .item:first-child{
+	background-image: url('/mainassets/img/CMB-index.png');
+	display: grid;
+}
+.carousel .item:first-child > *{
+	grid-row: 1/2;
+	grid-column: 1/2;
+}
+.carousel .content{
+	padding: 15px;
+}
+.carousel .item h2{
+	display: inline;
+	background-color: var(--carousel-content-bg-color);
+	font-size: 3rem;
+	font-weight: bolder;
+	padding-right: 5px;
+}
+.carousel a.item:hover h2{
+	text-decoration: underline;
+}
+.carousel a.item h2::after{
+	content: " \0025BA";
+}
+.carousel .ratio{
+	padding-top: 56.7%;
+}
+#topCarousel .dots{
+	margin: 10px 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.dot{
+	width: 12px;
+	height: 12px;
+	border-radius: 20px;
+	background-color: #ccc;
+	margin: 0 5px;
+	cursor: pointer;
+	transition: width 0.5s ease;
+}
+.dot.active{
+	width: 35px;
+	background-color: #333;
+}
+	

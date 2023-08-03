@@ -1,3 +1,8 @@
+html{
+	--image-border-color: rgb(104, 101, 51);
+	--image-top-text-color: rgb(240, 240, 240);
+	--image-top-bg-color: rgb(37, 37, 37, .7);
+}
 /* règles à propos des images dans le document */
 .image{
 	display: grid;

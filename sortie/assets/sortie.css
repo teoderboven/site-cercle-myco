@@ -1,3 +1,11 @@
+html{
+	--info-bg-color: rgb(81, 113, 105);
+	--info-text-color: rgb(240, 240, 240);
+	--time-text-color: rgb(226, 183, 43);
+	--time-text-past-event: var(--basic-text-color);
+	--time-bg-past-event: rgb(255, 87, 87);
+	--info-location-icon: rgb(209, 82, 82);
+}
 #headTitle{
 	background-color: rgb(115, 168, 151); /* default */
 	background-repeat: no-repeat;
