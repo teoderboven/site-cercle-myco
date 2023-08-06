@@ -125,4 +125,33 @@
 		showCarouselItem(++currentIndex);
 	});
 }
+{
+	// description observer
 
+	const eltsToShow = document.querySelectorAll('.fade-in, .slide-in');
+
+	if(IntersectionObserver){
+		function handleIntersection(entries, observer){
+			entries.forEach(entry => {
+				if(entry.isIntersecting){
+					entry.target.classList.add('show');
+					observer.unobserve(entry.target);
+				}
+			});
+		}
+		const options = {
+			rootMargin: '0px',
+			threshold: 0
+		};
+
+		const observer = new IntersectionObserver(handleIntersection, options);
+
+		eltsToShow.forEach(elt=>{
+			observer.observe(elt);
+		});
+	}else{ // if browser does not have Observer
+		eltsToShow.forEach(elt=>{
+			elt.classList.add('show');
+		});
+	}
+}
