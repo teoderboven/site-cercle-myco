@@ -15,6 +15,8 @@
 	 * @param {number} index The index of the carousel item to show
 	 */
 	function showCarouselItem(index){
+		if(index < 0 || index > carouselItems.length-1) return;
+
 		carousel.style.transform = `translateX(-${index * 100}%)`;
 		carouselItems.forEach(item => item.classList.remove('active'));
 		dots.forEach(dot => dot.classList.remove('active'));
@@ -32,11 +34,14 @@
 		dot.addEventListener('click', ()=>{
 			currentIndex = index;
 			showCarouselItem(currentIndex);
-			if(carouselInterval){
-				clearInterval(carouselInterval);
-				carouselInterval = undefined;
-			}
 		});
+	});
+
+	topCarousel.addEventListener('click', ()=>{ // stop auto scrolling at any click on the carousel
+		if(carouselInterval){
+			clearInterval(carouselInterval);
+			carouselInterval = undefined;
+		}
 	});
 
 	// dragging items
@@ -99,5 +104,25 @@
 	carousel.addEventListener('touchstart', handleDragStart);
 	document.addEventListener('touchmove', handleDragMove);
 	document.addEventListener('touchend', handleDragEnd);
+	
+	// when use anchor as item
+	carousel.querySelectorAll('a.item').forEach(elt=>{
+		elt.setAttribute('draggable','false');
+		elt.setAttribute('tabindex','-1');
+
+		elt.addEventListener('click', (e)=>{
+			if(Math.abs(startPointX - e.clientX) > 10) e.preventDefault(); // don't redirect if navigate
+		});
+	});
+
+	// navigate with border
+	topCarousel.querySelector('.carousel-border.left').addEventListener('click', ()=>{
+		if(currentIndex - 1 < 0) return;
+		showCarouselItem(--currentIndex);
+	});
+	topCarousel.querySelector('.carousel-border.right').addEventListener('click', ()=>{
+		if(currentIndex + 1 >= carouselItems.length) return;
+		showCarouselItem(++currentIndex);
+	});
 }
 

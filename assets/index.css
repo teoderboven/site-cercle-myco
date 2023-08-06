@@ -22,7 +22,7 @@ html{
 	background-image: linear-gradient(270deg, rgb(240, 240, 240, 0.6), rgb(240, 240, 240, 0.4));
 }
 .carousel-content{
-	flex: 0 0 100%;
+	width: 100%;
 	max-width: 1080px;
 	overflow: visible;
 	user-select: none;
@@ -40,7 +40,6 @@ html{
 	background-size: cover;
 }
 .carousel .item:first-child{
-	background-image: url('/mainassets/img/CMB-index.png');
 	display: grid;
 }
 .carousel .item:first-child > *{
@@ -63,8 +62,14 @@ html{
 .carousel a.item h2::after{
 	content: " \0025BA";
 }
+@media screen and (max-width: 720px){
+	.carousel .item h2{
+		font-size: 2.2rem;
+	}
+}
 .carousel .ratio{
 	padding-top: 56.7%;
+	z-index: -1;
 }
 #topCarousel .dots{
 	margin: 10px 0;
