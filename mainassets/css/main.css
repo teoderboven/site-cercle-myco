@@ -30,7 +30,7 @@ body{
 	flex-direction: column;
 }
 body > header > div, body > main, body > footer > div{ /* Limiter la taille à max 2400px et center */
-	margin-inline: auto;
+	margin: auto;
 	max-width: 2400px;
 }
 .no-scroll{
@@ -205,7 +205,7 @@ body > footer h3{
 }
 
 #texts ul{
-	padding-inline-start: 20px;
+	padding-left: 20px;
 }
 #credit li::first-letter{
 	text-transform: uppercase;
@@ -224,7 +224,7 @@ body > footer h3{
 	flex: 1;
 }
 #utils ul{
-	padding-inline-start: 15px;
+	padding-left: 15px;
 	margin: 7px 0;
 	border-right: solid 5px transparent;
 }

@@ -1,5 +1,5 @@
 // top carousel
-{
+(function(){
 	const topCarousel = document.getElementById('topCarousel');
 	const carousel = topCarousel.querySelector('.carousel');
 	const carouselItems = topCarousel.querySelectorAll('.item');
@@ -12,7 +12,7 @@
 
 	/**
 	 * Shows the specified carousel item in the carousel container
-	 * @param {number} index The index of the carousel item to show
+	 * @param {number} index the index of the carousel item to show
 	 */
 	function showCarouselItem(index){
 		if(index < 0 || index > carouselItems.length-1) return;
@@ -29,7 +29,7 @@
 		currentIndex = (currentIndex + 1) % carouselItems.length;
 		showCarouselItem(currentIndex);
 	}, 5000);
-	
+
 	dots.forEach((dot, index)=>{
 		dot.addEventListener('click', ()=>{
 			currentIndex = index;
@@ -53,7 +53,7 @@
 	function handleDragStart(event){
 		isDragging = true;
 		startPointX = event.clientX || event.touches[0].clientX;
- 		startPointY = event.clientY || event.touches[0].clientY;
+		startPointY = event.clientY || event.touches[0].clientY;
 	}
 	/**
 	 * Handles the dragging of the carousel with mouse or touch
@@ -65,7 +65,7 @@
 			const clientY = event.clientY || event.touches[0].clientY;
 			const deltaX = clientX - startPointX;
 			const deltaY = clientY - startPointY;
-		
+
 			// Check if the swipe is more vertical than horizontal
 			if(Math.abs(deltaY) > Math.abs(deltaX)){
 				// Allow default scrolling behavior for vertical swipe
@@ -75,12 +75,12 @@
 			moveX = deltaX;
 			carousel.style.transition = 'none';
 			carousel.style.transform = `translateX(calc(-${currentIndex * 100}% + ${moveX}px))`;
-		
+
 			if(carouselInterval){
 				clearInterval(carouselInterval);
 				carouselInterval = undefined;
 			}
-		  }
+		}
 	}
 	/**
 	 * Handles the end of dragging the carousel with mouse or touch.
@@ -104,7 +104,7 @@
 	carousel.addEventListener('touchstart', handleDragStart);
 	document.addEventListener('touchmove', handleDragMove);
 	document.addEventListener('touchend', handleDragEnd);
-	
+
 	// when use anchor as item
 	carousel.querySelectorAll('a.item').forEach(elt=>{
 		elt.setAttribute('draggable','false');
@@ -124,7 +124,7 @@
 		if(currentIndex + 1 >= carouselItems.length) return;
 		showCarouselItem(++currentIndex);
 	});
-}
+})();
 {
 	// description observer
 

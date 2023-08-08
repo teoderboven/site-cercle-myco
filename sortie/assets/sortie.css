@@ -13,7 +13,6 @@ html{
 	background-position: center;
 	background-attachment: fixed;
 	padding: 45px;
-	mix-blend-mode: lighten;
 	font-size: min(4rem, 72px);
 }
 #headTitle h1{
@@ -21,7 +20,7 @@ html{
 	display: inline;
 	background-color: var(--basic-bg-color);
 	color: var(--basic-text-color);
-	padding-block: .1rem;
+	padding: 0 .1rem;
 	/* mix-blend-mode: lighten; */
 }
 #headerInfo{
@@ -61,6 +60,7 @@ html{
 	align-items: flex-end;
 	width: 2rem;
 	height: 2rem;
+	-webkit-user-select: none;
 	user-select: none;
 }
 #date time{
@@ -86,7 +86,7 @@ html{
 	margin-left: -.375rem;
 }
 #lieu address{
-	user-select: text; /* Safari */
+	-webkit-user-select: all; /* Safari */
 	user-select: all;
 	display: flex;
 	flex-direction: column;
@@ -113,6 +113,7 @@ html{
 	height: 4.5rem;
 	margin-right: 7px;
 	padding: 2px;
+	-webkit-user-select: none;
 	user-select: none;
 }
 #meteo .tmp{

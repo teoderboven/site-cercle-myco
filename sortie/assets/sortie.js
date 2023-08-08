@@ -32,12 +32,12 @@ function getDaysDifference(startDate, endDate){
 	var start = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
 	var end = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
 	
-	return Math.ceil((end - start) / (1000 * 3600 * 24));
+	return Math.ceil((end.getTime() - start.getTime()) / (1000 * 3600 * 24));
 }
 /**
- * main function of this file
+ * main code of this file
  */
-function _sortie(){
+(function(){
 	const dateElt = document.getElementById("date");
 	const meteoElt = document.getElementById("meteo");
 
@@ -50,6 +50,7 @@ function _sortie(){
 
 		if(isNaN(eventDate)){ // invalid date
 			dateElt.style.display = 'none';
+			return;
 		}
 
 		if(eventDate.getTime() < Date.now()){ // past event
@@ -158,5 +159,5 @@ function _sortie(){
 			}
 		}
 	}
-}
-_sortie();
+})()
+

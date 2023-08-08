@@ -121,3 +121,12 @@
 #viewerWraper:fullscreen #fullscreen{
 	background-image: url('/mainassets/img/svg/minimize.svg');
 }
+#viewerWraper:-webkit-full-screen #fullscreen{
+	background-image: url('/mainassets/img/svg/minimize.svg');
+}
+#viewerWraper:-moz-full-screen #fullscreen{
+	background-image: url('/mainassets/img/svg/minimize.svg');
+}
+#viewerWraper:-ms-fullscreen #fullscreen{
+	background-image: url('/mainassets/img/svg/minimize.svg');
+}

@@ -12,7 +12,7 @@ function createElementWithAttributes(tagName, attributes) {
 	}
 	return element;
 }
-{
+(function(){
 	/*
 	 * Init the viewer
 	 */
@@ -67,7 +67,7 @@ function createElementWithAttributes(tagName, attributes) {
 		viewerWraper.classList.remove('visible');
 		document.body.classList.remove('no-scroll');
 		if(!fullscreenWhenOpen && isViewerFullscreen()){
-			document.exitFullscreen();
+			exitFullscreen();
 		}
 	}
 	/**
@@ -82,16 +82,46 @@ function createElementWithAttributes(tagName, attributes) {
 	 * @returns {boolean} true if the viewer is full screen, false else
 	 */
 	function isViewerFullscreen(){
-		return document.fullscreenElement === viewerWraper;
+		if(document.webkitFullscreenElement)
+			return document.webkitFullscreenElement === viewerWraper;
+		else if(document.mozFullScreenElement)
+			return document.mozFullScreenElement === viewerWraper;
+		else if(document.msFullscreenElement)
+			return document.msFullscreenElement === viewerWraper;
+		else
+			return document.fullscreenElement === viewerWraper;
+	}
+	/**
+	 * Takes the document out of full screen mode (considers prefixes)
+	 */
+	function exitFullscreen(){
+		console.log('oui')
+		if (document.exitFullscreen)
+			document.exitFullscreen();
+		else if (document.webkitExitFullscreen)
+			document.webkitExitFullscreen();
+		else if (document.mozCancelFullScreen)
+			document.mozCancelFullScreen();
+		else if (document.msExitFullscreen)
+			document.msExitFullscreen();		  
 	}
 	/**
 	 * Switches the fullscreen state of the viewer
 	 */
 	function switchFullscreen(){
 		if(isViewerFullscreen()){
-			document.exitFullscreen();
+			exitFullscreen();
 		}else{
-			viewerWraper.requestFullscreen();
+			if (viewerWraper.requestFullscreen)
+				viewerWraper.requestFullscreen();
+			else if (viewerWraper.webkitRequestFullscreen)
+				viewerWraper.webkitRequestFullscreen();
+			else if (viewerWraper.mozRequestFullScreen)
+				viewerWraper.mozRequestFullScreen();
+			else if (viewerWraper.msRequestFullscreen)
+				viewerWraper.msRequestFullscreen();
+			else if (viewerWraper.webkitEnterFullscreen)
+				viewerWraper.webkitEnterFullscreen();
 		}
 	}
 	/**
@@ -195,4 +225,4 @@ function createElementWithAttributes(tagName, attributes) {
 	viewerBg.addEventListener('click', closeViewer);
 	// fullscreen
 	fullscreenButton.addEventListener('click', switchFullscreen);
-}
+})();
