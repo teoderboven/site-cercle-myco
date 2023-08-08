@@ -139,7 +139,7 @@ img.shape2{
 	transition: opacity 1s ease-out;
 	opacity: 0;
 }
-.fade-in.show{
+.show .fade-in{
 	opacity: 1;
 }
 .slide-in{
@@ -151,6 +151,6 @@ img.shape2{
 .slide-in.right{
 	transform: translateX(100%);
 }
-.slide-in.show{
+.show .slide-in{
 	transform: translateX(0);
 }

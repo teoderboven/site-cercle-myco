@@ -128,7 +128,7 @@
 {
 	// description observer
 
-	const eltsToShow = document.querySelectorAll('.fade-in, .slide-in');
+	const eltsToShow = document.querySelectorAll('.description');
 
 	if(IntersectionObserver){
 		function handleIntersection(entries, observer){
@@ -141,7 +141,7 @@
 		}
 		const options = {
 			rootMargin: '0px',
-			threshold: 0
+			threshold: 0.5
 		};
 
 		const observer = new IntersectionObserver(handleIntersection, options);

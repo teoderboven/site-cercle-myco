@@ -1,39 +1,39 @@
 /**
- * Checks if a date is today
- * @param {Date} date the date to check
- * @return {boolean} true if the date is today, false else 
+ * Checks if a moment is today
+ * @param {moment} momnt the moment to check
+ * @return {boolean} true if the moment is today, false else 
  */
-function isToday(date){
-	if(!(date instanceof Date)) return false;
+function isToday(momnt){
+	if(!(moment.isMoment(momnt))) return false;
 
-	const today = new Date();
-
-	return date.getDate() === today.getDate() &&
-	date.getMonth() === today.getMonth() &&
-	date.getFullYear() === today.getFullYear();
+	return momnt.isSame(moment(), 'day');
 }
 /**
- * Checks if a date is tomorrow
- * @param {Date} date the date to check
- * @return {boolean} true if the date is tomorrow, false else 
+ * Checks if a moment is tomorrow
+ * @param {moment} momnt the moment to check
+ * @return {boolean} true if the moment is tomorrow, false else 
  */
-function isTomorrow(date){
-	return isToday(new Date(date - (1000*60*60*24)));
+function isTomorrow(momnt){
+	return isToday(moment(momnt).subtract(1, 'day'));
 }
-/**
- * Calculates the number of days between 2 dates (excluding hours)
- * @param {Date} startDate the start date
- * @param {Date} endDate the end date
- * @returns {number} the number of days between the 2 dates or null if a parameter is not a date
- */
-function getDaysDifference(startDate, endDate){
-	if(!(startDate instanceof Date) || !(endDate instanceof Date)) return null;
-	
-	var start = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-	var end = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
-	
-	return Math.ceil((end.getTime() - start.getTime()) / (1000 * 3600 * 24));
-}
+moment.locale('fr', {
+    months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
+    monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
+    monthsParseExact : true,
+    weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
+    weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
+    weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd D MMMM YYYY HH:mm'
+    }
+});
+
 /**
  * main code of this file
  */
@@ -46,14 +46,16 @@ function getDaysDifference(startDate, endDate){
 		const calendar = dateElt.querySelector("span");
 		const time = dateElt.querySelector("time");
 
-		const eventDate = new Date(time.dateTime);
+		const eventDate = new moment(time.dateTime);
 
-		if(isNaN(eventDate)){ // invalid date
+		if(!eventDate.isValid()){ // invalid date
 			dateElt.style.display = 'none';
 			return;
 		}
 
-		if(eventDate.getTime() < Date.now()){ // past event
+		time.title = eventDate.format('D/MM/Y H[h]mm');
+
+		if(eventDate.isBefore(moment())){ // past event
 			time.textContent = "Cet événement est passé";
 			time.classList.add('past');
 			calendar.style.display = 'none';
@@ -67,22 +69,14 @@ function getDaysDifference(startDate, endDate){
 			"Aujourd'hui" // event is today
 			: isTomorrow(eventDate)?
 			"Demain": // event is tomorrow
-			eventDate.toLocaleDateString("fr-BE",{ // event is in >= 2 days
-			weekday: 'long',
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric'
-		})} à ${
-			eventDate.getHours()
-		}h${
-			eventDate.getMinutes() > 0? new String(eventDate.getMinutes()).padStart(2, '0'):'' // display minutes on 2 digits if not zero
-		}${
-			time.dataset.duration? ` (dure &#8776; ${time.dataset.duration})`:'' // display event duration
-		}`;
+			eventDate.format(`dddd D MMMM ${eventDate.isSame(moment(), 'year')? '':'Y'}`) // event is in >= 2 days
+			} à ${
+				eventDate.format(`H[h]mm`)
+			}${
+				time.dataset.duration? ` (dure &#8776; ${time.dataset.duration})`:'' // display event duration
+			}`
 
-		time.title = eventDate.toLocaleDateString("fr-BE");
-
-		calendar.textContent = eventDate.getDate();
+		calendar.textContent = eventDate.date();
 		
 		// meteo  -- linked with date
 		if(meteoElt){
@@ -92,7 +86,7 @@ function getDaysDifference(startDate, endDate){
 				return;
 			}
 			
-			let daysRemaining = getDaysDifference(new Date(), eventDate);
+			let daysRemaining = eventDate.diff(moment(), 'days');
 			console.log('\x1B[1m\x1B[32mCalculated days remaining :', daysRemaining);
 			
 			if(daysRemaining <= 4){
@@ -112,14 +106,14 @@ function getDaysDifference(startDate, endDate){
 							sometimes the api may not be up to date (1 day delay)
 							Check that the day returned by the api is the same as the Date object
 						*/
-						while(parseInt(fcst_day.date.split(".")[0]) != eventDate.getDate()){
+						while(parseInt(fcst_day.date.split(".")[0]) != eventDate.date()){
 							fcst_day = res[`fcst_day_${++daysRemaining}`];
 							console.warn('\x1B[36mWeather api is not up to date')
 							console.log('\x1B[31mRECALCULATING DAYS REMAINING :', daysRemaining);
 							if(daysRemaining > 4) return;
 						}
 						
-						const fcst = fcst_day.hourly_data[`${eventDate.getHours()}H00`];
+						const fcst = fcst_day.hourly_data[`${eventDate.hour()}H00`];
 						console.log(`\x1B[1m\x1B[32mfcst_day_${daysRemaining} :`, fcst_day.date);
 						console.table(fcst);
 
@@ -160,4 +154,3 @@ function getDaysDifference(startDate, endDate){
 		}
 	}
 })()
-
