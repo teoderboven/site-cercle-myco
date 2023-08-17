@@ -1,0 +1,180 @@
+html{
+	--nav-bg-color: rgb(229, 229, 229);
+	--foray-title-bg: linear-gradient(135deg, #BEE7E8, #79ADDC);
+	--foray-bg: #e2e8e5;
+}
+main{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	padding-bottom: 0 !important;
+}
+#nav-container{
+	background-color: var(--nav-bg-color);
+}
+#nav-container > nav{
+	position: sticky;
+	top: calc(2.6725rem + 10px);
+	height: calc(100vh - (2.6725rem + 10px));
+	width: 275px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+#nav-container > nav h2{
+	font-size: 1.2rem;
+}
+#nav-container #list-head{
+	padding: 15px 10px;
+	margin: 0 5px;
+	border-bottom: solid 1px #000;
+}
+#nav-container #foray-list{
+	overflow-y: scroll;
+	flex: 1;
+	list-style-type: disc;
+	padding-bottom: 150px;
+	/* firefox */
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar-color) var(--basic-bg-color);
+}
+#nav-container > nav ul{
+	margin-left: 15px;
+}
+#nav-container > nav ul li{
+	margin: 5px;
+}
+#nav-container > nav ul ul{
+	margin-top: 5px;
+	margin-bottom: 10px;
+	display: none;
+}
+#nav-container > nav ul .toggle.active + ul{
+	display: block;
+}
+#nav-container > nav ul li button.toggle, #nav-container > nav ul li a{
+	font-size: 1.2rem;
+}
+#nav-container > nav ul li button.toggle:hover, #nav-container > nav ul li a:hover{
+	text-decoration: underline;
+}
+#nav-container > nav ul li a, button.toggle{
+	display: block;
+}
+
+#forays-container{
+	width: 100%;
+	padding-bottom: 140px;
+}
+.forays-group > .title{
+	font-size: 2rem;
+	font-weight: bold;
+	margin-top: 50px;
+	padding: 12px 22px;
+	background-image: var(--foray-title-bg);
+}
+.foray{
+	margin: 17px;
+	padding: 5px;
+	border: solid 2px #555;
+	border-radius: 12px;
+	background-color: var(--foray-bg);
+	box-shadow: 5px 6px 9px #888;
+	transition: box-shadow .5s ease;
+}
+.foray:hover{
+	box-shadow: 8px 10px 8px #777;
+}
+.foray .foray-infos{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.foray h2{
+	padding: 5px;
+	font-size: 1.3rem;
+}
+.calendar{
+	background-image: url("/sortie/assets/calendar.svg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin-right: 5px;
+	padding-bottom: .4rem;
+	color: black !important;
+	font-weight: bold;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+	align-items: center;
+	width: 4.2rem;
+	height: 4.2rem;
+	font-size: .65rem;
+	line-height: .7rem;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.calendar > .digit{
+	font-size: 1.6rem;
+	line-height: 1.3rem;
+}
+
+.foray .frame-container{
+	margin-top: 5px;
+}
+.foray .frame-container iframe{
+	width: 100%;
+	height: 50vh;
+	min-height: 320px;
+	max-height: 980px;
+	border-radius: 0 0 7px 7px;
+	-webkit-user-select: none;
+	user-select: none;
+}
+@media (orientation: portrait){
+	.foray .frame-container iframe{
+		width: 100%;
+		height: 30vh;
+		min-height: 120px;
+	}
+}
+div.toggle + .frame-container,
+div.toggle + .frame-container iframe{
+	display: none;
+}
+div.toggle.active + .frame-container,
+div.toggle.active + .frame-container iframe{
+	display: block;
+}
+
+.toggle{
+	font-weight: bold;
+	cursor: pointer;
+}
+button.toggle{
+	font-size: 1.3rem;
+	text-align: left;
+	width: 100%;
+}
+button.toggle span, div.toggle{
+	position: relative;
+	padding-right: 1.5rem;
+	font-size: inherit;
+}
+button.toggle span::after, div.toggle::after{
+	content: "\0025BC"; /* arrow down */
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	transition: transform 0.3s ease;
+}
+div.toggle::after{
+	font-size: 1.7rem;
+}
+button.toggle.active span::after, div.toggle.active::after{
+	transform: translateY(-50%) rotate(180deg);
+}
