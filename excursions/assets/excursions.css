@@ -1,5 +1,10 @@
 html{
 	--nav-bg-color: rgb(229, 229, 229);
+	--nav-reveal-btn-color: #000;
+	--nav-reveal-btn-bg-color: rgb(168, 168, 168);
+	--nav-reveal-btn-hover-bg-color: rgb(145, 145, 145);
+	--nav-width: 275px;
+	--nav-mobile-width: 375px;
 	--foray-title-bg: linear-gradient(135deg, #BEE7E8, #79ADDC);
 	--foray-bg: #e2e8e5;
 }
@@ -11,18 +16,23 @@ main{
 }
 #nav-container{
 	background-color: var(--nav-bg-color);
+	width: var(--nav-width);
+	font-size: 1rem;
+}
+#nav-container *{
+	font-size: 1em;
 }
 #nav-container > nav{
 	position: sticky;
 	top: calc(2.6725rem + 10px);
 	height: calc(100vh - (2.6725rem + 10px));
-	width: 275px;
+	width: var(--nav-width);
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
 }
 #nav-container > nav h2{
-	font-size: 1.2rem;
+	font-size: 1.2em;
 }
 #nav-container #list-head{
 	padding: 15px 10px;
@@ -53,13 +63,16 @@ main{
 	display: block;
 }
 #nav-container > nav ul li button.toggle, #nav-container > nav ul li a{
-	font-size: 1.2rem;
+	font-size: 1.2em;
 }
 #nav-container > nav ul li button.toggle:hover, #nav-container > nav ul li a:hover{
 	text-decoration: underline;
 }
 #nav-container > nav ul li a, button.toggle{
 	display: block;
+}
+#reveal-btn{
+	display: none;
 }
 
 #forays-container{
@@ -141,11 +154,17 @@ main{
 		min-height: 120px;
 	}
 }
-div.toggle + .frame-container,
+div.toggle + .frame-container{
+	max-height: 0;
+	transition: max-height .5s;
+	overflow: hidden;
+}
 div.toggle + .frame-container iframe{
 	display: none;
 }
-div.toggle.active + .frame-container,
+div.toggle.active + .frame-container{
+	max-height: 100vh;
+}
 div.toggle.active + .frame-container iframe{
 	display: block;
 }
@@ -155,13 +174,13 @@ div.toggle.active + .frame-container iframe{
 	cursor: pointer;
 }
 button.toggle{
-	font-size: 1.3rem;
+	font-size: 1.3em !important;
 	text-align: left;
 	width: 100%;
 }
 button.toggle span, div.toggle{
 	position: relative;
-	padding-right: 1.5rem;
+	padding-right: 1.5em;
 	font-size: inherit;
 }
 button.toggle span::after, div.toggle::after{
@@ -177,4 +196,53 @@ div.toggle::after{
 }
 button.toggle.active span::after, div.toggle.active::after{
 	transform: translateY(-50%) rotate(180deg);
+}
+
+@media screen and (max-width: 1000px){
+	.foray-list{
+		padding: 0 30px;
+	}
+	#nav-container{
+		position: fixed;
+		top: 0;
+		bottom: -150px; /* avoid white space when scrolling up on mobile (when browser bar disappears) */
+		padding-bottom: 150px;
+		left: calc(-1 * var(--nav-mobile-width));
+		z-index: 99;
+		transition: left .3s ease-in-out,
+					box-shadow .6s;
+		font-size: 1.5rem;
+	}
+	#nav-container, #nav-container > nav{
+		width: var(--nav-mobile-width);
+	}
+	#nav-container.active{
+		box-shadow: 4px 0 20px #555;
+		left: 0;
+	}
+	#nav-container > nav{
+		position: relative;
+		/* top: 0; */
+		z-index: 90;
+	}
+	#reveal-btn{
+		display: block;
+		font-size: 3rem;
+		position: absolute;
+		bottom: 50%;
+		left: var(--nav-mobile-width);
+		color: var(--nav-reveal-btn-color);
+		background-color: var(--nav-reveal-btn-bg-color);
+		padding: 10px;
+		border-radius: 0 .8rem .8rem 0;
+		cursor: pointer;
+		box-shadow: 3px 3px 10px #555;
+	}
+	#reveal-btn:hover{
+		background-color: var(--nav-reveal-btn-hover-bg-color);
+	}
+	#nav-container.active #reveal-btn{
+		transform: rotate(180deg);
+		border-radius: .8rem 0 0 .8rem;
+	}
 }
