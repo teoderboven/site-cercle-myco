@@ -178,24 +178,31 @@ button.toggle{
 	text-align: left;
 	width: 100%;
 }
-button.toggle span, div.toggle{
+button.toggle span{
 	position: relative;
 	padding-right: 1.5em;
 	font-size: inherit;
 }
-button.toggle span::after, div.toggle::after{
+button.toggle span::after{
 	content: "\0025BC"; /* arrow down */
 	position: absolute;
 	top: 50%;
 	right: 0;
 	transform: translateY(-50%);
+}
+div.toggle button{
+	font-size: 1.7rem;
+	margin-left: auto;
+}
+button.toggle span::after,
+div.toggle button{
 	transition: transform 0.3s ease;
 }
-div.toggle::after{
-	font-size: 1.7rem;
-}
-button.toggle.active span::after, div.toggle.active::after{
+button.toggle.active span::after{
 	transform: translateY(-50%) rotate(180deg);
+}
+div.toggle.active button{
+	transform: rotate(180deg);
 }
 
 @media screen and (max-width: 1000px){
@@ -224,6 +231,11 @@ button.toggle.active span::after, div.toggle.active::after{
 		position: relative;
 		/* top: 0; */
 		z-index: 90;
+		visibility: hidden; /* hide buttons (cannot focus on it) */
+		transition: visibility .3s;
+	}
+	#nav-container.active > nav{
+		visibility: visible;
 	}
 	#reveal-btn{
 		display: block;
@@ -238,7 +250,7 @@ button.toggle.active span::after, div.toggle.active::after{
 		cursor: pointer;
 		box-shadow: 3px 3px 10px #555;
 	}
-	#reveal-btn:hover{
+	#reveal-btn:hover, #reveal-btn:focus{
 		background-color: var(--nav-reveal-btn-hover-bg-color);
 	}
 	#nav-container.active #reveal-btn{
