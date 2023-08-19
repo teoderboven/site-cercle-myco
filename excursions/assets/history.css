@@ -86,6 +86,9 @@ main{
 	padding: 12px 22px;
 	background-image: var(--foray-title-bg);
 }
+.foray-list{
+	padding-right: 30px;
+}
 .foray{
 	margin: 17px;
 	padding: 5px;
@@ -250,7 +253,7 @@ div.toggle.active button{
 		cursor: pointer;
 		box-shadow: 3px 3px 10px #555;
 	}
-	#reveal-btn:hover, #reveal-btn:focus{
+	#reveal-btn:hover{
 		background-color: var(--nav-reveal-btn-hover-bg-color);
 	}
 	#nav-container.active #reveal-btn{

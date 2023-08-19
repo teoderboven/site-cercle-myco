@@ -1,0 +1,37 @@
+.record{
+	--record-text-color: #f5f5f5;
+	--record-bg-color: #6F634F;
+	/****************************/
+	margin: 10px;
+	padding: 12px;
+	color: var(--record-text-color);
+	background-color: var(--record-bg-color);
+	border-radius: 7px;
+}
+.record ul{
+	list-style: none;
+}
+.record header{
+	font-size: 1.2rem;
+	margin-bottom: 20px;
+	padding: 9px;
+	border: dashed 3px rgba(0, 0, 0, 0.5);
+	border-radius: 9px;
+}
+.record header *{
+	font-size: 1em;
+}
+.record header .autor{
+	font-size: 1.2em;
+}
+.record header .info{
+	margin: 0.5em 0;
+}
+.record main ul{
+	white-space: nowrap;
+	overflow-x: scroll;
+	padding-bottom: 15px;
+	/* firefox */
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar-color) var(--basic-bg-color);
+}
