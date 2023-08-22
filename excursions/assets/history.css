@@ -50,6 +50,7 @@ main{
 }
 #nav-container > nav ul{
 	margin-left: 15px;
+	list-style-type: disc;
 }
 #nav-container > nav ul li{
 	margin: 5px;
