@@ -2,7 +2,7 @@ main{
 	padding-bottom: 0 !important;
 }
 .record{
-	--record-text-color: #f5f5f5;
+	--record-text-color: #fff;
 	--record-bg-color: #6F634F;
 	/****************************/
 	margin: 10px;
@@ -24,12 +24,16 @@ main{
 .record header *{
 	font-size: 1em;
 }
-.record header .autor{
+.record header .author{
 	font-size: 1.2em;
 	margin-bottom: 0.5em;
 }
 .record header .info{
 	margin-bottom: 0.5em;
+}
+.record header .note{
+	margin-bottom: 0.5rem;
+	font-size: 0.85em;
 }
 main .indication{
 	margin-bottom: 0.5em;
@@ -42,4 +46,7 @@ main .indication{
 	/* firefox */
 	scrollbar-width: thin;
 	scrollbar-color: var(--scrollbar-color) var(--basic-bg-color);
+}
+strong{
+	background-color: #a2513f;
 }
