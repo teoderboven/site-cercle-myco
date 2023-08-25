@@ -81,6 +81,8 @@ main{
 	padding-bottom: 140px;
 }
 .forays-group > .title{
+	position: sticky;
+	top: 0;
 	font-size: 2rem;
 	font-weight: bold;
 	margin-top: 50px;
