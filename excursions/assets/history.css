@@ -60,6 +60,9 @@ main{
 	margin-bottom: 10px;
 	display: none;
 }
+#nav-container .date{
+	font-style: italic;
+}
 #nav-container > nav ul .toggle.active + ul{
 	display: block;
 }
