@@ -4,6 +4,41 @@ document.querySelectorAll('.toggle').forEach(elt => {
 	})
 });
 
+/**
+ * Scrolls to the element targeted by the hash in the URL with an optional offset.
+ * @param {number} [offset] The vertical offset in pixels to adjust the scroll position. Default is 5.
+ */
+function scrollToHashWithOffset(offset = 5){
+	const hash = window.location.hash;
+	if(hash){
+		const targetElement = document.querySelector(hash);
+		if(targetElement){
+			const targetTop = targetElement.getBoundingClientRect().top + window.scrollY - offset;
+			window.scrollTo({
+				top: targetTop,
+				behavior: 'smooth'
+			});
+		}
+	}
+}
+
+const titleHeight = document.querySelector('.forays-group .title')?.clientHeight;
+const hashOffset = titleHeight + 20;
+document.querySelectorAll('#foray-list li ul li a').forEach(elt=>{
+	elt.addEventListener('click', (e)=>{
+		e.preventDefault();
+		window.location.hash = elt.getAttribute('href');
+		scrollToHashWithOffset(hashOffset);
+	});
+});
+window.addEventListener('load',(e)=>{
+	const hash = window.location.hash;
+	if(hash){
+		scrollToHashWithOffset(hashOffset);
+	}
+});
+
+
 (function(){
 	/*
 	 * About nav pannel when screen width is less than 1000px
