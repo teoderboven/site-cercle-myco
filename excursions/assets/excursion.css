@@ -24,15 +24,14 @@ main{
 .record header *{
 	font-size: 1em;
 }
+.record header > *:not(:first-child){
+	margin-top: 0.5em;
+}
+.record header .id,
 .record header .author{
 	font-size: 1.2em;
-	margin-bottom: 0.5em;
-}
-.record header .info{
-	margin-bottom: 0.5em;
 }
 .record header .note{
-	margin-bottom: 0.5rem;
 	font-size: 0.85em;
 }
 main .indication{

@@ -140,6 +140,9 @@ main{
 	font-size: 1.6rem;
 	line-height: 1.3rem;
 }
+.calendar > .digit.double{
+	font-size: 1.3rem;
+}
 
 .foray .frame-container{
 	margin-top: 5px;
@@ -152,6 +155,12 @@ main{
 	border-radius: 0 0 7px 7px;
 	-webkit-user-select: none;
 	user-select: none;
+}
+.no-data{
+	text-align: center;
+	padding: 15px;
+	font-style: italic;
+	font-weight: bold;
 }
 @media (orientation: portrait){
 	.foray .frame-container iframe{
