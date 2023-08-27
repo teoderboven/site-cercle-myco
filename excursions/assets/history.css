@@ -6,7 +6,7 @@ html{
 	--nav-width: 275px;
 	--nav-mobile-width: 375px;
 	--forays-list-header-color: #f5f5f5;
-	--forays-list-header-bg: linear-gradient(45deg, #f0adad, #adfb97);
+	--forays-list-header-bg: linear-gradient(45deg, #a7caa1, #dbd38a);
 	--foray-title-bg: linear-gradient(135deg, #BEE7E8, #79ADDC);
 	--foray-bg: #e2e8e5;
 }
@@ -88,6 +88,7 @@ main{
 #forays-container header{
 	background-image: var(--forays-list-header-bg);
 	padding: 10px;
+	text-shadow: 1px 0 #f5f5f5;
 }
 #forays-container header > h1{
 	font-size: 1.5rem;
@@ -183,6 +184,42 @@ main{
 	font-size: 1.3rem;
 }
 
+.foray .expand-btn,
+.foray .new-tab-btn{
+	width: 1.7rem;
+	height: 1.7rem;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.foray .expand-btn{
+	background-image: url('/mainassets/img/svg/expand-fullscreen.svg');
+	filter: invert(100%);
+	transform: scale(0.98);
+}
+.foray.expanded .expand-btn{
+	background-image: url('/mainassets/img/svg/minimize.svg');
+}
+.foray .new-tab-btn{
+	background-image: url('/mainassets/img/svg/new-tab.svg');
+}
+.foray .frame-btn{
+	margin-left: auto;
+}
+.foray .toggle .frame-btn button{
+	margin: 7px;
+	transition: transform 0.3s ease;
+}
+.foray .toggle .frame-btn button:hover{
+	transform: scale(0.9);
+}
+.foray .toggle:not(.active) .frame-btn button{
+	display: none;
+}
+.foray.expanded .reveal-btn{
+	display: none;
+}
+
 .foray .frame-container{
 	margin-top: 5px;
 }
@@ -194,6 +231,27 @@ main{
 	border-radius: 0 0 7px 7px;
 	-webkit-user-select: none;
 	user-select: none;
+}
+.foray.expanded{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 1000000;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 0 30px 30px #00000080;
+}
+.foray.expanded .frame-container{
+	display: flex;
+	flex: 1;
+	max-height: 100vh;
+}
+.foray.expanded .frame-container iframe{
+	display: block;
+	flex: 1;
+	height: 100%;
 }
 .no-data{
 	text-align: center;
@@ -244,18 +302,18 @@ button.toggle span::after{
 	right: 0;
 	transform: translateY(-50%);
 }
-div.toggle button{
+.foray div.toggle button{
 	font-size: 1.7rem;
-	margin-left: auto;
+	cursor: pointer;
 }
 button.toggle span::after,
-div.toggle button{
+div.toggle > button{
 	transition: transform 0.3s ease;
 }
 button.toggle.active span::after{
 	transform: translateY(-50%) rotate(180deg);
 }
-div.toggle.active button{
+div.toggle.active > button{
 	transform: rotate(180deg);
 }
 

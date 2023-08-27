@@ -1,6 +1,10 @@
 document.querySelectorAll('.toggle').forEach(elt => {
 	elt.addEventListener('click', ()=>{
-		elt.classList.toggle('active');
+		if(elt.parentElement?.classList.contains('expanded')){ // click when foray is expanded
+			closeExpanded(elt.parentElement);
+		}else{
+			elt.classList.toggle('active');
+		}
 	})
 });
 
@@ -35,6 +39,57 @@ window.addEventListener('load',(e)=>{
 	const hash = window.location.hash;
 	if(hash){
 		scrollToHashWithOffset(hashOffset);
+	}
+});
+
+/*
+ * About the expand and open in new tab buttons of forays
+ */
+const magicHash = "#mycelium";
+/*
+ * if you are wondering what is the utility of magicHash, well it is simply to change url when a foray is expanded,
+ * like that when on an android smartphone you press the back key, I can detect it.
+ * And finally it makes a good easter egg.
+ * So if you find it, well done!
+ */
+function openExpanded(element){
+	element.classList.add('expanded');
+	window.location.hash = magicHash;
+}
+function closeExpanded(element){
+	element.classList.remove('expanded');
+	window.history.back();
+}
+document.querySelectorAll('.foray .expand-btn').forEach(elt=>{
+	elt.addEventListener('click', (e)=>{
+		e.stopPropagation();
+		const foray = elt.parentElement?.parentElement?.parentElement;
+		if(foray){
+			if(foray.classList.contains('expanded')) closeExpanded(foray);
+			else openExpanded(foray);
+		}
+	});
+});
+document.querySelectorAll('.foray .new-tab-btn').forEach(elt=>{
+	elt.addEventListener('click', (e)=>{
+		e.stopPropagation();
+		const url = elt.parentElement?.parentElement?.parentElement?.querySelector('iframe')?.src;
+		if(url) window.open(url, '_blank');
+	});
+});
+window.addEventListener('popstate', ()=>{
+	const expanded = document.querySelector('.expanded');
+	if(!expanded || window.location.hash == magicHash) return;
+	expanded.classList.remove('expanded');
+	/*
+	 * I do not use the closeExpanded function because otherwise it would break all while making a back in the history.
+	 */
+});
+document.addEventListener('keydown', (e)=>{
+	const expanded = document.querySelector('.expanded');
+	if(!expanded) return;
+	if(e.key == 'Escape'){
+		closeExpanded(expanded);
 	}
 });
 
