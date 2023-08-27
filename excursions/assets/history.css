@@ -5,6 +5,8 @@ html{
 	--nav-reveal-btn-hover-bg-color: rgb(145, 145, 145);
 	--nav-width: 275px;
 	--nav-mobile-width: 375px;
+	--forays-list-header-color: #f5f5f5;
+	--forays-list-header-bg: linear-gradient(45deg, #f0adad, #adfb97);
 	--foray-title-bg: linear-gradient(135deg, #BEE7E8, #79ADDC);
 	--foray-bg: #e2e8e5;
 }
@@ -83,12 +85,46 @@ main{
 	width: 100%;
 	padding-bottom: 140px;
 }
+#forays-container header{
+	background-image: var(--forays-list-header-bg);
+	padding: 10px;
+}
+#forays-container header > h1{
+	font-size: 1.5rem;
+}
+#forays-container > header > h1,
+#forays-container > header > p{
+	margin: 10px;
+	text-align: center;
+}
+#forays-container .tip{
+	margin:20px 10px 0;
+	width: 50%;
+	max-width: 500px;
+	min-width: 300px;
+	text-shadow: 7px 2px 9px #999;
+}
+#forays-container .tip h3{
+	text-decoration: underline;
+}
+#forays-container .tip p{
+	text-align: justify;
+	margin-top: 5px;
+}
+#forays-container .tip svg{
+	transform: rotate(90deg);
+	width: 50px;
+	filter: drop-shadow(2px -8px 5px #999);
+}
+.tip .small-frame{
+	display: none; /* only reveal it when the frame is small */
+}
 .forays-group > .title{
 	position: sticky;
 	top: 0;
 	font-size: 2rem;
 	font-weight: bold;
-	margin-top: 50px;
+	margin-top: 30px;
 	padding: 12px 22px;
 	background-image: var(--foray-title-bg);
 }
@@ -274,5 +310,8 @@ div.toggle.active button{
 	#nav-container.active #reveal-btn{
 		transform: rotate(180deg);
 		border-radius: .8rem 0 0 .8rem;
+	}
+	.tip .small-frame{
+		display: initial;
 	}
 }

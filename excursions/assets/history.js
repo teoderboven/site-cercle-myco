@@ -23,7 +23,7 @@ function scrollToHashWithOffset(offset = 5){
 }
 
 const titleHeight = document.querySelector('.forays-group .title')?.clientHeight;
-const hashOffset = titleHeight + 20;
+const hashOffset = titleHeight + 17;
 document.querySelectorAll('#foray-list li ul li a').forEach(elt=>{
 	elt.addEventListener('click', (e)=>{
 		e.preventDefault();
