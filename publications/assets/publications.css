@@ -1,0 +1,68 @@
+html{
+	--post-text-color : var(--basic-text-color);
+	--post-bg-color: linear-gradient(0deg, #9b7a59, #c7ad5f);
+	--post-part-color: #fefefe;
+}
+main{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+.post{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap-reverse;
+	margin: 20px;
+	color: var(--post-text-color);
+	background-image: var(--post-bg-color);
+	box-shadow: 6px 7px 5px #00000080;
+	max-width: 1500px;
+}
+.post > *{
+	padding: 10px;
+	border: solid 1px #000;
+	margin: -.5px;
+}
+.post .post-content{
+	flex: 2 1 400px;
+}
+.post .post-content h2{
+	font-size: 1.5rem;
+	text-decoration: underline;
+	text-shadow: 1px 1px #d1d1d1;
+	margin-bottom: 10px;
+}
+.post .post-content ul{
+	margin-left: 20px;
+	list-style: square
+}
+.post .post-content li{
+	margin: 3px 0;
+}
+.post .post-content li .author{
+	font-weight: bold;
+}
+.post .post-content li .part{
+	color: var(--post-part-color);
+	text-shadow: 1px 1px #555;
+}
+.post .post-content li a.part:hover{
+	text-decoration: underline;
+}
+.post .post-content li span.part{
+	transition: color .3s ease;
+	cursor: not-allowed;
+}
+.post .post-content li span.part:hover{
+	color: red;
+}
+.post .cover{
+	width: auto;
+	flex: 1 1;
+	text-align: center;
+}
+.post .cover img{
+	box-shadow: 6px 7px 5px #00000080;
+	width: 250px;
+}
