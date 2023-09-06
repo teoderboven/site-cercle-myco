@@ -6,7 +6,7 @@ body > main > header{
 body > main > header h1{
 	font-size: 2.5rem;
 	color: #f5f5f5;
-	text-shadow: 1px 1px #131313;
+	text-shadow: 2px 1px #131313;
 }
 #main-container{
 	display: flex;
@@ -123,7 +123,7 @@ a.email{
 	font-weight: bold;
 	transition: color .3s ease;
 }
-a.email:hover{
+a.email:not(#contact a):hover{
 	color: #deba2c;
 }
 .card p.highlight{
