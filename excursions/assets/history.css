@@ -184,13 +184,17 @@ main{
 	font-size: 1.3rem;
 }
 
-.foray .expand-btn,
-.foray .new-tab-btn{
+.foray .toggle .frame-btn button,
+.foray .toggle .frame-btn a{
+	display: inline-block;
 	width: 1.7rem;
 	height: 1.7rem;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
+}
+.foray .open-pdf-btn{
+	background-image: url('/mainassets/img/svg/pdf-document.svg');
 }
 .foray .expand-btn{
 	background-image: url('/mainassets/img/svg/expand-fullscreen.svg');
@@ -205,15 +209,21 @@ main{
 }
 .foray .frame-btn{
 	margin-left: auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
-.foray .toggle .frame-btn button{
+.foray .toggle .frame-btn button,
+.foray .toggle .frame-btn a{
 	margin: 7px;
 	transition: transform 0.3s ease;
 }
-.foray .toggle .frame-btn button:hover{
+.foray .toggle .frame-btn button:hover,
+.foray .toggle .frame-btn a:hover{
 	transform: scale(0.9);
 }
-.foray .toggle:not(.active) .frame-btn button{
+.foray .toggle:not(.active) .frame-btn button,
+.foray .toggle:not(.active) .frame-btn a{
 	display: none;
 }
 .foray.expanded .reveal-btn{

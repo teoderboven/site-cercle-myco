@@ -77,6 +77,11 @@ document.querySelectorAll('.foray .new-tab-btn').forEach(elt=>{
 		if(url) window.open(url, '_blank');
 	});
 });
+document.querySelectorAll('.foray .open-pdf-btn').forEach(elt=>{
+	elt.addEventListener('click', (e)=>{
+		e.stopPropagation();
+	});
+});
 window.addEventListener('popstate', ()=>{
 	const expanded = document.querySelector('.expanded');
 	if(!expanded || window.location.hash == magicHash) return;
