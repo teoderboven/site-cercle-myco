@@ -48,7 +48,7 @@ html{
 }
 
 .calendar{
-	background-image: url("/sortie/assets/calendar.svg");
+	background-image: url("/mainassets/img/svg/calendar.svg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	margin-right: 5px;
