@@ -1,0 +1,79 @@
+html{
+	--timeline-width: 15px;
+	--timeline-border-radius: calc(var(--timeline-width)/2);
+	--timeline-past-color: #ccd8e6;
+	--timeline-future-color: #3663a1;
+	--timeline-marker-color: #042e46;
+	--timeline-marker-width: 25px;
+	--timeline-arrow-width: calc(2.4 * var(--timeline-width));
+	--timeline-marker-overflow: calc((var(--timeline-marker-width) - var(--timeline-width))/2);
+}
+#timeline-container{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: stretch;
+	margin: 20px;
+	/* dev */
+	height: 500px;
+}
+.timeline{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: flex-end;
+	border-radius: var(--timeline-border-radius);
+	margin-right: var(--timeline-width);
+}
+.timeline .time{
+	width: var(--timeline-width);
+	margin: -1rem
+			var(--timeline-marker-overflow);
+	box-shadow: 2px 2px 5px #000000a0;
+	z-index: 2;
+}
+.timeline .time.past{
+	background-color: var(--timeline-past-color);
+	border-radius: var(--timeline-border-radius) var(--timeline-border-radius) 0 0;
+	max-height: calc(100% - var(--timeline-arrow-width));
+	margin-top: 0;
+}
+.timeline .time.future{
+	background-color: var(--timeline-future-color);
+	margin-bottom: 0;
+	flex: 1;
+}
+.timeline .marker-wrapper{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	z-index: 10;
+}
+.timeline .marker-wrapper .date{
+	text-align: center;
+	font-weight: bold;
+	margin: 0 5px;
+	text-shadow: 5px 5px 20px #00000080;
+}
+.timeline .marker-wrapper .marker{
+	background-color: var(--timeline-marker-color);
+	width: var(--timeline-marker-width);
+	height: var(--timeline-marker-width);
+	border-radius: 50%;
+}
+.timeline svg.arrow{
+	fill: var(--timeline-future-color);
+	width: var(--timeline-arrow-width);
+	margin: 0 calc(0px - (var(--timeline-arrow-width) - var(--timeline-width) - 2*var(--timeline-marker-overflow))/2);
+	z-index: 5;
+	filter: drop-shadow(2px 2px 5px #000000a0);
+}
+@media screen and (max-width: 720px){
+	.timeline{
+		align-items: flex-start;
+	}
+	.timeline .marker-wrapper{
+		flex-direction: row-reverse;
+	}
+}
