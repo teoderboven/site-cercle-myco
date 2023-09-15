@@ -156,34 +156,6 @@ main{
 	padding: 5px;
 	font-size: 1.3rem;
 }
-.calendar{
-	background-image: url("/mainassets/img/svg/calendar.svg");
-	background-size: cover;
-	background-repeat: no-repeat;
-	margin-right: 5px;
-	padding-bottom: .4rem;
-	color: black !important;
-	font-weight: bold;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-end;
-	align-items: center;
-	width: 4.2rem;
-	height: 4.2rem;
-	font-size: .65rem;
-	line-height: .7rem;
-	-webkit-user-select: none;
-	user-select: none;
-}
-.calendar > .digit{
-	font-size: 1.6rem;
-	line-height: 1.3rem;
-}
-.calendar > .digit.double{
-	font-size: 1.3rem;
-}
-
 .foray .toggle .frame-btn button,
 .foray .toggle .frame-btn a{
 	display: inline-block;
