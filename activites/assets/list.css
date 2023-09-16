@@ -7,15 +7,20 @@ html{
 	--timeline-marker-width: 25px;
 	--timeline-arrow-width: calc(2.4 * var(--timeline-width));
 	--timeline-marker-overflow: calc((var(--timeline-marker-width) - var(--timeline-width))/2);
+
+	--activity-bg: linear-gradient(300deg, #b7cfde, #9dcae6);
+	--activity-highlight-bg: linear-gradient(300deg, #e3ddad, #debf96);
+	--activity-btn-color: #f5f5f5;
+	--activity-btn-bg: #4368ae;
+	--activity-btn-hover-bg: #647aa3;
 }
 #timeline-container{
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	align-items: stretch;
+	justify-content: center;
 	margin: 20px;
-	/* dev */
-	height: 500px;
 }
 .timeline{
 	display: flex;
@@ -43,24 +48,12 @@ html{
 	margin-bottom: 0;
 	flex: 1;
 }
-.timeline .marker-wrapper{
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	align-items: center;
-	z-index: 10;
-}
-.timeline .marker-wrapper .date{
-	text-align: center;
-	font-weight: bold;
-	margin: 0 5px;
-	text-shadow: 5px 5px 20px #00000080;
-}
-.timeline .marker-wrapper .marker{
+.timeline .marker{
 	background-color: var(--timeline-marker-color);
 	width: var(--timeline-marker-width);
 	height: var(--timeline-marker-width);
 	border-radius: 50%;
+	z-index: 10;
 }
 .timeline svg.arrow{
 	fill: var(--timeline-future-color);
@@ -69,11 +62,110 @@ html{
 	z-index: 5;
 	filter: drop-shadow(2px 2px 5px #000000a0);
 }
-@media screen and (max-width: 720px){
-	.timeline{
-		align-items: flex-start;
-	}
-	.timeline .marker-wrapper{
-		flex-direction: row-reverse;
-	}
+.list{
+	padding: 40px 0;
+}
+.month h2{
+	font-size: 1.2rem;
+}
+.month + .activity{
+	margin-top: 5px;
+}
+.activity{
+	margin: 25px 5px;
+	width: 100%;
+}
+.activity .pre-wrapper .date{
+	font-size: .8rem;
+	color: #999;
+	margin-left: 5px;
+	font-weight: bold;
+}
+.activity .main-wrapper{
+	border: solid 1px #000;
+	border-radius: 15px;
+	background-image: var(--activity-bg);
+	box-shadow: 5px 5px 10px #00000080;
+}
+.activity .main-wrapper > *{
+	margin: 7px;
+}
+.activity header{
+	border-bottom: solid 1px #000;
+	padding-bottom: 2px;
+}
+.activity header .title-container{
+	display: flex;
+	flex-direction: row;
+	align-items: center
+}
+.activity header .calendar-container{
+	transform: scale(.9);
+	align-self: flex-start;
+}
+.activity header h3{
+	font-size: 1.5rem;
+	text-shadow: 1px 1px #f5f5f5;
+}
+.activity header .infos{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: left;
+}
+.activity header .infos .info{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	padding: 5px;
+	margin: 5px;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+	box-shadow: 3px 2px 5px #00000080;
+}
+.activity header .infos .info a:hover{
+	text-decoration: underline;
+}
+.activity header .infos .info img{
+	width: 1.1rem;
+	margin-right: 3px;
+}
+.activity footer{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+.activity footer a{
+	background-color: var(--activity-btn-bg);
+	color: var(--activity-btn-color);
+	padding: 7px;
+	box-shadow: 2px 2px 5px #00000080;
+	text-shadow: 1px 1px #555;
+	border-radius: 7px;
+}
+.activity footer a:hover{
+	background-color: var(--activity-btn-hover-bg);
+}
+.activity.passed .main-wrapper{
+	filter: grayscale(.8);
+}
+.activity.passed .pre-wrapper::after{
+	content: " - Cette sortie est passée!";
+	font-weight: bold;
+	color: #d73f3f;
+	font-size: .9rem;
+}
+.activity.next .pre-wrapper::after{
+	content: " - Prochaine sortie!";
+	font-weight: bold;
+}
+.activity.next.today .pre-wrapper::after{
+	content: " - Aujourd'hui!";
+	font-weight: bold;
+}
+.activity.next .main-wrapper{
+	background-image: var(--activity-highlight-bg);
 }
