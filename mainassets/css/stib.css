@@ -5,7 +5,7 @@
 	font-size: 1em;
 	line-height: 1.52941em;
 	text-align: center;
-	border-radius: 3px;
+	border-radius: 0.1875em;
 }
 .stib.line--1,.stib.line--2,.stib.line--5,.stib.line--6{color: #fff!important;}
 .stib.line--1{background: #c4008f}

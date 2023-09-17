@@ -21,6 +21,7 @@ html{
 	align-items: stretch;
 	justify-content: center;
 	margin: 20px;
+	position: relative;
 }
 .timeline{
 	display: flex;
@@ -32,7 +33,7 @@ html{
 }
 .timeline .time{
 	width: var(--timeline-width);
-	margin: -1rem
+	margin: calc(0px - var(--timeline-marker-width)/2)
 			var(--timeline-marker-overflow);
 	box-shadow: 2px 2px 5px #000000a0;
 	z-index: 2;
@@ -63,7 +64,7 @@ html{
 	filter: drop-shadow(2px 2px 5px #000000a0);
 }
 .list{
-	padding: 40px 0;
+	padding: 20px 0;
 }
 .month h2{
 	font-size: 1.2rem;
@@ -162,9 +163,11 @@ html{
 	content: " - Prochaine sortie!";
 	font-weight: bold;
 }
+.activity.next.tomorrow .pre-wrapper::after{
+	content: " - Demain!";
+}
 .activity.next.today .pre-wrapper::after{
 	content: " - Aujourd'hui!";
-	font-weight: bold;
 }
 .activity.next .main-wrapper{
 	background-image: var(--activity-highlight-bg);
