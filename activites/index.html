@@ -8,11 +8,43 @@
 	<link rel="shortcut icon" type="image/png" href="/mainassets/img/icon.png">
 	<link rel="stylesheet" href="/mainassets/css/main.css">
 	<link rel="stylesheet" href="/mainassets/css/calendar.css">
-	<link rel="stylesheet" href="/mainassets/css/stib.css">
+	<link rel="stylesheet" href="/mainassets/css/tip.css">
+	<!-- <link rel="stylesheet" href="/mainassets/css/stib.css"> -->
 	<link rel="stylesheet" href="/activites/assets/timeline.css">
 	<link rel="stylesheet" href="/activites/assets/list.css">
 	<script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
 	<script src="/activites/assets/moment-init.js"></script>
+	<style>
+		/* pending the STIB’s answer */
+		.stib {
+			display: inline-block;
+			width: 1.64706em;
+			height: 1.52941em;
+			font-size: 1em;
+			line-height: 1.52941em;
+			text-align: center;
+			border-radius: 0.1875em;
+			background-color: #4955c5;
+			color: #f5f5f5;
+			pointer-events: none;
+		}
+		/***************/
+		#warnPanelWrapper{
+			padding: 0 25px;
+		}
+		#warnPanel{
+			margin: 0 auto;
+			box-shadow: 3px 3px 5px 1px #00000080;
+		}
+		#warnPanel a{
+			font-weight: bold;
+			color: #6570d5;
+		}
+		#warnPanel > img{
+			width: 3.5rem;
+			height: 3.5rem;
+		}
+	</style>
 </head>
 <body>
 	<header>
@@ -51,6 +83,22 @@
 			</p>
 		</header>
 		<h2 id="activity-title">Programme des activités 2023</h2>
+
+		<!-- warn panel -->
+		<div id="warnPanelWrapper">
+			<section class="tip" id="warnPanel">
+				<img src="/mainassets/img/svg/warning.svg" alt="">
+				<div>
+					<p>
+						Les excursions suivantes ne sont pas organisées par le Cercle de Mycologie de Bruxelles mais par le <a href="https://guidenaturebrabant.wordpress.com/" target="_blank"><i>Cercle des Guides-Nature du Brabant</i></a> (voir aussi: <a href="https://cercles-naturalistes.be" target="_blank"><i>Cercles de Naturalistes de Belgique</i></a>).
+					</p>
+					<p>
+						Si une inscription est demandée, rendez vous sur <a href="https://cercles-naturalistes.be/activites/" target="_blank">la page des activités du CNB</a>.
+					</p>
+				</div>
+			</section>
+		</div>
+		<!-- end warn panel -->
 
 		<div id="timeline-container">
 			<div class="timeline">

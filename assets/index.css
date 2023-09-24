@@ -125,15 +125,45 @@ img.shape2{
 }
 .description .text-container{
 	flex: 3;
-	padding: 0 10px;
+	margin: 0 20px;
+}
+.description .text-container > *, .description .text-container li{
+	margin: .7rem 0;
 }
 .description h2{
 	font-size: 1.8rem;
-	margin-bottom: 10px;
+}
+.description h3{
+	font-size: 1.2rem;
+}
+.description .text-container p,
+.description .text-container li{
+	text-align: justify;
 }
 .description .text-container p{
-	text-align: justify;
-	min-width: 300px;
+	min-width: 450px;
+}
+.description .text-container ul{
+	padding-left: 17px;
+}
+#member-btn-container{
+	padding: 10px 0;
+}
+#member-btn{
+	/* float: left; */
+	font-size: 1.1rem;
+	background-color: #2dacc5;
+	color: #f5f5f5;
+	text-align: center;
+	padding: 10px;
+	border-radius: 5px;
+	width: max-content;
+	max-width: 100%;
+	box-shadow: 1px 1px 2px #00000080;
+	transition: box-shadow .3s ease;
+}
+#member-btn:hover{
+	box-shadow: 4px 4px 7px #00000080;
 }
 .fade-in{
 	transition: opacity 1s ease-out;

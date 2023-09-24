@@ -12,13 +12,13 @@
 	width: max-content;
 	max-width: 100%;
 }
-.tip img.idea{
+.tip > img{
 	width: 1.8rem;
 	height: 1.8rem;
 	margin: 2px 0 2px 3px
 }
 .tip p{
-	padding: 10px 5px;
+	margin: 10px 5px;
 }
 .tip a{
 	/* text-decoration: underline; */
