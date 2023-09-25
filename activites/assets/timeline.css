@@ -172,9 +172,9 @@ html{
 .activity.next .main-wrapper{
 	background-image: var(--activity-highlight-bg);
 }
-.activity a:not(.stib){
+.activity main a:not(.stib){
 	font-style: italic;
 }
-.activity a:not(.stib):hover{
+.activity main a:not(.stib):hover{
 	text-decoration: underline;
 }
