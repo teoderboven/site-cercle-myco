@@ -5,7 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=.7">
 	<meta name="description" content="Découvrez comment devenir membre du Cercle de Mycologie de Bruxelles">
 	<title>Devenir Membre - CMB</title>
-	<link rel="shortcut icon" type="image/png" href="/mainassets/img/icon.png">
+	<link rel="shortcut icon" type="image/x-icon" href="/mainassets/img/icon.ico">
+	<link rel="shortcut icon" type="image/png" sizes="64x64" href="/mainassets/img/icon64wt.png">
+	<link rel="shortcut icon" type="image/png" sizes="256x256" href="/mainassets/img/icon256wt.png">
+	<link rel="apple-touch-icon" sizes="256x256" href="/mainassets/img/icon256wt.png">
 	<link rel="stylesheet" href="/mainassets/css/main.css">
 	<link rel="stylesheet" href="/devenir-membre/assets/member.css">
 	<link rel="stylesheet" href="/mainassets/css/tip.css">
@@ -15,7 +18,11 @@
 		<div>
 			<div id="topTitle">
 				<a href="/" id="title">
-					<img src="/mainassets/img/icon.png" alt="">
+					<img srcset="/mainassets/img/icon256wt.png 256w,
+								 /mainassets/img/icon1500wt.png 1500w"
+						  sizes="(max-width: 420px) 1500px,
+								 256px"
+					 		src="/mainassets/img/icon256wt.png" alt="">
 					<h1>
 						Cercle<span>de</span>Mycologie<span>de</span>Bruxelles
 					</h1>
@@ -168,7 +175,7 @@
 			<div id="footer">
 				<div id="texts">
 					<section>
-						<img src="/private/logo/V6.png" alt="" id="cmbLogo">
+						<img src="/mainassets/img/icon1500.png" alt="" id="cmbLogo">
 						<p>
 							Le Cercle de Mycologie de Bruxelles a été fondé en 1946 par le Professeur Paul Heinemann et une poignée de mycologues enthousiastes. Il rassemble de nombreux mycophiles et mycologues du Brabant et n'a cessé de travailler à l'accroissement de nos connaissances sur les champignons de Belgique.
 						</p>

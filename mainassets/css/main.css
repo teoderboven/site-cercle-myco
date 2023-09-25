@@ -80,8 +80,8 @@ body > header > div{
 #title img{
 	width: 2.6rem;
 	height: 2.6rem;
-	margin: -5px .5rem;
-	transform: scale(1.4);
+	margin: -5px .2rem;
+	transform: scale(1.2);
 }
 #menuBtn svg{
 	width: 2.4rem;
@@ -249,10 +249,9 @@ body > footer h3{
 }
 #cmbLogo{
 	float: left;
-	/* margin: 0 5px 5px 0; */
-	margin: -1.8rem -.5rem -1rem -1rem;
-	width: 12rem;
-	height: 12rem;
+	margin: -.6rem 5px -.5rem 0;
+	width: 10rem;
+	height: 10rem;
 }
 
 #legal{
