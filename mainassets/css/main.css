@@ -98,7 +98,10 @@ body > header > div{
 	font-size: 2rem;
 	margin-left: 5px;
 }
-#title h1 span{
+#title h1 .word{
+	font-size: 1em;
+}
+#title h1 .particle{
 	font-size: .5em;
 	margin: 0 .2em;
 }
@@ -152,6 +155,27 @@ body > header nav a:hover{
 	}
 	body > header nav:not(.visible){
 		height: 0;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	#title .particle{
+		font-size: .4em !important;
+	}
+	#title h1 .word{
+		display: inline-block;
+		font-size: .7em; /* size of non-first-letter */
+	}
+	#title h1 .word::first-letter{
+		font-size: 1.4285em; /* !important 1/size of non-first-letter */
+	}
+}
+@media screen and (max-width: 475px) {
+	#title .particle{
+		display: none;
+	}
+	#title h1 .word:not(:first-of-type){
+		margin-left: .2em;
 	}
 }
 
