@@ -2,9 +2,6 @@ html{
 	--carousel-item-default-bg: linear-gradient(50deg, #53ae8e, #2ab3cf);
 	--carousel-content-bg-color: rgba(240, 240, 240, .8);
 }
-main{
-	display: grid;
-}
 /* carousel */
 #topCarousel{
 	width: 100%;
@@ -102,20 +99,22 @@ main{
 	flex-direction: row;
 	flex-wrap: wrap;
 	align-items: center;
-	margin: 40px 25px;
+	justify-content: center;
+	margin: 40px auto;
+	padding: 0 25px;
 	overflow: hidden;
-	max-width: 1400px;
-	justify-self: center;
 }
 .reverse-wrap{
 	flex-wrap: wrap-reverse;
 }
 .description .img-container{
-	flex: 1;
+	flex: 1 1 400px;
 	text-align: center;
+	max-width: 500px;
 }
 .description .img-container img{
-	max-width: 500px;
+	flex: 1;
+	width: 100%;
 }
 img.shape1{
 	border-radius: 70% 30% 60% 40% / 70% 40% 60% 30%;
@@ -124,8 +123,9 @@ img.shape2{
 	border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%;
 }
 .description .text-container{
-	flex: 3;
+	flex: 3 2;
 	margin: 0 20px;
+	max-width: 100%;
 }
 .description .text-container > *, .description .text-container li{
 	margin: .7rem 0;
@@ -141,7 +141,7 @@ img.shape2{
 	text-align: justify;
 }
 .description .text-container p{
-	min-width: 450px;
+	min-width: 280px;
 }
 .description .text-container ul{
 	padding-left: 17px;

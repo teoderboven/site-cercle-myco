@@ -2,8 +2,7 @@ body > main > header .title-container{
 	background-color: rgb(115, 168, 151); /* default */
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: right 50% bottom 40%;
-	background-attachment: fixed;
+	background-position: right 50% top 30%;
 	background-image: url('/images/Mycena_inclinata_II.JPG');
 	width: 100%;
 	padding: 140px 40px;

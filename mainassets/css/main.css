@@ -3,6 +3,7 @@ html{
 	--basic-text-color: rgb(37, 37, 37);
 	--basic-bg-color: rgb(240, 240, 240);
 	--legal-text-color: rgb(135, 135, 135);
+	--navbar-height: 3.25rem;
 }
 *{
 	margin: 0;
@@ -55,16 +56,27 @@ html{
 }
 
 /* Navbar */
+body{
+	padding-top: var(--navbar-height);
+}
 body > header{
-	position: sticky;
+	position: fixed;
 	top: 0;
+	right: 0;
+	left: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
 	background-color: var(--basic-bg-color);
 	min-width: max-content;
 	z-index: 100;
+	min-height: var(--navbar-height);
 }
 body > header > div{
 	display: flex;
 	padding: 5px 15px;
+	width: 100%;
 }
 #topTitle{
 	display: grid;
@@ -157,7 +169,6 @@ body > header nav a:hover{
 		height: 0;
 	}
 }
-
 @media screen and (max-width: 600px) {
 	#title .particle{
 		font-size: .4em !important;
@@ -263,6 +274,7 @@ body > footer h3{
 	text-transform: capitalize;
 	display: block;
 	margin-right: .3rem;
+	width: max-content;
 }
 #utils li a::before{
 	content: url("/mainassets/img/svg/mushroom-marker.svg");
