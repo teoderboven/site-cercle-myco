@@ -27,7 +27,7 @@ main{
 #nav-container > nav{
 	position: sticky;
 	top: calc(var(--navbar-height) + 10px);
-	height: calc(100vh - (2.6725rem + 10px));
+	height: calc(100vh - (var(--navbar-height) + 10px));
 	width: var(--nav-width);
 	display: flex;
 	flex-direction: column;
@@ -128,6 +128,7 @@ main{
 	margin-top: 30px;
 	padding: 12px 22px;
 	background-image: var(--foray-title-bg);
+	z-index: 90;
 }
 .foray-list{
 	padding-right: 30px;

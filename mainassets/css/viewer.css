@@ -74,10 +74,10 @@
 	margin: auto 5px;
 }
 .viewerNav.left button span{
-	background-image: url('/mainassets/img/svg/previous-arrow.svg');
+	background-image: url('/mainassets/img/svg/previous-arrow-light.svg');
 }
 .viewerNav.right button span{
-	background-image: url('/mainassets/img/svg/next-arrow.svg');
+	background-image: url('/mainassets/img/svg/next-arrow-light.svg');
 }
 .viewerNav.left:hover button span{
 	transform: translateX(-5px);

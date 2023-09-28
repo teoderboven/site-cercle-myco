@@ -103,6 +103,7 @@ html{
 	margin: 40px auto;
 	padding: 0 25px;
 	overflow: hidden;
+	max-width: 1400px;
 }
 .reverse-wrap{
 	flex-wrap: wrap-reverse;
@@ -183,4 +184,68 @@ img.shape2{
 }
 .show .slide-in{
 	transform: translateX(0);
+}
+.flip{
+	transform:scaleY(0);
+	transition: transform .4s ease;
+	transition-delay: .2s;
+}
+.flip.show{
+	transform: scaleY(1);
+}
+.interesting{
+	margin: 100px auto 5px;
+	padding: 0 50px;
+	width: max-content;
+	max-width: 100%;
+}
+.interesting .main-wrapper{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: stretch;
+	border: solid 2px var(--basic-text-color);
+	border-radius: 15px;
+	overflow: hidden;
+	width: max-content;
+	max-width: 100%;
+	box-shadow: 2px 2px 20px #00000033;
+}
+.interesting .main-wrapper > .illustration{
+	flex: 1;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-width: 250px;
+	width: 400px;
+	min-height: 6rem;
+}
+.interesting .content-wrapper{
+	flex: 2;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+.interesting .content-wrapper .text-container{
+	flex: 1;
+	padding: 12px;
+	height: max-content;
+}
+.interesting .grip{
+	font-style: italic;
+}
+.interesting .main-wrapper .content-wrapper .text-container h2{
+	font-size: 1.4rem;
+}
+.interesting .main-wrapper:hover .content-wrapper .text-container h2{
+	text-decoration: underline;
+}
+.interesting .main-wrapper .content-wrapper > img{
+	transition: transform .3s ease-in-out;
+	width: 3rem;
+	margin-left: auto;
+}
+.interesting .main-wrapper:hover .content-wrapper > img{
+	transform: translateX(5px);
 }

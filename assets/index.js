@@ -128,8 +128,8 @@
 {
 	// description observer
 
-	const eltsToShow = document.querySelectorAll('.description');
-
+	const eltsToShow = document.querySelectorAll('.description, .interesting.flip');
+console.log(eltsToShow);
 	if(IntersectionObserver){
 		function handleIntersection(entries, observer){
 			entries.forEach(entry => {
