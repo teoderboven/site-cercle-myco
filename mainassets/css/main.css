@@ -10,7 +10,7 @@ html{
 	padding: 0;
 	font-family: Arial, Helvetica, sans-serif;
 	box-sizing: border-box;
-	font-size: 1.05rem;
+	font-size: 1rem;
 	text-decoration: none;
 	background: none;
 	border: none;
@@ -136,6 +136,9 @@ body > header nav a:hover{
 }
 
 @media screen and (max-width: 1375px) {
+	*{
+		font-size: 1.05rem;
+	}
 	#title{
 		margin: auto;
 		padding-left: 5px;
