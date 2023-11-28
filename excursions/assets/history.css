@@ -103,7 +103,6 @@ main{
 	width: 50%;
 	max-width: 500px;
 	min-width: 300px;
-	text-shadow: 7px 2px 9px #999;
 }
 #forays-container .tip h3{
 	text-decoration: underline;
@@ -115,7 +114,6 @@ main{
 #forays-container .tip svg{
 	transform: rotate(90deg);
 	width: 50px;
-	filter: drop-shadow(2px -8px 5px #999);
 }
 .tip .small-frame{
 	display: none; /* only reveal it when the frame is small */
