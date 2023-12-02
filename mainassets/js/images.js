@@ -14,3 +14,10 @@ if(document.querySelector('.image.viewable')){
 	document.head.appendChild(css);
 	document.head.appendChild(script);
 }
+
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+if (isSafari) {
+	document.querySelectorAll('img[loading="lazy"]').forEach(img=>{
+		img.removeAttribute('loading');
+	});
+}
