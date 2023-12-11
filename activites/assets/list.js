@@ -2,6 +2,7 @@
 	const timelineContainer = document.getElementById("timeline-container");
 	const timelinePastTime = timelineContainer.querySelector(".timeline .time.past");
 	const activities = timelineContainer.querySelectorAll(".list .activity");
+	const season = timelineContainer.dataset.seasonYear;
 	const today = new moment();
 
 	var nextActivity;
@@ -36,7 +37,7 @@
 		if(eventDate.isBefore(today)){
 			activity.classList.add('passed');
 		}else{
-			activity.classList.add('next');
+			activity.setAttribute('id', 'next');
 			nextActivity = activity;
 			if(isTomorrow(eventDate)){
 				activity.classList.add('tomorrow');
@@ -46,14 +47,40 @@
 		}
 	}
 
+	if(!nextActivity){
+		const activitiesList = timelineContainer.querySelector(".list");
+
+		// add message at the top of the list
+		const seasonEndMsg = document.createElement('section');
+		seasonEndMsg.classList.add('season-end');
+		seasonEndMsg.innerHTML = `
+			<h4>La saison ${season} est à présent terminée.</h4>
+			<p>
+				Merci de nous avoir accompagnés tout au long de ces aventures mycologiques.
+				Nous prenons une petite pause, mais ne partez pas trop loin !
+			</p>
+			<p>
+				Soyez prêts pour de nouvelles découvertes l'année prochaine ! Nous avons déjà hâte de les partager avec vous !
+			</p>`;
+
+		activitiesList.insertBefore(seasonEndMsg, activitiesList.children[0]);
+
+		// add indication at the bottom od the list
+		const endElt = document.createElement('section');
+		endElt.classList.add('end');
+		endElt.innerHTML = `<h3>Fin de la saison : Rendez vous en ${parseInt(season) + 1}!</h3>`;
+
+		activitiesList.appendChild(endElt);
+	}
+
 	/**
 	  * Correctly places the timeline marker
 	  */
 	function setTimelineMarker(){
 		if(!nextActivity){
-			if(activities.length){
-				timelinePastTime.style.height = activities[activities.length -1].offsetTop + activities[activities.length -1].offsetHeight + 15 + 'px';
-			}
+			const endElt = timelineContainer.querySelector(".list .end");
+			timelinePastTime.style.height = endElt.offsetTop + endElt.offsetHeight/2 + 'px';
+
 			return;
 		}
 
