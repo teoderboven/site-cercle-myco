@@ -151,6 +151,9 @@ body > header nav a:hover{
 	body > header > div, body > header nav{
 		flex-direction: column;
 	}
+	body > header nav a:first-of-type{
+		margin-top: 4px;
+	}
 	body > header nav{
 		width: 100%;
 		overflow: hidden;

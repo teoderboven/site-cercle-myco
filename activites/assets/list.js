@@ -61,7 +61,8 @@
 			</p>
 			<p>
 				Soyez prêts pour de nouvelles découvertes l'année prochaine ! Nous avons déjà hâte de les partager avec vous !
-			</p>`;
+			</p>
+			<a href="/excursions/" class="history-btn">(Re)découvir les excursions de l'année &#9658;</a>`;
 
 		activitiesList.insertBefore(seasonEndMsg, activitiesList.children[0]);
 
