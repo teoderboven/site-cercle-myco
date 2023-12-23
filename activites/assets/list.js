@@ -33,7 +33,7 @@
 				eventDate.add(duration, 'h'); // set the time until the end of the event
 			}
 		}
-		
+
 		if(eventDate.isBefore(today)){
 			activity.classList.add('passed');
 		}else{
@@ -57,12 +57,12 @@
 			<h4>La saison ${season} est à présent terminée.</h4>
 			<p>
 				Merci de nous avoir accompagnés tout au long de ces aventures mycologiques.
-				Nous prenons une petite pause, mais ne partez pas trop loin !
+				Nous prenons une petite pause, mais ne partez pas trop loin&nbsp;!
 			</p>
 			<p>
-				Soyez prêts pour de nouvelles découvertes l'année prochaine ! Nous avons déjà hâte de les partager avec vous !
+				Soyez prêts pour de nouvelles découvertes l'année prochaine&nbsp;! Nous avons déjà hâte de les partager avec vous&nbsp;!
 			</p>
-			<a href="/excursions/" class="history-btn">(Re)découvir les excursions de l'année &#9658;</a>`;
+			<a href="/excursions/" class="history-btn">(Re)découvrir les excursions de l'année &#9658;</a>`;
 
 		activitiesList.insertBefore(seasonEndMsg, activitiesList.children[0]);
 
