@@ -1,4 +1,6 @@
 html{
+	--go-to-next-padding: 10px;
+	--timeline-margin: 13px;
 	--timeline-width: 15px;
 	--timeline-border-radius: calc(var(--timeline-width)/2);
 	--timeline-past-color: #ccd8e6;
@@ -6,7 +8,7 @@ html{
 	--timeline-marker-color: #042e46;
 	--timeline-marker-width: 25px;
 	--timeline-arrow-width: calc(2.4 * var(--timeline-width));
-	--timeline-marker-overflow: calc((var(--timeline-marker-width) - var(--timeline-width))/2);
+	--timeline-created-margin: calc((var(--timeline-arrow-width) - var(--timeline-width))/2); /* represents the fake margin created by the arrow */
 
 	--activity-bg: linear-gradient(300deg, #b7cfde, #9dcae6);
 	--activity-highlight-bg: linear-gradient(300deg, #e3ddad, #debf96);
@@ -14,27 +16,74 @@ html{
 	--activity-btn-bg: #4368ae;
 	--activity-btn-hover-bg: #647aa3;
 }
+
+@keyframes bg-highlight {
+	from, to, 20%, 80%{
+		background-color: #3b3b3b04;
+	}
+	50%{
+		background-color: #3b3b3b15;
+	}
+}
+@keyframes go-to-right {
+	from, to{
+		transform: translateX(0);
+	}
+	50%{
+		transform: translateX(7px);
+	}
+}
+#goToNext{
+	margin: 15px
+			calc(var(--timeline-margin) + var(--timeline-created-margin) - var(--go-to-next-padding))
+			5px;
+	display: inline-block;
+	font-size: 1.2rem;
+}
+#goToNext,
+#goToNext a{
+	border-radius: calc(var(--go-to-next-padding) * 2);
+}
+#goToNext a{
+	display: inline-flex;
+	align-items: center;
+	position: relative;
+	padding: var(--go-to-next-padding);
+	padding-left: calc(var(--timeline-width) + var(--timeline-created-margin) + var(--go-to-next-padding) + 10px);
+	animation: bg-highlight 5s infinite linear;
+}
+#goToNext a::before{
+	content: "\0025BA";
+	position: absolute;
+	left: var(--go-to-next-padding);
+	font-size: 1.5em;
+	animation: go-to-right 3s infinite ease-in-out;
+}
+#goToNext:hover{
+	background-image: linear-gradient(45deg, #a3cec8, #a4dbd7);
+	text-shadow: 1px 1px 2px #f5f5f5;
+}
+
 #timeline-container{
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	align-items: stretch;
 	justify-content: center;
-	margin: 20px;
+	margin: var(--timeline-margin);
 	position: relative;
 }
 .timeline{
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	align-items: flex-end;
+	align-items: center;
 	border-radius: var(--timeline-border-radius);
-	margin-right: var(--timeline-width);
+	margin-right: 10px;
 }
 .timeline .time{
 	width: var(--timeline-width);
-	margin: calc(0px - var(--timeline-marker-width)/2)
-			var(--timeline-marker-overflow);
+	margin: calc(0px - var(--timeline-marker-width)/2) 0;
 	box-shadow: 2px 2px 5px #000000a0;
 	z-index: 2;
 }
@@ -59,7 +108,6 @@ html{
 .timeline svg.arrow{
 	fill: var(--timeline-future-color);
 	width: var(--timeline-arrow-width);
-	margin: 0 calc(0px - (var(--timeline-arrow-width) - var(--timeline-width) - 2*var(--timeline-marker-overflow))/2);
 	z-index: 5;
 	filter: drop-shadow(2px 2px 5px #000000a0);
 }
