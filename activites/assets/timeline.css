@@ -18,11 +18,11 @@ html{
 }
 
 @keyframes bg-highlight {
-	from, to, 20%, 80%{
-		background-color: #3b3b3b04;
+	from, to, 10%, 90%{
+		background-color: #d0772508;
 	}
 	50%{
-		background-color: #3b3b3b15;
+		background-color: #d077252a;
 	}
 }
 @keyframes go-to-right {
@@ -30,7 +30,7 @@ html{
 		transform: translateX(0);
 	}
 	50%{
-		transform: translateX(7px);
+		transform: translateX(6px);
 	}
 }
 #goToNext{
@@ -38,7 +38,7 @@ html{
 			calc(var(--timeline-margin) + var(--timeline-created-margin) - var(--go-to-next-padding))
 			5px;
 	display: inline-block;
-	font-size: 1.2rem;
+	font-size: 1.25rem;
 }
 #goToNext,
 #goToNext a{
@@ -51,12 +51,14 @@ html{
 	padding: var(--go-to-next-padding);
 	padding-left: calc(var(--timeline-width) + var(--timeline-created-margin) + var(--go-to-next-padding) + 10px);
 	animation: bg-highlight 5s infinite linear;
+	font-size: inherit;
+	font-weight: 500;
 }
 #goToNext a::before{
 	content: "\0025BA";
 	position: absolute;
 	left: var(--go-to-next-padding);
-	font-size: 1.5em;
+	font-size: 1.45em;
 	animation: go-to-right 3s infinite ease-in-out;
 }
 #goToNext:hover{

@@ -104,3 +104,19 @@
 
 	window.addEventListener('resize', setTimelineMarker);
 })();
+
+// scroll to hash #next
+
+const navbarHeight = document.querySelector('body > header').clientHeight;
+const hashOffset = navbarHeight + 35;
+document.getElementById('goToNext').addEventListener('click', (e)=>{
+	e.preventDefault();
+	window.location.hash = e.target.getAttribute('href');
+	scrollToHashWithOffset(hashOffset);
+});
+window.addEventListener('load',()=>{
+	const hash = window.location.hash;
+	if(hash){
+		scrollToHashWithOffset(hashOffset);
+	}
+});
