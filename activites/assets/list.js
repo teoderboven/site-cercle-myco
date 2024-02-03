@@ -57,12 +57,22 @@
 
 	if(!nextActivity){
 		const activitiesList = timelineContainer.querySelector(".list");
+		const noActivity = activities.length == 0;
 
 		// add message at the top of the list
 		const seasonEndMsg = document.createElement('section');
 		seasonEndMsg.classList.add('season-end');
 		seasonEndMsg.innerHTML = `
-			<h4>La saison ${season} est à présent terminée.</h4>
+			<h4>${
+				noActivity? "Aucune activité n'est prévue pour le moment" : 
+							`La saison ${season} est à présent terminée.`}
+			</h4>
+			${noActivity? `
+			<p>
+				De nouvelles aventures mycologiques arrivent bientôt.
+				Merci de votre patience, et à très vite pour explorer ensemble le monde fascinant des champignons&nbsp;!
+			</p>
+			`: `
 			<p>
 				Merci de nous avoir accompagnés tout au long de ces aventures mycologiques.
 				Nous prenons une petite pause, mais ne partez pas trop loin&nbsp;!
@@ -70,14 +80,16 @@
 			<p>
 				Soyez prêts pour de nouvelles découvertes l'année prochaine&nbsp;! Nous avons déjà hâte de les partager avec vous&nbsp;!
 			</p>
-			<a href="/excursions/" class="history-btn">(Re)découvrir les excursions de l'année &#9658;</a>`;
+			`}
+			<a href="/excursions/" class="history-btn">(Re)découvrir les excursions de ${noActivity? "la saison précédente" : "l'année"} &#9658;</a>`;
 
 		activitiesList.insertBefore(seasonEndMsg, activitiesList.children[0]);
 
 		// add indication at the bottom od the list
 		const endElt = document.createElement('section');
 		endElt.classList.add('end');
-		endElt.innerHTML = `<h3>Fin de la saison : Rendez vous en ${parseInt(season) + 1}!</h3>`;
+		endElt.innerHTML = noActivity? "<p>Aucune activité prévue pour le moment</p>"
+		:`<h3>Fin de la saison : Rendez vous en ${parseInt(season) + 1}!</h3>`;
 
 		activitiesList.appendChild(endElt);
 

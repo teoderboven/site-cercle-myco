@@ -115,6 +115,7 @@ html{
 }
 .list{
 	padding: 20px 0;
+	width: 100%;
 }
 .month h2{
 	font-size: 1.2rem;
