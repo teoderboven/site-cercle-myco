@@ -1,4 +1,10 @@
 (function(){
+	const goToNextBtn = document.getElementById('goToNext');
+
+	function hideGoToNext(){
+		goToNextBtn.style.display = "none";
+	}
+
 	const timelineContainer = document.getElementById("timeline-container");
 	const timelinePastTime = timelineContainer.querySelector(".timeline .time.past");
 	const activities = timelineContainer.querySelectorAll(".list .activity");
@@ -37,13 +43,15 @@
 		if(eventDate.isBefore(today)){
 			activity.classList.add('passed');
 		}else{
-			activity.setAttribute('id', 'next');
+			activity.id = 'next';
 			nextActivity = activity;
 			if(isTomorrow(eventDate)){
 				activity.classList.add('tomorrow');
 			}else if(isToday(eventDate)){
 				activity.classList.add('today');
 			}
+
+			if(i==0) hideGoToNext(); // no button if next is first activity
 		}
 	}
 
@@ -72,6 +80,8 @@
 		endElt.innerHTML = `<h3>Fin de la saison : Rendez vous en ${parseInt(season) + 1}!</h3>`;
 
 		activitiesList.appendChild(endElt);
+
+		hideGoToNext();
 	}
 
 	/**
@@ -103,20 +113,20 @@
 	setTimelineMarker();
 
 	window.addEventListener('resize', setTimelineMarker);
-})();
 
-// scroll to hash #next
+	// scroll to hash #next
 
-const navbarHeight = document.querySelector('body > header').clientHeight;
-const hashOffset = navbarHeight + 35;
-document.getElementById('goToNext').addEventListener('click', (e)=>{
-	e.preventDefault();
-	window.location.hash = e.target.getAttribute('href');
-	scrollToHashWithOffset(hashOffset);
-});
-window.addEventListener('load',()=>{
-	const hash = window.location.hash;
-	if(hash){
+	const navbarHeight = document.querySelector('body > header').clientHeight;
+	const hashOffset = navbarHeight + 35;
+	goToNextBtn.addEventListener('click', (e)=>{
+		e.preventDefault();
+		window.location.hash = e.target.getAttribute('href');
 		scrollToHashWithOffset(hashOffset);
-	}
-});
+	});
+	window.addEventListener('load',()=>{
+		const hash = window.location.hash;
+		if(hash){
+			scrollToHashWithOffset(hashOffset);
+		}
+	});
+})();
