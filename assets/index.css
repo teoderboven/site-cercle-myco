@@ -62,7 +62,7 @@ html{
 	text-decoration: underline;
 }
 .carousel a.item h2::after{
-	content: " \0025BA"; /* do not change to \0025B6, it sucks on chrome android */
+	content: "\00A0\25BA"; /* do not change to \25B6, it sucks on chrome android */
 }
 @media screen and (max-width: 720px){
 	.carousel .item h2{

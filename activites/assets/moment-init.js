@@ -1,20 +1,22 @@
 /**
  * Checks if a moment is today
  * @param {moment} momnt the moment to check
+ * @param {moment} [today] specify a virtual today (use for debug)
  * @return {boolean} true if the moment is today, false else 
  */
-function isToday(momnt){
-	if(!(moment.isMoment(momnt))) return false;
+function isToday(momnt, today = moment()){
+	if(!(moment.isMoment(momnt)) || !(moment.isMoment(today))) return false;
 
-	return momnt.isSame(moment(), 'day');
+	return momnt.isSame(today, 'day');
 }
 /**
  * Checks if a moment is tomorrow
  * @param {moment} momnt the moment to check
+ * @param {moment} [today] specify a virtual today (use for debug)
  * @return {boolean} true if the moment is tomorrow, false else 
  */
-function isTomorrow(momnt){
-	return isToday(moment(momnt).subtract(1, 'day'));
+function isTomorrow(momnt, today = null){
+	return isToday(moment(momnt).subtract(1, 'day'), today);
 }
 moment.locale('fr', {
 	months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
