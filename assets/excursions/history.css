@@ -165,18 +165,18 @@ main{
 	background-position: center;
 }
 .foray .open-pdf-btn{
-	background-image: url('/mainassets/img/svg/pdf-document.svg');
+	background-image: url('/assets/common/img/svg/pdf-document.svg');
 }
 .foray .expand-btn{
-	background-image: url('/mainassets/img/svg/expand-fullscreen.svg');
+	background-image: url('/assets/common/img/svg/expand-fullscreen.svg');
 	filter: invert(100%);
 	transform: scale(0.98);
 }
 .foray.expanded .expand-btn{
-	background-image: url('/mainassets/img/svg/minimize.svg');
+	background-image: url('/assets/common/img/svg/minimize.svg');
 }
 .foray .new-tab-btn{
-	background-image: url('/mainassets/img/svg/new-tab.svg');
+	background-image: url('/assets/common/img/svg/new-tab.svg');
 }
 .foray .frame-btn{
 	margin-left: auto;

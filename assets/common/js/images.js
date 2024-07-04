@@ -6,10 +6,10 @@ Array.from(document.getElementsByClassName("image")).forEach(elt => {
 if(document.querySelector('.image.viewable')){
 	const css = document.createElement('link');
 	css.rel = "stylesheet";
-	css.href = "/mainassets/css/viewer.css";
+	css.href = "/assets/common/css/viewer.css";
 
 	const script = document.createElement('script');
-	script.src = "/mainassets/js/viewer.js";
+	script.src = "/assets/common/js/viewer.js";
 
 	document.head.appendChild(css);
 	document.head.appendChild(script);

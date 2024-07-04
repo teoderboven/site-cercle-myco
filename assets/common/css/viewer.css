@@ -74,10 +74,10 @@
 	margin: auto 5px;
 }
 .viewerNav.left button span{
-	background-image: url('/mainassets/img/svg/previous-arrow-light.svg');
+	background-image: url('/assets/common/img/svg/previous-arrow-light.svg');
 }
 .viewerNav.right button span{
-	background-image: url('/mainassets/img/svg/next-arrow-light.svg');
+	background-image: url('/assets/common/img/svg/next-arrow-light.svg');
 }
 .viewerNav.left:hover button span{
 	transform: translateX(-5px);
@@ -110,23 +110,23 @@
 	transform: scale(1.2);
 }
 #viewerButtons #close{
-	background-image: url('/mainassets/img/svg/close.svg');
+	background-image: url('/assets/common/img/svg/close.svg');
 }
 #viewerButtons #fullscreen{
 	margin: 10px;
 	width: calc(var(--icon-size) - 10px);
 	height: calc(var(--icon-size) - 10px);
-	background-image: url('/mainassets/img/svg/expand-fullscreen.svg');
+	background-image: url('/assets/common/img/svg/expand-fullscreen.svg');
 }
 #viewerWraper:fullscreen #fullscreen{
-	background-image: url('/mainassets/img/svg/minimize.svg');
+	background-image: url('/assets/common/img/svg/minimize.svg');
 }
 #viewerWraper:-webkit-full-screen #fullscreen{
-	background-image: url('/mainassets/img/svg/minimize.svg');
+	background-image: url('/assets/common/img/svg/minimize.svg');
 }
 #viewerWraper:-moz-full-screen #fullscreen{
-	background-image: url('/mainassets/img/svg/minimize.svg');
+	background-image: url('/assets/common/img/svg/minimize.svg');
 }
 #viewerWraper:-ms-fullscreen #fullscreen{
-	background-image: url('/mainassets/img/svg/minimize.svg');
+	background-image: url('/assets/common/img/svg/minimize.svg');
 }

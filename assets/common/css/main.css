@@ -283,7 +283,7 @@ body > footer h3{
 	width: max-content;
 }
 #utils li a::before{
-	content: url("/mainassets/img/svg/mushroom-marker.svg");
+	content: url("/assets/common/img/svg/mushroom-marker.svg");
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;
