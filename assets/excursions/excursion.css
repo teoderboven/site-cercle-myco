@@ -1,3 +1,6 @@
+html{
+	scrollbar-color: var(--scrollbar-color) #00000000;
+}
 body{
 	padding: 0 !important;
 }

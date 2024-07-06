@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+html{
+	--navbar-height: 3.25rem;
+}
+
+body{
+	padding-top: var(--navbar-height);
+}
+body > header{
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	background-color: var(--basic-bg-color);
+	min-width: max-content;
+	z-index: 100;
+	min-height: var(--navbar-height);
+}
+body > header > div{
+	display: flex;
+	padding: 5px 15px;
+	width: 100%;
+}
+#topTitle{
+	display: grid;
+}
+#topTitle > *{
+	grid-row: 1/2;
+	grid-column: 1/2;
+}
+#title{
+	display: flex;
+	align-items: center;
+}
+#title img{
+	width: 2.6rem;
+	height: 2.6rem;
+	margin: -5px .2rem;
+	transform: scale(1.2);
+}
+#menuBtn svg{
+	width: 2.4rem;
+	height: 2.4rem;
+	stroke: var(--basic-text-color);
+	fill: var(--basic-text-color);
+}
+#menuBtn{
+	cursor: pointer;
+	display: none;
+	margin-left: auto;
+}
+#title h1{
+	font-family: Raleway, Arial, Helvetica, sans-serif;
+	font-weight: 800;
+	font-size: 2rem;
+	margin-left: 5px;
+}
+#title h1 .word,
+#title h1 .particle{
+	font: inherit;
+}
+#title h1 .word{
+	font-size: 1em;
+}
+#title h1 .particle{
+	font-size: .5em;
+	margin: 0 .2em;
+}
+body > header nav{
+	display: flex;
+	margin: auto;
+}
+body > header nav a{
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 5px 10px;
+	margin: 0 2px;
+	text-transform: capitalize;
+	white-space: nowrap;
+	border: transparent 2px solid;
+	border-radius: 5px;
+}
+body > header nav a:hover{
+	border-color: var(--basic-text-color);
+}
+
+@media screen and (max-width: 1375px) {
+	#title{
+		margin: auto;
+		padding-left: 5px;
+		padding-right: calc(3rem + 5px);
+	}
+	#menuBtn{
+		display: block;
+		width: max-content;
+	}
+	body > header > div, body > header nav{
+		flex-direction: column;
+	}
+	body > header nav a:first-of-type{
+		margin-top: 4px;
+	}
+	body > header nav{
+		width: 100%;
+		overflow: hidden;
+	}
+	body > header nav a{
+		width: 100%;
+		margin: 0;
+		font-size: 2rem;
+	}
+	body > header nav a:hover, body > header nav a:focus{
+		background-color: var(--basic-text-color);
+		color: var(--basic-bg-color);
+		outline: none;
+	}
+	body > header nav:focus-within{
+		height: auto !important;
+	}
+	body > header nav:not(.visible){
+		height: 0;
+	}
+}
+@media screen and (max-width: 600px) {
+	#title .particle{
+		font-size: .4em !important;
+	}
+	#title h1 .word{
+		display: inline-block;
+		font-size: .7em; /* size of non-first-letter */
+	}
+	#title h1 .word::first-letter{
+		font-size: 1.4285em; /* !important 1/size of non-first-letter */
+	}
+}
+@media screen and (max-width: 475px) {
+	#title .particle{
+		display: none;
+	}
+	#title h1 .word:not(:first-of-type){
+		margin-left: .2em;
+	}
+}
