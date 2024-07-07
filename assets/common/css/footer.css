@@ -16,7 +16,7 @@ body > footer{
 body > footer a:hover{
 	text-decoration: underline;
 }
-body > footer h3{
+body > footer h2{
 	font-size: 1.2rem;
 	margin-bottom: 5px;
 }
@@ -35,18 +35,18 @@ body > footer h3{
 #texts p{
 	text-align: justify;
 }
-#texts section{
+#texts .text{
 	grid-row: 1/2;
 	grid-column: 1/2;
 	transition: visibility .4s,
 				opacity .4s;
 }
-#texts section:target{
+#texts .text:target{
 	visibility: visible !important;
 	opacity: 1 !important;
 	animation: slide-in .4s ease-out;
 }
-#texts section:not(:last-child), #texts section:target ~ section:not(:target){
+#texts .text:not(:last-child), #texts .text:target ~ .text:not(:target){
 	visibility: hidden;
 	opacity: 0;
 }
@@ -87,8 +87,6 @@ body > footer h3{
 #utils li a::before{
 	content: url("/assets/common/img/svg/mushroom-marker.svg");
 	display: inline-block;
-	width: 1rem;
-	height: 1rem;
 	margin-right: 7px;
 }
 #cmbLogo{

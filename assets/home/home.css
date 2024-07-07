@@ -33,11 +33,14 @@ html{
 	display: flex;
 	transition: transform 0.5s ease;
 }
-.carousel .item{
+.carousel li{
 	flex: 0 0 100%;
 	display: flex;
 	align-items: flex-end;
 	overflow: hidden;
+}
+.carousel .item{
+	height: 100%;
 	background-image: var(--carousel-item-default-bg);
 	background-size: cover;
 }
@@ -50,6 +53,7 @@ html{
 }
 .carousel .content{
 	padding: 15px;
+	margin-top: auto;
 }
 .carousel .item h2{
 	display: inline;
@@ -137,15 +141,18 @@ img.shape2{
 .description h3{
 	font-size: 1.2rem;
 }
+.description .text-container ul{
+	padding-left: 17px;
+}
 .description .text-container p,
 .description .text-container li{
 	text-align: justify;
 }
+.description .text-container .activity-name{
+	font-weight: 600;
+}
 .description .text-container p{
 	min-width: 280px;
-}
-.description .text-container ul{
-	padding-left: 17px;
 }
 #member-btn-container{
 	padding: 10px 0;
