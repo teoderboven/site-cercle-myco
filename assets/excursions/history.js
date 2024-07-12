@@ -8,7 +8,7 @@ document.querySelectorAll('.toggle').forEach(elt => {
 	})
 });
 
-const titleHeight = document.querySelector('.forays-group .title').clientHeight;
+const titleHeight = document.querySelector('.forays-group h3').clientHeight;
 const navbarHeight = document.querySelector('body > header').clientHeight;
 const hashOffset = titleHeight + navbarHeight + 17;
 document.querySelectorAll('#foray-list li ul li a').forEach(elt=>{

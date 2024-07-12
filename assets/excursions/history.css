@@ -39,6 +39,7 @@ main{
 #nav-container #list-head{
 	padding: 15px 10px;
 	margin: 0 5px;
+	font-weight: bold;
 	border-bottom: solid 1px #000;
 }
 #nav-container #foray-list{
@@ -62,8 +63,17 @@ main{
 	margin-bottom: 10px;
 	display: none;
 }
-#nav-container .date{
+#nav-container .toggle > .date,
+h3.date{
+	font-weight: 800;
+}
+#nav-container a .date{
 	font-style: italic;
+	font-weight: 700;
+}
+#nav-container a .date::after{
+	content: "\A0: ";
+	font-style: normal;
 }
 #nav-container > nav ul .toggle.active + ul{
 	display: block;
@@ -78,7 +88,23 @@ main{
 	display: block;
 }
 #reveal-btn{
-	display: none;
+	display: none; /* flex */
+	font-size: 3rem;
+	padding: 12px 0;
+	position: absolute;
+	bottom: 50%;
+	left: var(--nav-mobile-width);
+	color: var(--nav-reveal-btn-color);
+	background-color: var(--nav-reveal-btn-bg-color);
+	border-radius: 0 .8rem .8rem 0;
+	cursor: pointer;
+	box-shadow: 3px 3px 10px #555;
+}
+#reveal-btn img{
+	margin: auto;
+}
+#reveal-btn:hover{
+	background-color: var(--nav-reveal-btn-hover-bg-color);
 }
 
 #forays-container{
@@ -90,39 +116,39 @@ main{
 	padding: 10px;
 	text-shadow: 1px 0 #ddd;
 }
-#forays-container header > h1{
+#forays-container header > h2{
 	font-size: 1.5rem;
 }
-#forays-container > header > h1,
+#forays-container > header > h2,
 #forays-container > header > p{
 	margin: 10px;
 	text-align: center;
 }
-#forays-container .tip{
+#forays-container .history-tip{
 	margin:20px 10px 0;
 	width: 50%;
 	max-width: 500px;
 	min-width: 300px;
 }
-#forays-container .tip h3{
+#forays-container .history-tip .title{
 	text-decoration: underline;
+	font-weight: bold;
 }
-#forays-container .tip p{
+#forays-container .history-tip p{
 	text-align: justify;
 	margin-top: 5px;
 }
-#forays-container .tip svg{
+#forays-container .history-tip svg{
 	transform: rotate(90deg);
 	width: 50px;
 }
-.tip .small-frame{
+.history-tip .small-frame{
 	display: none; /* only reveal it when the frame is small */
 }
-.forays-group > .title{
+.forays-group h3{
 	position: sticky;
 	top: var(--navbar-height);
 	font-size: 2rem;
-	font-weight: bold;
 	margin-top: 30px;
 	padding: 12px 22px;
 	background-image: var(--foray-title-bg);
@@ -151,7 +177,7 @@ main{
 	-webkit-user-select: none;
 	user-select: none;
 }
-.foray h2{
+.foray h4{
 	padding: 5px;
 	font-size: 1.3rem;
 }
@@ -331,26 +357,12 @@ div.toggle.active > button{
 		visibility: visible;
 	}
 	#reveal-btn{
-		display: block;
-		font-size: 3rem;
-		position: absolute;
-		bottom: 50%;
-		left: var(--nav-mobile-width);
-		color: var(--nav-reveal-btn-color);
-		background-color: var(--nav-reveal-btn-bg-color);
-		padding: 10px;
-		border-radius: 0 .8rem .8rem 0;
-		cursor: pointer;
-		box-shadow: 3px 3px 10px #555;
+		display: flex;
 	}
-	#reveal-btn:hover{
-		background-color: var(--nav-reveal-btn-hover-bg-color);
-	}
-	#nav-container.active #reveal-btn{
+	#nav-container.active #reveal-btn img{
 		transform: rotate(180deg);
-		border-radius: .8rem 0 0 .8rem;
 	}
-	.tip .small-frame{
+	.history-tip .small-frame{
 		display: initial;
 	}
 }
