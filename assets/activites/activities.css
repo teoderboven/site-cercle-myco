@@ -7,9 +7,10 @@ body > main > header .title-container{
 	width: 100%;
 	padding: 140px 40px;
 }
-body > main > header h1{
+body > main > header .title{
 	display: inline;
 	font-size: 4rem;
+	font-weight: 600;
 	background-color: var(--basic-bg-color);
 	color: var(--basic-text-color);
 	padding: 0 .1rem;

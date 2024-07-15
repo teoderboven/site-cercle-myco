@@ -33,8 +33,8 @@
 			eventDate.hour(12);
 			console.warn(`activity ${i} has no scheduled time. Time sets at 12`);
 		}
-		if(time.dataset.duration){
-			let duration = parseInt(time.dataset.duration)
+		if(activity.dataset.duration){
+			let duration = parseInt(activity.dataset.duration)
 			if(!isNaN(duration)){
 				eventDate.add(duration, 'h'); // set the time until the end of the event
 			}
