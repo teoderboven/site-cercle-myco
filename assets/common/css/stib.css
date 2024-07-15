@@ -1,5 +1,11 @@
-.stib {
+/* !! Not the official font of the STIB !! */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+.stib{
 	display: inline-block;
+	font-family: Nunito, Montserrat, Arial, Helvetica, sans-serif;
+	font-weight: 500;
+	letter-spacing: -1px;
 	width: 1.64706em;
 	height: 1.52941em;
 	font-size: 1em;

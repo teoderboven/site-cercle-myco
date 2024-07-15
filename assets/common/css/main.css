@@ -44,6 +44,9 @@ body > footer > div{ /* Limit height to 2400px and center */
 .no-scroll{
 	overflow: hidden;
 }
+.ital{
+	font-style: italic;
+}
 
 /* ScrollBar */
 html{
