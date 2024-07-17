@@ -95,6 +95,10 @@
 
 		hideGoToNext();
 	}
+	
+	// const nextActivity = document.getElementById("next");
+	const nextActivityDateElt = nextActivity && nextActivity.querySelector('.pre-wrapper .date');
+	const markerWidth = parseInt(getComputedStyle(nextActivity).getPropertyValue('--timeline-marker-width'));
 
 	/**
 	  * Correctly places the timeline marker
@@ -107,13 +111,11 @@
 			return;
 		}
 
-		let actDateElt = nextActivity.querySelector('.pre-wrapper .date');
 		let supplementHeight, pastTimeHeight = 0;
 		
-		if(actDateElt){
-			pastTimeHeight = actDateElt.offsetTop + actDateElt.offsetHeight/2;
+		if(nextActivityDateElt){
+			pastTimeHeight = nextActivityDateElt.offsetTop + nextActivityDateElt.offsetHeight/2;
 		}else{ // default
-			let markerWidth = parseInt(getComputedStyle(nextActivity).getPropertyValue('--timeline-marker-width'));
 			if(!isNaN(markerWidth)){
 				supplementHeight = markerWidth/2;
 			}
@@ -125,6 +127,31 @@
 	setTimelineMarker();
 
 	window.addEventListener('resize', setTimelineMarker);
+
+	// reveal button of passed activities
+
+	const passedActivities = document.querySelectorAll("#timeline-container .list .activity.passed");
+
+	passedActivities.forEach(activity=>{
+		// add transition event to modified element when reveal for update timeline
+		const mainContent = activity.querySelector(".main-content");	
+		let updateInterval;
+
+		mainContent.addEventListener("transitionstart", e=>
+			updateInterval = setInterval(setTimelineMarker, 25)
+		)
+		Array.of("transitionend", "transitioncancel").forEach((transitionType)=>
+			mainContent.addEventListener(transitionType, e=>
+				clearInterval(updateInterval) // stop updating marker
+			)
+		);
+
+		// add event to button
+		activity.querySelector(".reveal-btn").addEventListener("click", e=>{
+			activity.classList.add("revealed");
+		});
+	});
+
 
 	// scroll to hash #next
 

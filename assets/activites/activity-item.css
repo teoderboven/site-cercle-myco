@@ -27,9 +27,6 @@ html{
 .activity .main-wrapper{
 	background-image: var(--activity-bg);
 }
-.activity .main-wrapper > *{
-	margin: 7px;
-}
 .activity header{
 	padding-bottom: 2px;
 }
@@ -42,9 +39,35 @@ html{
 	transform: scale(.9);
 	align-self: flex-start;
 }
-.activity header h4{
+.activity header .title{
 	font-size: 1.5rem;
 	text-shadow: 1px 0 #f5f5f5;
+}
+.activity .reveal-btn{
+	display: flex;
+	align-items: center;
+	width: max-content;
+	max-width: 100%;
+	margin-left: auto;
+	cursor: pointer;
+}
+.activity .reveal-btn:hover{
+	text-decoration: underline;
+}
+.activity .reveal-btn img{
+	width: 1.5em;
+	height: 1.5em;
+	transform: rotate(90deg);
+}
+.activity.revealed .reveal-btn,
+.activity:not(.passed) .reveal-btn{
+	display: none;
+}
+.activity .main-content > *{
+	margin: 7px;
+}
+.activity .main-content > *:first-child{
+	margin-top: 0;
 }
 .activity .infos{
 	display: flex;
@@ -72,13 +95,19 @@ html{
 	width: 1.1rem;
 	margin-right: 3px;
 }
-.activity footer{
+.activity .description a:not(.stib){
+	font-style: italic;
+}
+.activity .description a:not(.stib):hover{
+	text-decoration: underline;
+}
+.activity .links{
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	align-items: center;
 }
-.activity footer a{
+.activity .links a{
 	background-color: var(--activity-btn-bg);
 	color: var(--activity-btn-color);
 	padding: 7px;
@@ -86,11 +115,19 @@ html{
 	text-shadow: 1px 1px #555;
 	border-radius: 7px;
 }
-.activity footer a:hover{
+.activity .links a:hover{
 	background-color: var(--activity-btn-hover-bg);
 }
 .activity.passed .main-wrapper{
 	filter: grayscale(.8);
+}
+.activity.passed .main-content{
+	max-height: 0;
+	transition: max-height .5s;
+	overflow: hidden;
+}
+.activity.passed.revealed .main-content{
+	max-height: 100vh;
 }
 .activity.passed .pre-wrapper::after{
 	content: " - Cette sortie est passée!";
@@ -110,10 +147,4 @@ html{
 }
 #next.activity .main-wrapper{
 	background-image: var(--activity-highlight-bg);
-}
-.activity .main-content a:not(.stib){
-	font-style: italic;
-}
-.activity .main-content a:not(.stib):hover{
-	text-decoration: underline;
 }
