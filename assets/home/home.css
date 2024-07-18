@@ -104,7 +104,7 @@ html{
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
-	margin: 40px auto;
+	margin: 20px auto;
 	padding: 0 25px;
 	overflow: hidden;
 	max-width: 1400px;
@@ -135,6 +135,14 @@ img.shape2{
 .description .text-container > *, .description .text-container li{
 	margin: .7rem 0;
 }
+.description .text-container .highlight{
+	font-weight: 600;
+}
+.description .text-container h2 .highlight,
+.description .text-container h3 .highlight{
+	font: inherit;
+	font-style: italic;
+}
 .description h2{
 	font-size: 1.8rem;
 }
@@ -149,7 +157,7 @@ img.shape2{
 	text-align: justify;
 }
 .description .text-container .activity-name{
-	font-weight: 600;
+	font-weight: 700;
 }
 .description .text-container p{
 	min-width: 280px;
@@ -158,14 +166,12 @@ img.shape2{
 	padding: 10px 0;
 }
 #member-btn{
-	/* float: left; */
 	font-size: 1.1rem;
 	background-color: #2dacc5;
 	color: #f5f5f5;
 	text-align: center;
 	padding: 10px;
 	border-radius: 5px;
-	width: max-content;
 	max-width: 100%;
 	box-shadow: 1px 1px 2px #00000080;
 	transition: box-shadow .3s ease;
