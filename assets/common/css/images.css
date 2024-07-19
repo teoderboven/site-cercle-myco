@@ -55,7 +55,7 @@ html{
 .image span{ /* crédit de la photo */
 	margin: 5px;
 	align-self: end;
-	font-weight: lighter;
+	font-weight: 100;
 	-webkit-user-select: none;
 	user-select: none;
 	text-align: right;
