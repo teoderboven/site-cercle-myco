@@ -4,17 +4,28 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Jette 18/05/2013 - CMB</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/assets/common/css/images.css">
 	<link rel="stylesheet" href="/assets/excursions/excursion.css">
 	<script src="/assets/common/js/images.js" async defer></script>
 	<style>
+		html{
+			scrollbar-width: thin;
+			scrollbar-color: var(--scrollbar-color) var(--basic-bg-color);
+		}
 		*{
-			font-family: Arial, Helvetica, sans-serif; /* FIXME: font */
+			font-family: Montserrat, Arial, Helvetica, sans-serif;
 			box-sizing: border-box;
 			font-size: 1rem;
+			font-weight: 500;
 			text-decoration: none;
 			background: none;
 			scroll-behavior: smooth;
+		}
+		h1, h2, b{
+			font-weight: 700;
 		}
 		h1{
 			font-size: 1.4rem;
@@ -37,7 +48,7 @@
 		}
 		#sign{
 			text-align: right;
-			font-weight: lighter;
+			font-weight: 200;
 		}
 		footer{
 			padding: 10px;

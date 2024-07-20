@@ -3,7 +3,7 @@ html{
 	--image-top-text-color: rgb(240, 240, 240);
 	--image-top-bg-color: rgb(37, 37, 37, .7);
 }
-/* règles à propos des images dans le document */
+
 .image{
 	display: grid;
 	width: max-content;
@@ -52,7 +52,11 @@ html{
 	opacity: 1;
 	visibility: visible;
 }
-.image span{ /* crédit de la photo */
+.image .top *{
+	font-weight: 600;
+	font-size: 1.3rem;
+}
+.image .credit{
 	margin: 5px;
 	align-self: end;
 	font-weight: 100;
@@ -61,10 +65,10 @@ html{
 	text-align: right;
 	opacity: .8;
 }
-.image span.light{
+.image .credit.light{
 	color: whitesmoke;
 }
-.image span.dark{
+.image .credit.dark{
 	color: rgb(37, 37, 37);
 }
 
@@ -72,7 +76,7 @@ html{
 	.image img{
 		max-height: 700px;
 	}
-	.image span{ /* crédit de la photo */
+	.image .credit{
 		font-size: .7rem;
 	}
 }
@@ -80,8 +84,12 @@ html{
 .imageGroup{
 	display: flex;
 	flex-wrap: wrap;
+	gap: 7px;
 	justify-content: space-evenly;
 	align-items: center;
+}
+.imageGroup .image{
+	margin: 0;
 }
 .imageGroup > *{
 	margin-right: 0;
