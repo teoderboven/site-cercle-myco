@@ -13,6 +13,7 @@
 	justify-content: flex-end;
 	align-items: center;
 	width: 4.2rem;
+	min-width: 4.2rem;
 	height: 4.2rem;
 	line-height: .7rem;
 	-webkit-user-select: none;
