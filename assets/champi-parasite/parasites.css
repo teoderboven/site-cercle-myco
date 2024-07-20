@@ -6,9 +6,9 @@
 	background-position: center;
 	background-attachment: fixed;
 	padding: 45px;
-	font-size: min(4rem, 72px);
+	font-size: min(3.5rem, 72px);
 }
-#title-wrapper h1{
+#title-wrapper .title{
 	font-size: 1em;
 	display: inline;
 	background-color: var(--basic-bg-color);
@@ -21,14 +21,17 @@
 	font-size: .9rem;
 	font-style: italic;
 }
-article main > *{
+article .main-content > *{
 	margin: 50px;
 }
-article main p{
+article .main-content p{
 	text-align: justify;
 }
-article main h2{
+article h3{
 	font-size: 1.3rem;
+}
+article .gallery h3{
+	text-align: center;
 }
 article section > *{
 	margin: 1rem 0;
@@ -87,8 +90,4 @@ table#herbier,
 }
 #herbier td:first-of-type{
 	text-align: right;
-}
-footer h2{
-	font-size: 1.3rem;
-	text-align: center;
 }
