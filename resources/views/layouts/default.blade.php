@@ -4,7 +4,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=.7">
 	<meta name="description" content="@yield('description')">
-	@yield('additions') {{-- google & description meta or canonical link --}}
+@hasSection('additions')
+@yield('additions') {{-- google & description meta or canonical link --}}
+@endif
 @hasSection('title')
 	<title>@yield('title') - CMB</title>
 @else
