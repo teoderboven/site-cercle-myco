@@ -3,7 +3,7 @@ body > main > header .title-container{
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: right 50% top 30%;
-	background-image: url('/excursions/images/ViroinvalGr03.JPG');
+	background-image: url('/images/excursions/ViroinvalGr03.JPG');
 	width: 100%;
 	padding: 140px 40px;
 }

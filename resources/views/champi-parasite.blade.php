@@ -14,7 +14,7 @@
 @endsection
 
 @section('additions')
-	<link rel="preload" as="image" href="/champi-parasite-des-plantes/images/P.%20albescens.jpg">
+	<link rel="preload" as="image" href="/images/parasites/P.%20albescens.jpg">
 @endsection
 
 @section('main-content')
@@ -30,7 +30,7 @@
 		<div class="main-content">
 			<p>
 				La sixième édition de la liste des champignons parasites des plantes déterminés par Arthur Vanderweyen est disponible ci-dessous. Il s'agit d'un fichier PDF. Sa dernière mise à jour date de février 2020.
-				<a href="/champi-parasite-des-plantes/listes/Parasites%202020.pdf" id="list-btn" target="_blank">
+				<a href="/ressources/parasites/Parasites%202020.pdf" id="list-btn" target="_blank">
 					Liste des champignons parasites des plantes (février&nbsp;2020)
 					<img src="/assets/common/img/svg/new-tab.svg" alt="">
 				</a>
@@ -109,55 +109,55 @@
 						<figcaption class="top">
 							<div>Coleosporium tussilaginis sur Campanula trachelium</div>
 						</figcaption>
-						<img src="/champi-parasite-des-plantes/images/Coleosporium%20tussilaginis%20sur%20Campanula%20trachelium.JPG" alt="Coleosporium tussilaginis sur Campanula trachelium" loading="lazy">
+						<img src="/images/parasites/Coleosporium%20tussilaginis%20sur%20Campanula%20trachelium.JPG" alt="Coleosporium tussilaginis sur Campanula trachelium" loading="lazy">
 					</figure>
 					<figure class="image viewable">
 						<figcaption class="top">
 							<div>Gymnosporangium sabinae sur Juniperus x media</div>
 						</figcaption>
-						<img src="/champi-parasite-des-plantes/images/Gymnosporangium%20sabinae%20sur%20Juniperus%20x%20media.JPG" alt="Gymnosporangium sabinae sur Juniperus x media" loading="lazy">
+						<img src="/images/parasites/Gymnosporangium%20sabinae%20sur%20Juniperus%20x%20media.JPG" alt="Gymnosporangium sabinae sur Juniperus x media" loading="lazy">
 					</figure>
 					<figure class="image viewable">
 						<figcaption class="top">
 							<div>Uromyces dactylidis sur Ranunculus ficaria</div>
 						</figcaption>
-						<img src="/champi-parasite-des-plantes/images/Uromyces%20dactylidis%20sur%20Ranunculus%20ficaria.JPG" alt="Uromyces dactylidis sur Ranunculus ficaria" loading="lazy">
+						<img src="/images/parasites/Uromyces%20dactylidis%20sur%20Ranunculus%20ficaria.JPG" alt="Uromyces dactylidis sur Ranunculus ficaria" loading="lazy">
 					</figure>
 					<figure class="image viewable">
 						<figcaption class="top">
 							<div>Uromyces ficariae sur Ranunuculus ficaria</div>
 						</figcaption>
-						<img src="/champi-parasite-des-plantes/images/Uromyces%20ficariae%20sur%20Ranunuculus%20ficaria.JPG" alt="Uromyces ficariae sur Ranunuculus ficaria" loading="lazy">
+						<img src="/images/parasites/Uromyces%20ficariae%20sur%20Ranunuculus%20ficaria.JPG" alt="Uromyces ficariae sur Ranunuculus ficaria" loading="lazy">
 					</figure>
 					<figure class="image viewable">
 						<figcaption class="top">
 							<div>Puccinia pulverulenta sur Epilobium hirsutum</div>
 						</figcaption>
-						<img src="/champi-parasite-des-plantes/images/Puccinia%20pulverulenta%20sur%20Epilobium%20hirsutum.JPG" alt="Puccinia pulverulenta sur Epilobium hirsutum" loading="lazy">
+						<img src="/images/parasites/Puccinia%20pulverulenta%20sur%20Epilobium%20hirsutum.JPG" alt="Puccinia pulverulenta sur Epilobium hirsutum" loading="lazy">
 					</figure>
 					<figure class="image viewable">
 						<figcaption class="top">
 							<div>Ecidie entière d'Uromyces dactylidis</div>
 						</figcaption>
-						<img src="/champi-parasite-des-plantes/images/Ecidie%20entiere%20d%20Uromyces%20dactylidis.JPG" alt="Ecidie entière d'Uromyces dactylidis" loading="lazy">
+						<img src="/images/parasites/Ecidie%20entiere%20d%20Uromyces%20dactylidis.JPG" alt="Ecidie entière d'Uromyces dactylidis" loading="lazy">
 					</figure>
 					<figure class="image viewable">
 						<figcaption class="top">
 							<div>Péridium de  l'écidie</div>
 						</figcaption>
-						<img src="/champi-parasite-des-plantes/images/Peridium%20de%20%20l%20ecidie.JPG" alt="Péridium de  l'écidie" loading="lazy">
+						<img src="/images/parasites/Peridium%20de%20%20l%20ecidie.JPG" alt="Péridium de  l'écidie" loading="lazy">
 					</figure>
 					<figure class="image viewable">
 						<figcaption class="top">
 							<div>Entyloma ficariae sur Ranunculus ficaria</div>
 						</figcaption>
-						<img src="/champi-parasite-des-plantes/images/Entyloma%20ficariae%20sur%20Ranunculus%20ficaria.JPG" alt="Entyloma ficariae sur Ranunculus ficaria" loading="lazy">
+						<img src="/images/parasites/Entyloma%20ficariae%20sur%20Ranunculus%20ficaria.JPG" alt="Entyloma ficariae sur Ranunculus ficaria" loading="lazy">
 					</figure>
 					<figure class="image viewable">
 						<figcaption class="top">
 							<div>K. uredinis - 2 noyaux dans chaque urédospore</div>
 						</figcaption>
-						<img src="/champi-parasite-des-plantes/images/K.%20uredinis.jpg" alt="K. uredinis - 2 noyaux dans chaque urédospore" loading="lazy">
+						<img src="/images/parasites/K.%20uredinis.jpg" alt="K. uredinis - 2 noyaux dans chaque urédospore" loading="lazy">
 					</figure>
 				</div>
 			</section>

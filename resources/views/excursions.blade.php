@@ -1152,7 +1152,7 @@
 						<button class="reveal-btn">&#9660;</button>
 					</div>
 					<div class="frame-container">
-						<iframe src="/excursions/Mont_Rigi/index.html" allow="fullscreen" loading="lazy"></iframe>
+						<iframe src="/excursions/mont_rigi_20090911_13.html" allow="fullscreen" loading="lazy"></iframe>
 					</div>
 				</section>
 				<section class="foray" id="s23-08-09">

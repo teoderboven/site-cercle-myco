@@ -30,14 +30,14 @@
 						</div>
 					</li>
 					<li>
-						<a href="/activites/" class="item" style="background-image: url('/excursions/images/ViroinvalGr03.JPG');">
+						<a href="/activites/" class="item" style="background-image: url('/images/excursions/ViroinvalGr03.JPG');">
 							<div class="content">
 								<h2>Premières sorties de la saison 2024&nbsp;: initiez-vous à la mycologie&nbsp;!</h2>
 							</div>
 						</a>
 					</li>
 					<li>
-						<a href="/champi-parasite-des-plantes/" class="item" style="background-image: url('/champi-parasite-des-plantes/images/P.\ albescens.jpg');">
+						<a href="/champi-parasite-des-plantes/" class="item" style="background-image: url('/images/parasites/P.\ albescens.jpg');">
 							<div class="content">
 								<h2>Article: Les champignons parasites des plantes</h2>
 							</div>
@@ -87,7 +87,7 @@
 
 	<article class="interesting flip">
 		<a href="/champi-parasite-des-plantes/" class="main-wrapper">
-			<div class="illustration" style="background-image: url('/champi-parasite-des-plantes/images/Uromyces%20dactylidis%20sur%20Ranunculus%20ficaria.JPG');"></div>
+			<div class="illustration" style="background-image: url('/images/parasites/Uromyces%20dactylidis%20sur%20Ranunculus%20ficaria.JPG');"></div>
 			<div class="content-wrapper">
 				<div class="text-container">
 					<p class="grip">À découvrir</p>
