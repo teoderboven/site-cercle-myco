@@ -65,7 +65,7 @@
 	<footer>
 		<div>
 			<div id="footer">
-				<span id="copy">&copy; {{ date('D') }} - Cercle de Mycologie de Bruxelles</span>
+				<span id="copy">&copy; {{ date('Y') }} - Cercle de Mycologie de Bruxelles</span>
 			</div>
 		</div>
 	</footer>
