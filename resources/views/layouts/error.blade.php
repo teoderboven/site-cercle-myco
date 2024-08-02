@@ -4,7 +4,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=.7">
 	<meta name="robots" content="noindex">
-	<title>Erreur 403 - CMB</title>
+	<title>Erreur @yield('code') - CMB</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="shortcut icon" type="image/x-icon" href="/assets/common/img/icon.ico">
 	<link rel="shortcut icon" type="image/png" sizes="64x64" href="/assets/common/img/icon64wt.png">
 	<link rel="shortcut icon" type="image/png" sizes="256x256" href="/assets/common/img/icon256wt.png">
@@ -12,7 +14,7 @@
 	<link rel="stylesheet" href="/assets/common/css/main.css">
 	<link rel="stylesheet" href="/assets/common/css/header.css">
 	<link rel="stylesheet" href="/assets/common/css/footer.css">
-	<link rel="stylesheet" href="/error/error.css">
+	<link rel="stylesheet" href="/assets/error/error.css">
 </head>
 <body>
 	<header>
@@ -33,12 +35,12 @@
 	</header>
 	<main>
 		<section id="error-container">
-			<p class="code">Erreur 403</p>
+			<p class="code">Erreur @yield('code')</p>
 			<p class="reason">
-				Vous n'avez pas les autorisations nécessaires pour accéder à cette ressource.
+				@yield('reason')
 			</p>
 			<p class="comment">
-				<q>Zut! Cette rareté est dans un terrain privé...</q>
+				<q>@yield('comment')</q>
 			</p>
 		</section>
 		<section id="choices">
@@ -51,11 +53,11 @@
 			</p>
 			<nav>
 				<ul>
-					<li><a href="/activites/">prochaines activités</a></li>
-					<li><a href="/publications/">publications</a></li>
-					<li><a href="/excursions/">Historique des excursions</a></li>
-					<li><a href="/devenir-membre/">Devenir membre</a></li>
-					<li><a href="/champi-parasite-des-plantes/">les champignons parasites des plantes</a></li>
+					<li><a href="/activites">prochaines activités</a></li>
+					<li><a href="/publications">publications</a></li>
+					<li><a href="/excursions">Historique des excursions</a></li>
+					<li><a href="/devenir-membre">Devenir membre</a></li>
+					<li><a href="/champi-parasite-des-plantes">les champignons parasites des plantes</a></li>
 				</ul>
 			</nav>
 		</section>
@@ -63,7 +65,7 @@
 	<footer>
 		<div>
 			<div id="footer">
-				<span id="copy">&copy; 2024 - Cercle de Mycologie de Bruxelles</span>
+				<span id="copy">&copy; {{ date('D') }} - Cercle de Mycologie de Bruxelles</span>
 			</div>
 		</div>
 	</footer>

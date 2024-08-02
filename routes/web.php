@@ -8,15 +8,21 @@ Route::get('/', function () {
 Route::get('/activites', function () {
 	return view('activities');
 });
-Route::get('/publications', function () {
-	return view('publications');
-});
 Route::get('/excursions', function () {
 	return view('excursions');
 });
-Route::get('/devenir-membre', function () {
-	return view('member');
+
+Route::view('/publications', 'publications');
+Route::view('/devenir-membre', 'member');
+Route::view('/champi-parasite-des-plantes', 'champi-parasite');
+
+// Route::view('/error/403', 'errors.403');
+// Route::view('/error/404', 'errors.404');
+
+Route::get('/error/403', function () {
+    return response()->view('errors.403', [], 403);
 });
-Route::get('/champi-parasite-des-plantes', function () {
-	return view('champi-parasite');
+
+Route::get('/error/404', function () {
+    return response()->view('errors.404', [], 404);
 });

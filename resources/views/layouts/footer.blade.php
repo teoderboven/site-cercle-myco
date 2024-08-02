@@ -39,7 +39,7 @@
 					<a href="#credit">Crédits</a>
 				</div>
 			</div>
-			<span id="copy">&copy; 2024 - Cercle de Mycologie de Bruxelles</span>
+			<span id="copy">&copy; {{ date('Y') }} - Cercle de Mycologie de Bruxelles</span>
 		</div>
 	</div>
 </footer>
