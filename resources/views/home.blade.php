@@ -77,7 +77,7 @@
 			<p>Rejoindre le Cercle, c'est plonger dans <span class="highlight">ce monde mystérieux et diversifié</span>, <span class="highlight">rencontrer des passionnés</span>, et <span class="highlight">partager des découvertes surprenantes</span>. La mycologie, c'est plus qu'une science&nbsp;: c'est une <span class="highlight">aventure accessible à tous</span>, où chaque sortie et chaque discussion peut révéler des merveilles insoupçonnées.</p>
 			<p>Alors, prêt à découvrir ce qui se cache sous vos pieds et à être émerveillé par le monde des champignons&nbsp;? Rejoignez le Cercle de Mycologie de Bruxelles et <span class="highlight">laissez-vous surprendre&nbsp;!</span></p>
 			<div id="member-btn-container">
-				<a href="/devenir-membre/" id="member-btn">Devenir membre</a>
+				<a href="/devenir-membre" id="member-btn">Devenir membre</a>
 			</div>
 		</section>
 		<div class="img-container fade-in">
