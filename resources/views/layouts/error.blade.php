@@ -42,6 +42,11 @@
 			<p class="comment">
 				<q>@yield('comment')</q>
 			</p>
+			@hasSection('instruction')
+				<p class="instruction">
+					@yield('instruction')
+				</p>
+			@endif
 		</section>
 		<section id="choices">
 			<div>

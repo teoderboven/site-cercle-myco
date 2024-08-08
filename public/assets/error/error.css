@@ -28,12 +28,18 @@ body > main{
 	text-shadow: 6px 4px 2px #000;
 }
 #error-container .reason{
-	font-size: 1.2rem;
+	font-size: 1.4rem;
+}
+#error-container .reason,
+#error-container .instruction{
 	font-weight: bold;
 	text-shadow: 2px 1px #000;
 }
 #error-container .comment q{
 	quotes: "«" "»";
+}
+#error-container .instruction{
+	font-size: 1.2rem;
 }
 #choices{
 	display: inline-block;
