@@ -29,6 +29,19 @@ Use the following command to generate an encryption key:
 php artisan key:generate
 ```
 
+##### 1.2 - Determine the start date of a season
+
+With the property **CMB_SEASON_START_DATE** you can specify when an activity season start. It is used in the /activity route to determine which activities to display.
+
+Example:
+
+```properties
+# Season starts on February 1st
+CMB_SEASON_START_DATE=02-01
+```
+
+The default value is February 1<sup>st</sup>. This means that activities for the 2025 season are publicly visible from February 1, 2025 to January 31, 2026. You can change the start of the season by modifying the property.
+
 #### 2 - Migrate the database
 
 Use the following command to migrate the database:

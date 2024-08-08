@@ -50,7 +50,7 @@ create table activities(
 create table activity_links(
 	id int auto_increment not null,
 	activity_id int not null,
-	link_text VARCHAR(255) NOT NULL,
+	text VARCHAR(255) NOT NULL,
 	url VARCHAR(255) NOT NULL,
 	
 	primary key(id),

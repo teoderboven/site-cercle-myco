@@ -1,13 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers as Ctrl;
 
 Route::get('/', function () {
 	return view('home');
 });
-Route::get('/activites', function () {
-	return view('activities');
-});
+Route::get('/activites', [Ctrl\ActivityController::class, 'publicDisplay']);
 Route::get('/excursions', function () {
 	return view('excursions');
 });

@@ -13,7 +13,8 @@ class ActivityLink extends Model{
 	];
 	
 	protected $hidden = [
-		'id'
+		'id',
+		'activity_id'
 	];
 
 	public $timestamps = false;

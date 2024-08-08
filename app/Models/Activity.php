@@ -22,7 +22,8 @@ class Activity extends Model{
 	];
 
 	protected $casts = [
-        'cancelled' => 'boolean',
+		'cancelled' => 'boolean',
+		'start_date' => 'datetime',
     ];
 
 	public $timestamps = false;
