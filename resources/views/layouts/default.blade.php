@@ -24,12 +24,14 @@
 @yield('stylesheets')
 </head>
 <body>
-@include('layouts.header')
+@includeWhen(config('app.debug'), 'partials.debug')
+
+@include('partials.header')
 
 <main>
 @yield('main-content')
 </main>
-@include('layouts.footer')
+@include('partials.footer')
 
 <script src="/assets/common/js/navbar.js"></script>
 @yield('scripts')
