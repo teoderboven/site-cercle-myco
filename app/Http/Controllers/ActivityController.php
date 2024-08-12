@@ -21,28 +21,36 @@ class ActivityController extends Controller{
 
 		$seasonYear = $this->getCurrentSeasonYear($currentDate);
 
+		$hasNextActivity = false; // determines if list of activities has a next or if season has ended
+
 		$seasonStartDate = Carbon::create($seasonYear, $this->seasonStartMonth, $this->seasonStartDay, 0, 0, 0);
 		$seasonEndDate = Carbon::create($seasonYear + 1, $this->seasonStartMonth, $this->seasonStartDay, 0, 0, 0)->subDay()->endOfDay();
 
-		$activities = Activity::with(['guide', 'meetingPoint', 'links'])
+		$activities = Activity::without('updatedBy')
 			->whereBetween('start_date', [$seasonStartDate, $seasonEndDate])
 			->orderBy('start_date', 'asc')
 			->get();
 
-		foreach ($activities as $activity) {
-			$activity->isPassed = $this->isPassed($activity, $currentDate);
+		foreach($activities as $activity){
 			$activity->isOngoing = $this->isOngoing($activity, $currentDate);
-			$activity->fullDaysUntilStart = $this->fullDaysUntilStart($activity, $currentDate);
+			$activity->daysUntilStart = $this->fullDaysUntilStart($activity, $currentDate);
+
+			if(!$activity->isPassed && !$hasNextActivity){
+				$activity->isNext = true;
+				$hasNextActivity = true;
+			}else{
+				$activity->isNext = false;
+			}
 
 			unset($activity->updated_by);
 		}
 
 		$groupedActivities = $this->groupActivitiesByMonth($activities);
 
-		// Passer les données à la vue
 		return view('activities', [
 			'currentSeasonYear' => $seasonYear,
-			'groupedActivities' => $groupedActivities
+			'groupedActivities' => $groupedActivities,
+			'hasNextActivity' => $hasNextActivity
 		]);
 	}
 
@@ -96,9 +104,9 @@ class ActivityController extends Controller{
 	private function groupActivitiesByMonth($activities){
 		$grouped = [];
 
-		foreach ($activities as $activity) {
+		foreach($activities as $activity){
 			$yearMonth = $activity->start_date->format('Y-m');
-			$monthName = $activity->start_date->translatedFormat('F');
+			$monthName = ucfirst($activity->start_date->translatedFormat('F'));
 			$year = $activity->start_date->format('Y');
 
 			if(!isset($grouped[$yearMonth])){

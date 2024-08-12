@@ -130,7 +130,7 @@
 
 	// reveal button of passed activities
 
-	const passedActivities = document.querySelectorAll("#timeline-container .list .activity.passed");
+	const passedActivities = document.querySelectorAll("#timeline-container .list .activity.passed.hidden");
 
 	passedActivities.forEach(activity=>{
 		// add transition event to modified element when reveal for update timeline
@@ -148,7 +148,7 @@
 
 		// add event to button
 		activity.querySelector(".reveal-btn").addEventListener("click", e=>{
-			activity.classList.add("revealed");
+			activity.classList.remove("hidden");
 		});
 	});
 

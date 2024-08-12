@@ -31,7 +31,7 @@ create table meeting_points(
 create table activities(
 	id int auto_increment not null,
 	title varchar(255) not null,
-	guide int not null,
+	guide_id int not null,
 	start_date datetime not null,
 	duration smallint not null,
 	description text not null,
@@ -42,7 +42,7 @@ create table activities(
 	updated_by int not null,
 
 	primary key(id),
-	foreign key(guide) references guides(id),
+	foreign key(guide_id) references guides(id),
 	foreign key(meeting_point) references meeting_points(id);
 	foreign key(updated_by) references users(id)
 );

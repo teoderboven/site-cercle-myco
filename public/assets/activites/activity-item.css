@@ -18,6 +18,7 @@ html{
 	color: #999;
 	margin-left: 5px;
 	font-weight: bold;
+	text-transform: capitalize;
 }
 .activity .main-wrapper, .season-end{
 	border: solid 1px #000;
@@ -59,7 +60,7 @@ html{
 	height: 1.5em;
 	transform: rotate(90deg);
 }
-.activity.revealed .reveal-btn,
+.activity.passed:not(.hidden) .reveal-btn,
 .activity:not(.passed) .reveal-btn{
 	display: none;
 }
@@ -103,6 +104,7 @@ html{
 }
 .activity .links{
 	display: flex;
+	gap: 7px;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	align-items: center;
@@ -126,7 +128,7 @@ html{
 	transition: max-height .5s;
 	overflow: hidden;
 }
-.activity.passed.revealed .main-content{
+.activity.passed:not(.hidden) .main-content{
 	max-height: 100vh;
 }
 .activity.passed .pre-wrapper::after{

@@ -10,11 +10,17 @@ class Activity extends Model{
 
 	protected $fillable = [
 		'title',
-		'guide',
 		'start_date',
 		'duration',
 		'description',
 		'meeting_point'
+	];
+
+	protected $with = [
+		'guide',
+		'meetingPoint',
+		'links',
+		'updatedBy'
 	];
 	
 	protected $hidden = [
@@ -37,7 +43,7 @@ class Activity extends Model{
 	*/
 
 	public function guide(){
-		return $this->belongsTo(Guide::class, 'guide');
+		return $this->belongsTo(Guide::class);
 	}
 
 	public function meetingPoint(){
