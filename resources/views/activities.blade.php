@@ -108,7 +108,15 @@
 											{{ $activity->start_date->translatedFormat('l d/m') }}
 										@endif
 									</time>
-									{{-- TODO next passed ongoing --}}
+									@if($activity->daysUntilStart < 22)
+										<div @class([
+											'activity-status',
+											'passed' => $activity->isPassed,
+											'ongoing' => $activity->isOngoing
+										])>
+											{{ getActivityStatus($activity) }}
+										</div>
+									@endif
 								</div>
 								<div class="main-wrapper">
 									<header>

@@ -70,3 +70,34 @@ if (!function_exists('formatPhoneNumber')) {
 		return $remainingPart . '/' . $formattedLastSix;
 	}
 }
+
+/**
+ * Get the status of an activity based on its current state.
+ *
+ * @param object $activity The activity object containing details like isPassed, isOngoing, and daysUntilStart.
+ * @return string The status of the activity as a string.
+ */
+if(!function_exists('getActivityStatus')){
+	function getActivityStatus($activity){
+		if($activity->isPassed){
+			return 'Cette sortie est passée';
+		}
+		if($activity->isOngoing){
+			return 'Sortie en cours';
+		}
+
+		$daysUntilStart = $activity->daysUntilStart;
+		if($daysUntilStart === 0){
+			return "Aujourd'hui!";
+		}
+		if($daysUntilStart === 1){
+			return "Demain!";
+		}
+		if($daysUntilStart % 7 === 0){
+			$weeks = $daysUntilStart / 7;
+			return $weeks === 1 ? 'Dans une semaine' : "Dans $weeks semaines";
+		}
+		
+		return "Dans $daysUntilStart jours";
+	}
+}

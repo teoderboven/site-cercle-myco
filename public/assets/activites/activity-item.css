@@ -13,13 +13,32 @@ html{
 	margin: 25px 5px;
 	width: 100%;
 }
-.activity .pre-wrapper .date{
+.activity .pre-wrapper{
 	font-size: .9rem;
-	color: #999;
 	margin-left: 5px;
+}
+.activity .pre-wrapper > *{
+	font-size: inherit;
+}
+.activity .pre-wrapper .date{
+	color: #999;
 	font-weight: bold;
 	text-transform: capitalize;
 }
+.activity .pre-wrapper .activity-status{
+	display: inline;
+	font-weight: 700;
+}
+.activity .pre-wrapper .activity-status::before{
+	content: "\2013";
+}
+.activity .pre-wrapper .activity-status.passed{
+	color: #d73f3f;
+}
+.activity .pre-wrapper .activity-status.ongoing{
+	color: #2b48cd;
+}
+
 .activity .main-wrapper, .season-end{
 	border: solid 1px #000;
 	border-radius: 15px;
@@ -130,22 +149,6 @@ html{
 }
 .activity.passed:not(.hidden) .main-content{
 	max-height: 100vh;
-}
-.activity.passed .pre-wrapper::after{
-	content: " - Cette sortie est passée!";
-	font-weight: bold;
-	color: #d73f3f;
-	font-size: .9rem;
-}
-#next.activity .pre-wrapper::after{
-	content: " - Prochaine sortie!";
-	font-weight: bold;
-}
-#next.activity.tomorrow .pre-wrapper::after{
-	content: " - Demain!";
-}
-#next.activity.today .pre-wrapper::after{
-	content: " - Aujourd'hui!";
 }
 #next.activity .main-wrapper{
 	background-image: var(--activity-highlight-bg);

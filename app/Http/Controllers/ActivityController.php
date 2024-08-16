@@ -12,7 +12,7 @@ class ActivityController extends Controller{
 
 	public function __construct()
 	{
-		$seasonStartDate = env('SEASON_START_DATE', '02-01'); // Default to February 1st if not set
+		$seasonStartDate = env('CMB_SEASON_START_DATE', '02-01'); // Default to February 1st if not set
 		list($this->seasonStartMonth, $this->seasonStartDay) = explode('-', $seasonStartDate);
 	}
 	
@@ -32,6 +32,7 @@ class ActivityController extends Controller{
 			->get();
 
 		foreach($activities as $activity){
+			$activity->isPassed = $this->isPassed($activity, $currentDate);
 			$activity->isOngoing = $this->isOngoing($activity, $currentDate);
 			$activity->daysUntilStart = $this->fullDaysUntilStart($activity, $currentDate);
 
@@ -95,7 +96,7 @@ class ActivityController extends Controller{
 	 */
 	private function fullDaysUntilStart($activity, $currentDate){
 		// startOfDay for use full days
-		return (int) $currentDate->startOfDay()->diffInDays($activity->start_date->startOfDay(), false);
+		return (int) $currentDate->copy()->startOfDay()->diffInDays($activity->start_date->startOfDay(), false);
 	}
 
 	/**
