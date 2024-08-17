@@ -88,6 +88,7 @@ html{
 	border-radius: var(--timeline-border-radius) var(--timeline-border-radius) 0 0;
 	max-height: calc(100% - var(--timeline-arrow-width));
 	margin-top: 0;
+	transition: height .015s;
 }
 .timeline .time.future{
 	background-color: var(--timeline-future-color);
@@ -107,12 +108,21 @@ html{
 	z-index: 5;
 	filter: drop-shadow(2px 2px 5px #000000a0);
 }
-.list{
+.activities-container{
 	padding: 20px 0;
 	width: 100%;
 }
 .month .month-name{
 	font-weight: 700;
+}
+.month ol{
+	list-style-type: none;
+}
+.activity-wrapper{
+	margin: 17px 5px;
+}
+.month .activity-wrapper:first-of-type{
+	margin-top: 3px;
 }
 
 .season-end{
@@ -141,6 +151,6 @@ html{
 	background-color: #f0f0f0;
 	box-shadow: 2px 2px 7px #000000d0;
 }
-.end{
+.end-indicator{
 	margin: 30px 0;
 }

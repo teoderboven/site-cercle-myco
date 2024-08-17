@@ -61,8 +61,8 @@
 				</header>
 				<div>
 					<p>
-						Pour devenir membre, il suffit de verser le montant de la cotisation annuelle de <b>10&nbsp;&#8364;</b>, sur le compte
-						<span class="value"><b>BE23 3631 7479 9191</b></span>.
+						Pour devenir membre, il suffit de verser le montant de la cotisation annuelle de <span class="bold">10&nbsp;&#8364;</span>, sur le compte
+						<span class="value"><span class="bold">BE23 3631 7479 9191</span></span>.
 					</p>
 					<div class="transfer">
 						<fieldset>

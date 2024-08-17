@@ -6,11 +6,7 @@ html{
 	--activity-btn-hover-bg: #647aa3;
 }
 
-.month + .activity{
-	margin-top: 5px;
-}
 .activity{
-	margin: 25px 5px;
 	width: 100%;
 }
 .activity .pre-wrapper{
@@ -32,10 +28,10 @@ html{
 .activity .pre-wrapper .activity-status::before{
 	content: "\2013";
 }
-.activity .pre-wrapper .activity-status.passed{
+.activity.passed .pre-wrapper .activity-status{
 	color: #d73f3f;
 }
-.activity .pre-wrapper .activity-status.ongoing{
+.activity.ongoing .pre-wrapper .activity-status{
 	color: #2b48cd;
 }
 
@@ -150,6 +146,6 @@ html{
 .activity.passed:not(.hidden) .main-content{
 	max-height: 100vh;
 }
-#next.activity .main-wrapper{
+#next .activity .main-wrapper{
 	background-image: var(--activity-highlight-bg);
 }

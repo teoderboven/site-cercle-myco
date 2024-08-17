@@ -47,6 +47,9 @@ body > footer > div{ /* Limit height to 2400px and center */
 .ital{
 	font-style: italic;
 }
+.bold{
+	font-weight: 680;
+}
 
 /* ScrollBar */
 html{

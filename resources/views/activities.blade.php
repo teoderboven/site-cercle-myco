@@ -13,8 +13,6 @@
 	<link rel="stylesheet" href="/assets/activites/activities.css">
 	<link rel="stylesheet" href="/assets/activites/list.css">
 	<link rel="stylesheet" href="/assets/activites/activity-item.css">
-	<script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
-	<script src="/assets/activites/moment-init.js"></script>
 	<script src="/assets/common/js/scrollToHash.js"></script>
 @endsection
 
@@ -63,23 +61,41 @@
 				<path d="M 7.9 18.6 L 0.5 4 C -0.6 2.3 0.4 0 2 0 L 17.5 0 C 19.2 0 20.3 2 19.4 4.2 L 11.8 18.6 C 10.9 20 8.8 20 7.9 18.6 Z"/>
 			</svg>
 		</div>
-		<ul class="list">
+		<div class="activities-container">
 			@if(!$hasNextActivity)
 				{{-- display season end or no activity message --}}
+				<section class="season-end">
+					<h4>
+					{{$groupedActivities ? "La saison $currentSeasonYear est à présent terminée.":
+											"Aucune activité n'est prévue pour le moment" }}
+					</h4>
 				@if($groupedActivities)
-					end season {{-- TODO --}}
+					<p>
+						Merci de nous avoir accompagnés tout au long de ces aventures mycologiques.
+						Nous prenons une petite pause, mais ne partez pas trop loin&nbsp;!
+					</p>
+					<p>
+						Soyez prêts pour de nouvelles découvertes l'année prochaine&nbsp;! Nous avons déjà hâte de les partager avec vous&nbsp;!
+					</p>
 				@else
-					no activities {{-- TODO --}}
+					{{-- no activity --}}
+					<p>
+						De nouvelles aventures mycologiques arrivent bientôt.
+						Merci de votre patience, et à très vite pour explorer ensemble le monde fascinant des champignons&nbsp;!
+					</p>
 				@endif
+					
+					<a href="/excursions" class="history-btn">(Re)découvrir les excursions de {{$groupedActivities? "l'année": 'la saison précédente'}} &#9658;</a>
+				</section>
 			@endif
 
 			@foreach($groupedActivities as $activityGroup)
 				@php
 					$notSameYear = $activityGroup->year != date('Y');
 				@endphp
-				{{-- TODO li --}}
 
-					<section class="month">
+				<section class="month">
+					<header>
 						<h3>
 							<time datetime="{{ $activityGroup->datetime }}" class="month-name" title="{{ $activityGroup->month }} {{ $activityGroup->year }}">
 								{{ $activityGroup->month }}
@@ -88,18 +104,17 @@
 								@endif
 							</time>
 						</h3>
-					</section>
+					</header>
+					<ol class="activities-list">
 					@foreach($activityGroup->activities as $activity)
-						{{-- TODO li + id next --}}
-
-							{{-- TODO activity id --}}
+						<li class="activity-wrapper" @if($activity->isNext) id="next" @endif>
 							<article @class([
 								'activity',
 								'ongoing' => $activity->isOngoing,
 								'passed' => $activity->isPassed,
 								'hidden' => $activity->isPassed,
 								'cancelled' => $activity->cancelled
-							])>
+							]) id="{{ $activity->id }}">
 								<div class="pre-wrapper">
 									<time class="date" datetime="{{ $activity->start_date->format('Y-m-d\Th:i') }}" title="{{ $activity->start_date->translatedFormat('d F Y') }}">
 										@if($notSameYear)
@@ -109,11 +124,7 @@
 										@endif
 									</time>
 									@if($activity->daysUntilStart < 22)
-										<div @class([
-											'activity-status',
-											'passed' => $activity->isPassed,
-											'ongoing' => $activity->isOngoing
-										])>
+										<div class="activity-status">
 											{{ getActivityStatus($activity) }}
 										</div>
 									@endif
@@ -171,9 +182,22 @@
 									</div>
 								</div>
 							</article>
+						</li>
 					@endforeach
-
+					</ol>
+				</section>
 			@endforeach
-		</ul>
+			@if(!$hasNextActivity)
+				<section class="end-indicator">
+					<p>
+						@if($groupedActivities)
+							<span class="bold">Fin de la saison : Rendez vous en {{ $currentSeasonYear + 1 }}!<span>
+						@else
+							Aucune activité prévue pour le moment
+						@endif
+					</p>
+				</section>
+			@endif
+		</div>
 	</div>
 @endsection
