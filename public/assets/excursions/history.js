@@ -8,22 +8,9 @@ document.querySelectorAll('.toggle').forEach(elt => {
 	})
 });
 
+// configure scroll to hash
 const titleHeight = document.querySelector('.forays-group h3').clientHeight;
-const navbarHeight = document.querySelector('body > header').clientHeight;
-const hashOffset = titleHeight + navbarHeight + 17;
-document.querySelectorAll('#foray-list li ul li a').forEach(elt=>{
-	elt.addEventListener('click', (e)=>{
-		e.preventDefault();
-		window.location.hash = elt.getAttribute('href');
-		scrollToHashWithOffset(hashOffset);
-	});
-});
-window.addEventListener('load',(e)=>{
-	const hash = window.location.hash;
-	if(hash){
-		scrollToHashWithOffset(hashOffset);
-	}
-});
+ScrollToHash.hashOffset = titleHeight + 17;
 
 /*
  * About the expand and open in new tab buttons of forays

@@ -57,4 +57,8 @@
 			activity.classList.remove("hidden");
 		});
 	});
+
+	// configure scroll to hash
+	ScrollToHash.hashOffset = 35;
+	
 })();

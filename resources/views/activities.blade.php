@@ -13,10 +13,10 @@
 	<link rel="stylesheet" href="/assets/activites/activities.css">
 	<link rel="stylesheet" href="/assets/activites/list.css">
 	<link rel="stylesheet" href="/assets/activites/activity-item.css">
-	<script src="/assets/common/js/scrollToHash.js"></script>
 @endsection
 
 @section('scripts')
+	<script src="/assets/common/js/scrollToHash.js"></script>
 	<script src="/assets/activites/list.js"></script>
 @endsection
 
