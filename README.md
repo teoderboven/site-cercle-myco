@@ -21,6 +21,8 @@ This project uses the php framework Laravel.
 
 A **_.env_** file is used to configurate the environment of the application, you can use the [.env.example](./.env.example) to help you.
 
+See the section [The .env file](#the-env-file) for details about custom properties.
+
 ##### 1.1 - Generate an app key
 
 Use the following command to generate an encryption key:
@@ -28,19 +30,6 @@ Use the following command to generate an encryption key:
 ```shell
 php artisan key:generate
 ```
-
-##### 1.2 - Determine the start date of a season
-
-With the property **CMB_SEASON_START_DATE** you can specify when an activity season start. It is used in the /activity route to determine which activities to display.
-
-Example:
-
-```properties
-# Season starts on February 1st
-CMB_SEASON_START_DATE=02-01
-```
-
-The default value is February 1<sup>st</sup>. This means that activities for the 2025 season are publicly visible from February 1, 2025 to January 31, 2026. You can change the start of the season by modifying the property.
 
 #### 2 - Migrate the database
 
@@ -65,6 +54,42 @@ If it doesn't work, try:
 ```shell
 php -S 127.0.0.1:8000 -t public
 ```
+
+## The .env file
+
+> The *.env* file is used in projects to store configuration settings, environment variables, and sensitive information securely. It provides a convenient way to manage and organize various parameters that your project needs without hard-coding them directly into your code.
+>
+>[Sujatha Mudadla - medium.com](https://medium.com/@sujathamudadla1213/what-is-the-use-of-env-8d6b3eb94843)
+
+An example of the .env file is provided in the directory. This is the [.env.example](.env.example) file.
+
+Find below the description of property used for the CMB application:
+
+### Determine the start date of a season
+
+With the property **CMB_SEASON_START_DATE** you can specify when an activity season start. It is used in the /activity route to determine which activities to display.
+
+Example:
+
+```properties
+# Season starts on February 1st
+CMB_SEASON_START_DATE=02-01
+```
+
+The default value is February 1<sup>st</sup>. This means that activities for the 2025 season are publicly visible from February 1, 2025 to January 31, 2026. You can change the start of the season by modifying the property.
+
+### Define the length of the Activities table id
+
+The 'Activities' table in the database has an alphanumeric id. To determine the total id length, you can use the **CMB_ACTIVITY_ID_LENGTH** property.
+
+Example:
+
+```properties
+# The 'Activities' table has an id lenght of 16 characters
+CMB_ACTIVITY_ID_LENGTH=16
+```
+
+The default value is a length of 16 characters.
 
 ## Author
 

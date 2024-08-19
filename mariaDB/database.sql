@@ -29,7 +29,7 @@ create table meeting_points(
 );
 
 create table activities(
-	id int auto_increment not null,
+	id char(16) not null,
 	title varchar(255) not null,
 	guide_id int not null,
 	start_date datetime not null,
@@ -49,7 +49,7 @@ create table activities(
 
 create table activity_links(
 	id int auto_increment not null,
-	activity_id int not null,
+	activity_id char(16) not null,
 	text VARCHAR(255) NOT NULL,
 	url VARCHAR(255) NOT NULL,
 	

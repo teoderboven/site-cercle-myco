@@ -125,4 +125,12 @@ class ActivityController extends Controller{
 		// Convert associative array to array<Object>
 		return array_values($grouped);
 	}
+
+
+	/**
+	 * Redirects an activity ID route to its url with corresponding fragment (hash)
+	 */
+	public function redirectToHash($id){
+		return redirect("/activites#$id");
+	}
 }

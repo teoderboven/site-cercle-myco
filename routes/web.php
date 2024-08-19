@@ -7,6 +7,7 @@ Route::get('/', function () {
 	return view('home');
 });
 Route::get('/activites', [Ctrl\ActivityController::class, 'publicDisplay']);
+Route::get('/activites/{id}', [Ctrl\ActivityController::class, 'redirectToHash']);
 Route::get('/excursions', function () {
 	return view('excursions');
 });
