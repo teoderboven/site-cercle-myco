@@ -107,13 +107,16 @@
 					</header>
 					<ol class="activities-list">
 					@foreach($activityGroup->activities as $activity)
+						@php
+							$hideActivity = $activity->isPassed || $activity->cancelled;
+						@endphp
 						<li class="activity-wrapper" @if($activity->isNext) id="next" @endif>
 							<article @class([
 								'activity',
 								'ongoing' => $activity->isOngoing,
 								'passed' => $activity->isPassed,
-								'hidden' => $activity->isPassed,
-								'cancelled' => $activity->cancelled
+								'cancelled' => $activity->cancelled,
+								'hidden' => $hideActivity
 							]) id="{{ $activity->id }}">
 								<div class="pre-wrapper">
 									<time class="date" datetime="{{ $activity->start_date->format('Y-m-d\Th:i') }}" title="{{ $activity->start_date->translatedFormat('d F Y') }}">
@@ -123,9 +126,17 @@
 											{{ $activity->start_date->translatedFormat('l d/m') }}
 										@endif
 									</time>
-									@if($activity->daysUntilStart < 22)
+									@if($activity->cancelled)
+										<div class="activity-status">
+											!! Sortie annulée !!
+										</div>
+									@elseif($activity->daysUntilStart < 22)
 										<div class="activity-status">
 											{{ getActivityStatus($activity) }}
+										</div>
+									@elseif($activity->isNext)
+										<div class="activity-status">
+											Prochaine Sortie
 										</div>
 									@endif
 								</div>
@@ -138,9 +149,16 @@
 													<span class="month">{{ $activity->start_date->translatedFormat('F') }}</span>
 												</div>
 											</div>
-											<h4 class="title">{{ $activity->title }}</h4>
+											<h4 class="title">
+												@if($activity->cancelled)
+													<span class="crossed-out">{{ $activity->title }}</span>
+													<span class="cancel-indication">annulé</span>
+												@else
+													{{ $activity->title }}
+												@endif
+											</h4>
 										</div>
-										@if($activity->isPassed)
+										@if($hideActivity)
 											<button class="reveal-btn">Dévoiler les détails <img src="/assets/common/img/svg/next-arrow.svg" alt=""></button>
 										@endif
 									</header>

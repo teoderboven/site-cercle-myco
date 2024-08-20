@@ -1,6 +1,7 @@
 html{
-	--activity-bg: linear-gradient(300deg, #b7cfde, #9dcae6);
-	--activity-highlight-bg: linear-gradient(300deg, #e3ddad, #debf96);
+	--activity-bg: linear-gradient(120deg, #9dcae6, #b7cfde);
+	--activity-highlight-bg: linear-gradient(120deg, #debf96, #e3ddad);
+	--activity-cancelled-bg: linear-gradient(120deg, #df978c, #e79f96);
 	--activity-btn-color: #f5f5f5;
 	--activity-btn-bg: #4368ae;
 	--activity-btn-hover-bg: #647aa3;
@@ -28,7 +29,8 @@ html{
 .activity .pre-wrapper .activity-status::before{
 	content: "\2013";
 }
-.activity.passed .pre-wrapper .activity-status{
+.activity.passed .pre-wrapper .activity-status,
+.activity.cancelled .pre-wrapper .activity-status{
 	color: #d73f3f;
 }
 .activity.ongoing .pre-wrapper .activity-status{
@@ -57,7 +59,11 @@ html{
 }
 .activity header .title{
 	font-size: 1.5rem;
+	font-weight: 700;
 	text-shadow: 1px 0 #f5f5f5;
+}
+.activity header .title > *{
+	font: inherit;
 }
 .activity .reveal-btn{
 	display: flex;
@@ -75,8 +81,8 @@ html{
 	height: 1.5em;
 	transform: rotate(90deg);
 }
-.activity.passed:not(.hidden) .reveal-btn,
-.activity:not(.passed) .reveal-btn{
+.activity:not(.hidden) .reveal-btn,
+.activity.hidden.revealed .reveal-btn{
 	display: none;
 }
 .activity .main-content > *{
@@ -138,14 +144,23 @@ html{
 .activity.passed .main-wrapper{
 	filter: grayscale(.8);
 }
-.activity.passed .main-content{
+.activity.hidden .main-content{
 	max-height: 0;
 	transition: max-height .5s;
 	overflow: hidden;
 }
-.activity.passed:not(.hidden) .main-content{
+.activity.hidden.revealed .main-content{
 	max-height: 100vh;
 }
 #next .activity .main-wrapper{
 	background-image: var(--activity-highlight-bg);
+}
+.activity.cancelled .main-wrapper{
+	background-image: var(--activity-cancelled-bg);
+}
+.activity.cancelled header .title .crossed-out{
+	text-decoration: line-through;
+}
+.activity.cancelled header .title .cancel-indication{
+	text-transform: uppercase;
 }

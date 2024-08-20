@@ -36,7 +36,7 @@ class ActivityController extends Controller{
 			$activity->isOngoing = $this->isOngoing($activity, $currentDate);
 			$activity->daysUntilStart = $this->fullDaysUntilStart($activity, $currentDate);
 
-			if(!$activity->isPassed && !$hasNextActivity){
+			if(!$activity->isPassed && !$hasNextActivity && !$activity->cancelled){
 				$activity->isNext = true;
 				$hasNextActivity = true;
 			}else{
@@ -76,6 +76,8 @@ class ActivityController extends Controller{
 	 * Determines if an activity is passed
 	 */
 	private function isPassed($activity, $currentDate){
+		if($activity->cancelled) return false;
+
 		$endDateTime = $activity->start_date->copy()->addMinutes($activity->duration);
 
 		return $currentDate->greaterThan($endDateTime);
@@ -85,6 +87,8 @@ class ActivityController extends Controller{
 	 * Determines if an activity is ongoing
 	 */
 	private function isOngoing($activity, $currentDate){
+		if($activity->cancelled) return false;
+
 		$startDateTime = $activity->start_date;
 		$endDateTime = $startDateTime->copy()->addMinutes($activity->duration);
 
