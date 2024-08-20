@@ -13,7 +13,7 @@ create table users(
 create table guides(
 	id int auto_increment not null,
 	name varchar(50) not null,
-	phone varchar(15) not null,
+	phone varchar(15),
 
 	primary key(id)
 );

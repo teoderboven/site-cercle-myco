@@ -182,10 +182,12 @@
 												<img src="/assets/common/img/svg/profile.svg" alt="">
 												<span>Guide&nbsp;: {{ $activity->guide->name }}</span>
 											</div>
-											<div class="info phone">
-												<img src="/assets/common/img/svg/phone.svg" alt="">
-												<a href="tel:{{ $activity->guide->phone }}">{{ formatPhoneNumber($activity->guide->phone) }}</a>
-											</div>
+											@isset($activity->guide->phone)
+												<div class="info phone">
+													<img src="/assets/common/img/svg/phone.svg" alt="">
+													<a href="tel:{{ $activity->guide->phone }}">{{ formatPhoneNumber($activity->guide->phone) }}</a>
+												</div>	
+											@endisset
 										</div>
 										<div class="description">
 											<p>
