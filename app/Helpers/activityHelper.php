@@ -78,7 +78,10 @@ if (!function_exists('formatPhoneNumber')) {
  * @return string The status of the activity as a string.
  */
 if(!function_exists('getActivityStatus')){
-	function getActivityStatus($activity){
+	function getActivityStatus($activity): string{
+		if($activity->cancelled){
+			return '!! Sortie annulée !!';
+		}
 		if($activity->isPassed){
 			return 'Cette sortie est passée';
 		}
@@ -87,17 +90,25 @@ if(!function_exists('getActivityStatus')){
 		}
 
 		$daysUntilStart = $activity->daysUntilStart;
-		if($daysUntilStart === 0){
-			return "Aujourd'hui!";
+		if($daysUntilStart < 22){
+			if($daysUntilStart === 0){
+				return "Aujourd'hui!";
+			}
+			if($daysUntilStart === 1){
+				return "Demain!";
+			}
+			if($daysUntilStart % 7 === 0){
+				$weeks = $daysUntilStart / 7;
+				return $weeks === 1 ? 'Dans une semaine' : "Dans $weeks semaines";
+			}
+			
+			return "Dans $daysUntilStart jours";
 		}
-		if($daysUntilStart === 1){
-			return "Demain!";
+
+		if($activity->isNext){
+			return 'Prochaine Sortie';
 		}
-		if($daysUntilStart % 7 === 0){
-			$weeks = $daysUntilStart / 7;
-			return $weeks === 1 ? 'Dans une semaine' : "Dans $weeks semaines";
-		}
-		
-		return "Dans $daysUntilStart jours";
+
+		return '';
 	}
 }

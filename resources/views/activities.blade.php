@@ -126,17 +126,12 @@
 											{{ $activity->start_date->translatedFormat('l d/m') }}
 										@endif
 									</time>
-									@if($activity->cancelled)
+									@php
+										$activityStatus = getActivityStatus($activity);
+									@endphp
+									@if($activityStatus)
 										<div class="activity-status">
-											!! Sortie annulée !!
-										</div>
-									@elseif($activity->daysUntilStart < 22)
-										<div class="activity-status">
-											{{ getActivityStatus($activity) }}
-										</div>
-									@elseif($activity->isNext)
-										<div class="activity-status">
-											Prochaine Sortie
+											{{ $activityStatus }}
 										</div>
 									@endif
 								</div>
