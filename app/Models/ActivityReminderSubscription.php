@@ -4,17 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ActivityLink extends Model{
+class ActivityReminderSubscription extends Model{
 
 	protected $fillable = [
 		'activity_id',
-		'link_text',
-		'url'
+		'email'
 	];
-	
-	protected $hidden = [
-		'id',
-		'activity_id'
+
+	protected $casts = [
+		'first_reminder_sent' => 'boolean',
+		'second_reminder_sent' => 'boolean'
 	];
 
 	public $timestamps = false;

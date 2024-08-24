@@ -57,10 +57,23 @@ create table activity_links(
 	foreign key(activity_id) references activities(id) on delete cascade
 );
 
+create table activity_reminder_subscriptions(
+	id int auto_increment not null,
+	activity_id char(16) not null,
+	email varchar(255) not null,
+	first_reminder_sent bool default false,
+	second_reminder_sent bool default false,
+
+	primary key(id),
+	foreign key(activity_id) references activities(id) on delete cascade,
+	unique(activity_id, email)
+);
+
 CREATE INDEX idx_activity_start_date ON activities(start_date);
 CREATE INDEX idx_activity_guide ON activities(guide);
 CREATE INDEX idx_activity_meeting_point ON activities(meeting_point);
 CREATE INDEX idx_links_activity_id ON activity_links(activity_id);
+CREATE INDEX idx_reminder_activity_id ON activity_reminder_subscriptions(activity_id);
 
 DELIMITER $$
 

@@ -1,16 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers as Ctrl;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ActivityReminderController;
+
+// Dynamic views routes
 
 Route::get('/', function () {
 	return view('home');
-});
-Route::get('/activites', [Ctrl\ActivityController::class, 'publicDisplay']);
-Route::get('/activites/{id}', [Ctrl\ActivityController::class, 'redirectToHash']);
+})->name('home');
+Route::get('/activites', [ActivityController::class, 'publicDisplay'])->name('activities');
+Route::get('/activites/{id}', [ActivityController::class, 'redirectToHash']);
 Route::get('/excursions', function () {
 	return view('excursions');
 });
+
+// AJAX routes
+
+Route::post('/activites/rappel', [ActivityReminderController::class, 'register']);
+
+// Simple views routes
 
 Route::view('/publications', 'publications');
 Route::view('/devenir-membre', 'member');

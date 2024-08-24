@@ -20,6 +20,6 @@ class MeetingPoint extends Model{
 	public $timestamps = false;
 
 	public function activities(){
-        return $this->hasMany(Activity::class, 'meeting_point');
-    }
+		return $this->hasMany(Activity::class, 'meeting_point');
+	}
 }

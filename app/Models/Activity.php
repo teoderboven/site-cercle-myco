@@ -80,4 +80,8 @@ class Activity extends Model{
 	public function links(){
 		return $this->hasMany(ActivityLink::class, 'activity_id');
 	}
+
+	public function subscriptions(){
+		return $this->hasMany(ActivityReminderSubscription::class, 'activity_id');
+	}
 }
