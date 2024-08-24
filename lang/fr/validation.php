@@ -52,7 +52,7 @@ return [
 	'distinct' => 'Le champ a une valeur en double',
 	'doesnt_end_with' => 'Le champ :attribute ne peut pas se terminer par l\'un des éléments suivants : :values',
 	'doesnt_start_with' => 'Le champ :attribute ne peut pas se commencer par l\'un des éléments suivants : :values',
-	'email' => 'Le champ :attribute doit être une adresse email valide',
+	'email' => 'L\'adresse email n\'est pas valide',
 	'ends_with' => 'Le champ :attribute doit se terminer par l\'une des valeurs suivantes : :values',
 	'enum' => 'Le champ :attribute sélectionné est invalide',
 	'exists' => 'Le champ :attribute sélectionné est invalide',
@@ -99,7 +99,7 @@ return [
 		'array' => 'Le tableau :attribute ne peut avoir plus de :max éléments',
 		'file' => 'La taille du fichier :attribute ne peut être supérieure à :max kilo-octets',
 		'numeric' => 'La valeur de :attribute ne peut être supérieure à :max',
-		'string' => 'Le texte de :attribute ne peut contenir plus de :max caractères',
+		'string' => 'Le champ :attribute ne peut contenir plus de :max caractères',
 	],
 	'max_digits' => 'Le champ :attribute ne doit pas avoir plus de :max chiffres',
 	'mimes' => 'Le champ :attribute doit être un fichier de type : :values',
@@ -175,10 +175,13 @@ return [
 	*/
 
 	'custom' => [
-        'activity' => [
-            'exists' => 'L\'activité sélectionnée n\'existe pas',
-        ],
-    ],
+		'activity' => [
+			'exists' => 'L\'activité sélectionnée n\'existe pas',
+		],
+		'email' => [
+			'required' => 'Veuillez fournir un email',
+		],
+	],
 
 	/*
 	|--------------------------------------------------------------------------
