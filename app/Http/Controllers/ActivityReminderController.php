@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Mail\ActivityReminder;
 use App\Models\ActivityReminderSubscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
@@ -102,7 +103,18 @@ class ActivityReminderController extends Controller{
 		ActivityReminderSubscription::where('second_reminder_sent', true)->delete();
 	}
 
-	public function secureSendReminders($key){
+	/**
+	 * Hourly task: send reminder to subscribers.
+	 * Secured by the .env CRON_SECRET_KEY.
+	 * @param Request $req
+	 * @param string $key the pretending secret key
+	 * @return string returns 'done'
+	 */
+	public function secureSendReminders(Request $req, string $key){
+		$taskName = 'send reminders';
+		$reqIp = $req->ip();
+		Log::notice("task $taskName accessed by $reqIp");
+
 		$secretKey = config('app.cron_secret_key');
 
 		if(empty($secretKey)){
@@ -110,10 +122,13 @@ class ActivityReminderController extends Controller{
 		}
 
 		if(empty($key) || $key !== $secretKey){
+			Log::warning("task $taskName has refused $reqIp. key=$key");
 			abort(403, 'Unauthorized');
 		}
 
 		// key is valid, execute task
+
+		Log::notice("task $taskName has validate $reqIp, task executed");
 
 		$this->sendReminders();
 		$this->removeSentSubscriptions();
