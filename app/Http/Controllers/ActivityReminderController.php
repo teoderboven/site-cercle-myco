@@ -12,6 +12,11 @@ use Illuminate\Validation\ValidationException;
 
 class ActivityReminderController extends Controller{
 	
+	/**
+	 * Add a subscription for an activity reminder.
+	 * @param Request $req
+	 * @return string a json response
+	 */
 	public function register(Request $req){
 		try{
 			$customErrorMessages = [
@@ -61,11 +66,14 @@ class ActivityReminderController extends Controller{
 		->orWhere('second_reminder_sent', false)
 		->get();
 
-		foreach ($subscriptions as $subscription){
-			if($subscription->second_reminder_sent) continue; // nothing to send
+		$now = Carbon::now();
 
+		foreach ($subscriptions as $subscription){
 			$activityDate = $subscription->activity->start_date;
-			$now = Carbon::now();
+
+			if($subscription->second_reminder_sent || $now->greaterThanOrEqualTo($activityDate)){
+				continue; // nothing to send
+			}
 
 			$firstReminderDate = $activityDate->copy()->subDays(7)->setTime(14, 0);
 			$secondReminderDate = $activityDate->copy()->subDays(2)->setTime(10, 0);
@@ -92,6 +100,25 @@ class ActivityReminderController extends Controller{
 	 */
 	public function removeSentSubscriptions(): void{
 		ActivityReminderSubscription::where('second_reminder_sent', true)->delete();
+	}
+
+	public function secureSendReminders($key){
+		$secretKey = config('app.cron_secret_key');
+
+		if(empty($secretKey)){
+			throw new \RuntimeException('CRON_SECRET_KEY is not set in the configuration.');
+		}
+
+		if(empty($key) || $key !== $secretKey){
+			abort(403, 'Unauthorized');
+		}
+
+		// key is valid, execute task
+
+		$this->sendReminders();
+		$this->removeSentSubscriptions();
+
+		return 'done';
 	}
 
 }

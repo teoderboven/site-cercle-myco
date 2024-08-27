@@ -119,6 +119,18 @@ The default value is 7 (one week).
 > Note:
 > If an activity is scheduled to take place in less than 7 days (assuming the value of *CMB_ACTIVITY_FEATURED_DURATION_DAYS* is set to 7), but it is not the next upcoming activity (for example, if another activity is happening in 3 days), only the next activity will be displayed on the homepage. This means that the homepage will feature the soonest upcoming activity, even if there are other activities within the *CMB_ACTIVITY_FEATURED_DURATION_DAYS* window.
 
+### Specify a cron secret key
+
+**CRON_SECRET_KEY** is a secret key used to secure HTTP requests sent to the application by external services such as cron-job.org. This key is essential to validate incoming calls to specific routes that are performing scheduled tasks (for example, sending reminder emails). It ensures that only genuine requests from authorized sources can trigger these tasks.
+
+The key is used in URLs so *it must be well formatted to avoid any errors*.
+
+```properties
+CRON_SECRET_KEY={aKeyYouDefine}
+```
+
+The key has no default value. ***It has to be configured***
+
 ## Author
 
 The author of this project is [Téo Derboven](https://github.com/teoderboven)

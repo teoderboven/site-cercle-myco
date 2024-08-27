@@ -17,6 +17,20 @@ return [
 
 	/*
 	|--------------------------------------------------------------------------
+	| External Cron Secret Key
+	|--------------------------------------------------------------------------
+	|
+	| The secret key used to secure HTTP requests sent by external services,
+	| such as cron-job.org, in order to trigger scheduled tasks in the application.
+	| This key is used to authenticate calls to the cron job URL to ensure that
+	| only allowed requests can trigger corresponding actions.
+	|
+	*/
+
+	'cron_secret_key' => env('CRON_SECRET_KEY'),
+
+	/*
+	|--------------------------------------------------------------------------
 	| Application Environment
 	|--------------------------------------------------------------------------
 	|
