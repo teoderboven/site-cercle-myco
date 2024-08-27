@@ -91,6 +91,18 @@ CMB_ACTIVITY_ID_LENGTH=16
 
 The default value is a length of 16 characters.
 
+### Specify a cron secret key
+
+**CRON_SECRET_KEY** is a secret key used to secure HTTP requests sent to the application by external services such as cron-job.org. This key is essential to validate incoming calls to specific routes that are performing scheduled tasks (for example, sending reminder emails). It ensures that only genuine requests from authorized sources can trigger these tasks.
+
+The key is used in URLs so *it must be well formatted to avoid any errors*.
+
+```properties
+CRON_SECRET_KEY={aKeyYouDefine}
+```
+
+The key has no default value. ***It has to be configured***
+
 ## Author
 
 The author of this project is [Téo Derboven](https://github.com/teoderboven)
