@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Mail\ActivityReminder;
 use App\Models\ActivityReminderSubscription;
+use App\Models\MailSubscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -24,26 +25,29 @@ class ActivityReminderController extends Controller{
 				'activity.unique' => 'Un rappel existe déjà pour cette activité avec cette adresse email'
 			];
 
-			$validatedSubscription = $req->validate([
-				'email' => 'required|email|max:255',
+			$validatedSubscriber = $req->validate([
+				'email' => 'required|email|max:255'
+			]);
 
+			$subscriber = MailSubscriber::firstOrCreate($validatedSubscriber);
+
+			$validatedActivity = $req->validate([
 				'activity' => [
 					'required',
 					'string',
 					'exists:activities,id',
 
-					// validate the uniqueness of (activity_id, email)
-					Rule::unique('activity_reminder_subscriptions', 'activity_id')->where(function ($query) use ($req){
-						return $query->where('email', $req->email);
+					// validate the uniqueness of (activity_id, subscriber_id)
+					Rule::unique('activity_reminder_subscriptions', 'activity_id')->where(function ($query) use ($subscriber){
+						return $query->where('subscriber_id', $subscriber->id);
 					})
 				]
 			], $customErrorMessages);
 
-			// change activity to activity_id
-			$validatedSubscription ['activity_id'] = $validatedSubscription ['activity'];
-			unset($validatedSubscription ['activity']);
-
-			ActivityReminderSubscription::create($validatedSubscription);
+			ActivityReminderSubscription::create([
+				'activity_id' => $validatedActivity['activity'],
+				'subscriber_id' => $subscriber->id
+			]);
 
 			return response()->json([
 				'success' => true
@@ -63,7 +67,8 @@ class ActivityReminderController extends Controller{
 	 * A reminder is usually sent 7 days before an activity at 2pm and 2 days before an activity at 10am.
 	 */
 	public function sendReminders(): void{
-		$subscriptions = ActivityReminderSubscription::where('first_reminder_sent', false)
+		$subscriptions = ActivityReminderSubscription::with('subscriber')
+		->where('first_reminder_sent', false)
 		->orWhere('second_reminder_sent', false)
 		->get();
 
@@ -81,14 +86,14 @@ class ActivityReminderController extends Controller{
 
 			// check second reminder
 			if($now->greaterThanOrEqualTo($secondReminderDate)){
-				Mail::to($subscription->email)->send(new ActivityReminder($subscription->activity));
+				Mail::to($subscription->subscriber->email)->send(new ActivityReminder($subscription->activity));
 
 				$subscription->second_reminder_sent = true;
 				$subscription->save();
 			}
 			// check first reminder
 			else if($now->greaterThanOrEqualTo($firstReminderDate) && !$subscription->first_reminder_sent){
-				Mail::to($subscription->email)->send(new ActivityReminder($subscription->activity));
+				Mail::to($subscription->subscriber->email)->send(new ActivityReminder($subscription->activity));
 
 				$subscription->first_reminder_sent = true;
 				$subscription->save();
