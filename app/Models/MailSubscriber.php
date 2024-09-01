@@ -30,6 +30,25 @@ class MailSubscriber extends Model{
 	public function subscriptions(){
 		return $this->hasMany(ActivityReminderSubscription::class, 'subscriber_id');
 	}
+
+	public function getUnsubscribeLink(Activity $activity = null){
+		$routeParameters = [
+			'subId' => $this->id,
+			'token' => $this->unsubscribe_token,
+		];
+	
+		if($activity){
+			$routeParameters['scope'] = 'activity';
+			$routeParameters['activity'] = $activity->id;
+		}
+	
+		return route('unsubscribe', $routeParameters);
+	}
+
+	public function resubscribe(){
+		$this->unsubscribed = false;
+		$this->save();
+	}
 	
 	public function assignUnsubscribeToken(): void{
 		$this->unsubscribe_token = Str::random(32);

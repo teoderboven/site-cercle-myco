@@ -137,4 +137,6 @@ class ActivityController extends Controller{
 	public function redirectToHash($id){
 		return redirect("/activites#$id");
 	}
+
+	// TODO : send mail to subscriber when activity cancelled
 }

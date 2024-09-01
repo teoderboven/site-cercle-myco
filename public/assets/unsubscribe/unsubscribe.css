@@ -1,0 +1,65 @@
+
+/* !! similar to member.css */
+.main-container{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	height: 100%;
+	padding: 25px 25px 0;
+}
+.card{
+	margin: auto;
+	padding: 10px;
+	border-radius: 15px;
+	box-shadow: 5px 5px 10px 5px #00000080;
+	max-width: 1200px;
+}
+.card header{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	padding: 4px;
+	border-bottom: solid 2px #bbb;
+}
+.icon{
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: center;
+	width: 2.2rem;
+	min-width: 2.2rem;
+	height: 2.2rem;
+	color: #000;
+	font-size: 0.9rem;
+	font-weight: 600;
+	border: solid 2px #000;
+	border-radius: 50%;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.card header .icon{
+	margin-right: 5px;
+}
+.card header .title{
+	font-size: 1.3rem;
+	margin: 5px;
+}
+.card .title .activity{
+	font-style: italic;
+}
+.card .title .activity,
+.card .title .activity *{
+	font-size: inherit;
+	font-weight: 600;
+}
+.card p{
+	margin: 10px;
+	text-align: justify;
+}
+.card a{
+	font-style: italic;
+}
+.card a:hover{
+	text-decoration: underline;
+}

@@ -31,6 +31,11 @@ class ActivityReminderController extends Controller{
 
 			$subscriber = MailSubscriber::firstOrCreate($validatedSubscriber);
 
+			if($subscriber->unsubscribed){
+				$subscriber->resubscribe();
+				// TODO add message notification
+			}
+
 			$validatedActivity = $req->validate([
 				'activity' => [
 					'required',

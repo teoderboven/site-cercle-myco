@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ActivityReminderController;
+use App\Http\Controllers\SubscriptionController;
 
 // Dynamic views routes
 
@@ -24,6 +25,10 @@ Route::post('/activites/rappel', [ActivityReminderController::class, 'register']
 Route::middleware('throttle:3,1')->group(function () { // limit at 3 access/minute
     Route::get('/tasks/send-activity-reminder-mails/{key}', [ActivityReminderController::class, 'secureSendReminders']);
 });
+
+// Special routes
+
+Route::get('/unsubscribe/{subId}/{token}', [SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
 
 // Simple views routes
 
