@@ -9,6 +9,10 @@
 	}
 }
 
+html{
+	--legal-text-color: #7c7c7c;
+}
+
 body > footer{
 	background-color: var(--basic-bg-color);
 	z-index: 10;

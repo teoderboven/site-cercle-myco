@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ActivityReminderController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SubscriptionController;
 
 // Dynamic views routes
 Route::get('/', [HomeController::class, 'display'])->name('home');
@@ -15,9 +16,6 @@ Route::get('/excursions', function () {
 // TODO: exclude cookie middleware for /excursions/xx/abc
 //		 ->withoutMiddleware([CheckCookiesAccepted::class])
 
-Route::view('/publications', 'publications')->name('publications');
-Route::view('/devenir-membre', 'member')->name('member');
-Route::view('/champi-parasite-des-plantes', 'champi-parasite')->name('parasites');
 // AJAX routes
 
 Route::post('/activites/rappel', [ActivityReminderController::class, 'register']);
@@ -28,11 +26,15 @@ Route::middleware('throttle:3,1')->group(function () { // limit at 3 access/minu
     Route::get('/tasks/send-activity-reminder-mails/{key}', [ActivityReminderController::class, 'secureSendReminders']);
 });
 
+// Special routes
+
+Route::get('/unsubscribe/{subId}/{token}', [SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
+
 // Simple views routes
 
-Route::view('/publications', 'publications');
-Route::view('/devenir-membre', 'member');
-Route::view('/champi-parasite-des-plantes', 'champi-parasite');
+Route::view('/publications', 'publications')->name('publications');
+Route::view('/devenir-membre', 'member')->name('member');
+Route::view('/champi-parasite-des-plantes', 'champi-parasite')->name('parasites');
 
 Route::view('/error/403', 'errors.403');
 Route::view('/error/404', 'errors.404');

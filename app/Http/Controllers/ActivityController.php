@@ -132,4 +132,6 @@ class ActivityController extends Controller{
 			'X-Robots-Tag' => 'noindex',
 		]);
 	}
+
+	// TODO : send mail to subscriber when activity cancelled
 }
