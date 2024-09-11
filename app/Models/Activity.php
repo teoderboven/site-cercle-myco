@@ -65,6 +65,17 @@ class Activity extends Model{
 		return ['id'];
 	}
 
+	/**
+	 * Gives the activity detail link to see the activity online
+	 * @return string
+	 */
+	public function getDetailLink(): string{
+		return route('activityDetail', $this->id);
+	}
+
+	# TODO: comma stib description
+	# TODO: redirect links for emails
+
 	public function guide(){
 		return $this->belongsTo(Guide::class);
 	}

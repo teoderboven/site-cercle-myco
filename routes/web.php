@@ -11,7 +11,7 @@ Route::get('/', function () {
 	return view('home');
 })->name('home');
 Route::get('/activites', [ActivityController::class, 'publicDisplay'])->name('activities');
-Route::get('/activites/{id}', [ActivityController::class, 'redirectToHash']);
+Route::get('/activites/{id}', [ActivityController::class, 'redirectToHash'])->name('activityDetail');
 Route::get('/excursions', function () {
 	return view('excursions');
 });

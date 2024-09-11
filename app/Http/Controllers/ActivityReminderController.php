@@ -91,14 +91,14 @@ class ActivityReminderController extends Controller{
 
 			// check second reminder
 			if($now->greaterThanOrEqualTo($secondReminderDate)){
-				Mail::to($subscription->subscriber->email)->send(new ActivityReminder($subscription->activity));
+				Mail::to($subscription->subscriber->email)->send(new ActivityReminder($subscription->activity, $subscription->subscriber));
 
 				$subscription->second_reminder_sent = true;
 				$subscription->save();
 			}
 			// check first reminder
 			else if($now->greaterThanOrEqualTo($firstReminderDate) && !$subscription->first_reminder_sent){
-				Mail::to($subscription->subscriber->email)->send(new ActivityReminder($subscription->activity));
+				Mail::to($subscription->subscriber->email)->send(new ActivityReminder($subscription->activity, $subscription->subscriber));
 
 				$subscription->first_reminder_sent = true;
 				$subscription->save();

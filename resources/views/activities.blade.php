@@ -166,8 +166,8 @@
 										<div class="infos">
 											<div class="info location">
 												<img src="/assets/common/img/svg/location.svg" alt="">
-												<a href="https://www.google.com/maps/search/?api=1&query={{ $activity->meetingPoint->latitude }}%2C{{ $activity->meetingPoint->longitude }}" target="_blank">
-													Rdv&nbsp;: {{ $activity->meetingPoint->name }}, {{ $activity->meetingPoint->municipality }}.
+												<a href="{{ $activity->meetingPoint->getMapsLink() }}" target="_blank">
+													Rdv&nbsp;: {{ $activity->meetingPoint->getFormatted() }}.
 												</a>
 											</div>
 											<div class="info time">
@@ -185,7 +185,7 @@
 											@isset($activity->guide->phone)
 												<div class="info phone">
 													<img src="/assets/common/img/svg/phone.svg" alt="">
-													<a href="tel:{{ $activity->guide->phone }}">{{ formatPhoneNumber($activity->guide->phone) }}</a>
+													<a href="tel:{{ $activity->guide->phone }}">{!! formatPhoneNumber($activity->guide->phone) !!}</a>
 												</div>	
 											@endisset
 										</div>

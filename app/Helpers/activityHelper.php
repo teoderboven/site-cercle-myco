@@ -48,10 +48,11 @@ if (!function_exists('displayDuration')) {
  * numbers, the country code is retained, and the format is adjusted accordingly.
  * 
  * @param string $phoneNumber The input phone number in international format.
+ * @param boolean $htmlFormat if true, spaces in phone number will be html insecable.
  * @return string The formatted phone number.
  */
 if (!function_exists('formatPhoneNumber')) {
-	function formatPhoneNumber($phoneNumber) {
+	function formatPhoneNumber($phoneNumber, $htmlFormat = true) {
 		// Remove all non-numeric characters except for the plus sign at the start
 		$phoneNumber = preg_replace('/[^\d+]/', '', $phoneNumber);
 
@@ -65,7 +66,7 @@ if (!function_exists('formatPhoneNumber')) {
 		$remainingPart = substr($phoneNumber, 0, -6);
 
 		// Format the last six digits as xx.xx xx
-		$formattedLastSix = preg_replace('/(\d{2})(\d{2})(\d{2})/', '$1.$2 $3', $lastSixDigits);
+		$formattedLastSix = preg_replace('/(\d{2})(\d{2})(\d{2})/', '$1.$2' . ($htmlFormat? '&nbsp;': ' ') . '$3', $lastSixDigits);
 
 		return $remainingPart . '/' . $formattedLastSix;
 	}
