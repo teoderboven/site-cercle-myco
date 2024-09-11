@@ -50,10 +50,11 @@ if (!function_exists('displayDuration')) {
  * numbers, the country code is retained, and the format is adjusted accordingly.
  * 
  * @param string $phoneNumber The input phone number in international format.
+ * @param boolean $htmlFormat if true, spaces in phone number will be html insecable.
  * @return string The formatted phone number.
  */
 if (!function_exists('formatPhoneNumber')) {
-	function formatPhoneNumber(string $phoneNumber): string{
+	function formatPhoneNumber(string $phoneNumber, $htmlFormat = true): string {
 		// Remove all non-numeric characters except for the plus sign at the start
 		$phoneNumber = preg_replace('/[^\d+]/', '', $phoneNumber);
 
@@ -67,7 +68,7 @@ if (!function_exists('formatPhoneNumber')) {
 		$remainingPart = substr($phoneNumber, 0, -6);
 
 		// Format the last six digits as xx.xx xx
-		$formattedLastSix = preg_replace('/(\d{2})(\d{2})(\d{2})/', '$1.$2 $3', $lastSixDigits);
+		$formattedLastSix = preg_replace('/(\d{2})(\d{2})(\d{2})/', '$1.$2' . ($htmlFormat? '&nbsp;': ' ') . '$3', $lastSixDigits);
 
 		return $remainingPart . '/' . $formattedLastSix;
 	}
@@ -107,14 +108,14 @@ if(!function_exists('getActivityStatus')){
 
 /**
  * Get the formatted days until the start of an activity. Can gives the string "tomorrow" and "today"
- * 
+ *
  * @param Activity $activity
  * @return string The formatted days until the start of the given Activity
  */
 if(!function_exists('getFormattedDaysUntilStart')){
 	function getFormattedDaysUntilStart(Activity $activity): string{
 		$daysUntilStart = $activity->fullDaysUntilStart();
-		
+
 		if($daysUntilStart === 0){
 			return "Aujourd'hui!";
 		}
@@ -129,5 +130,3 @@ if(!function_exists('getFormattedDaysUntilStart')){
 		return "Dans $daysUntilStart jours";
 	}
 }
-
-

@@ -1,0 +1,42 @@
+.c_activity-name{
+	font-style: italic;
+}
+.c_activity-time{
+	font-weight: bold;
+}
+.c_activity_resume{
+	border: solid 1px #555;
+	padding: 12px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 20px #00000033;
+}
+.c_activity_resume .c_title{
+	font-size: 1.1rem;
+}
+.c_activity-info-table{
+	margin: 12px 0;
+}
+.c_activity-info-table td{
+	vertical-align: top;
+}
+.c_activity-info-table .c_dot{
+	padding-right: 4px;
+}
+.c_description-table td{
+	vertical-align: top;
+}
+.c_description-table .stib{
+	text-decoration: underline;
+}
+.c_activity-detail{
+	display: block;
+	width: max-content;
+	background-color: #2e4dc0;
+	color: #f7f7f7;
+	padding: 7px;
+	border-radius: 5px;
+}
+.c_activity-detail:hover{
+	background-color: #4d65bd;
+	text-decoration: none;
+}
