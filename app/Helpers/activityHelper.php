@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Activity;
+
 /**
  * Format a DateTime object to display hours and minutes,
  * but omit minutes if they are zero.
@@ -51,7 +53,7 @@ if (!function_exists('displayDuration')) {
  * @return string The formatted phone number.
  */
 if (!function_exists('formatPhoneNumber')) {
-	function formatPhoneNumber($phoneNumber) {
+	function formatPhoneNumber(string $phoneNumber): string{
 		// Remove all non-numeric characters except for the plus sign at the start
 		$phoneNumber = preg_replace('/[^\d+]/', '', $phoneNumber);
 
@@ -74,11 +76,11 @@ if (!function_exists('formatPhoneNumber')) {
 /**
  * Get the status of an activity based on its current state.
  *
- * @param object $activity The activity object containing details like isPassed, isOngoing, and daysUntilStart.
+ * @param Activity $activity The activity object containing details like isPassed, isOngoing, and daysUntilStart.
  * @return string The status of the activity as a string.
  */
 if(!function_exists('getActivityStatus')){
-	function getActivityStatus($activity): string{
+	function getActivityStatus(Activity $activity): string{
 		if($activity->cancelled){
 			return '!! Sortie annulée !!';
 		}
@@ -89,20 +91,9 @@ if(!function_exists('getActivityStatus')){
 			return 'Sortie en cours';
 		}
 
-		$daysUntilStart = $activity->daysUntilStart;
+		$daysUntilStart = $activity->fullDaysUntilStart();
 		if($daysUntilStart < 22){
-			if($daysUntilStart === 0){
-				return "Aujourd'hui!";
-			}
-			if($daysUntilStart === 1){
-				return "Demain!";
-			}
-			if($daysUntilStart % 7 === 0){
-				$weeks = $daysUntilStart / 7;
-				return $weeks === 1 ? 'Dans une semaine' : "Dans $weeks semaines";
-			}
-			
-			return "Dans $daysUntilStart jours";
+			return getFormattedDaysUntilStart($activity);
 		}
 
 		if($activity->isNext){
@@ -112,3 +103,31 @@ if(!function_exists('getActivityStatus')){
 		return '';
 	}
 }
+
+
+/**
+ * Get the formatted days until the start of an activity. Can gives the string "tomorrow" and "today"
+ * 
+ * @param Activity $activity
+ * @return string The formatted days until the start of the given Activity
+ */
+if(!function_exists('getFormattedDaysUntilStart')){
+	function getFormattedDaysUntilStart(Activity $activity): string{
+		$daysUntilStart = $activity->fullDaysUntilStart();
+		
+		if($daysUntilStart === 0){
+			return "Aujourd'hui!";
+		}
+		if($daysUntilStart === 1){
+			return "Demain!";
+		}
+		if($daysUntilStart % 7 === 0){
+			$weeks = $daysUntilStart / 7;
+			return $weeks === 1 ? 'Dans une semaine' : "Dans $weeks semaines";
+		}
+		
+		return "Dans $daysUntilStart jours";
+	}
+}
+
+

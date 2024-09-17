@@ -54,6 +54,20 @@
 		</div>
 	</div>
 
+@isset($nextActivity)
+	<article class="interesting flip">
+		<a href="{{ $nextActivity->getDetailLink() }}" class="main-wrapper">
+			<div class="content-wrapper">
+				<div class="text-container">
+					<p class="grip">Prochaine activité {{ strtolower(getFormattedDaysUntilStart($nextActivity)) }}</p>
+					<h2>{{ $nextActivity->title }}</h2>
+				</div>
+				<img src="/assets/common/img/svg/next-arrow.svg" alt="">
+			</div>
+		</a>
+	</article>
+@endisset
+
 	<div class="description">
 		<div class="img-container fade-in">
 			<img class="shape1" src="/images/groupe/gr2.jpg" alt="Photo d'un groupe de personnes membre du cercle de mycologie">
@@ -85,7 +99,7 @@
 		</div>
 	</div>
 
-	<article class="interesting flip">
+	<article class="interesting flip top-space">
 		<a href="/champi-parasite-des-plantes" class="main-wrapper">
 			<div class="illustration" style="background-image: url('/images/parasites/Uromyces%20dactylidis%20sur%20Ranunculus%20ficaria.JPG');"></div>
 			<div class="content-wrapper">

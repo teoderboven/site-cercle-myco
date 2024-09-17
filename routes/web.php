@@ -1,13 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers as Ctrl;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-	return view('home');
-});
-Route::get('/activites', [Ctrl\ActivityController::class, 'publicDisplay']);
-Route::get('/activites/{id}', [Ctrl\ActivityController::class, 'redirectToHash']);
+Route::get('/', [HomeController::class, 'display'])->name('home');
+Route::get('/activites', [ActivityController::class, 'publicDisplay'])->name('activities');
+Route::get('/activites/{id}', [ActivityController::class, 'redirectToHash'])->name('activityDetail');
 Route::get('/excursions', function () {
 	return view('excursions');
 });

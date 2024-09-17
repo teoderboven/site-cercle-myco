@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Hidehalo\Nanoid;
+use Carbon\Carbon;
 
 class Activity extends Model{
 
@@ -63,6 +64,31 @@ class Activity extends Model{
 	 */
 	public function uniqueIds(): array{
 		return ['id'];
+	}
+
+	/**
+	 * Gives the activity detail link to see the activity online
+	 * @return string
+	 */
+	public function getDetailLink(): string{
+		return route('activityDetail', $this->id);
+	}
+
+	/**
+	 * Determines the number of days until the start of the activity
+	 * @param Carbon|null $currentDate
+	 * @return integer
+	 */
+	public function fullDaysUntilStart(Carbon $currentDate = null): int{
+		$currentDate = $currentDate ?? Carbon::now();
+		return (int) $currentDate->startOfDay()->diffInDays($this->start_date->startOfDay(), false);
+	}
+
+	public static function getNextUpcomingActivity(): Activity{
+		return self::where('cancelled', false)
+					->where('start_date', '>', now())
+					->orderBy('start_date', 'asc')
+					->first();
 	}
 
 	public function guide(){

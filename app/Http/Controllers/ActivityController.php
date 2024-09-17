@@ -34,7 +34,6 @@ class ActivityController extends Controller{
 		foreach($activities as $activity){
 			$activity->isPassed = $this->isPassed($activity, $currentDate);
 			$activity->isOngoing = $this->isOngoing($activity, $currentDate);
-			$activity->daysUntilStart = $this->fullDaysUntilStart($activity, $currentDate);
 
 			if(!$activity->isPassed && !$hasNextActivity && !$activity->cancelled){
 				$activity->isNext = true;
@@ -93,14 +92,6 @@ class ActivityController extends Controller{
 		$endDateTime = $startDateTime->copy()->addMinutes($activity->duration);
 
 		return $currentDate->between($startDateTime, $endDateTime);
-	}
-
-	/**
-	 * Determines the number of days until the start of an activity
-	 */
-	private function fullDaysUntilStart($activity, $currentDate){
-		// startOfDay for use full days
-		return (int) $currentDate->copy()->startOfDay()->diffInDays($activity->start_date->startOfDay(), false);
 	}
 
 	/**

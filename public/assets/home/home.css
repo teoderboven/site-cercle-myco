@@ -2,6 +2,10 @@ html{
 	--carousel-item-default-bg: linear-gradient(50deg, #53ae8e, #2ab3cf);
 	--carousel-content-bg-color: rgba(240, 240, 240, .8);
 }
+
+.top-space{
+	margin-top: 100px !important;
+}
 /* carousel */
 #topCarousel{
 	width: 100%;
@@ -207,7 +211,7 @@ img.shape2{
 	transform: scaleY(1);
 }
 .interesting{
-	margin: 100px auto 5px;
+	margin: 30px auto;
 	padding: 0 50px;
 	width: max-content;
 	max-width: 100%;
