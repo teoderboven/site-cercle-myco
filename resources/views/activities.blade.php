@@ -85,7 +85,7 @@
 					</p>
 				@endif
 					
-					<a href="/excursions" class="history-btn">(Re)découvrir les excursions de {{$groupedActivities? "l'année": 'la saison précédente'}} &#9658;</a>
+					<a href="{{ route('excursions', [], false) }}" class="history-btn">(Re)découvrir les excursions de {{$groupedActivities? "l'année": 'la saison précédente'}} &#9658;</a>
 				</section>
 			@endif
 

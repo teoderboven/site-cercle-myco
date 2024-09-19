@@ -21,7 +21,7 @@
 	<header>
 		<div>
 			<div id="topTitle">
-				<a href="/" id="title">
+				<a href="{{ route('home', [], false) }}" id="title">
 					<img srcset="/assets/common/img/icon256wt.png 256w,
 								 /assets/common/img/icon1500wt.png 1500w"
 						  sizes="(max-width: 420px) 1500px,
@@ -51,7 +51,7 @@
 		</section>
 		<section id="choices">
 			<div>
-				<a href="/" class="home-btn">Aller à la page d'accueil</a>
+				<a href="{{ route('home', [], false) }}" class="home-btn">Aller à la page d'accueil</a>
 			</div>
 			<p>
 				Vous cherchez quelque chose de spécifique?<br>
@@ -59,11 +59,11 @@
 			</p>
 			<nav>
 				<ul>
-					<li><a href="/activites">prochaines activités</a></li>
-					<li><a href="/publications">publications</a></li>
-					<li><a href="/excursions">Historique des excursions</a></li>
-					<li><a href="/devenir-membre">Devenir membre</a></li>
-					<li><a href="/champi-parasite-des-plantes">les champignons parasites des plantes</a></li>
+					<li><a href="{{ route('activities', [], false) }}">prochaines activités</a></li>
+					<li><a href="{{ route('publications', [], false) }}">publications</a></li>
+					<li><a href="{{ route('excursions', [], false) }}">Historique des excursions</a></li>
+					<li><a href="{{ route('member', [], false) }}">Devenir membre</a></li>
+					<li><a href="{{ route('parasites', [], false) }}">les champignons parasites des plantes</a></li>
 				</ul>
 			</nav>
 		</section>

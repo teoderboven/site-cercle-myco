@@ -25,7 +25,7 @@
 			</div>
 			<div class="tip">
 				<img src="/assets/common/img/svg/idea.svg" alt="" class="idea" draggable="false">
-				<p>Les comptes-rendus des excursions réalisées après 2008 sont disponibles sur la <a href="/excursions">page d'historique des excursions</a>.</p>
+				<p>Les comptes-rendus des excursions réalisées après 2008 sont disponibles sur la <a href="{{ route('excursions', [], false) }}">page d'historique des excursions</a>.</p>
 			</div>
 		</div>
 	</header>

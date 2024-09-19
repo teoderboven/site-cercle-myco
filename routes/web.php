@@ -9,11 +9,11 @@ Route::get('/activites', [ActivityController::class, 'publicDisplay'])->name('ac
 Route::get('/activites/{id}', [ActivityController::class, 'redirectToHash'])->name('activityDetail');
 Route::get('/excursions', function () {
 	return view('excursions');
-});
+})->name('excursions');
 
-Route::view('/publications', 'publications');
-Route::view('/devenir-membre', 'member');
-Route::view('/champi-parasite-des-plantes', 'champi-parasite');
+Route::view('/publications', 'publications')->name('publications');
+Route::view('/devenir-membre', 'member')->name('member');
+Route::view('/champi-parasite-des-plantes', 'champi-parasite')->name('parasites');
 
 Route::view('/error/403', 'errors.403');
 Route::view('/error/404', 'errors.404');

@@ -27,11 +27,11 @@
 					<h2>Liens utiles</h2>
 					<nav>
 						<ul>
-							<li><a href="/">accueil</a></li>
-							<li><a href="/activites">activités</a></li>
-							<li><a href="/publications">publications</a></li>
-							<li><a href="/excursions">historique des excursions</a></li>
-							<li><a href="/devenir-membre">devenir membre</a></li>
+							<li><a href="{{ route('home', [], false) }}">accueil</a></li>
+							<li><a href="{{ route('activities', [], false) }}">activités</a></li>
+							<li><a href="{{ route('publications', [], false) }}">publications</a></li>
+							<li><a href="{{ route('excursions', [], false) }}">historique des excursions</a></li>
+							<li><a href="{{ route('member', [], false) }}">devenir membre</a></li>
 						</ul>
 					</nav>
 				</div>

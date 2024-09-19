@@ -1,7 +1,7 @@
 <header>
 	<div>
 		<div id="topTitle">
-			<a href="/" id="title">
+			<a href="{{ route('home', [], false) }}" id="title">
 				<img srcset="/assets/common/img/icon256wt.png 256w,
 							 /assets/common/img/icon1500wt.png 1500w"
 					  sizes="(max-width: 420px) 1500px,
@@ -20,10 +20,10 @@
 		</div>
 		
 		<nav>
-			<a href="/activites">activités</a>
-			<a href="/publications">publications</a>
-			<a href="/excursions">historique des excursions</a>
-			<a href="/devenir-membre">devenir membre</a>
+			<a href="{{ route('activities', [], false) }}">activités</a>
+			<a href="{{ route('publications', [], false) }}">publications</a>
+			<a href="{{ route('excursions', [], false) }}">historique des excursions</a>
+			<a href="{{ route('member', [], false) }}">devenir membre</a>
 		</nav>
 	</div>
 </header>
