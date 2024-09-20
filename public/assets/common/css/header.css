@@ -57,7 +57,7 @@ body > header > div{
 #title h1{
 	font-family: Raleway, Arial, Helvetica, sans-serif;
 	font-weight: 700;
-	font-size: 2rem;
+	font-size: 0.7rem;
 	margin-left: 5px;
 }
 #title h1 .word,
@@ -65,11 +65,10 @@ body > header > div{
 	font: inherit;
 }
 #title h1 .word{
-	font-size: 1em;
+	font-size: 2rem;
 }
 #title h1 .particle{
-	font-size: .5em;
-	margin: 0 .2em;
+	font-size: 1rem;
 }
 body > header nav{
 	display: flex;

@@ -8,7 +8,11 @@
 							 256px"
 						 src="/assets/common/img/icon256wt.png" alt="">
 				<h1>
-					<span class="word">Cercle</span><span class="particle">de</span><span class="word">Mycologie</span><span class="particle">de</span><span class="word">Bruxelles</span>
+					<span class="word">Cercle</span>
+					<span class="particle">de</span>
+					<span class="word">Mycologie</span>
+					<span class="particle">de</span>
+					<span class="word">Bruxelles</span>
 				</h1>
 			</a>
 			<button id="menuBtn" aria-label="ouvrir le menu">
