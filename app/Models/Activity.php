@@ -23,6 +23,7 @@ class Activity extends Model{
 		'duration',
 		'description',
 		'meeting_point',
+		'visible',
 		'updated_by'
 	];
 
@@ -35,6 +36,7 @@ class Activity extends Model{
 
 	protected $casts = [
 		'cancelled' => 'boolean',
+		'visible' => 'boolean',
 		'start_date' => 'datetime',
 	];
 
@@ -86,6 +88,7 @@ class Activity extends Model{
 
 	public static function getNextUpcomingActivity(): Activity{
 		return self::where('cancelled', false)
+					->where('visible', true)
 					->where('start_date', '>', now())
 					->orderBy('start_date', 'asc')
 					->first();

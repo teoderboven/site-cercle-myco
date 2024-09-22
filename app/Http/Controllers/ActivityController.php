@@ -28,6 +28,7 @@ class ActivityController extends Controller{
 
 		$activities = Activity::without('updatedBy')
 			->whereBetween('start_date', [$seasonStartDate, $seasonEndDate])
+			->where('visible', true)
 			->orderBy('start_date', 'asc')
 			->get();
 

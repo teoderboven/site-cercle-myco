@@ -37,6 +37,7 @@ create table activities(
 	description text not null,
 	meeting_point int not null,
 	cancelled bool default false not null,
+	visible bool default true not null,
 	created_time timestamp default CURRENT_TIMESTAMP,
 	updated_time timestamp default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
 	updated_by int not null,
