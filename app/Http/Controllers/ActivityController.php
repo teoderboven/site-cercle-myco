@@ -36,7 +36,8 @@ class ActivityController extends Controller{
 			$activity->isPassed = $this->isPassed($activity, $currentDate);
 			$activity->isOngoing = $this->isOngoing($activity, $currentDate);
 
-			if(!$activity->isPassed && !$hasNextActivity && !$activity->cancelled){
+			if(!$activity->isPassed && !$hasNextActivity
+			&& !$activity->cancelled && !$activity->isOngoing){
 				$activity->isNext = true;
 				$hasNextActivity = true;
 			}else{

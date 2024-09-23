@@ -9,7 +9,7 @@ class HomeController extends Controller{
 	public function display(){
 		$nextActivity = Activity::getNextUpcomingActivity();
 
-		if($nextActivity->fullDaysUntilStart() > 7){
+		if($nextActivity && $nextActivity->fullDaysUntilStart() > 7){
 			$nextActivity = null; // don't display next
 		}
 

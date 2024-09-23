@@ -59,7 +59,7 @@ create table activity_links(
 );
 
 CREATE INDEX idx_activity_start_date ON activities(start_date);
-CREATE INDEX idx_activity_guide ON activities(guide);
+CREATE INDEX idx_activity_guide ON activities(guide_id);
 CREATE INDEX idx_activity_meeting_point ON activities(meeting_point);
 CREATE INDEX idx_links_activity_id ON activity_links(activity_id);
 

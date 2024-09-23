@@ -1,6 +1,7 @@
 html{
 	--activity-bg: linear-gradient(120deg, #9dcae6, #b7cfde);
 	--activity-highlight-bg: linear-gradient(120deg, #debf96, #e3ddad);
+	--activity-ongoing-bg: linear-gradient(120deg, #abd9c2, #a0daae);
 	--activity-cancelled-bg: linear-gradient(120deg, #df978c, #e79f96);
 	--activity-btn-color: #f5f5f5;
 	--activity-btn-bg: #4368ae;
@@ -154,6 +155,9 @@ html{
 }
 #next .activity .main-wrapper{
 	background-image: var(--activity-highlight-bg);
+}
+.activity.ongoing .main-wrapper{
+	background-image: var(--activity-ongoing-bg);
 }
 .activity.cancelled .main-wrapper{
 	background-image: var(--activity-cancelled-bg);
