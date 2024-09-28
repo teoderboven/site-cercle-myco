@@ -23,6 +23,16 @@
 			<ul id="foray-list">
 				<li>
 					<button class="toggle">
+						<span class="date">2024</span>
+					</button>
+					<ul>
+						<li>
+							<a href="#s22-09-24"><span class="date">22 Septembre</span>Boitsfort (Forêt de Soignes)</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<button class="toggle">
 						<span class="date">2023</span>
 					</button>
 					<ul>
@@ -305,6 +315,27 @@
 					C167.487,127.696,281.54,189.602,348.298,221.77z"/>
 			</svg>
 		</div>
+		<section class="forays-group">
+			<h3 class="date">2024</h3>
+			<div class="foray-list">
+				<section class="foray" id="s22-09-24">
+					<div class="foray-infos toggle">
+						<time class="calendar" datetime="2024-09-22">
+							<span class="digit">22</span><span class="month">Septembre</span>
+						</time>
+						<h4>Boitsfort (Forêt de Soignes)</h4>
+						<div class="frame-btn">
+							<button class="expand-btn" title="Basculer le mode d'affichage du contenu"></button>
+							<button class="new-tab-btn" title="Ouvrir le contenu dans un nouvel onglet"></button>
+						</div>
+						<button class="reveal-btn">&#9660;</button>
+					</div>
+					<div class="frame-container">
+						<iframe src="/excursions/boitsfort_20240922.html" allow="fullscreen" loading="lazy"></iframe>
+					</div>
+				</section>
+			</div>
+		</section>
 		<section class="forays-group">
 			<h3 class="date">2023</h3>
 			<div class="foray-list">
