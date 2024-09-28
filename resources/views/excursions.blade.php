@@ -791,7 +791,7 @@
 						<time class="calendar" datetime="2014-08-24">
 							<span class="digit">24</span><span class="month">Août</span>
 						</time>
-						<h4>Auderghem (Forêt de Soigne et sentier des Pins)</h4>
+						<h4>Auderghem (Forêt de Soignes et sentier des Pins)</h4>
 						<div class="frame-btn">
 							<button class="expand-btn" title="Basculer le mode d'affichage du contenu"></button>
 							<button class="new-tab-btn" title="Ouvrir le contenu dans un nouvel onglet"></button>

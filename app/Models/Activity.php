@@ -86,7 +86,7 @@ class Activity extends Model{
 		return (int) $currentDate->startOfDay()->diffInDays($this->start_date->startOfDay(), false);
 	}
 
-	public static function getNextUpcomingActivity(): Activity{
+	public static function getNextUpcomingActivity(): ?Activity{
 		return self::where('cancelled', false)
 					->where('visible', true)
 					->where('start_date', '>', now())

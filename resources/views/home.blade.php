@@ -32,7 +32,7 @@
 					<li>
 						<a href="{{ route('activities', [], false) }}" class="item" style="background-image: url('/images/excursions/ViroinvalGr03.JPG');">
 							<div class="content">
-								<h2>Premières sorties de la saison 2024&nbsp;: initiez-vous à la mycologie&nbsp;!</h2>
+								<h2>La saison 2024 est lancée&nbsp;!</h2>
 							</div>
 						</a>
 					</li>
