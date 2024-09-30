@@ -9,6 +9,10 @@
 	<link rel="stylesheet" href="/assets/common/css/tip.css">
 @endsection
 
+@section('additions')
+	<link rel="preload" as="image" href="/images/Tremella%20mesenterica.JPG">
+@endsection
+
 @section('main-content')
 	<header>
 		<h2 class="title">Envie de devenir membre du Cercle de Mycologie de Bruxelles?</h2>

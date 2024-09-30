@@ -20,6 +20,10 @@
 	<script src="/assets/activites/list.js"></script>
 @endsection
 
+@section('additions')
+	<link rel="preload" as="image" href="/images/excursions/ViroinvalGr03.JPG">
+@endsection
+
 @section('main-content')
 	<header>
 		<div class="title-container">

@@ -55,7 +55,8 @@ create table activity_links(
 	url VARCHAR(255) NOT NULL,
 	
 	primary key(id),
-	foreign key(activity_id) references activities(id) on delete cascade
+	foreign key(activity_id) references activities(id) on delete cascade,
+	unique(activity_id, url)
 );
 
 CREATE INDEX idx_activity_start_date ON activities(start_date);
