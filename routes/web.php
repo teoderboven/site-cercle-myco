@@ -10,6 +10,8 @@ Route::get('/activites/{id}', [ActivityController::class, 'redirectToHash'])->na
 Route::get('/excursions', function () {
 	return view('excursions');
 })->name('excursions');
+// TODO: exclude cookie middleware for /excursions/xx/abc
+//		 ->withoutMiddleware([CheckCookiesAccepted::class])
 
 Route::view('/publications', 'publications')->name('publications');
 Route::view('/devenir-membre', 'member')->name('member');

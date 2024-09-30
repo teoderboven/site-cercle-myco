@@ -25,6 +25,7 @@
 </head>
 <body>
 @includeWhen(config('app.debug'), 'partials.debug')
+@includeWhen($showCookieBanner, 'partials.cookie-banner')
 
 @include('partials.header')
 
@@ -35,5 +36,8 @@
 
 <script src="/assets/common/js/navbar.js"></script>
 @yield('scripts')
+@if($showCookieBanner)
+	<script src="/assets/common/js/cookie-banner.js"></script>
+@endif
 </body>
 </html>
