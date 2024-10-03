@@ -1225,7 +1225,7 @@
 						</time>
 						<h4>Villers-la-Ville</h4>
 						<div class="frame-btn">
-							<a href="/excursions/Villers-la-Ville_20090524.pdf" target="_blank" class="open-pdf-btn" title="Ouvrir la version pdf de ce relevé"></a>
+							<a href="/ressources/excursions/Villers-la-Ville_20090524.pdf" target="_blank" class="open-pdf-btn" title="Ouvrir la version pdf de ce relevé"></a>
 							<button class="expand-btn" title="Basculer le mode d'affichage du contenu"></button>
 							<button class="new-tab-btn" title="Ouvrir le contenu dans un nouvel onglet"></button>
 						</div>
@@ -1242,7 +1242,7 @@
 						</time>
 						<h4>Sclaigneau</h4>
 						<div class="frame-btn">
-							<a href="/excursions/Sclaigneau_20090419.pdf" target="_blank" class="open-pdf-btn" title="Ouvrir la version pdf de ce relevé"></a>
+							<a href="/ressources/excursions/Sclaigneau_20090419.pdf" target="_blank" class="open-pdf-btn" title="Ouvrir la version pdf de ce relevé"></a>
 							<button class="expand-btn" title="Basculer le mode d'affichage du contenu"></button>
 							<button class="new-tab-btn" title="Ouvrir le contenu dans un nouvel onglet"></button>
 						</div>
