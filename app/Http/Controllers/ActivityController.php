@@ -128,6 +128,8 @@ class ActivityController extends Controller{
 	 * Redirects an activity ID route to its url with corresponding fragment (hash)
 	 */
 	public function redirectToHash($id){
-		return redirect("/activites#$id");
+		return redirect("/activites#$id")->withHeaders([
+			'X-Robots-Tag' => 'noindex',
+		]);
 	}
 }
