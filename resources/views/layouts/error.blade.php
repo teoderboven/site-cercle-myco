@@ -28,7 +28,7 @@
 								 256px"
 					 		src="/assets/common/img/icon256wt.png" alt="">
 					<h1>
-						<span class="word">Cercle</span><span class="particle">de</span><span class="word">Mycologie</span><span class="particle">de</span><span class="word">Bruxelles</span>
+						<span class="word">Cercle</span><span class="particle"> de </span><span class="word">Mycologie</span><span class="particle"> de </span><span class="word">Bruxelles</span>
 					</h1>
 				</a>
 			</div>
@@ -61,7 +61,7 @@
 				<ul>
 					<li><a href="{{ route('activities', [], false) }}">prochaines activités</a></li>
 					<li><a href="{{ route('publications', [], false) }}">publications</a></li>
-					<li><a href="{{ route('excursions', [], false) }}">Historique des excursions</a></li>
+					<li><a href="{{ route('excursions', [], false) }}/">Historique des excursions</a></li>
 					<li><a href="{{ route('member', [], false) }}">Devenir membre</a></li>
 					<li><a href="{{ route('parasites', [], false) }}">les champignons parasites des plantes</a></li>
 				</ul>
