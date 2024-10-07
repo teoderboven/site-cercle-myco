@@ -1,0 +1,50 @@
+body > main > header .title-container{
+	background-color: rgb(115, 168, 151); /* default */
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: right 50% top 30%;
+	background-image: url('/images/excursions/ViroinvalGr03.JPG');
+	width: 100%;
+	padding: 140px 40px;
+}
+body > main > header .title{
+	display: inline;
+	font-size: 4rem;
+	font-weight: 650;
+	background-color: var(--basic-bg-color);
+	color: var(--basic-text-color);
+	padding: 0 .1rem;
+}
+body > main > header > p{
+	padding: 10px 20px;
+	margin: 10px;
+	border-bottom: solid 1px #000;
+}
+#activity-title{
+	font-size: 2rem;
+	margin: auto;
+	width: max-content;
+	text-align: center;
+	max-width: 100%;
+	text-shadow: 1px 1px #d6d6d6;
+}
+
+#warns-container{
+	padding: 0 25px;
+	margin: 15px;
+}
+#warns-container .tip{
+	margin: 0 auto;
+	box-shadow: 3px 3px 5px 1px #00000080;
+}
+#warns-container .tip:not(:first-child){
+	margin-top: 17px;
+}
+#warns-container a{
+	font-weight: bold;
+	color: #6570d5;
+}
+#warns-container .tip > img{
+	width: 3.5rem;
+	height: 3.5rem;
+}

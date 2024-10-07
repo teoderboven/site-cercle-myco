@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# existing rules...
+
+# Redirect to Laravel if the request is for /excursions or /excursions/
+RewriteRule ^excursions/?$ /index.php [L]
+
+# Handle Front Controller for Laravel
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
+
+# Custom error pages
+ErrorDocument 403 /error/403
+ErrorDocument 404 /error/404
+ErrorDocument 500 /error/500

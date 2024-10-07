@@ -1,0 +1,170 @@
+html{
+	--activity-bg: linear-gradient(120deg, #9dcae6, #b7cfde);
+	--activity-highlight-bg: linear-gradient(120deg, #debf96, #e3ddad);
+	--activity-ongoing-bg: linear-gradient(120deg, #abd9c2, #a0daae);
+	--activity-cancelled-bg: linear-gradient(120deg, #df978c, #e79f96);
+	--activity-btn-color: #f5f5f5;
+	--activity-btn-bg: #4368ae;
+	--activity-btn-hover-bg: #647aa3;
+}
+
+.activity{
+	width: 100%;
+}
+.activity .pre-wrapper{
+	font-size: .9rem;
+	margin-left: 5px;
+}
+.activity .pre-wrapper > *{
+	font-size: inherit;
+}
+.activity .pre-wrapper .date{
+	color: #999;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+.activity .pre-wrapper .activity-status{
+	display: inline;
+	font-weight: 700;
+}
+.activity .pre-wrapper .activity-status::before{
+	content: "\2013";
+}
+.activity.passed .pre-wrapper .activity-status,
+.activity.cancelled .pre-wrapper .activity-status{
+	color: #d73f3f;
+}
+.activity.ongoing .pre-wrapper .activity-status{
+	color: #2b48cd;
+}
+
+.activity .main-wrapper, .season-end{
+	border: solid 1px #000;
+	border-radius: 15px;
+	box-shadow: 5px 5px 10px #00000080;
+}
+.activity .main-wrapper{
+	background-image: var(--activity-bg);
+}
+.activity header{
+	padding-bottom: 2px;
+}
+.activity header .title-container{
+	display: flex;
+	flex-direction: row;
+	align-items: center
+}
+.activity header .calendar{
+	transform: scale(.9);
+	align-self: flex-start;
+}
+.activity header .title{
+	font-size: 1.5rem;
+	font-weight: 700;
+	text-shadow: 1px 0 #f5f5f5;
+}
+.activity header .title > *{
+	font: inherit;
+}
+.activity .reveal-btn{
+	display: flex;
+	align-items: center;
+	width: max-content;
+	max-width: 100%;
+	margin-left: auto;
+	cursor: pointer;
+}
+.activity .reveal-btn:hover{
+	text-decoration: underline;
+}
+.activity .reveal-btn img{
+	width: 1.5em;
+	height: 1.5em;
+	transform: rotate(90deg);
+}
+.activity:not(.hidden) .reveal-btn,
+.activity.hidden.revealed .reveal-btn{
+	display: none;
+}
+.activity .main-content > *{
+	margin: 7px;
+}
+.activity .main-content > *:first-child{
+	margin-top: 0;
+}
+.activity .infos{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: left;
+	border-bottom: solid 1px #000;
+}
+.activity .infos .info{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	padding: 5px;
+	margin: 5px;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+	box-shadow: 3px 2px 5px #00000080;
+}
+.activity .infos .info a:hover{
+	text-decoration: underline;
+}
+.activity .infos .info img{
+	width: 1.1rem;
+	margin-right: 3px;
+}
+.activity .description a:not(.stib){
+	font-style: italic;
+}
+.activity .description a:not(.stib):hover{
+	text-decoration: underline;
+}
+.activity .links{
+	display: flex;
+	gap: 7px;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+.activity .links a{
+	background-color: var(--activity-btn-bg);
+	color: var(--activity-btn-color);
+	padding: 7px;
+	box-shadow: 2px 2px 5px #00000080;
+	text-shadow: 1px 1px #555;
+	border-radius: 7px;
+}
+.activity .links a:hover{
+	background-color: var(--activity-btn-hover-bg);
+}
+.activity.passed .main-wrapper{
+	filter: grayscale(.8);
+}
+.activity.hidden .main-content{
+	max-height: 0;
+	transition: max-height .5s;
+	overflow: hidden;
+}
+.activity.hidden.revealed .main-content{
+	max-height: 100vh;
+}
+#next .activity .main-wrapper{
+	background-image: var(--activity-highlight-bg);
+}
+.activity.ongoing .main-wrapper{
+	background-image: var(--activity-ongoing-bg);
+}
+.activity.cancelled .main-wrapper{
+	background-image: var(--activity-cancelled-bg);
+}
+.activity.cancelled header .title .crossed-out{
+	text-decoration: line-through;
+}
+.activity.cancelled header .title .cancel-indication{
+	text-transform: uppercase;
+}

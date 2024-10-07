@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+.calendar{
+	background-image: url("/assets/common/img/svg/calendar.svg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin-right: 5px;
+	padding-bottom: .4rem;
+	color: black !important;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+	align-items: center;
+	width: 4.2rem;
+	min-width: 4.2rem;
+	height: 4.2rem;
+	line-height: .7rem;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.calendar.icon{
+	font-size: 1rem;
+	font-weight: 600;
+	width: 2rem;
+	height: 2rem;
+}
+.calendar *, .date{
+	font-family: Nunito, Montserrat, Arial, Helvetica, sans-serif;
+}
+.calendar > .digit{
+	font-size: 1.6rem;
+	font-weight: 650;
+	line-height: 1.3rem;
+}
+.calendar > .digit.double{
+	font-size: 1.15rem;
+	font-weight: 700;
+}
+.calendar > .month{
+	font-size: .65rem;
+	font-weight: 800;
+	text-transform: capitalize;
+}

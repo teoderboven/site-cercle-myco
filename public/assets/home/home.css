@@ -1,0 +1,269 @@
+html{
+	--carousel-item-default-bg: linear-gradient(50deg, #53ae8e, #2ab3cf);
+	--carousel-content-bg-color: rgba(240, 240, 240, .8);
+}
+
+.top-space{
+	margin-top: 100px !important;
+}
+/* carousel */
+#topCarousel{
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 25px;
+}
+.carousel-wrapper{
+	display: flex;
+}
+.carousel-border{
+	flex: auto;
+	width: auto;
+	z-index: 20;
+}
+.carousel-border.left{
+	background-image: linear-gradient(90deg, rgb(240, 240, 240, 0.6), rgb(240, 240, 240, 0.4));
+}																				
+.carousel-border.right{
+	background-image: linear-gradient(270deg, rgb(240, 240, 240, 0.6), rgb(240, 240, 240, 0.4));
+}
+.carousel-content{
+	width: 100%;
+	max-width: 1080px;
+	overflow: visible;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.carousel{
+	display: flex;
+	transition: transform 0.5s ease;
+}
+.carousel li{
+	flex: 0 0 100%;
+	display: flex;
+	align-items: flex-end;
+	overflow: hidden;
+}
+.carousel .item{
+	width: 100%;
+	height: 100%;
+	background-image: var(--carousel-item-default-bg);
+	background-size: cover;
+}
+.carousel .item:first-child{
+	display: grid;
+}
+.carousel .item:first-child > *{
+	grid-row: 1/2;
+	grid-column: 1/2;
+}
+.carousel .content{
+	padding: 15px;
+	margin-top: auto;
+}
+.carousel .item h2{
+	display: inline;
+	background-color: var(--carousel-content-bg-color);
+	font-size: 3rem;
+	font-weight: bolder;
+	padding-right: 5px;
+}
+.carousel a.item:hover h2{
+	text-decoration: underline;
+}
+.carousel a.item h2::after{
+	content: "\A0\25BA"; /* do not change to \25B6, it sucks on chrome android */
+}
+@media screen and (max-width: 720px){
+	.carousel .item h2{
+		font-size: 2.2rem;
+	}
+}
+.carousel .ratio{
+	padding-top: 56.7%;
+	z-index: -1;
+}
+#topCarousel .dots{
+	margin: 10px 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.dot{
+	width: 12px;
+	height: 12px;
+	border-radius: 20px;
+	background-color: #ccc;
+	margin: 0 5px;
+	cursor: pointer;
+	transition: width 0.5s ease;
+}
+.dot.active{
+	width: 35px;
+	background-color: #333;
+}
+
+/* description */
+.description{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	margin: 20px auto;
+	padding: 0 25px;
+	overflow: hidden;
+	max-width: 1400px;
+}
+.reverse-wrap{
+	flex-wrap: wrap-reverse;
+}
+.description .img-container{
+	flex: 1 1 400px;
+	text-align: center;
+	max-width: 500px;
+}
+.description .img-container img{
+	flex: 1;
+	width: 100%;
+}
+img.shape1{
+	border-radius: 70% 30% 60% 40% / 70% 40% 60% 30%;
+}
+img.shape2{
+	border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%;
+}
+.description .text-container{
+	flex: 3 2;
+	margin: 0 20px;
+	max-width: 100%;
+}
+.description .text-container > *, .description .text-container li{
+	margin: .7rem 0;
+}
+.description .text-container .highlight{
+	font-weight: 600;
+}
+.description .text-container h2 .highlight,
+.description .text-container h3 .highlight{
+	font: inherit;
+	font-style: italic;
+}
+.description h2{
+	font-size: 1.8rem;
+}
+.description h3{
+	font-size: 1.2rem;
+}
+.description .text-container ul{
+	padding-left: 17px;
+}
+.description .text-container p,
+.description .text-container li{
+	text-align: justify;
+}
+.description .text-container .activity-name{
+	font-weight: 700;
+}
+.description .text-container p{
+	min-width: 280px;
+}
+#member-btn-container{
+	padding: 10px 0;
+}
+#member-btn{
+	font-size: 1.1rem;
+	background-color: #2dacc5;
+	color: #f5f5f5;
+	text-align: center;
+	padding: 10px;
+	border-radius: 5px;
+	max-width: 100%;
+	box-shadow: 1px 1px 2px #00000080;
+	transition: box-shadow .3s ease;
+}
+#member-btn:hover{
+	box-shadow: 4px 4px 7px #00000080;
+}
+.fade-in{
+	transition: opacity 1s ease-out;
+	opacity: 0;
+}
+.show .fade-in{
+	opacity: 1;
+}
+.slide-in{
+	transition: transform 1.5s ease-out;
+}
+.slide-in.left{
+	transform: translateX(-100%);
+}
+.slide-in.right{
+	transform: translateX(100%);
+}
+.show .slide-in{
+	transform: translateX(0);
+}
+.flip{
+	transform:scaleY(0);
+	transition: transform .4s ease;
+	transition-delay: .2s;
+}
+.flip.show{
+	transform: scaleY(1);
+}
+.interesting{
+	margin: 30px auto;
+	padding: 0 50px;
+	width: max-content;
+	max-width: 100%;
+}
+.interesting .main-wrapper{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: stretch;
+	border: solid 2px var(--basic-text-color);
+	border-radius: 15px;
+	overflow: hidden;
+	width: max-content;
+	max-width: 100%;
+	box-shadow: 2px 2px 20px #00000033;
+}
+.interesting .main-wrapper > .illustration{
+	flex: 1;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-width: 250px;
+	width: 400px;
+	min-height: 6rem;
+}
+.interesting .content-wrapper{
+	flex: 2;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+.interesting .content-wrapper .text-container{
+	flex: 1;
+	padding: 12px;
+	height: max-content;
+}
+.interesting .grip{
+	font-style: italic;
+}
+.interesting .main-wrapper .content-wrapper .text-container h2{
+	font-size: 1.4rem;
+}
+.interesting .main-wrapper:hover .content-wrapper .text-container h2{
+	text-decoration: underline;
+}
+.interesting .main-wrapper .content-wrapper > img{
+	transition: transform .3s ease-in-out;
+	width: 3rem;
+	margin-left: auto;
+}
+.interesting .main-wrapper:hover .content-wrapper > img{
+	transform: translateX(5px);
+}
