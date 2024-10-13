@@ -27,6 +27,9 @@
 					</button>
 					<ul>
 						<li>
+							<a href="#s13-10-24"><span class="date">13 Octobre</span>Moeraske</a>
+						</li>
+						<li>
 							<a href="#s22-09-24"><span class="date">22 Septembre</span>Boitsfort (Forêt de Soignes)</a>
 						</li>
 					</ul>
@@ -318,6 +321,22 @@
 		<section class="forays-group">
 			<h3 class="date">2024</h3>
 			<div class="foray-list">
+				<section class="foray" id="s13-10-24">
+					<div class="foray-infos toggle">
+						<time class="calendar" datetime="2024-09-22">
+							<span class="digit">13</span><span class="month">Octobre</span>
+						</time>
+						<h4>Moeraske</h4>
+						<div class="frame-btn">
+							<button class="expand-btn" title="Basculer le mode d'affichage du contenu"></button>
+							<button class="new-tab-btn" title="Ouvrir le contenu dans un nouvel onglet"></button>
+						</div>
+						<button class="reveal-btn">&#9660;</button>
+					</div>
+					<div class="frame-container">
+						<iframe src="/excursions/moeraske_20241013.html" allow="fullscreen" loading="lazy"></iframe>
+					</div>
+				</section>
 				<section class="foray" id="s22-09-24">
 					<div class="foray-infos toggle">
 						<time class="calendar" datetime="2024-09-22">
