@@ -150,6 +150,9 @@ html{
 	transition: max-height .5s;
 	overflow: hidden;
 }
+.activity.hidden:not(.revealed) .main-content > *{
+	display: none;
+}
 .activity.hidden.revealed .main-content{
 	max-height: 100vh;
 }
