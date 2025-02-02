@@ -54,7 +54,7 @@ class Activity extends Model{
 	 * Generate a new NanoID for the model.
 	 */
 	public function newUniqueId(): string{
-		$length = env('CMB_ACTIVITY_ID_LENGTH', 16);
+		$length = config('cmb.activity_id_length');
 		
 		$nano = new Nanoid\Client();
 		return 'a' . $nano->generateId($length - 1, Nanoid\Client::MODE_DYNAMIC); // -1 because of the 'a' prefix

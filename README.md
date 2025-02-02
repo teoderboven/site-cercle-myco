@@ -91,6 +91,34 @@ CMB_ACTIVITY_ID_LENGTH=16
 
 The default value is a length of 16 characters.
 
+### Define the number of days the activity counter is displayed
+
+On the activity page, each activity has a countdown displaying the remaining days until it starts. The start of the counter display can be configured by **CMB_DAYS_BEFORE_ACTIVITY_COUNTER_SHOWS**.
+
+```properties
+# The Activity counter stays displayed 21 days before start
+CMB_DAYS_BEFORE_ACTIVITY_COUNTER_SHOWS=21
+```
+
+The default value is 21 (3 weeks).
+
+>Note:
+>If the number of days remaining exceeds the configured threshold, the countdown will not appear. Instead, for the next upcoming activity, it will display '*Next activity*' ('*Prochaine Activité*'). Once the remaining days are within the threshold, the countdown will begin.
+
+### Define the number of days the next activity remains featured on the home page
+
+A banner with the next activity can appear on the home page. The number of days that this banner remains visible is configurable by the property **CMB_ACTIVITY_FEATURED_DURATION_DAYS**.
+
+```properties
+# The next activity will stay featured 7 days
+CMB_ACTIVITY_FEATURED_DURATION_DAYS=7
+```
+
+The default value is 7 (one week).
+
+> Note:
+> If an activity is scheduled to take place in less than 7 days (assuming the value of *CMB_ACTIVITY_FEATURED_DURATION_DAYS* is set to 7), but it is not the next upcoming activity (for example, if another activity is happening in 3 days), only the next activity will be displayed on the homepage. This means that the homepage will feature the soonest upcoming activity, even if there are other activities within the *CMB_ACTIVITY_FEATURED_DURATION_DAYS* window.
+
 ## Author
 
 The author of this project is [Téo Derboven](https://github.com/teoderboven)

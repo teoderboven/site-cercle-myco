@@ -12,7 +12,7 @@ class ActivityController extends Controller{
 
 	public function __construct()
 	{
-		$seasonStartDate = env('CMB_SEASON_START_DATE', '02-01'); // Default to February 1st if not set
+		$seasonStartDate = config('cmb.season_start_date');
 		list($this->seasonStartMonth, $this->seasonStartDay) = explode('-', $seasonStartDate);
 	}
 	
