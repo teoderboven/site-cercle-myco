@@ -51,7 +51,12 @@ class Activity extends Model{
 	*/
 
 	/**
-	 * Generate a new NanoID for the model.
+	 * Generates a new unique identifier for the activity.
+	 *
+	 * This method uses the NanoID library to create a unique ID
+	 * with a specified length, prefixed with 'a' to indicate it's an activity.
+	 *
+	 * @return string The newly generated unique identifier.
 	 */
 	public function newUniqueId(): string{
 		$length = config('cmb.activity_id_length');
@@ -61,31 +66,45 @@ class Activity extends Model{
 	}
 
 	/**
-	 * Get the columns that should receive a unique identifier.
-	 * @return array<int, string>
+	 * Returns the unique identifiers for the model.
+	 *
+	 * This method is used by the HasUuids trait to determine which
+	 * attributes should be treated as unique identifiers.
+	 *
+	 * @return array<int, string> An array of attribute names that are unique identifiers.
 	 */
 	public function uniqueIds(): array{
 		return ['id'];
 	}
 
 	/**
-	 * Gives the activity detail link to see the activity online
-	 * @return string
+	 * Generates and returns the detail link for the activity.
+	 *
+	 * @return string The URL to the activity's detail page.
 	 */
 	public function getDetailLink(): string{
 		return route('activityDetail', $this->id);
 	}
 
 	/**
-	 * Determines the number of days until the start of the activity
-	 * @param Carbon|null $currentDate
-	 * @return integer
+	 * Calculates the number of full days remaining until the activity starts.
+	 *
+	 * @param \Carbon\Carbon|null $currentDate The current date to compare with. If null, the current date and time will be used.
+	 * @return int The number of full days until the activity starts.
 	 */
 	public function fullDaysUntilStart(Carbon $currentDate = null): int{
 		$currentDate = $currentDate ?? Carbon::now();
 		return (int) $currentDate->startOfDay()->diffInDays($this->start_date->startOfDay(), false);
 	}
 
+	/**
+	 * Retrieves the next upcoming activity.
+	 *
+	 * This method checks that the activity is not cancelled, is visible,
+	 * and has a start date in the future.
+	 *
+	 * @return Activity|null the next upcoming Activity instance, or null if none exists.
+	 */
 	public static function getNextUpcomingActivity(): ?Activity{
 		return self::where('cancelled', false)
 					->where('visible', true)

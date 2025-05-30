@@ -92,7 +92,7 @@ if(!function_exists('getActivityStatus')){
 		}
 
 		$daysUntilStart = $activity->fullDaysUntilStart();
-		if($daysUntilStart < 22){
+		if($daysUntilStart <= config('cmb.days_before_activity_counter_shows')){
 			return getFormattedDaysUntilStart($activity);
 		}
 
