@@ -41,10 +41,10 @@
 			<img src="/assets/common/img/svg/warning.svg" alt="">
 			<div>
 				<p>
-					Les excursions suivantes ne sont pas organisées par le Cercle de Mycologie de Bruxelles mais par le <a href="https://guidenaturebrabant.wordpress.com/" target="_blank" class="ital">Cercle des Guides-Nature du Brabant</a> (voir aussi: <a href="https://cercles-naturalistes.be" target="_blank" class="ital">Cercles de Naturalistes de Belgique</a>).
+					Les excursions suivantes ne sont pas organisées par le Cercle de Mycologie de Bruxelles mais par le <a href="https://guidenaturebrabant.wordpress.com/" target="_blank" class="ital">Cercle des Guides-Nature du Brabant</a> (voir aussi: <a href="https://cercles-naturalistes.be" target="_blank" class="ital">Cercles des Naturalistes de Belgique</a>).
 				</p>
 				<p>
-					Si une inscription est demandée, rendez vous sur <a href="https://cercles-naturalistes.be/activites/" target="_blank">la page des activités du CNB</a>.
+					Si une inscription est demandée, rendez vous sur <a href="https://cercles-naturalistes.be/cercles/cnb-cercle-des-guides-nature-du-brabant" target="_blank">la page des activités du CNB</a>.
 				</p>
 			</div>
 		</div>
