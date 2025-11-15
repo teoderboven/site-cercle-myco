@@ -27,6 +27,9 @@
 					</button>
 					<ul>
 						<li>
+							<a href="#s09-11-25"><span class="date">9 Novembre</span>Moeraske</a>
+						</li>
+						<li>
 							<a href="#s28-09-25"><span class="date">28 Septembre</span>Auderghem (Forêt de Soignes)</a>
 						</li>
 					</ul>
@@ -331,6 +334,22 @@
 		<section class="forays-group">
 			<h3 class="date">2025</h3>
 			<div class="foray-list">
+				<section class="foray" id="s09-11-25">
+					<div class="foray-infos toggle">
+						<time class="calendar" datetime="2025-11-09">
+							<span class="digit">9</span><span class="month">Novembre</span>
+						</time>
+						<h4>Moeraske</h4>
+						<div class="frame-btn">
+							<button class="expand-btn" title="Basculer le mode d'affichage du contenu"></button>
+							<button class="new-tab-btn" title="Ouvrir le contenu dans un nouvel onglet"></button>
+						</div>
+						<button class="reveal-btn">&#9660;</button>
+					</div>
+					<div class="frame-container">
+						<iframe src="/excursions/moeraske_20251109.html" allow="fullscreen" loading="lazy"></iframe>
+					</div>
+				</section>
 				<section class="foray" id="s28-09-25">
 					<div class="foray-infos toggle">
 						<time class="calendar" datetime="2025-09-28">
