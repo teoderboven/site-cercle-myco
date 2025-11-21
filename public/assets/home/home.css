@@ -229,6 +229,10 @@ img.shape2{
 	max-width: 100%;
 	box-shadow: 2px 2px 20px #00000033;
 }
+.interesting.red .main-wrapper{
+	border-color : red;
+	color: red;
+}
 .interesting .main-wrapper > .illustration{
 	flex: 1;
 	background-position: center;
