@@ -74,7 +74,7 @@ create table activity_reminder_subscriptions(
 
 	primary key(activity_id, subscriber_id),
 	foreign key(activity_id) references activities(id) on delete cascade,
-	foreign key(subscriber_id) references mail_subscribers(id) on delete cascade,
+	foreign key(subscriber_id) references mail_subscribers(id) on delete cascade
 );
 
 CREATE INDEX idx_activity_start_date ON activities(start_date);
