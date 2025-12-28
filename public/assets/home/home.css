@@ -171,18 +171,16 @@ img.shape2{
 	padding: 10px 0;
 }
 #member-btn{
-	font-size: 1.1rem;
-	background-color: #2dacc5;
-	color: #f5f5f5;
-	text-align: center;
-	padding: 10px;
+	display: block;
+	width: max-content;
+	background-color: #2e4dc0;
+	color: #f7f7f7;
+	padding: 14px;
 	border-radius: 5px;
-	max-width: 100%;
-	box-shadow: 1px 1px 2px #00000080;
-	transition: box-shadow .3s ease;
 }
 #member-btn:hover{
-	box-shadow: 4px 4px 7px #00000080;
+	background-color: #4d65bd;
+	text-decoration: none;
 }
 .fade-in{
 	transition: opacity 1s ease-out;
