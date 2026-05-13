@@ -36,7 +36,6 @@
 					</p>
 					<p>
 						Les membres en règle de cotisation peuvent s'inscrire sur le forum du CMB, lieu d'échange d'informations et de (vos) questions.
-						Les demandes d'inscriptions se font auprès de Sabyne Lippens (<a href="mailto:sabyne.lippens&#64;&#103;&#109;&#97;&#105;&#108;&#46;com" class="email">sabyne.lippens&#64;&#103;&#109;&#97;&#105;&#108;&#46;com</a>).
 					</p>
 					<div class="tip">
 						<img src="/assets/common/img/svg/idea.svg" alt="" class="idea" draggable="false">
