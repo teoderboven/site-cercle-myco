@@ -94,7 +94,7 @@ class Activity extends Model{
 	 */
 	public function fullDaysUntilStart(Carbon $currentDate = null): int{
 		$currentDate = $currentDate ?? Carbon::now();
-		return (int) $currentDate->startOfDay()->diffInDays($this->start_date->startOfDay(), false);
+		return (int) $currentDate->copy()->startOfDay()->diffInDays($this->start_date->copy()->startOfDay(), false);
 	}
 
 	/**

@@ -8,7 +8,7 @@ class ActivityLink extends Model{
 
 	protected $fillable = [
 		'activity_id',
-		'link_text',
+		'text',
 		'url'
 	];
 	

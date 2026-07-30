@@ -95,7 +95,6 @@ function createElementWithAttributes(tagName, attributes) {
 	 * Takes the document out of full screen mode (considers prefixes)
 	 */
 	function exitFullscreen(){
-		console.log('oui')
 		if (document.exitFullscreen)
 			document.exitFullscreen();
 		else if (document.webkitExitFullscreen)
