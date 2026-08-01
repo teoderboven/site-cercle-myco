@@ -8,7 +8,6 @@ use App\Http\Controllers\SubscriptionController;
 
 // Dynamic views routes
 
-// Dynamic views routes
 Route::get('/', [HomeController::class, 'display'])->name('home');
 Route::get('/activites', [ActivityController::class, 'publicDisplay'])->name('activities');
 Route::get('/activites/{id}', [ActivityController::class, 'redirectToHash'])->name('activityDetail');
