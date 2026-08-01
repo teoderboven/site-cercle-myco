@@ -79,6 +79,26 @@ create table activity_reminder_subscriptions(
 	foreign key(subscriber_id) references mail_subscribers(id) on delete cascade
 );
 
+create table mail_subscribers(
+	id char(36) not null,
+	email varchar(255) unique not null,
+	unsubscribe_token char(32) not null,
+	unsubscribed bool default false,
+
+	primary key(id)
+);
+
+create table activity_reminder_subscriptions(
+	activity_id char(16) not null,
+	subscriber_id char(36) not null,
+	first_reminder_sent bool default false,
+	second_reminder_sent bool default false,
+
+	primary key(activity_id, subscriber_id),
+	foreign key(activity_id) references activities(id) on delete cascade,
+	foreign key(subscriber_id) references mail_subscribers(id) on delete cascade
+);
+
 CREATE INDEX idx_activity_start_date ON activities(start_date);
 CREATE INDEX idx_activity_guide ON activities(guide_id);
 CREATE INDEX idx_activity_meeting_point ON activities(meeting_point);
