@@ -50,10 +50,11 @@
 		</div>
 	</div>
 
+	@php
+		$atLeastOneActivity = count($groupedActivities) != 0
+	@endphp
 	@if($hasNextActivity && !$groupedActivities[0]->activities[0]->isNext) {{-- only display if next activity is not the first --}}
-		<div id="goToNext">
-			<a href="#next">Aller à la prochaine sortie</a>
-		</div>
+		@include("partials.activity.go-to-next-button")
 	@endif
 	<div id="timeline-container" data-season-year="{{ $currentSeasonYear }}">
 		<div class="timeline">
@@ -67,35 +68,12 @@
 		</div>
 		<div class="activities-container">
 			@if(!$hasNextActivity)
-				{{-- display season end or no activity message --}}
-				<section class="season-end">
-					<h4>
-					{{$groupedActivities ? "La saison $currentSeasonYear est à présent terminée.":
-											"Aucune activité n'est prévue pour le moment" }}
-					</h4>
-				@if($groupedActivities)
-					<p>
-						Merci de nous avoir accompagnés tout au long de ces aventures mycologiques.
-						Nous prenons une petite pause, mais ne partez pas trop loin&nbsp;!
-					</p>
-					<p>
-						Soyez prêts pour de nouvelles découvertes l'année prochaine&nbsp;! Nous avons déjà hâte de les partager avec vous&nbsp;!
-					</p>
-				@else
-					{{-- no activity --}}
-					<p>
-						De nouvelles aventures mycologiques arrivent bientôt.
-						Merci de votre patience, et à très vite pour explorer ensemble le monde fascinant des champignons&nbsp;!
-					</p>
-				@endif
-					
-					<a href="{{ route('excursions', [], false) }}" class="history-btn">(Re)découvrir les excursions de {{$groupedActivities? "l'année": 'la saison précédente'}} &#9658;</a>
-				</section>
+				@include("partials.activity.season-end-message", ['atLeastOneActivity' => $atLeastOneActivity, 'currentSeasonYear' => $currentSeasonYear])
 			@endif
 
 			@foreach($groupedActivities as $activityGroup)
 				@php
-					$notSameYear = $activityGroup->year != date('Y');
+					$sameYear = $activityGroup->year == date('Y');
 				@endphp
 
 				<section class="month">
@@ -103,7 +81,7 @@
 						<h3>
 							<time datetime="{{ $activityGroup->datetime }}" class="month-name" title="{{ $activityGroup->month }} {{ $activityGroup->year }}">
 								{{ $activityGroup->month }}
-								@if($notSameYear)
+								@if(!$sameYear)
 									{{ $activityGroup->year }}
 								@endif
 							</time>
@@ -115,107 +93,14 @@
 							$hideActivity = $activity->isPassed || $activity->cancelled;
 						@endphp
 						<li class="activity-wrapper" @if($activity->isNext) id="next" @endif>
-							<article @class([
-								'activity',
-								'ongoing' => $activity->isOngoing,
-								'passed' => $activity->isPassed,
-								'cancelled' => $activity->cancelled,
-								'hidden' => $hideActivity
-							]) id="{{ $activity->id }}">
-								<div class="pre-wrapper">
-									<time class="date" datetime="{{ $activity->start_date->format('Y-m-d\Th:i') }}" title="{{ $activity->start_date->translatedFormat('d F Y') }}">
-										@if($notSameYear)
-											{{ $activity->start_date->translatedFormat('l d/m/Y') }}
-										@else
-											{{ $activity->start_date->translatedFormat('l d/m') }}
-										@endif
-									</time>
-									@php
-										$activityStatus = getActivityStatus($activity);
-									@endphp
-									@if($activityStatus)
-										<div class="activity-status">
-											{{ $activityStatus }}
-										</div>
-									@endif
-								</div>
-								<div class="main-wrapper">
-									<header>
-										<div class="title-container">
-											<div class="calendar-container">
-												<div class="calendar">
-													<span class="digit">{{ $activity->start_date->format('d') }}</span>
-													<span class="month">{{ $activity->start_date->translatedFormat('F') }}</span>
-												</div>
-											</div>
-											<h4 class="title">
-												@if($activity->cancelled)
-													<span class="crossed-out">{{ $activity->title }}</span>
-													<span class="cancel-indication">annulé</span>
-												@else
-													{{ $activity->title }}
-												@endif
-											</h4>
-										</div>
-										@if($hideActivity)
-											<button class="reveal-btn">Dévoiler les détails <img src="/assets/common/img/svg/next-arrow.svg" alt=""></button>
-										@endif
-									</header>
-									<div class="main-content">
-										<div class="infos">
-											<div class="info location">
-												<img src="/assets/common/img/svg/location.svg" alt="">
-												<a href="{{ $activity->meetingPoint->getMapsLink() }}" target="_blank">
-													Rdv&nbsp;: {{ $activity->meetingPoint->getFormatted() }}.
-												</a>
-											</div>
-											<div class="info time">
-												<img src="/assets/common/img/svg/clock.svg" alt="">
-												<span>Rdv à {{ displayHourTime($activity->start_date) }}</span>
-											</div>
-											<div class="info duration">
-												<img src="/assets/common/img/svg/clock-duration.svg" alt="">
-												<span>Dure environ {{ displayDuration($activity->duration) }}</span>
-											</div>
-											<div class="info guide">
-												<img src="/assets/common/img/svg/profile.svg" alt="">
-												<span>Guide&nbsp;: {{ $activity->guide->name }}</span>
-											</div>
-											@isset($activity->guide->phone)
-												<div class="info phone">
-													<img src="/assets/common/img/svg/phone.svg" alt="">
-													<a href="tel:{{ $activity->guide->phone }}">{!! formatPhoneNumber($activity->guide->phone) !!}</a>
-												</div>	
-											@endisset
-										</div>
-										<div class="description">
-											<p>
-												{!! $activity->description !!}
-											</p>
-										</div>
-										<div class="links">
-											@foreach($activity->links as $link)
-												<a href="{{ $link->url }}" target="_blank">{{ $link->text }}</a>
-											@endforeach
-										</div>
-									</div>
-								</div>
-							</article>
+							@include("partials.activity.activity", ['activity' => $activity, 'hidden' => $hideActivity, 'sameYear' => $sameYear])
 						</li>
 					@endforeach
 					</ol>
 				</section>
 			@endforeach
 			@if(!$hasNextActivity)
-				<section class="end-indicator">
-					<p>
-						@if($groupedActivities)
-							<span class="bold">Fin de la saison : Rendez vous en {{ $currentSeasonYear + 1 }}!<span>
-						@else
-							Aucune activité prévue pour le moment
-						@endif
-					</p>
-				</section>
+				@include("partials.activity.end-indicator", ['atLeastOneActivity' => $atLeastOneActivity, 'currentSeasonYear' => $currentSeasonYear])
 			@endif
 		</div>
 	</div>
