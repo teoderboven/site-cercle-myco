@@ -65,12 +65,18 @@
     padding: 7px;
     box-sizing: border-box;
     text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
     transform: translateY(0);
     opacity: 0;
     transition: transform 1s, opacity 1s;
+}
+.notify-btn-wrapper .status-message .status-email{
+    display: inline-block;
+    font-size: inherit;
+    max-width: 100%;
+    vertical-align: bottom;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .notify-btn-wrapper .status-message.revealed{
     transform: translateY(100%);
