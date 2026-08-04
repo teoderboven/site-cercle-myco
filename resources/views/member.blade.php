@@ -59,7 +59,7 @@
 			</section>
 			<section class="card">
 				<header>
-					<img src="/assets/common/img/svg/check.svg" alt="" class="icon" draggable="false">
+					<img src="/assets/common/img/svg/check-small.svg" alt="" class="icon" draggable="false">
 					<h3 class="title">Devenez membre</h3>
 				</header>
 				<div>
