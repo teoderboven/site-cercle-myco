@@ -1,11 +1,8 @@
 html{
-	--activity-bg: linear-gradient(120deg, #9dcae6, #b7cfde);
-	--activity-highlight-bg: linear-gradient(120deg, #debf96, #e3ddad);
-	--activity-ongoing-bg: linear-gradient(120deg, #abd9c2, #a0daae);
-	--activity-cancelled-bg: linear-gradient(120deg, #df978c, #e79f96);
-	--activity-btn-color: #f5f5f5;
-	--activity-btn-bg: #4368ae;
-	--activity-btn-hover-bg: #647aa3;
+	--activity-bg: #00000015;
+	--activity-highlight-bg: #a4c2e8;
+	--activity-ongoing-bg: #d3eada;
+	--activity-cancelled-bg: #e3a3a3;
 }
 
 .activity{
@@ -39,12 +36,12 @@ html{
 }
 
 .activity .main-wrapper, .season-end{
-	border: solid 1px #000;
+	border: solid 1px #00000000;
 	border-radius: 15px;
-	box-shadow: 5px 5px 10px #00000080;
+	box-shadow: 1px 3px 10px #00000080;
 }
 .activity .main-wrapper{
-	background-image: var(--activity-bg);
+	background-color: var(--activity-bg);
 }
 .activity header{
 	padding-bottom: 2px;
@@ -131,17 +128,6 @@ html{
 	flex-wrap: nowrap;
 	align-items: center;
 }
-.activity .links a{
-	background-color: var(--activity-btn-bg);
-	color: var(--activity-btn-color);
-	padding: 7px;
-	box-shadow: 2px 2px 5px #00000080;
-	text-shadow: 1px 1px #555;
-	border-radius: 7px;
-}
-.activity .links a:hover{
-	background-color: var(--activity-btn-hover-bg);
-}
 .activity.passed .main-wrapper{
 	filter: grayscale(.8);
 }
@@ -157,13 +143,13 @@ html{
 	max-height: 100vh;
 }
 #next .activity .main-wrapper{
-	background-image: var(--activity-highlight-bg);
+	background-color: var(--activity-highlight-bg);
 }
 .activity.ongoing .main-wrapper{
-	background-image: var(--activity-ongoing-bg);
+	background-color: var(--activity-ongoing-bg);
 }
 .activity.cancelled .main-wrapper{
-	background-image: var(--activity-cancelled-bg);
+	background-color: var(--activity-cancelled-bg);
 }
 .activity.cancelled header .title .crossed-out{
 	text-decoration: line-through;

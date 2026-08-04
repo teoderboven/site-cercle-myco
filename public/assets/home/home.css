@@ -173,14 +173,7 @@ img.shape2{
 #member-btn{
 	display: block;
 	width: max-content;
-	background-color: #2e4dc0;
-	color: #f7f7f7;
 	padding: 14px;
-	border-radius: 5px;
-}
-#member-btn:hover{
-	background-color: #4d65bd;
-	text-decoration: none;
 }
 .fade-in{
 	transition: opacity 1s ease-out;

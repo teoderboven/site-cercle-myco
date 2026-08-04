@@ -4,6 +4,10 @@ html{
 	--scrollbar-color: #9e9e9e;
 	--basic-text-color: #252525;
 	--basic-bg-color: #f0f0f0;
+	--cmb-blue: #2e4dc0;
+	--cmb-button-complementary-color: #f7f7f7;
+	--cmb-blue-hover: #4d65bd;
+	--cmb-lightblue: #cfd7ea;
 }
 *{
 	margin: 0;
@@ -33,10 +37,11 @@ body > main{
 body{
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 body > header > div,
 body > main,
-body > footer > div{ /* Limit height to 2400px and center */
+body > footer{ /* Limit height to 2400px and center */
 	margin: auto;
 	max-width: 2400px;
 }
@@ -48,6 +53,16 @@ body > footer > div{ /* Limit height to 2400px and center */
 }
 .bold{
 	font-weight: 680;
+}
+.cmb-btn{
+	background-color: var(--cmb-blue);
+	color: var(--cmb-button-complementary-color);
+	padding: 7px;
+	border-radius: 8px;
+}
+.cmb-btn:hover{
+	background-color: var(--cmb-blue-hover);
+	text-decoration: none;
 }
 
 /* ScrollBar */

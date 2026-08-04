@@ -21,5 +21,5 @@
         </p>
     @endif
 
-    <a href="{{ route('excursions', [], false) }}" class="history-btn">(Re)découvrir les excursions de {{$atLeastOneActivity? "l'année": 'la saison précédente'}} &#9658;</a>
+    <a href="{{ route('excursions', [], false) }}" class="cmb-btn history-btn">(Re)découvrir les excursions de {{$atLeastOneActivity? "l'année": 'la saison précédente'}} &#9658;</a>
 </section>

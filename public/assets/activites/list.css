@@ -1,24 +1,15 @@
 html{
-	--go-to-next-padding: 10px;
 	--timeline-margin: 13px;
-	--timeline-width: 15px;
+	--timeline-width: 7px;
 	--timeline-border-radius: calc(var(--timeline-width)/2);
 	--timeline-past-color: #ccd8e6;
-	--timeline-future-color: #3663a1;
+	--timeline-future-color: #4B68D1FF;
 	--timeline-marker-color: #042e46;
-	--timeline-marker-width: 25px;
+	--timeline-marker-width: 20px;
 	--timeline-arrow-width: calc(2.4 * var(--timeline-width));
 	--timeline-created-margin: calc((var(--timeline-arrow-width) - var(--timeline-width))/2); /* represents the fake margin created by the arrow */
 }
 
-@keyframes bg-highlight {
-	from, to, 10%, 90%{
-		background-color: #d0772508;
-	}
-	50%{
-		background-color: #d077252a;
-	}
-}
 @keyframes go-to-right {
 	from, to{
 		transform: translateX(0);
@@ -27,37 +18,23 @@ html{
 		transform: translateX(6px);
 	}
 }
-#goToNext{
+.go-to-next-btn{
 	margin: 15px
-			calc(var(--timeline-margin) + var(--timeline-created-margin) - var(--go-to-next-padding))
+			calc(var(--timeline-margin) + var(--timeline-created-margin))
 			5px;
-	display: inline-block;
 	font-size: 1.25rem;
-}
-#goToNext,
-#goToNext a{
-	border-radius: calc(var(--go-to-next-padding) * 2);
-}
-#goToNext a{
 	display: inline-flex;
 	align-items: center;
 	position: relative;
-	padding: var(--go-to-next-padding);
-	padding-left: calc(var(--timeline-width) + var(--timeline-created-margin) + var(--go-to-next-padding) + 10px);
-	animation: bg-highlight 5s infinite linear;
-	font-size: inherit;
-	font-weight: 500;
+	padding-left: 1.7em;
 }
-#goToNext a::before{
+.go-to-next-btn::before{
 	content: "\25BA";
 	position: absolute;
-	left: var(--go-to-next-padding);
+	left: 0;
+	bottom: .1em;
 	font-size: 1.45em;
 	animation: go-to-right 3s infinite ease-in-out;
-}
-#goToNext:hover{
-	background-image: linear-gradient(45deg, #a3cec8, #a4dbd7);
-	text-shadow: 1px 1px 2px #f5f5f5;
 }
 
 #timeline-container{
@@ -80,7 +57,7 @@ html{
 .timeline .time{
 	width: var(--timeline-width);
 	margin: calc(0px - var(--timeline-marker-width)/2) 0;
-	box-shadow: 2px 2px 5px #000000a0;
+	box-shadow: 1px 2px 5px #00000080;
 	z-index: 2;
 }
 .timeline .time.past{
@@ -127,9 +104,7 @@ html{
 
 .season-end{
 	padding: 7px;
-	color: #000;
-	background-image: linear-gradient(135deg, #69bfc4, #BFD7B5);
-	text-shadow: 0 0 5px #f5f5f5;
+	background-color: var(--activity-highlight-bg);
 	margin-bottom: 25px;
 }
 .season-end h4{
@@ -140,16 +115,6 @@ html{
 }
 .season-end a.history-btn{
 	display: inline-block;
-	background-color: #f5f5f5;
-	padding: 5px;
-	border-radius: 10px;
-	box-shadow: 2px 2px 5px #00000080;
-	text-shadow: none;
-	transition: box-shadow .3s;
-}
-.season-end a.history-btn:hover{
-	background-color: #f0f0f0;
-	box-shadow: 2px 2px 7px #000000d0;
 }
 .end-indicator{
 	margin: 30px 0;

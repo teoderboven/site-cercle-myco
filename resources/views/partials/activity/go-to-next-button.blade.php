@@ -1,3 +1,1 @@
-<div id="goToNext">
-    <a href="#next">Aller à la prochaine sortie</a>
-</div>
+<a href="#next" class="cmb-btn go-to-next-btn">Aller à la prochaine sortie</a>

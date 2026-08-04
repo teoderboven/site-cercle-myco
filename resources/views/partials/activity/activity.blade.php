@@ -81,7 +81,7 @@
             </div>
             <div class="links">
                 @foreach($activity->links as $link)
-                    <a href="{{ $link->url }}" target="_blank">{{ $link->text }}</a>
+                    @include('partials.activity.link-button', ['url' => $link->url, 'text' => $link->text])
                 @endforeach
             </div>
         </div>
