@@ -121,11 +121,11 @@ html{
 .activity .description a:not(.stib):hover{
 	text-decoration: underline;
 }
-.activity .links{
+.activity .activity-actions{
 	display: flex;
 	gap: 7px;
 	flex-direction: row;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	align-items: center;
 }
 .activity.passed .main-wrapper{

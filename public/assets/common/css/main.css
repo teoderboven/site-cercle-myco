@@ -59,6 +59,7 @@ body > footer{ /* Limit height to 2400px and center */
 	color: var(--cmb-button-complementary-color);
 	padding: 7px;
 	border-radius: 8px;
+	cursor: pointer;
 }
 .cmb-btn:hover{
 	background-color: var(--cmb-blue-hover);

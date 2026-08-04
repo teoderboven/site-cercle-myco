@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="/assets/activites/activities.css">
 	<link rel="stylesheet" href="/assets/activites/list.css">
 	<link rel="stylesheet" href="/assets/activites/activity-item.css">
+	<link rel="stylesheet" href="/assets/activites/notify-button.css">
 @endsection
 
 @section('scripts')
