@@ -51,7 +51,7 @@
 		</section>
 		<section id="choices">
 			<div>
-				<a href="{{ route('home', [], false) }}" class="home-btn">Aller à la page d'accueil</a>
+				<a href="{{ route('home', [], false) }}" class="home-btn cmb-btn">Aller à la page d'accueil</a>
 			</div>
 			<p>
 				Vous cherchez quelque chose de spécifique?<br>
