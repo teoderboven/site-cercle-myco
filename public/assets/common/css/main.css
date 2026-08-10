@@ -5,9 +5,13 @@ html{
 	--basic-text-color: #252525;
 	--basic-bg-color: #f0f0f0;
 	--cmb-blue: #2e4dc0;
-	--cmb-button-complementary-color: #f7f7f7;
+	--cmb-red: #f62a2a;
+	--cmb-btn-complementary-color: #f7f7f7;
 	--cmb-blue-hover: #4d65bd;
 	--cmb-lightblue: #cfd7ea;
+	--cmb-btn-padding: 7px;
+	--cmb-btn-padding-large: 14px;
+	--cmb-btn-border-radius: 8px;
 }
 *{
 	margin: 0;
@@ -21,6 +25,9 @@ html{
 	border: none;
 	color: inherit;
 	scroll-behavior: smooth;
+}
+hr{
+	border: solid 1px #bbb;
 }
 h1, h2, h3, h4, h5, h6{
 	font-weight: 700;
@@ -54,11 +61,15 @@ body > footer{ /* Limit height to 2400px and center */
 .bold{
 	font-weight: 680;
 }
+button{
+	display: block;
+	cursor: pointer;
+}
 .cmb-btn{
 	background-color: var(--cmb-blue);
-	color: var(--cmb-button-complementary-color);
-	padding: 7px;
-	border-radius: 8px;
+	color: var(--cmb-btn-complementary-color);
+	padding: var(--cmb-btn-padding);
+	border-radius: var(--cmb-btn-border-radius);
 	cursor: pointer;
 }
 .cmb-btn:hover{

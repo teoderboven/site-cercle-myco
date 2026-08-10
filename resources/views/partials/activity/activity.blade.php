@@ -84,7 +84,7 @@
                     @include('partials.activity.link-button', ['url' => $link->url, 'text' => $link->text])
                     @include('partials.activity.link-button', ['url' => $link->url, 'text' => $link->text])
                 @endforeach
-                @include("partials.activity.notify-button", ["activityId" => $activity->id])
+                @include("partials.activity.notify-button", ["activityId" => $activity->id, "activityTitle" => $activity->title])
             </div>
         </div>
     </div>

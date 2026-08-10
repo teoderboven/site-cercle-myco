@@ -8,7 +8,7 @@
 	<meta name="description" content="@yield('description')">
 @endif
 @hasSection('additions')
-@yield('additions') {{-- google & description meta or canonical link --}}
+	@yield('additions') {{-- google & description meta or canonical link --}}
 @endif
 @hasSection('title')
 	<title>@yield('title') - CMB</title>
@@ -36,6 +36,10 @@
 @yield('main-content')
 </main>
 @include('partials.footer')
+
+@hasSection('dialogs')
+	@yield('dialogs')
+@endif
 
 <script src="/assets/common/js/navbar.js"></script>
 @yield('scripts')

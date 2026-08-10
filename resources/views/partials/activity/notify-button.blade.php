@@ -1,4 +1,4 @@
-@props(['activityId'])
+@props(['activityId', 'activityTitle'])
 
 {{-- Component notification button --}}
 <div class="notify-btn-wrapper">
@@ -6,12 +6,13 @@
             type="button"
             class="cmb-btn notify-btn"
             data-activity-id="{{ $activityId }}"
-            title="Tenez-vous informé des mises à jour de cette activité par email"
-            aria-label="Tenez-vous informé des mises à jour de cette activité par email"
+            data-activity-title="{{ $activityTitle }}"
+            title="Tenez-vous informé des mises à jour de cette activité par e-mail"
+            aria-label="Tenez-vous informé des mises à jour de cette activité par e-mail"
     >
         <span class="icon check"></span>
         <span class="icon mail"></span>
-        <span class="notify-text">M'informer par email</span>
+        <span class="notify-text">M'informer par e-mail</span>
     </button>
     <span class="status-message" aria-live="polite"></span>
 </div>

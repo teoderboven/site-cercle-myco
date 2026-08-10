@@ -14,15 +14,21 @@
 	<link rel="stylesheet" href="/assets/activites/list.css">
 	<link rel="stylesheet" href="/assets/activites/activity-item.css">
 	<link rel="stylesheet" href="/assets/activites/notify-button.css">
+	<link rel="stylesheet" href="/assets/activites/subscription-modal.css">
 @endsection
 
 @section('scripts')
 	<script src="/assets/common/js/scrollToHash.js"></script>
 	<script src="/assets/activites/list.js"></script>
+	<script src="/assets/activites/activity-subscription.js"></script>
 @endsection
 
 @section('additions')
 	<link rel="preload" as="image" href="/images/excursions/ViroinvalGr03.JPG">
+@endsection
+
+@section('dialogs')
+	@include('partials.activity.subscription-dialog')
 @endsection
 
 @section('main-content')
