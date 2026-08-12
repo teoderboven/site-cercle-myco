@@ -3,6 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="date=no">
+	<meta name="format-detection" content="address=no">
+	<meta name="format-detection" content="email=no">
 	<title>@yield('pageTitle')</title>
 	<style>
 		{!! file_get_contents(resource_path('css/mail-main.css')) !!}
@@ -16,7 +20,7 @@
 			<tr>
 				<td class="c_top-title">
 					<a href="{{ route('home') }}" target="_blank">
-						<img src="{{ asset('common/img/icon256wt.png') }}" alt="Cercle de Mycologie de Bruxelles" height="64">
+						<img src="{{ $message->embed(asset('common/img/icon256wt.png')) }}" alt="Cercle de Mycologie de Bruxelles" height="64">
 					</a>
 				</td>
 			</tr>
@@ -29,7 +33,7 @@
 			</tr>
 			<tr>
 				<td class="c_footer">
-					<img src="{{ asset('common/img/cmb_title.png') }}" alt="" height=28>
+					<img src="{{ $message->embed(asset('common/img/cmb_title.png')) }}" alt="" height=28>
 					<p>
 						@yield('receiveExplaination', 'Vous recevez cet e-mail car vous êtes inscrit dans notre liste de diffusion.')
 					</p>

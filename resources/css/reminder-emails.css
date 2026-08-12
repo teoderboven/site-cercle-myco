@@ -32,7 +32,7 @@
 	display: block;
 	width: max-content;
 	background-color: #2e4dc0;
-	color: #f7f7f7;
+	color: #f7f7f7 !important;
 	padding: 7px;
 	border-radius: 5px;
 }

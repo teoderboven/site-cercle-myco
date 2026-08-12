@@ -17,6 +17,10 @@ a{
 }
 a:hover{
 	text-decoration: underline;
+	color: inherit !important;
+}
+a:visited {
+	color: inherit !important;
 }
 
 .c_main-container{
