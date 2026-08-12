@@ -47,11 +47,15 @@
         function handleSubscriptionResponse(response) {
             if (response.success || response.reminderAlreadyExists) {
                 displayStatus(response.message);
-                notifyBtn.classList.add('success');
+                displayValidationCheck();
             }
             else {
                 displayStatus(Object.values(response.errors).flat().join('\n'), true);
             }
+        }
+
+        function displayValidationCheck() {
+            notifyBtn.classList.add('validate');
         }
 
         let messageTimeout;
