@@ -30,7 +30,7 @@
             .catch(err => {
                 if (err.message !== 'email_prompt_cancelled') {
                     console.error(err.message);
-                    displayStatus('Une erreur est survenue lors de l\'inscription.');
+                    displayStatus('Une erreur est survenue lors de l\'inscription.', true);
                 }
             });
         }
@@ -40,8 +40,9 @@
         /**
          * Displays the given message below the button
          * @param msg the message to display
+         * @param isError whether the message is an error
          */
-        function displayStatus(msg) {
+        function displayStatus(msg, isError = false) {
             const revealedClass = "revealed";
             statusMessage.classList.remove(revealedClass);
 
@@ -55,6 +56,11 @@
             statusMessage.setAttribute("title", msg)
 
             statusMessage.classList.add(revealedClass);
+            if (isError) {
+                statusMessage.classList.add("error");
+            } else {
+                statusMessage.classList.remove("error");
+            }
 
             if(messageTimeout) {
                 clearTimeout(messageTimeout);
