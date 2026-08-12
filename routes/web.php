@@ -40,3 +40,11 @@ Route::view('/champi-parasite-des-plantes', 'champi-parasite')->name('parasites'
 Route::view('/error/403', 'errors.403');
 Route::view('/error/404', 'errors.404');
 Route::view('/error/500', 'errors.500');
+
+Route::get('/mail', function () {
+
+    return new \App\Mail\ActivityReminder(
+        \App\Models\Activity::where("id", "aF8GutlUAzieIjKa")->first(),
+        \App\Models\MailSubscriber::first()
+    );
+});
