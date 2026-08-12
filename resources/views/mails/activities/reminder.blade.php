@@ -85,6 +85,6 @@
 @endsection
 
 @section('unsubscribeText')
-	<a href="{{ $subscriber->getUnsubscribeLink() }}" target="_blank">Se désabonner des mails envoyés par le cercle de mycologie</a> |
+	<a href="{{ $subscriber->getUnsubscribeLink() }}" target="_blank">Se désabonner des e-mails envoyés par le cercle de mycologie</a> |
 	<a href="{{ $subscriber->getUnsubscribeLink($activity) }}" target="_blank">Se désabonner des notifications de ce type d'activité</a>
 @endsection
