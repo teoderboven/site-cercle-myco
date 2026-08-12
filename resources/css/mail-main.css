@@ -12,15 +12,11 @@
 h1, h2, h3, h4, h5, h6{
 	font-weight: 700;
 }
-a{
+a, a:visited{
 	color: #3e8acc;
 }
 a:hover{
 	text-decoration: underline;
-	color: inherit !important;
-}
-a:visited {
-	color: inherit !important;
 }
 
 .c_main-container{

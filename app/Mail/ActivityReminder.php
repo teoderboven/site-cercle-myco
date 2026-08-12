@@ -15,7 +15,7 @@ class ActivityReminder extends Mailable{
 
 	public function envelope(): Envelope{
 		return new Envelope(
-			subject: 'Rappel d\'activité',
+			subject: 'Prochaine activité dans ' . ceil(now()->diffInDays($this->activity->start_date)) . ' jours',
 		);
 	}
 
