@@ -21,10 +21,6 @@ class ActivityReminderController extends Controller{
 	 */
 	public function register(Request $req){
 		try{
-			$customErrorMessages = [
-				'activity.unique' => 'Un rappel existe déjà pour cette activité avec cette adresse email'
-			];
-
 			$validatedSubscriber = $req->validate([
 				'email' => 'required|email|max:255'
 			]);
@@ -47,7 +43,9 @@ class ActivityReminderController extends Controller{
 						return $query->where('subscriber_id', $subscriber->id);
 					})
 				]
-			], $customErrorMessages);
+			], [
+                'activity.unique' => __('subscription.reminderAlreadyExists', ['email' => $subscriber->email])
+            ]);
 
 			ActivityReminderSubscription::create([
 				'activity_id' => $validatedActivity['activity'],
@@ -55,14 +53,23 @@ class ActivityReminderController extends Controller{
 			]);
 
 			return response()->json([
-				'success' => true
+				'success' => true,
+                'message' => __('subscription.registered', ['email' => $subscriber->email])
 			], 201);
 
 		}catch(ValidationException $e){
-			return response()->json([
-				'success' => false,
-				'errors' => $e->errors()
-			], 422);
+            $response = [
+                'success' => false,
+                'errors' => $e->errors()
+            ];
+
+            $failedRules = $e->validator->failed();
+            if (isset($failedRules['activity']['Unique'])) {
+                $response['reminderAlreadyExists'] = true;
+                $response['message'] = $response['errors']['activity'][0];
+            }
+
+            return response()->json($response, 422);
 		}
 	}
 

@@ -5,7 +5,7 @@
         <div class="input-container">
             <div class="subscription-mail-wrapper">
                 <label for="subscription-mail">Adresse e-mail</label>
-                <input type="email" name="subscription-mail" id="subscription-mail" placeholder="votre@email.com" required>
+                <input type="email" name="subscription-mail" id="subscription-mail" placeholder="votre@email.com" maxlength="255" required>
             </div>
         </div>
 

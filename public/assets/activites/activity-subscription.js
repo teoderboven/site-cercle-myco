@@ -3,6 +3,8 @@
     const subscriptionForm = document.getElementById("subscription-form");
     const modalActivityTitleElement = subscriptionModal.querySelector(".activity-title");
 
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
     subscriptionForm.addEventListener('submit', handleSubscriptionFormSubmit);
     document.querySelectorAll(".notify-btn-wrapper").forEach(initNotifyButton);
     subscriptionModal.querySelectorAll(".close-btn").forEach(registerModalCloseListener);
@@ -25,14 +27,31 @@
         function handleNotifyBtnClick(e) {
             activeActivityTitle = activityTitle;
 
-            getUserMail().then(email => {
-            })
-            .catch(err => {
-                if (err.message !== 'email_prompt_cancelled') {
-                    console.error(err.message);
-                    displayStatus('Une erreur est survenue lors de l\'inscription.', true);
-                }
-            });
+            getUserMail()
+                .then(email => {
+                    sendSubscriptionRequest(email, activityId)
+                        .then(handleSubscriptionResponse)
+                        .catch(err => {
+                            console.error(err.message);
+                            displayStatus('Une erreur est survenue lors de l\'inscription.', true);
+                        });
+                })
+                .catch(err => {
+                    if (err.message !== 'email_prompt_cancelled') {
+                        console.error(err.message);
+                        displayStatus('Une erreur est survenue lors de l\'inscription.', true);
+                    }
+                });
+        }
+
+        function handleSubscriptionResponse(response) {
+            if (response.success || response.reminderAlreadyExists) {
+                displayStatus(response.message);
+                notifyBtn.classList.add('success');
+            }
+            else {
+                displayStatus(Object.values(response.errors).flat().join('\n'), true);
+            }
         }
 
         let messageTimeout;
@@ -130,5 +149,17 @@
         }
 
         closeMailModal();
+    }
+
+    function sendSubscriptionRequest(email, activityId) {
+        return fetch(`/activites/rappel`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
+            },
+            body: JSON.stringify({ email, activity: activityId })
+        })
+        .then(response => response.json());
     }
 })();
