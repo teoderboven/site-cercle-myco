@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Mail\ActivityReminder;
+use App\Mail\WelcomeMail;
 use App\Models\ActivityReminderSubscription;
 use App\Models\MailSubscriber;
 use Illuminate\Http\Request;
@@ -27,9 +28,10 @@ class ActivityReminderController extends Controller{
 
 			$subscriber = MailSubscriber::firstOrCreate($validatedSubscriber);
 
-			if($subscriber->unsubscribed){
+            $wasUnsubscribed = $subscriber->unsubscribed;
+
+			if($wasUnsubscribed){
 				$subscriber->resubscribe();
-				// TODO add message notification
 			}
 
 			$validatedActivity = $req->validate([
@@ -51,6 +53,12 @@ class ActivityReminderController extends Controller{
 				'activity_id' => $validatedActivity['activity'],
 				'subscriber_id' => $subscriber->id
 			]);
+
+            if ($subscriber->wasRecentlyCreated || $wasUnsubscribed) {
+                dispatch(function () use ($subscriber) {
+                    $this->sendWelcomeEmail($subscriber);
+                })->afterResponse();
+            }
 
 			return response()->json([
 				'success' => true,
@@ -152,5 +160,17 @@ class ActivityReminderController extends Controller{
 
 		return 'done';
 	}
+
+    /**
+     * Sends a welcome email to the given subscriber.
+     * @param MailSubscriber $subscriber
+     */
+    private function sendWelcomeEmail(MailSubscriber $subscriber): void{
+        try {
+            Mail::to($subscriber->email)->send(new WelcomeMail($subscriber));
+        } catch (\Exception $e) {
+            Log::error("Failed to send welcome email to {$subscriber->email}: " . $e->getMessage());
+        }
+    }
 
 }

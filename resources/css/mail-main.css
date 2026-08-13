@@ -45,6 +45,9 @@ a:hover{
 .c_main-content p{
 	margin: 17px 5px;
 }
+.c_main-content p.c_space_before{
+	margin-top: 45px;
+}
 .c_signature{
 	text-align: right;
 	margin-bottom: 0 !important;
