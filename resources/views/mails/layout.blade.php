@@ -33,8 +33,11 @@
 			</tr>
 			<tr>
 				<td class="c_footer">
-					<img src="{{ $message->embed(asset('common/img/cmb_title.png')) }}" alt="" height=28>
+					<a href="{{ route('home') }}" target="_blank">
+						<img src="{{ $message->embed(asset('common/img/cmb_title.png')) }}" alt="Cercle de Mycologie de Bruxelles" height=28>
+					</a>
 					<p>
+						Cet e-mail a été envoyé à {{ $subscriber->email }}.<br>
 						@yield('receiveExplaination', 'Vous recevez cet e-mail car vous êtes inscrit dans notre liste de diffusion.')
 					</p>
 					<p>

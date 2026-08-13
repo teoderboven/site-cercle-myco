@@ -80,7 +80,6 @@
 @endsection
 
 @section('receiveExplaination')
-	Cet e-mail a été envoyé à {{ $subscriber->email }}.<br>
 	Vous recevez cet e-mail car vous vous êtes inscrit aux rappels de cette activité.
 @endsection
 
