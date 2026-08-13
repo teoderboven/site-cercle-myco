@@ -48,3 +48,7 @@ body > main > header > p{
 	width: 3.5rem;
 	height: 3.5rem;
 }
+.main-content-container{
+	max-width: 980px;
+	margin: auto;
+}

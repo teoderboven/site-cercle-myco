@@ -29,12 +29,14 @@
 
             getUserMail()
                 .then(email => {
+                    displayLoading();
                     sendSubscriptionRequest(email, activityId)
                         .then(handleSubscriptionResponse)
                         .catch(err => {
                             console.error(err.message);
                             displayStatus('Une erreur est survenue lors de l\'inscription.', true);
-                        });
+                        })
+                        .finally(() => hideLoading());
                 })
                 .catch(err => {
                     if (err.message !== 'email_prompt_cancelled') {
@@ -56,6 +58,14 @@
 
         function displayValidationCheck() {
             notifyBtn.classList.add('validate');
+        }
+
+        function displayLoading() {
+            notifyBtn.classList.add('loading');
+        }
+
+        function hideLoading() {
+            notifyBtn.classList.remove('loading');
         }
 
         let messageTimeout;

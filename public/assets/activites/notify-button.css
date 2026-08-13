@@ -3,7 +3,6 @@
     grid-template-rows: 1fr;
     align-items: end;
     margin-left: auto;
-    clip-path: inset(0 0 -999px 0);
     position: relative;
 }
 .notify-btn-wrapper *{
@@ -39,9 +38,13 @@
 .notify-btn:hover .icon{
     background-color: var(--cmb-blue-hover);
 }
+.notify-btn .icon.loading{
+    mask-image: url("/assets/common/img/svg/loading-spinner.svg");
+}
 .notify-btn .icon.check{
     mask-image: url("/assets/common/img/svg/check.svg");
 }
+.notify-btn:not(.loading) .icon.loading,
 .notify-btn:not(.validate) .icon.check{
     display: none;
 }
@@ -53,6 +56,11 @@
     font-weight: 600;
 }
 
+.notify-btn-wrapper .status-message-wrapper{
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 0 -999px 0);
+}
 .notify-btn-wrapper .status-message{
     position: absolute;
     inset: auto 0 0 0;

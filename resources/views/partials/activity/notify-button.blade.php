@@ -10,9 +10,12 @@
             title="Tenez-vous informé des mises à jour de cette activité par e-mail"
             aria-label="Tenez-vous informé des mises à jour de cette activité par e-mail"
     >
+        <span class="icon loading"></span>
         <span class="icon check"></span>
         <span class="icon mail"></span>
         <span class="notify-text">M'informer par e-mail</span>
     </button>
-    <span class="status-message" aria-live="polite"></span>
+    <div class="status-message-wrapper">
+        <span class="status-message" aria-live="polite"></span>
+    </div>
 </div>
