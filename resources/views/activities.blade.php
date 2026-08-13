@@ -97,14 +97,11 @@
 							</h3>
 						</header>
 						<ol class="activities-list">
-						@foreach($activityGroup->activities as $activity)
-							@php
-								$hideActivity = $activity->isPassed || $activity->cancelled;
-							@endphp
-							<li class="activity-wrapper" @if($activity->isNext) id="next" @endif>
-								@include("partials.activity.activity", ['activity' => $activity, 'hidden' => $hideActivity, 'sameYear' => $sameYear])
-							</li>
-						@endforeach
+							@foreach($activityGroup->activities as $activity)
+								<li class="activity-wrapper" @if($activity->isNext) id="next" @endif>
+									@include("partials.activity.activity", ['activity' => $activity, 'sameYear' => $sameYear])
+								</li>
+							@endforeach
 						</ol>
 					</section>
 				@endforeach

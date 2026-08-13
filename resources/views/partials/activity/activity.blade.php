@@ -1,5 +1,8 @@
-@props(['activity', 'hidden', 'sameYear'])
+@props(['activity', 'sameYear'])
 
+@php
+    $hideActivity = $activity->isPassed || $activity->cancelled;
+@endphp
 <article @class([
             'activity',
             'ongoing' => $activity->isOngoing,
@@ -84,7 +87,9 @@
                     @include('partials.activity.link-button', ['url' => $link->url, 'text' => $link->text])
                     @include('partials.activity.link-button', ['url' => $link->url, 'text' => $link->text])
                 @endforeach
-                @include("partials.activity.notify-button", ["activityId" => $activity->id, "activityTitle" => $activity->title])
+                @if(!$hideActivity)
+                    @include("partials.activity.notify-button", ["activityId" => $activity->id, "activityTitle" => $activity->title])
+                @endif
             </div>
         </div>
     </div>

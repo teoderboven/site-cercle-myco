@@ -20,7 +20,7 @@
     border: solid 2px var(--cmb-blue);
     color: var(--cmb-blue);
     padding: 0 4px;
-    z-index: 100;
+    z-index: 20;
 }
 .notify-btn:hover{
     background-color: #e3e3e3;
