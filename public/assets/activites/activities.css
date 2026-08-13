@@ -1,4 +1,4 @@
-body > main > header .title-container{
+.title-wrapper{
 	background-color: rgb(115, 168, 151); /* default */
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -15,10 +15,12 @@ body > main > header .title{
 	color: var(--basic-text-color);
 	padding: 0 .1rem;
 }
-body > main > header > p{
-	padding: 10px 20px;
-	margin: 10px;
+.description-wrapper{
 	border-bottom: solid 1px #000;
+	margin: 10px;
+}
+.description-container p{
+	margin: 10px 20px;
 }
 #activity-title{
 	font-size: 2rem;
@@ -48,6 +50,8 @@ body > main > header > p{
 	width: 3.5rem;
 	height: 3.5rem;
 }
+.title-container,
+.description-container,
 .main-content-container{
 	max-width: 980px;
 	margin: auto;

@@ -34,13 +34,19 @@
 
 @section('main-content')
 	<header>
-		<div class="title-container">
-			<div class="title">Activités à venir</div>
+		<div class="title-wrapper">
+			<div class="title-container">
+				<div class="title">Activités à venir</div>
+			</div>
 		</div>
-		<p>
-			Le Cercle de Mycologie de Bruxelles organise chaque année des excursions sur le terrain permettant d'explorer la diversité des champignons de la région bruxelloise.<br>
-			Les détails des excursions à venir sont disponibles ci-dessous.
-		</p>
+		<div class="description-wrapper">
+			<div class="description-container">
+				<p>
+					Le Cercle de Mycologie de Bruxelles organise chaque année des excursions sur le terrain permettant d'explorer la diversité des champignons de la région bruxelloise.<br>
+					Les détails des excursions à venir sont disponibles ci-dessous.
+				</p>
+			</div>
+		</div>
 	</header>
 	<div class="main-content-container">
 		<h2 id="activity-title">Programme des activités {{ $currentSeasonYear}}</h2>
