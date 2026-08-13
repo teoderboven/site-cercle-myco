@@ -22,7 +22,8 @@
     padding: 0 4px;
     z-index: 20;
 }
-.notify-btn:hover{
+.notify-btn:hover,
+.notify-btn:focus{
     background-color: #e3e3e3;
     border-color: var(--cmb-blue-hover);
     color: var(--cmb-blue-hover);
