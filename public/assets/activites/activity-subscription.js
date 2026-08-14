@@ -16,6 +16,7 @@
 
     function initNotifyButton(btnWrapper) {
         const notifyBtn = btnWrapper.querySelector(".notify-btn");
+        const notifyBtnText = btnWrapper.querySelector(".notify-text");
         const statusMessage = btnWrapper.querySelector(".status-message");
 
         const activityId = notifyBtn.dataset.activityId;
@@ -81,10 +82,12 @@
 
         function setSubscribed() {
             notifyBtn.dataset.subscribed = "true";
+            notifyBtnText.textContent = notifyBtn.dataset.subscribedText || "Inscrit(e) aux notifications";
         }
 
         function setUnsubscribed() {
             notifyBtn.dataset.subscribed = "false";
+            notifyBtnText.textContent = notifyBtn.dataset.notSubscribedText || "M'informer par e-mail";
         }
 
         function isSubscribed() {

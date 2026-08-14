@@ -7,6 +7,9 @@
             class="cmb-btn notify-btn"
             data-activity-id="{{ $activityId }}"
             data-activity-title="{{ $activityTitle }}"
+            data-not-subscribed-text="M'informer par e-mail"
+            data-subscribed-text="Inscrit(e) aux notifications"
+            data-subscribed="false"
             title="Tenez-vous informé des mises à jour de cette activité par e-mail"
             aria-label="Tenez-vous informé des mises à jour de cette activité par e-mail"
     >

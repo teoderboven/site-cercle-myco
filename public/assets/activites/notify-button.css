@@ -60,7 +60,7 @@
 
 .notify-btn-wrapper .status-message-wrapper{
     position: absolute;
-    inset: 0;
+    inset: 5px 0 0 0;
     clip-path: inset(0 0 -999px 0);
 }
 .notify-btn-wrapper .status-message{
@@ -75,9 +75,9 @@
     padding: 7px;
     box-sizing: border-box;
     text-align: center;
-    transform: translateY(0);
-    opacity: 0;
-    transition: transform 1s, opacity 1s;
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition: transform 1.1s, visibility 1.1s;
 }
 .notify-btn-wrapper .status-message.error{
     background-color: var(--cmb-red);
@@ -94,5 +94,5 @@
 }
 .notify-btn-wrapper .status-message.revealed{
     transform: translateY(100%);
-    opacity: 1;
+    visibility: visible;
 }
