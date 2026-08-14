@@ -6,9 +6,11 @@
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     // storage keys
-    const storageEmailKey = 'user_email';
     const storageSubscriberKey = 'subscriber';
     const storageSubscribedActivityIdsKey = 'subscribed_activity_ids';
+
+    // error messages
+    const errorEmailPromptCancelledMessage = 'email_prompt_cancelled';
 
     // global state variables
     let pendingEmailPromise = null;
@@ -75,7 +77,7 @@
      */
     function handleModalClose() {
         if (pendingEmailPromise) {
-            pendingEmailPromise.reject(new Error('email_prompt_cancelled'));
+            pendingEmailPromise.reject(new Error(errorEmailPromptCancelledMessage));
             pendingEmailPromise = null;
         }
     }
@@ -91,7 +93,6 @@
         const email = formData.get('subscription-mail');
 
         if (pendingEmailPromise) {
-            localStorage.setItem(storageEmailKey, email);
             pendingEmailPromise.resolve(email);
             pendingEmailPromise = null;
         } else {
@@ -124,7 +125,7 @@
                 .then(email => sendSubscriptionRequest(email, activityId))
                 .then(handleSubscriptionResponse)
                 .catch(err => {
-                    if (err.message !== 'email_prompt_cancelled') {
+                    if (err.message !== errorEmailPromptCancelledMessage) {
                         console.error(err.message);
                         displayStatus('Une erreur est survenue lors de l\'inscription.', true);
                     }
@@ -137,8 +138,10 @@
             sendUnsubscriptionRequest(activityId)
                 .then(handleUnsubscribeResponse)
                 .catch(err => {
-                    console.error(err.message);
-                    displayStatus('Une erreur est survenue lors de la désinscription.', true);
+                    if (err.message !== errorEmailPromptCancelledMessage) {
+                        console.error(err.message);
+                        displayStatus('Une erreur est survenue lors de la désinscription.', true);
+                    }
                 })
                 .finally(() => setLoadingComplete());
         }
@@ -150,8 +153,8 @@
                 setCachedSubscriber(response.subscriber);
             }
             else {
-                if(response.errors?.email){
-                    clearCachedEmail();
+                if (response.errors?.email) {
+                    clearCachedSubscriber();
                 }
                 displayStatus(Object.values(response.errors).flat().join('\n'), true);
             }
@@ -232,15 +235,15 @@
 
     // storage helpers
     /**
-     * Retrieves the user email from local storage or opens a prompt modal if not cached.
+     * Retrieves the user email from local storage subscriber data or opens a prompt modal if not cached.
      * @param {boolean} [forcePrompt=false] - If true, forces the modal to open even if the email is cached.
      * @returns {Promise<string>} A promise that resolves with the user email address.
      */
     function getUserMail(forcePrompt = false) {
         if (!forcePrompt) {
-            const cachedEmail = localStorage.getItem(storageEmailKey);
-            if (cachedEmail) {
-                return Promise.resolve(cachedEmail);
+            const subscriber = getCachedSubscriber();
+            if (subscriber?.email) {
+                return Promise.resolve(subscriber.email);
             }
         }
 
@@ -250,12 +253,12 @@
         });
     }
 
-    function clearCachedEmail() {
-        localStorage.removeItem(storageEmailKey);
-    }
-
     function setCachedSubscriber(subscriber) {
         localStorage.setItem(storageSubscriberKey, JSON.stringify(subscriber));
+    }
+
+    function clearCachedSubscriber() {
+        localStorage.removeItem(storageSubscriberKey);
     }
 
     function getCachedSubscriber() {
