@@ -130,12 +130,15 @@
 
     /**
      * Retrieves the user email from local storage or opens a prompt modal if not cached.
+     * @param {boolean} [forcePrompt=false] - If true, forces the modal to open even if the email is cached.
      * @returns {Promise<string>} A promise that resolves with the user email address.
      */
-    function getUserMail() {
-        const cachedEmail = localStorage.getItem('user_email');
-        if (cachedEmail) {
-            return Promise.resolve(cachedEmail);
+    function getUserMail(forcePrompt = false) {
+        if (!forcePrompt) {
+            const cachedEmail = localStorage.getItem('user_email');
+            if (cachedEmail) {
+                return Promise.resolve(cachedEmail);
+            }
         }
 
         return new Promise((resolve, reject) => {
