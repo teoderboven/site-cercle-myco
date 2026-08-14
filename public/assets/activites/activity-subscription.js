@@ -5,18 +5,105 @@
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    mailForm.addEventListener('submit', handleMailFormSubmit);
-    document.querySelectorAll(".notify-btn-wrapper").forEach(initNotifyButton);
-    subscriptionMailModal.querySelectorAll(".close-btn").forEach(registerMailModalCloseListener);
-    subscriptionMailModal.addEventListener('close', handleModalClose);
+    // storage keys
+    const storageEmailKey = 'user_email';
+    const storageSubscriberKey = 'subscriber';
+    const storageSubscribedActivityIdsKey = 'subscribed_activity_ids';
 
     // global state variables
     let pendingEmailPromise = null;
     let activeActivityTitle = null;
 
+    // event listeners registration
+    mailForm.addEventListener('submit', handleMailFormSubmit);
+    document.querySelectorAll(".notify-btn-wrapper").forEach(initNotifyButton);
+    subscriptionMailModal.querySelectorAll(".close-btn").forEach(registerMailModalCloseListener);
+    subscriptionMailModal.addEventListener('close', handleModalClose);
+
+    window.addEventListener('storage', (event) => {
+        if (event.key === storageSubscribedActivityIdsKey) {
+            syncSubscribedButtons();
+        }
+    });
+
+    // initial UI state synchronization
+    syncSubscribedButtons();
+
+    // ui and modal handling
+    /**
+     * Updates the UI state of a notification button.
+     * @param {HTMLElement} notifyBtn - The notification button element.
+     * @param {boolean} isSubscribed - Subscription status to reflect.
+     */
+    function updateButtonState(notifyBtn, isSubscribed) {
+        const notifyBtnText = notifyBtn.querySelector(".notify-text");
+        notifyBtn.dataset.subscribed = isSubscribed ? "true" : "false";
+        notifyBtnText.textContent = isSubscribed
+            ? (notifyBtn.dataset.subscribedText || "Inscrit(e) aux notifications")
+            : (notifyBtn.dataset.notSubscribedText || "M'informer par e-mail");
+    }
+
+    /**
+     * Synchronizes the display state of all notification buttons based on local storage.
+     */
+    function syncSubscribedButtons() {
+        const cachedIds = getCachedSubscribedActivityIds();
+
+        document.querySelectorAll(".notify-btn-wrapper").forEach(btnWrapper => {
+            const notifyBtn = btnWrapper.querySelector(".notify-btn");
+            const activityId = notifyBtn.dataset.activityId;
+
+            updateButtonState(notifyBtn, cachedIds.includes(activityId));
+        });
+    }
+
+    function registerMailModalCloseListener(closeBtn) {
+        closeBtn.addEventListener("click", closeMailModal);
+    }
+
+    function openMailModal() {
+        mailModalActivityTitleElement.innerText = activeActivityTitle;
+        subscriptionMailModal.showModal();
+    }
+
+    function closeMailModal() {
+        subscriptionMailModal.close();
+    }
+
+    /**
+     * Handles the email modal cancellation or closure and rejects the pending request.
+     */
+    function handleModalClose() {
+        if (pendingEmailPromise) {
+            pendingEmailPromise.reject(new Error('email_prompt_cancelled'));
+            pendingEmailPromise = null;
+        }
+    }
+
+    /**
+     * Processes the mail form submission from the modal and resolves the pending email request.
+     * @param {SubmitEvent} event - The form submission event object.
+     */
+    function handleMailFormSubmit(event) {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const email = formData.get('subscription-mail');
+
+        if (pendingEmailPromise) {
+            localStorage.setItem(storageEmailKey, email);
+            pendingEmailPromise.resolve(email);
+            pendingEmailPromise = null;
+        } else {
+            console.error('No pending email promise to resolve.');
+        }
+
+        closeMailModal();
+    }
+
+    // button component logic
     function initNotifyButton(btnWrapper) {
         const notifyBtn = btnWrapper.querySelector(".notify-btn");
-        const notifyBtnText = btnWrapper.querySelector(".notify-text");
         const statusMessage = btnWrapper.querySelector(".status-message");
 
         const activityId = notifyBtn.dataset.activityId;
@@ -81,13 +168,13 @@
         }
 
         function setSubscribed() {
-            notifyBtn.dataset.subscribed = "true";
-            notifyBtnText.textContent = notifyBtn.dataset.subscribedText || "Inscrit(e) aux notifications";
+            updateButtonState(notifyBtn, true);
+            addCachedSubscribedActivityId(activityId);
         }
 
         function setUnsubscribed() {
-            notifyBtn.dataset.subscribed = "false";
-            notifyBtnText.textContent = notifyBtn.dataset.notSubscribedText || "M'informer par e-mail";
+            updateButtonState(notifyBtn, false);
+            removeCachedSubscribedActivityId(activityId);
         }
 
         function isSubscribed() {
@@ -124,7 +211,7 @@
             } else {
                 statusMessage.textContent = msg;
             }
-            statusMessage.setAttribute("title", msg)
+            statusMessage.setAttribute("title", msg);
 
             statusMessage.classList.add(revealedClass);
             if (isError) {
@@ -143,32 +230,7 @@
         }
     }
 
-    function registerMailModalCloseListener(closeBtn) {
-        closeBtn.addEventListener("click", closeMailModal)
-    }
-
-    function openMailModal() {
-        mailModalActivityTitleElement.innerText = activeActivityTitle;
-        subscriptionMailModal.showModal();
-    }
-
-    function closeMailModal() {
-        subscriptionMailModal.close();
-    }
-
-    /**
-     * Handles the email modal cancellation or closure and rejects the pending request.
-     */
-    function handleModalClose() {
-        if (pendingEmailPromise) {
-            pendingEmailPromise.reject(new Error('email_prompt_cancelled'));
-            pendingEmailPromise = null;
-        }
-    }
-
-    const storageEmailKey = 'user_email';
-    const storageSubscriberKey = 'subscriber';
-
+    // storage helpers
     /**
      * Retrieves the user email from local storage or opens a prompt modal if not cached.
      * @param {boolean} [forcePrompt=false] - If true, forces the modal to open even if the email is cached.
@@ -201,27 +263,29 @@
         return subscriber ? JSON.parse(subscriber) : null;
     }
 
-    /**
-     * Processes the mail form submission from the modal and resolves the pending email request.
-     * @param {SubmitEvent} event - The form submission event object.
-     */
-    function handleMailFormSubmit(event) {
-        event.preventDefault();
-
-        const formData = new FormData(event.target);
-        const email = formData.get('subscription-mail');
-
-        if (pendingEmailPromise) {
-            localStorage.setItem(storageEmailKey, email);
-            pendingEmailPromise.resolve(email);
-            pendingEmailPromise = null;
-        } else {
-            console.error('No pending email promise to resolve.');
-        }
-
-        closeMailModal();
+    function getCachedSubscribedActivityIds() {
+        const activityIds = localStorage.getItem(storageSubscribedActivityIdsKey);
+        return activityIds ? JSON.parse(activityIds) : [];
     }
 
+    function addCachedSubscribedActivityId(activityId) {
+        const activityIds = getCachedSubscribedActivityIds();
+        if (!activityIds.includes(activityId)) {
+            activityIds.push(activityId);
+            localStorage.setItem(storageSubscribedActivityIdsKey, JSON.stringify(activityIds));
+        }
+    }
+
+    function removeCachedSubscribedActivityId(activityId) {
+        const activityIds = getCachedSubscribedActivityIds();
+        const index = activityIds.indexOf(activityId);
+        if (index !== -1) {
+            activityIds.splice(index, 1);
+            localStorage.setItem(storageSubscribedActivityIdsKey, JSON.stringify(activityIds));
+        }
+    }
+
+    // api helpers
     function sendNotificationApi(activityId, method, body) {
         return fetch(`/api/activity/${activityId}/notifications`, {
             method: method,
