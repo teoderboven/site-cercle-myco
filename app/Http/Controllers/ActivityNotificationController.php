@@ -31,10 +31,10 @@ class ActivityNotificationController extends Controller{
     ) {}
 
     /**
-     * Register a subscriber to an activity reminder subscription.
+     * Register a subscriber to an activity notification subscription.
      *
      * @param Request $req The incoming HTTP request containing email and activity parameters.
-     * @param Activity $activity The activity for which the reminder subscription is being registered.
+     * @param Activity $activity The activity for which the notification subscription is being registered.
      * @return JsonResponse JSON response with subscription status and subscriber details (201 Created or 409 Conflict).
      *
      * @throws ValidationException If request validation fails.
@@ -65,7 +65,7 @@ class ActivityNotificationController extends Controller{
             return response()->json([
                 'success' => false,
                 'reminderAlreadyExists' => true,
-                'message' => __('subscription.reminderAlreadyExists', ['email' => $subscriber->email]),
+                'message' => __('subscription.subscriptionToActivityAlreadyExists', ['email' => $subscriber->email]),
                 'subscriber' => $subscriber->only(['id', 'email', 'unsubscribe_token']),
             ], 409);
         }
@@ -83,9 +83,56 @@ class ActivityNotificationController extends Controller{
 
         return response()->json([
             'success' => true,
-            'message' => __('subscription.registered', ['email' => $subscriber->email]),
+            'message' => __('subscription.registeredToActivity', ['email' => $subscriber->email]),
             'subscriber' => $subscriber->only(['id', 'email', 'unsubscribe_token']),
         ], 201);
+    }
+
+    /**
+     * Unregister a subscriber from an activity notification subscription.
+     *
+     * @param Request $req The incoming HTTP request containing subscriber details.
+     * @param Activity $activity The activity for which the notification subscription is being unregistered.
+     * @return JsonResponse JSON response with unregistration status (200 OK or 404 Not Found).
+     *
+     * @throws ValidationException If request validation fails.
+     */
+    public function unregister(Request $req, Activity $activity): JsonResponse
+    {
+        $validated = $req->validate([
+            'subscriber'                   => ['required', 'array'],
+            'subscriber.email'             => ['required', 'email'],
+            'subscriber.id'                => ['required', 'uuid'],
+            'subscriber.unsubscribe_token' => ['required', 'string'],
+        ]);
+
+        $subscriberData = $validated['subscriber'];
+
+        $subscriber = MailSubscriber::where('id', $subscriberData['id'])
+            ->where('email', $subscriberData['email'])
+            ->where('unsubscribe_token', $subscriberData['unsubscribe_token'])
+            ->firstOr(function () {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('subscription.subscriberNotFound'),
+                ], 404);
+            });
+
+        $subscription = ActivityNotificationSubscription::where('activity_id', $activity->id)
+            ->where('subscriber_id', $subscriber->id)
+            ->firstOr(function () {
+                return response()->json([
+                    'success' => false,
+                    'message' => __('subscription.notSubscribedToActivity'),
+                ], 404);
+            });
+
+        $subscription->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => __('subscription.unregisteredToActivity', ['email' => $subscriber->email]),
+        ]);
     }
 
 	/**

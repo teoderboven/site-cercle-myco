@@ -45,19 +45,37 @@
         }
 
         function handleUnsubscribeRequest() {
-
+            setLoading();
+            sendUnsubscriptionRequest(activityId)
+                .then(handleUnsubscribeResponse)
+                .catch(err => {
+                    console.error(err.message);
+                    displayStatus('Une erreur est survenue lors de la désinscription.', true);
+                })
+                .finally(() => setLoadingComplete());
         }
 
         function handleSubscriptionResponse(response) {
             if (response.success || response.reminderAlreadyExists) {
                 displayStatus(response.message);
                 setSubscribed();
+                setCachedSubscriber(response.subscriber);
             }
             else {
                 if(response.errors?.email){
                     clearCachedEmail();
                 }
                 displayStatus(Object.values(response.errors).flat().join('\n'), true);
+            }
+        }
+
+        function handleUnsubscribeResponse(response) {
+            if (response.success) {
+                displayStatus(response.message);
+                setUnsubscribed();
+            }
+            else {
+                throw new Error(Object.values(response.errors).flat().join('\n'));
             }
         }
 
@@ -146,6 +164,7 @@
     }
 
     const storageEmailKey = 'user_email';
+    const storageSubscriberKey = 'subscriber';
 
     /**
      * Retrieves the user email from local storage or opens a prompt modal if not cached.
@@ -170,6 +189,15 @@
         localStorage.removeItem(storageEmailKey);
     }
 
+    function setCachedSubscriber(subscriber) {
+        localStorage.setItem(storageSubscriberKey, JSON.stringify(subscriber));
+    }
+
+    function getCachedSubscriber() {
+        const subscriber = localStorage.getItem(storageSubscriberKey);
+        return subscriber ? JSON.parse(subscriber) : null;
+    }
+
     /**
      * Processes the mail form submission from the modal and resolves the pending email request.
      * @param {SubmitEvent} event - The form submission event object.
@@ -181,7 +209,7 @@
         const email = formData.get('subscription-mail');
 
         if (pendingEmailPromise) {
-            localStorage.setItem('user_email', email);
+            localStorage.setItem(storageEmailKey, email);
             pendingEmailPromise.resolve(email);
             pendingEmailPromise = null;
         } else {
@@ -200,6 +228,19 @@
                 'X-CSRF-Token': csrfToken
             },
             body: JSON.stringify({ email })
+        })
+        .then(response => response.json());
+    }
+
+    function sendUnsubscriptionRequest(activityId) {
+        return fetch(`/api/activity/${activityId}/notifications`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-Token': csrfToken
+            },
+            body: JSON.stringify({ subscriber: getCachedSubscriber() })
         })
         .then(response => response.json());
     }
