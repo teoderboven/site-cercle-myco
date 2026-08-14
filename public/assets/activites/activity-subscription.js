@@ -21,29 +21,31 @@
         const activityId = notifyBtn.dataset.activityId;
         const activityTitle = notifyBtn.dataset.activityTitle;
 
-
         notifyBtn.addEventListener("click", handleNotifyBtnClick);
 
         function handleNotifyBtnClick(e) {
             activeActivityTitle = activityTitle;
 
+            if (!isSubscribed()) handleSubscriptionRequest();
+            else handleUnsubscribeRequest();
+        }
+
+        function handleSubscriptionRequest() {
+            setLoading();
             getUserMail()
-                .then(email => {
-                    setLoading();
-                    sendSubscriptionRequest(email, activityId)
-                        .then(handleSubscriptionResponse)
-                        .catch(err => {
-                            console.error(err.message);
-                            displayStatus('Une erreur est survenue lors de l\'inscription.', true);
-                        })
-                        .finally(() => setLoadingComplete());
-                })
+                .then(email => sendSubscriptionRequest(email, activityId))
+                .then(handleSubscriptionResponse)
                 .catch(err => {
                     if (err.message !== 'email_prompt_cancelled') {
                         console.error(err.message);
                         displayStatus('Une erreur est survenue lors de l\'inscription.', true);
                     }
-                });
+                })
+                .finally(() => setLoadingComplete());
+        }
+
+        function handleUnsubscribeRequest() {
+
         }
 
         function handleSubscriptionResponse(response) {
@@ -52,6 +54,9 @@
                 setSubscribed();
             }
             else {
+                if(response.errors?.email){
+                    clearCachedEmail();
+                }
                 displayStatus(Object.values(response.errors).flat().join('\n'), true);
             }
         }
@@ -140,6 +145,8 @@
         }
     }
 
+    const storageEmailKey = 'user_email';
+
     /**
      * Retrieves the user email from local storage or opens a prompt modal if not cached.
      * @param {boolean} [forcePrompt=false] - If true, forces the modal to open even if the email is cached.
@@ -147,7 +154,7 @@
      */
     function getUserMail(forcePrompt = false) {
         if (!forcePrompt) {
-            const cachedEmail = localStorage.getItem('user_email');
+            const cachedEmail = localStorage.getItem(storageEmailKey);
             if (cachedEmail) {
                 return Promise.resolve(cachedEmail);
             }
@@ -157,6 +164,10 @@
             pendingEmailPromise = { resolve, reject };
             openMailModal();
         });
+    }
+
+    function clearCachedEmail() {
+        localStorage.removeItem(storageEmailKey);
     }
 
     /**
