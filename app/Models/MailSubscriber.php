@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
  * @property string $id The unique identifier for the subscriber.
  * @property string $email The email address of the subscriber.
  * @property bool $unsubscribed Indicates whether the subscriber has unsubscribed from notifications.
- * @property string $unsubscribe_token A unique token used for unsubscribing.
+ * @property string $token A unique token used for authenticate the subscriber.
  */
 class MailSubscriber extends Model{
 	
@@ -32,7 +32,7 @@ class MailSubscriber extends Model{
 	];
 
 	protected $hidden = [
-		'unsubscribe_token'
+		'token'
 	];
 
 	public $timestamps = false;
@@ -44,7 +44,7 @@ class MailSubscriber extends Model{
 	public function getUnsubscribeLink(Activity $activity = null){
 		$routeParameters = [
 			'subId' => $this->id,
-			'token' => $this->unsubscribe_token,
+			'token' => $this->token,
 		];
 	
 		if($activity){
@@ -60,14 +60,14 @@ class MailSubscriber extends Model{
 		$this->save();
 	}
 	
-	public function assignUnsubscribeToken(): void{
-		$this->unsubscribe_token = Str::random(32);
+	public function assignToken(): void{
+		$this->token = Str::random(32);
 	}
 
 	protected static function booted(){
 		static::creating(function($subscriber){
-			if(empty($subscriber->unsubscribe_token)) {
-				$subscriber->assignUnsubscribeToken();
+			if(empty($subscriber->token)) {
+				$subscriber->assignToken();
 			}
 		});
 	}

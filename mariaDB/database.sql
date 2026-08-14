@@ -62,7 +62,7 @@ create table activity_links(
 create table mail_subscribers(
 	id char(36) not null,
 	email varchar(255) unique not null,
-	unsubscribe_token char(32) not null,
+	token char(32) not null,
 	unsubscribed bool default false,
 
 	primary key(id)

@@ -66,7 +66,7 @@ class ActivityNotificationController extends Controller{
                 'success' => false,
                 'reminderAlreadyExists' => true,
                 'message' => __('subscription.subscriptionToActivityAlreadyExists', ['email' => $subscriber->email]),
-                'subscriber' => $subscriber->only(['id', 'email', 'unsubscribe_token']),
+                'subscriber' => $subscriber->only(['id', 'email', 'token']),
             ], 409);
         }
 
@@ -84,7 +84,7 @@ class ActivityNotificationController extends Controller{
         return response()->json([
             'success' => true,
             'message' => __('subscription.registeredToActivity', ['email' => $subscriber->email]),
-            'subscriber' => $subscriber->only(['id', 'email', 'unsubscribe_token']),
+            'subscriber' => $subscriber->only(['id', 'email', 'token']),
         ], 201);
     }
 
@@ -100,17 +100,17 @@ class ActivityNotificationController extends Controller{
     public function unregister(Request $req, Activity $activity): JsonResponse
     {
         $validated = $req->validate([
-            'subscriber'                   => ['required', 'array'],
-            'subscriber.email'             => ['required', 'email'],
-            'subscriber.id'                => ['required', 'uuid'],
-            'subscriber.unsubscribe_token' => ['required', 'string'],
+            'subscriber'       => ['required', 'array'],
+            'subscriber.id'    => ['required', 'uuid'],
+            'subscriber.email' => ['required', 'email'],
+            'subscriber.token' => ['required', 'string'],
         ]);
 
         $subscriberData = $validated['subscriber'];
 
         $subscriber = MailSubscriber::where('id', $subscriberData['id'])
             ->where('email', $subscriberData['email'])
-            ->where('unsubscribe_token', $subscriberData['unsubscribe_token'])
+            ->where('token', $subscriberData['token'])
             ->firstOr(function () {
                 return response()->json([
                     'success' => false,
