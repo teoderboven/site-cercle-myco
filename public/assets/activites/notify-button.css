@@ -46,7 +46,8 @@
     mask-image: url("/assets/common/img/svg/check.svg");
 }
 .notify-btn:not(.loading) .icon.loading,
-.notify-btn:not(.validate) .icon.check{
+.notify-btn:not([data-subscribed="true"]) .icon.check,
+.notify-btn[data-subscribed="true"].loading .icon.check{
     display: none;
 }
 .notify-btn .icon.mail{

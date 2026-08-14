@@ -29,14 +29,14 @@
 
             getUserMail()
                 .then(email => {
-                    displayLoading();
+                    setLoading();
                     sendSubscriptionRequest(email, activityId)
                         .then(handleSubscriptionResponse)
                         .catch(err => {
                             console.error(err.message);
                             displayStatus('Une erreur est survenue lors de l\'inscription.', true);
                         })
-                        .finally(() => hideLoading());
+                        .finally(() => setLoadingComplete());
                 })
                 .catch(err => {
                     if (err.message !== 'email_prompt_cancelled') {
@@ -49,23 +49,35 @@
         function handleSubscriptionResponse(response) {
             if (response.success || response.reminderAlreadyExists) {
                 displayStatus(response.message);
-                displayValidationCheck();
+                setSubscribed();
             }
             else {
                 displayStatus(Object.values(response.errors).flat().join('\n'), true);
             }
         }
 
-        function displayValidationCheck() {
-            notifyBtn.classList.add('validate');
+        function setSubscribed() {
+            notifyBtn.dataset.subscribed = "true";
         }
 
-        function displayLoading() {
+        function setUnsubscribed() {
+            notifyBtn.dataset.subscribed = "false";
+        }
+
+        function isSubscribed() {
+            return notifyBtn.dataset.subscribed === "true";
+        }
+
+        function setLoading() {
             notifyBtn.classList.add('loading');
+            notifyBtn.disabled = true;
+            notifyBtn.setAttribute('aria-busy', 'true');
         }
 
-        function hideLoading() {
+        function setLoadingComplete() {
             notifyBtn.classList.remove('loading');
+            notifyBtn.disabled = false;
+            notifyBtn.removeAttribute('aria-busy');
         }
 
         let messageTimeout;
