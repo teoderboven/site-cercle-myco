@@ -7,9 +7,23 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Hidehalo\Nanoid;
 use Carbon\Carbon;
 
+/**
+ * Class Activity
+ *
+ * Represents an activity that users can participate in.
+ *
+ * @property string $id The unique identifier for the activity.
+ * @property string $title The title of the activity.
+ * @property string $guide_id The ID of the guide associated with the activity.
+ * @property Carbon $start_date The start date and time of the activity.
+ * @property int $duration The duration of the activity in minutes.
+ * @property string|null $description A description of the activity.
+ * @property string|null $meeting_point The ID of the meeting point for the activity.
+ * @property bool $visible Indicates whether the activity is visible to users.
+ * @property bool $cancelled Indicates whether the activity has been cancelled.
+ * @property string|null $updated_by The ID of the user who last updated the activity.
+ */
 class Activity extends Model{
-
-	use HasUuids;
 
 	protected $table = "activities";
 
@@ -130,6 +144,6 @@ class Activity extends Model{
 	}
 
 	public function subscriptions(){
-		return $this->hasMany(ActivityReminderSubscription::class, 'activity_id');
+		return $this->hasMany(ActivityNotificationSubscription::class, 'activity_id');
 	}
 }

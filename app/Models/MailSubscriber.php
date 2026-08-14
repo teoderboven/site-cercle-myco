@@ -6,6 +6,16 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
+/**
+ * Class MailSubscriber
+ *
+ * Represents a subscriber to email notifications.
+ *
+ * @property string $id The unique identifier for the subscriber.
+ * @property string $email The email address of the subscriber.
+ * @property bool $unsubscribed Indicates whether the subscriber has unsubscribed from notifications.
+ * @property string $unsubscribe_token A unique token used for unsubscribing.
+ */
 class MailSubscriber extends Model{
 	
 	use HasUuids;
@@ -28,7 +38,7 @@ class MailSubscriber extends Model{
 	public $timestamps = false;
 
 	public function subscriptions(){
-		return $this->hasMany(ActivityReminderSubscription::class, 'subscriber_id');
+		return $this->hasMany(ActivityNotificationSubscription::class, 'subscriber_id');
 	}
 
 	public function getUnsubscribeLink(Activity $activity = null){

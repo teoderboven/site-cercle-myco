@@ -5,7 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Thiagoprz\CompositeKey\HasCompositeKey;
 
-class ActivityReminderSubscription extends Model{
+/**
+ * Class ActivityNotificationSubscription
+ *
+ * Represents a subscription of a mail subscriber to notifications for a specific activity.
+ *
+ * @property int $activity_id The ID of the associated activity.
+ * @property string $subscriber_id The ID of the associated mail subscriber.
+ * @property bool $first_reminder_sent Indicates whether the first reminder has been sent.
+ * @property bool $second_reminder_sent Indicates whether the second reminder has been sent.
+ */
+class ActivityNotificationSubscription extends Model{
 
 	use HasCompositeKey;
 

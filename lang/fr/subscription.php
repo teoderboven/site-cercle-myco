@@ -13,6 +13,6 @@ return [
 	*/
 
 	'registered' => ':email recevra les notifications de cette activité',
-    'reminderAlreadyExists' => ':email est déjà inscrit pour recevoir les notifications de cette activité',
+    'reminderAlreadyExists' => ':email était déjà inscrit pour recevoir les notifications de cette activité',
 
 ];

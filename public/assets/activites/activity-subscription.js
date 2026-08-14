@@ -181,13 +181,14 @@
     }
 
     function sendSubscriptionRequest(email, activityId) {
-        return fetch(`/activites/rappel`, {
+        return fetch(`/api/activity/${activityId}/notifications`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json',
                 'X-CSRF-Token': csrfToken
             },
-            body: JSON.stringify({ email, activity: activityId })
+            body: JSON.stringify({ email })
         })
         .then(response => response.json());
     }

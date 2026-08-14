@@ -68,27 +68,7 @@ create table mail_subscribers(
 	primary key(id)
 );
 
-create table activity_reminder_subscriptions(
-	activity_id char(16) not null,
-	subscriber_id char(36) not null,
-	first_reminder_sent bool default false,
-	second_reminder_sent bool default false,
-
-	primary key(activity_id, subscriber_id),
-	foreign key(activity_id) references activities(id) on delete cascade,
-	foreign key(subscriber_id) references mail_subscribers(id) on delete cascade
-);
-
-create table mail_subscribers(
-	id char(36) not null,
-	email varchar(255) unique not null,
-	unsubscribe_token char(32) not null,
-	unsubscribed bool default false,
-
-	primary key(id)
-);
-
-create table activity_reminder_subscriptions(
+create table activity_notification_subscriptions(
 	activity_id char(16) not null,
 	subscriber_id char(36) not null,
 	first_reminder_sent bool default false,
@@ -103,8 +83,8 @@ CREATE INDEX idx_activity_start_date ON activities(start_date);
 CREATE INDEX idx_activity_guide ON activities(guide_id);
 CREATE INDEX idx_activity_meeting_point ON activities(meeting_point);
 CREATE INDEX idx_links_activity_id ON activity_links(activity_id);
-CREATE INDEX idx_reminder_activity_id ON activity_reminder_subscriptions(activity_id);
-CREATE INDEX idx_reminder_subscriber_id ON activity_reminder_subscriptions(subscriber_id);
+CREATE INDEX idx_notification_activity_id ON activity_notification_subscriptions(activity_id);
+CREATE INDEX idx_notification_subscriber_id ON activity_notification_subscriptions(subscriber_id);
 
 DELIMITER $$
 

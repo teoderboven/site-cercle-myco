@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
-use App\Models\ActivityReminderSubscription;
+use App\Models\ActivityNotificationSubscription;
 use App\Models\MailSubscriber as Subscriber;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -94,7 +94,7 @@ class SubscriptionController extends Controller{
 	 * Delete an activity subscription entry
 	 */
 	private function unsubscribeFromActivity(string $subscriberId, string $activityId){
-		ActivityReminderSubscription::where('activity_id', $activityId)
+		ActivityNotificationSubscription::where('activity_id', $activityId)
 		->where('subscriber_id', $subscriberId)
 		->delete();
 	}
@@ -106,7 +106,7 @@ class SubscriptionController extends Controller{
 		$subscriber->unsubscribed = true;
 		$subscriber->save();
 
-		ActivityReminderSubscription::where('subscriber_id', $subscriber->id)->delete();
+		ActivityNotificationSubscription::where('subscriber_id', $subscriber->id)->delete();
 	}
 
 }
