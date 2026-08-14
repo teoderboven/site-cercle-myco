@@ -1,14 +1,14 @@
 (function(){
-    const subscriptionModal = document.getElementById("subscription-modal");
-    const subscriptionForm = document.getElementById("subscription-form");
-    const modalActivityTitleElement = subscriptionModal.querySelector(".activity-title");
+    const subscriptionMailModal = document.getElementById("subscription-mail-modal");
+    const mailForm = document.getElementById("subscription-mail-form");
+    const mailModalActivityTitleElement = subscriptionMailModal.querySelector(".activity-title");
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    subscriptionForm.addEventListener('submit', handleSubscriptionFormSubmit);
+    mailForm.addEventListener('submit', handleMailFormSubmit);
     document.querySelectorAll(".notify-btn-wrapper").forEach(initNotifyButton);
-    subscriptionModal.querySelectorAll(".close-btn").forEach(registerModalCloseListener);
-    subscriptionModal.addEventListener('close', handleModalClose);
+    subscriptionMailModal.querySelectorAll(".close-btn").forEach(registerMailModalCloseListener);
+    subscriptionMailModal.addEventListener('close', handleModalClose);
 
     // global state variables
     let pendingEmailPromise = null;
@@ -105,17 +105,17 @@
         }
     }
 
-    function registerModalCloseListener(closeBtn) {
+    function registerMailModalCloseListener(closeBtn) {
         closeBtn.addEventListener("click", closeMailModal)
     }
 
     function openMailModal() {
-        modalActivityTitleElement.innerText = activeActivityTitle;
-        subscriptionModal.showModal();
+        mailModalActivityTitleElement.innerText = activeActivityTitle;
+        subscriptionMailModal.showModal();
     }
 
     function closeMailModal() {
-        subscriptionModal.close();
+        subscriptionMailModal.close();
     }
 
     /**
@@ -145,10 +145,10 @@
     }
 
     /**
-     * Processes the subscription form submission from the modal and resolves the pending email request.
+     * Processes the mail form submission from the modal and resolves the pending email request.
      * @param {SubmitEvent} event - The form submission event object.
      */
-    function handleSubscriptionFormSubmit(event) {
+    function handleMailFormSubmit(event) {
         event.preventDefault();
 
         const formData = new FormData(event.target);

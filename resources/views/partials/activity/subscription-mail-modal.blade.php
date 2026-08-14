@@ -1,5 +1,5 @@
-<dialog id="subscription-modal">
-    <form action="" id="subscription-form">
+<dialog class="modal" id="subscription-mail-modal">
+    <form method="dialog" class="modal-content" id="subscription-mail-form">
         <h1>S'inscrire aux notifications de l'activité <span class="activity-title"></span></h1>
 
         <div class="input-container">
@@ -15,9 +15,9 @@
             Vous pouvez vous désinscrire à tout moment via le lien présent en bas de chaque e-mail.
         </p>
 
-        <div class="bottom-btn-container">
-            <button type="button" class="close-btn">Annuler</button>
+        <div class="bottom-btn-container display-row">
             <button type="submit" class="cmb-btn">S'inscrire</button>
+            <button type="button" class="close-btn">Annuler</button>
         </div>
     </form>
 </dialog>

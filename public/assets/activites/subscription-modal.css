@@ -1,105 +1,55 @@
-#subscription-modal{
-    margin: auto;
-    overflow: visible;
-    max-height: 100vh;
-}
-#subscription-modal::backdrop{
-    background-color: #00000030;
-    backdrop-filter: blur(1px);
-}
-#subscription-form{
-    background-color: var(--basic-bg-color);
-    border-radius: calc(21px + var(--cmb-btn-border-radius));
-    box-shadow: 1px 3px 10px #00000080;
-    padding: 21px;
-    max-width: 725px;
-}
-#subscription-form h1{
-    font-size: 1.7rem;
-    padding: 0 7px;
-    text-align: center;
-}
-#subscription-form h1 .activity-title{
+#subscription-mail-form h1 .activity-title{
     font-size: inherit;
     font-weight: inherit;
     font-style: italic;
 }
-#subscription-form h1 .activity-title:before,
-#subscription-form h1 .activity-title:after{
+#subscription-mail-form h1 .activity-title:before,
+#subscription-mail-form h1 .activity-title:after{
     content: '"';
 }
-#subscription-form .tip-container{
+#subscription-mail-form .tip-container{
     margin: 15px 0;
 }
-#subscription-form .tip{
+#subscription-mail-form .tip{
     box-shadow: 1px 3px 10px #00000080;
 }
-#subscription-form .input-container{
+#subscription-mail-form .input-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
     margin: 20px auto 35px;
 }
-#subscription-form .input-container input{
+#subscription-mail-form .input-container input{
     border: solid 1px #777;
     border-radius: 7px;
 }
-#subscription-form .input-container input[type=email]{
+#subscription-mail-form .input-container input[type=email]{
     display: block;
     padding: 10px;
     width: 450px;
     max-width: 100%;
 }
-#subscription-form label{
+#subscription-mail-form label{
     display: inline-block;
 }
-#subscription-form .text-sm{
+#subscription-mail-form .text-sm{
     margin: 10px 0;
     font-size: .9rem;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 }
 
-#subscription-form .bottom-btn-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: 7px;
-}
-#subscription-form button{
-    padding: 10px 23px;
-}
-#subscription-form .bottom-btn-container .close-btn{
-    border: solid 2px var(--cmb-red);
-    color: var(--cmb-red);
-    border-radius: var(--cmb-btn-border-radius);
-    transition: background-color .3s,
-                border .3s,
-                color .3s;
-}
-#subscription-form .bottom-btn-container .close-btn:hover{
-    border-color: #00000000;
-    background-color: var(--cmb-red);
-    color: var(--cmb-btn-complementary-color);
-}
-
 @media screen and (max-width: 720px) {
-    #subscription-form h1{
+    #subscription-mail-form h1{
         padding: 0;
     }
-    #subscription-form .input-container .subscription-mail-wrapper,
-    #subscription-form .input-container input[type=email]{
+    #subscription-mail-form .input-container .subscription-mail-wrapper,
+    #subscription-mail-form .input-container input[type=email]{
         width: 100%;
     }
-    #subscription-form .input-container input[type=email],
-    #subscription-form .bottom-btn-container button{
+    #subscription-mail-form .input-container input[type=email],
+    #subscription-mail-form .bottom-btn-container button{
         font-size: max(1em, 23px);
-    }
-    #subscription-form .bottom-btn-container{
-        flex-direction: column-reverse;
-    }
-    #subscription-form .bottom-btn-container button{
-        width: 100%;
     }
 }

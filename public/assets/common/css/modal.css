@@ -1,0 +1,58 @@
+dialog.modal{
+    margin: auto;
+    overflow: visible;
+    max-height: 100vh;
+}
+dialog.modal::backdrop{
+    background-color: #00000030;
+    backdrop-filter: blur(1px);
+}
+dialog.modal > .modal-content{
+    background-color: var(--basic-bg-color);
+    border-radius: calc(21px + var(--cmb-btn-border-radius));
+    box-shadow: 1px 3px 10px #00000080;
+    padding: 21px;
+    max-width: 725px;
+}
+.modal-content h1{
+    font-size: 1.7rem;
+    padding: 0 7px;
+    text-align: center;
+}
+.modal-content .bottom-btn-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 7px;
+}
+.modal-content .bottom-btn-container.display-row{
+    flex-direction: row-reverse;
+}
+.modal-content .bottom-btn-container button{
+    padding: 8px 19px;
+    border: solid 2px transparent;
+}
+.modal-content .bottom-btn-container .close-btn{
+    border: solid 2px var(--cmb-red);
+    color: var(--cmb-red);
+    border-radius: var(--cmb-btn-border-radius);
+    transition: background-color .3s,
+    border .3s,
+    color .3s;
+}
+.modal-content .bottom-btn-container .close-btn:hover,
+.modal-content .bottom-btn-container .close-btn:focus{
+    border-color: transparent;
+    background-color: var(--cmb-red);
+    color: var(--cmb-white);
+}
+
+@media screen and (max-width: 720px) {
+    .modal-content .bottom-btn-container{
+        flex-direction: column;
+    }
+    .modal-content .bottom-btn-container button{
+        font-size: max(1em, 23px);
+        width: 100%;
+    }
+}

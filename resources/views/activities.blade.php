@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="/assets/common/css/calendar.css">
 	<link rel="stylesheet" href="/assets/common/css/tip.css">
 	<link rel="stylesheet" href="/assets/common/css/stib.css">
+	<link rel="stylesheet" href="/assets/common/css/modal.css">
 	<link rel="stylesheet" href="/assets/activites/activities.css">
 	<link rel="stylesheet" href="/assets/activites/list.css">
 	<link rel="stylesheet" href="/assets/activites/activity-item.css">
@@ -29,7 +30,7 @@
 @endsection
 
 @section('dialogs')
-	@include('partials.activity.subscription-dialog')
+	@include('partials.activity.subscription-mail-modal')
 @endsection
 
 @section('main-content')
