@@ -219,29 +219,24 @@
         closeMailModal();
     }
 
-    function sendSubscriptionRequest(email, activityId) {
+    function sendNotificationApi(activityId, method, body) {
         return fetch(`/api/activity/${activityId}/notifications`, {
-            method: 'POST',
+            method: method,
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'X-CSRF-Token': csrfToken
             },
-            body: JSON.stringify({ email })
+            body: JSON.stringify(body)
         })
         .then(response => response.json());
     }
 
+    function sendSubscriptionRequest(email, activityId) {
+        return sendNotificationApi(activityId, 'POST', { email });
+    }
+
     function sendUnsubscriptionRequest(activityId) {
-        return fetch(`/api/activity/${activityId}/notifications`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-CSRF-Token': csrfToken
-            },
-            body: JSON.stringify({ subscriber: getCachedSubscriber() })
-        })
-        .then(response => response.json());
+        return sendNotificationApi(activityId, 'DELETE', { subscriber: getCachedSubscriber() });
     }
 })();
