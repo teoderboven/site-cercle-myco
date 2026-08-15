@@ -8,3 +8,6 @@ Route::post('/activity/{activity}/notifications', [ActivityNotificationControlle
     ->name('activity.notifications.store');
 Route::delete('/activity/{activity}/notifications', [ActivityNotificationController::class, 'unregister'])
     ->name('activity.notifications.destroy');
+
+Route::get('/subscriber/{subscriber}/activities', [ActivityNotificationController::class, 'getSubscribedActivities'])
+    ->name('subscriber.activities.index');

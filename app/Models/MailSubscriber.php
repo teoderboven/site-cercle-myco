@@ -41,6 +41,10 @@ class MailSubscriber extends Model{
 		return $this->hasMany(ActivityNotificationSubscription::class, 'subscriber_id');
 	}
 
+    public function activities(){
+        return $this->belongsToMany(Activity::class, 'activity_notification_subscriptions', 'subscriber_id', 'activity_id');
+    }
+
 	public function getUnsubscribeLink(Activity $activity = null){
 		$routeParameters = [
 			'subId' => $this->id,

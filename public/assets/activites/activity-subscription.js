@@ -22,14 +22,14 @@
     subscriptionMailModal.querySelectorAll(".close-btn").forEach(registerMailModalCloseListener);
     subscriptionMailModal.addEventListener('close', handleModalClose);
 
-    window.addEventListener('storage', (event) => {
-        if (event.key === storageSubscribedActivityIdsKey) {
+    window.addEventListener('storage', (e) => {
+        if (e.key === storageSubscribedActivityIdsKey) {
             syncSubscribedButtons();
         }
     });
 
     // initial UI state synchronization
-    syncSubscribedButtons();
+    document.addEventListener('DOMContentLoaded', updateAndSyncActivitySubscriptions);
 
     // ui and modal handling
     /**
@@ -56,6 +56,14 @@
             const activityId = notifyBtn.dataset.activityId;
 
             updateButtonState(notifyBtn, cachedIds.includes(activityId));
+        });
+    }
+
+    function updateAndSyncActivitySubscriptions() {
+        getActivitySubscriptions().then((subscriptions) => {
+            setCachedSubscribedActivityIds(subscriptions);
+        }).finally(() => {
+            syncSubscribedButtons();
         });
     }
 
@@ -150,7 +158,13 @@
             if (response.success || response.reminderAlreadyExists) {
                 displayStatus(response.message);
                 setSubscribed();
-                setCachedSubscriber(response.subscriber);
+
+                const previousSubscriber = getCachedSubscriber();
+                if (JSON.stringify(previousSubscriber) !== JSON.stringify(response.subscriber)) {
+                    console.log("Subscriber data has changed. Updating cached subscriber and syncing activity subscriptions.");
+                    setCachedSubscriber(response.subscriber);
+                    updateAndSyncActivitySubscriptions();
+                }
             }
             else {
                 if (response.errors?.email) {
@@ -288,6 +302,10 @@
         }
     }
 
+    function setCachedSubscribedActivityIds(activityIds) {
+        localStorage.setItem(storageSubscribedActivityIdsKey, JSON.stringify(activityIds));
+    }
+
     // api helpers
     function sendNotificationApi(activityId, method, body) {
         return fetch(`/api/activity/${activityId}/notifications`, {
@@ -308,5 +326,25 @@
 
     function sendUnsubscriptionRequest(activityId) {
         return sendNotificationApi(activityId, 'DELETE', { subscriber: getCachedSubscriber() });
+    }
+
+    /**
+     * Fetches the list of activities the current subscriber is subscribed to.
+     * @returns {Promise<any>|Promise<Awaited<*[]>>} A promise that resolves with an array of activity IDs the subscriber is subscribed to.
+     */
+    function getActivitySubscriptions() {
+        const subscriber = getCachedSubscriber();
+        if (!subscriber) {
+            return Promise.resolve([]);
+        }
+
+        return fetch(`api/subscriber/${subscriber.id}/activities`, {
+            headers: {
+                'X-Subscriber-Token': subscriber.token,
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => data.activityIds || []);
     }
 })();

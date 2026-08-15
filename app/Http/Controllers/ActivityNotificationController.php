@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Mail\ActivityReminder;
+use App\Http\Requests\GetActivityNotificationSubscriptionsRequest;
 use App\Models\Activity;
 use App\Models\ActivityNotificationSubscription;
 use App\Models\MailSubscriber;
@@ -132,6 +133,31 @@ class ActivityNotificationController extends Controller{
         return response()->json([
             'success' => true,
             'message' => __('subscription.unregisteredToActivity', ['email' => $subscriber->email]),
+        ]);
+    }
+
+    /**
+     * Get the list of activities a subscriber is subscribed to.
+     *
+     * @param GetActivityNotificationSubscriptionsRequest $req The incoming HTTP request containing subscriber details.
+     * @param MailSubscriber $subscriber The subscriber for whom the activity subscriptions are being retrieved.
+     * @return JsonResponse JSON response with the list of subscribed activities (200 OK or 401 Unauthorized).
+     */
+    public function getSubscribedActivities(GetActivityNotificationSubscriptionsRequest $req, MailSubscriber $subscriber): JsonResponse
+    {
+        // token transmitted via X-Subscriber-Token header
+        if (!hash_equals($subscriber->token, $req->validated('token'))) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+
+        $activityIds = $subscriber->activities()->pluck('activities.id');
+
+        return response()->json([
+            'success' => true,
+            'activityIds' => $activityIds,
         ]);
     }
 
