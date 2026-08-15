@@ -33,8 +33,8 @@ dialog.modal > .modal-content{
     border: solid 2px transparent;
 }
 .modal-content .bottom-btn-container .close-btn{
-    border: solid 2px var(--cmb-red);
-    color: var(--cmb-red);
+    border: solid 2px var(--cmb-gray);
+    color: var(--cmb-gray);
     border-radius: var(--cmb-btn-border-radius);
     transition: background-color .3s,
     border .3s,
@@ -43,13 +43,13 @@ dialog.modal > .modal-content{
 .modal-content .bottom-btn-container .close-btn:hover,
 .modal-content .bottom-btn-container .close-btn:focus{
     border-color: transparent;
-    background-color: var(--cmb-red);
+    background-color: var(--cmb-gray);
     color: var(--cmb-white);
 }
 
 @media screen and (max-width: 720px) {
     .modal-content .bottom-btn-container{
-        flex-direction: column;
+        flex-direction: column !important;
     }
     .modal-content .bottom-btn-container button{
         font-size: max(1em, 23px);

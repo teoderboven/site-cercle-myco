@@ -7,11 +7,11 @@
 #subscription-mail-form h1 .activity-title:after{
     content: '"';
 }
-#subscription-mail-form .tip-container{
-    margin: 15px 0;
+#subscription-mail-form .modal-description-container{
+    margin: 20px auto;
 }
-#subscription-mail-form .tip{
-    box-shadow: 1px 3px 10px #00000080;
+#subscription-mail-form .modal-description-container .highlight{
+    font-weight: 575;
 }
 #subscription-mail-form .input-container{
     display: flex;
@@ -35,7 +35,7 @@
 }
 #subscription-mail-form .text-sm{
     margin: 10px 0;
-    font-size: .9rem;
+    font-size: .8rem;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 }
