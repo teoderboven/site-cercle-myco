@@ -38,11 +38,27 @@
      * @param {boolean} isSubscribed - Subscription status to reflect.
      */
     function updateButtonState(notifyBtn, isSubscribed) {
+        const email = getCachedSubscriber()?.email;
+        const {
+            subscribedText = "Inscrit(e) aux notifications",
+            notSubscribedText = "M'informer par e-mail",
+            defaultLabel = "S'abonner aux notifications",
+            subscribedLabel: templateLabel,
+            emailMarker
+        } = notifyBtn.dataset; // Destructure dataset with default values
+
+        const baseLabel = (templateLabel && emailMarker && email)
+            ? templateLabel.replace(emailMarker, email)
+            : "Se désabonner des notifications";
+
+        const subscribedLabel = `${baseLabel}\nCliquez pour vous désabonner`;
+
         const notifyBtnText = notifyBtn.querySelector(".notify-text");
         notifyBtn.dataset.subscribed = isSubscribed ? "true" : "false";
-        notifyBtnText.textContent = isSubscribed
-            ? (notifyBtn.dataset.subscribedText || "Inscrit(e) aux notifications")
-            : (notifyBtn.dataset.notSubscribedText || "M'informer par e-mail");
+
+        notifyBtnText.textContent = isSubscribed ? subscribedText : notSubscribedText;
+        notifyBtn.setAttribute('title', isSubscribed ? subscribedLabel : defaultLabel);
+        notifyBtn.setAttribute('aria-label', isSubscribed ? subscribedLabel : defaultLabel);
     }
 
     /**
