@@ -11,7 +11,10 @@
 @endsection
 
 @section('additions')
-	{{-- google meta & canonical --}}
+	@if (config('services.google.site_verification'))
+		<meta name="google-site-verification" content="{{ config('services.google.site_verification') }}">
+	@endif
+	<link rel="canonical" href="{{ config('app.canonical_url') }}">
 	<meta name="keywords" content="Cercle de Mycologie de Bruxelles, cmb, Mycologie Belgique, Sorties mycologiques, Champignons Bruxelles, champi bruxelles, champi bxl, bxl, champi, bruxelles, belgique, mycologie, mycologique, champignon, Forêts de Bruxelles, Réserves naturelles Belgique, Cueillette de champignons, Excursions mycologiques, Brabant Wallon, Flore et faune de Belgique, Activités de plein air Bruxelles, Identification de champignons, Éducation environnementale, Mycologie amateur, Sciences naturelles Belgique, Activités écologiques Bruxelles, Cercle scientifique Belgique, Mycologues belges, Botanique Bruxelles">
 	<link rel="preload" as="image" href="/images/excursions/ViroinvalGr03.JPG">
 	<link rel="preload" as="image" href="/images/parasites/P.%20albescens.jpg">
