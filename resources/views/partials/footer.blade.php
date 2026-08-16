@@ -14,6 +14,15 @@
 					</ul>
 					
 				</section>
+				<section id="assistance" class="text">
+					<h2>Assistance</h2>
+					<p>
+						Pour toute question ou problème technique, vous pouvez contacter l'administrateur du site à l'adresse suivante&nbsp;:
+						<a href="mailto:support&#64;&#99;&#101;&#114;&#99;&#108;&#101;&#45;&#109;&#121;&#99;&#111;&#45;&#98;&#114;&#117;&#120;&#101;&#108;&#108;&#101;&#115;&#46;&#98;&#101;">
+							support&#64;&#99;&#101;&#114;&#99;&#108;&#101;&#45;&#109;&#121;&#99;&#111;&#45;&#98;&#114;&#117;&#120;&#101;&#108;&#108;&#101;&#115;&#46;&#98;&#101;
+						</a>
+					</p>
+				</section>
 				<!-- Description du CMB - affiché par défaut -->
 				<div class="text">
 					<img src="/assets/common/img/icon256.png" alt="" id="cmbLogo">
@@ -37,6 +46,7 @@
 				</div>
 				<div id="legal">
 					<a href="#credit">Crédits</a>
+					<a href="#assistance">Assistance</a>
 				</div>
 			</div>
 			<span id="copy">&copy; {{ date('Y') }} - Cercle de Mycologie de Bruxelles</span>
