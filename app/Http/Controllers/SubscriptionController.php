@@ -45,7 +45,7 @@ class SubscriptionController extends Controller{
 			]);
 
 			$subscriber = Subscriber::where('id', $subId)
-			->where('unsubscribe_token', $token)
+			->where('token', $token)
 			->firstOrFail();
 
 			$scope = $req->query('scope', 'global');

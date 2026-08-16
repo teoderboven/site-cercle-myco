@@ -63,6 +63,13 @@ class ActivityNotificationController extends Controller{
             ->exists();
 
         if ($subscriptionExists) {
+            Log::alert(sprintf(
+                'Subscriber %s (ID: %s) attempted to register for activity %s (ID: %s) but is already subscribed.',
+                $subscriber->email,
+                $subscriber->id,
+                $activity->name,
+                $activity->id
+            ));
             return response()->json([
                 'success' => false,
                 'reminderAlreadyExists' => true,
