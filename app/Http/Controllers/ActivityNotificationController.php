@@ -119,21 +119,27 @@ class ActivityNotificationController extends Controller{
         $subscriber = MailSubscriber::where('id', $subscriberData['id'])
             ->where('email', $subscriberData['email'])
             ->where('token', $subscriberData['token'])
-            ->firstOr(function () {
-                return response()->json([
-                    'success' => false,
-                    'message' => __('subscription.subscriberNotFound'),
-                ], 404);
-            });
+            ->first();
+
+        if(!$subscriber) {
+            return response()->json([
+                'success' => false,
+                'reminderNotFound' => true,
+                'message' => __('subscription.subscriberNotFound'),
+            ], 404);
+        }
 
         $subscription = ActivityNotificationSubscription::where('activity_id', $activity->id)
             ->where('subscriber_id', $subscriber->id)
-            ->firstOr(function () {
-                return response()->json([
-                    'success' => false,
-                    'message' => __('subscription.notSubscribedToActivity'),
-                ], 404);
-            });
+            ->first();
+
+        if (!$subscription) {
+            return response()->json([
+                'success' => false,
+                'reminderNotFound' => true,
+                'message' => __('subscription.notSubscribedToActivity'),
+            ], 404);
+        }
 
         $subscription->delete();
 

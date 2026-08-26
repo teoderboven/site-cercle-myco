@@ -196,7 +196,12 @@
                 setUnsubscribed();
             }
             else {
-                throw new Error(Object.values(response.errors).flat().join('\n'));
+                if(response.reminderNotFound) {
+                    displayStatus(response.message, true);
+                    setUnsubscribed();
+                } else {
+                    throw new Error(Object.values(response.errors).flat().join('\n'));
+                }
             }
         }
 
