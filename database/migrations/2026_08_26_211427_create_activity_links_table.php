@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('activity_links', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->char('activity_id', 16)->index('activity_id');
+            $table->char('activity_id', 16)->index('activity_links_activity_id_index');
             $table->string('text');
             $table->string('url');
 
-            $table->unique(['activity_id', 'url'], 'activity_id_2');
-            $table->index(['activity_id'], 'idx_links_activity_id');
+            $table->unique(['activity_id', 'url'], 'activity_links_activity_id_url_unique');
         });
     }
 
