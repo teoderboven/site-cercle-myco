@@ -85,7 +85,6 @@
             <div class="activity-actions">
                 @foreach($activity->links as $link)
                     @include('partials.activity.link-button', ['url' => $link->url, 'text' => $link->text])
-                    @include('partials.activity.link-button', ['url' => $link->url, 'text' => $link->text])
                 @endforeach
                 @if(!$hideActivity)
                     @include("partials.activity.notify-button", ["activityId" => $activity->id, "activityTitle" => $activity->title])
