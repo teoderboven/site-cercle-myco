@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 
-class ActivityReminder extends Mailable{
+class ActivityReminderMail extends Mailable{
 
 	public function __construct(public Activity $activity, public Subscriber $subscriber)
 	{}
