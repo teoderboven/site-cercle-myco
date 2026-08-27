@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->char('id', 16)->primary();
             $table->string('title');
-            $table->integer('guide_id');
+            $table->unsignedInteger('guide_id');
             $table->dateTime('start_date')->index('idx_activity_start_date');
             $table->smallInteger('duration');
             $table->text('description');
-            $table->integer('meeting_point');
+            $table->unsignedInteger('meeting_point');
             $table->boolean('cancelled')->default(false);
             $table->boolean('visible')->default(true);
             $table->timestamp('created_time')->nullable()->useCurrent();
             $table->timestamp('updated_time')->useCurrentOnUpdate()->nullable()->useCurrent();
-            $table->integer('updated_by');
+            $table->unsignedInteger('updated_by');
         });
     }
 

@@ -20,7 +20,7 @@ return new class extends Migration
 
         Schema::table('activity_notification_subscriptions', function (Blueprint $table) {
             // add new primary key auto-incrementing column
-            $table->integer('id', true)->first();
+            $table->increments('id')->first();
         });
 
         Schema::table('activity_notification_subscriptions', function (Blueprint $table) {

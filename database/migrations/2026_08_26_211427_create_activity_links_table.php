@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('activity_links', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->increments('id');
             $table->char('activity_id', 16)->index('activity_links_activity_id_index');
             $table->string('text');
             $table->string('url');
