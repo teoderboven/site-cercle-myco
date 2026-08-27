@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class ActivityNotificationSubscription
@@ -31,4 +32,9 @@ class ActivityNotificationSubscription extends Model{
     {
 		return $this->belongsTo(MailSubscriber::class, 'subscriber_id');
 	}
+
+    public function logs(): HasMany
+    {
+        return $this->hasMany(ActivityNotificationLog::class, 'subscription_id');
+    }
 }
