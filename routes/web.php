@@ -16,12 +16,12 @@ Route::get('/excursions', function () {
 })->name('excursions');
 // TODO: exclude cookie middleware for /excursions/xx/abc
 //		 ->withoutMiddleware([CheckCookiesAccepted::class])
-
-// Tasks (web cron) routes
-
-Route::middleware('throttle:3,1')->group(function () { // limit at 3 access/minute
-    Route::get('/tasks/send-activity-reminder-mails/{key}', [ActivityNotificationController::class, 'secureSendReminders']);
-});
+//
+//// Tasks (web cron) routes
+//
+//Route::middleware('throttle:3,1')->group(function () { // limit at 3 access/minute
+//    Route::get('/tasks/send-activity-reminder-mails/{key}', [ActivityNotificationController::class, 'secureSendReminders']);
+//});
 
 // Special routes
 
