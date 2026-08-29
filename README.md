@@ -121,12 +121,12 @@ The default value is 7 (one week).
 
 ### Specify a cron secret key
 
-**CRON_SECRET_KEY** is a secret key used to secure HTTP requests sent to the application by external services such as cron-job.org. This key is essential to validate incoming calls to specific routes that are performing scheduled tasks (for example, sending reminder emails). It ensures that only genuine requests from authorized sources can trigger these tasks.
+**CRON_SECRET_TOKEN** is a token used to secure HTTP requests sent to the application by external services such as cron-job.org. This key is essential to validate incoming calls to specific routes that are performing scheduled tasks (for example, sending reminder emails). It ensures that only genuine requests from authorized sources can trigger these tasks.
 
-The key is used in URLs so *it must be well formatted to avoid any errors*.
+The token must be provided by the header `X-Cron-Token`.
 
 ```properties
-CRON_SECRET_KEY={aKeyYouDefine}
+CRON_SECRET_TOKEN=aKeyYouDefine
 ```
 
 The key has no default value. ***It has to be configured***

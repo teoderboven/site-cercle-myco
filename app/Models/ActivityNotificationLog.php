@@ -31,6 +31,8 @@ class ActivityNotificationLog extends Model
         ];
     }
 
+    public $timestamps = false;
+
     public function subscription() : BelongsTo
     {
         return $this->belongsTo(ActivityNotificationSubscription::class, 'subscription_id');

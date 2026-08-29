@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\ActivityNotificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SubscriptionController;
 
@@ -16,12 +15,6 @@ Route::get('/excursions', function () {
 })->name('excursions');
 // TODO: exclude cookie middleware for /excursions/xx/abc
 //		 ->withoutMiddleware([CheckCookiesAccepted::class])
-//
-//// Tasks (web cron) routes
-//
-//Route::middleware('throttle:3,1')->group(function () { // limit at 3 access/minute
-//    Route::get('/tasks/send-activity-reminder-mails/{key}', [ActivityNotificationController::class, 'secureSendReminders']);
-//});
 
 // Special routes
 
