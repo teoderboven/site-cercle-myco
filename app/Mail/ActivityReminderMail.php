@@ -21,8 +21,8 @@ class ActivityReminderMail extends Mailable{
 
 	public function content(): Content{
 		return new Content(
-			view: 'mails.activities.reminder',
-			text: 'mails.activities.reminder_plain'
+			view: 'mails.activities.reminder.reminder',
+			text: 'mails.activities.reminder.reminder_plain'
 		);
 	}
 }
