@@ -4,7 +4,7 @@
 
 @push('styles')
 	<style>
-		{!! file_get_contents(resource_path('css/reminder-emails.css')) !!}
+		{!! file_get_contents(resource_path('mail/css/reminder-emails.css')) !!}
 	</style>
 @endpush
 

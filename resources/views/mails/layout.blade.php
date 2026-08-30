@@ -9,7 +9,7 @@
 	<meta name="format-detection" content="email=no">
 	<title>@yield('pageTitle')</title>
 	<style>
-		{!! file_get_contents(resource_path('css/mail-main.css')) !!}
+		{!! file_get_contents(resource_path('mail/css/mail-main.css')) !!}
 	</style>
 	{{-- add other inline style --}}
 	@stack('styles')
