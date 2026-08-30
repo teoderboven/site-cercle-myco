@@ -17,6 +17,10 @@
 	<script src="/assets/activites/list.js"></script>
 @endpushonce
 
+@pushonce('assets')
+	@vite(['resources/scss/activities.scss', 'resources/js/activities.ts'])
+@endpushonce
+
 @pushonce('additions')
 	<link rel="preload" as="image" href="/images/excursions/ViroinvalGr03.JPG">
 	<link rel="preload" as="image" type="image/svg+xml" href="/assets/common/img/svg/loading-spinner.svg">
