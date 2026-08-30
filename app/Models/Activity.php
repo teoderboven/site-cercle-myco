@@ -135,6 +135,10 @@ class Activity extends Model{
 		return $this->belongsTo(MeetingPoint::class, 'meeting_point');
 	}
 
+    public function materials(){
+        return $this->belongsToMany(Material::class);
+    }
+
 	public function updatedBy(){
 		return $this->belongsTo(User::class, 'updated_by');
 	}
