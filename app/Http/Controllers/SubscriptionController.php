@@ -62,12 +62,12 @@ class SubscriptionController extends Controller{
 				], 200);
 			}else{
 				if($scope == 'activity'){
-					return view('unsubscribeActivity', [
+					return view('pages.unsubscribe.unsubscribeActivity', [
 						'subscriberEmail' => $subscriber->email,
 						'activity' => Activity::find($req->query('activity'))
 					]);
 				}else{
-					return view('unsubscribeGlobal', [
+					return view('pages.unsubscribe.unsubscribeGlobal', [
 						'subscriberEmail' => $subscriber->email,
 					]);
 				}

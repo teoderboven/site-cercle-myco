@@ -34,7 +34,8 @@
 		<div class="description-wrapper">
 			<div class="description-container">
 				<p>
-					Le Cercle de Mycologie de Bruxelles organise chaque année des excursions sur le terrain permettant d'explorer la diversité des champignons de la région bruxelloise.<br>
+					Le Cercle de Mycologie de Bruxelles organise chaque année des excursions sur le terrain permettant
+					d'explorer la diversité des champignons de la région bruxelloise.<br>
 					Les détails des excursions à venir sont disponibles ci-dessous.
 				</p>
 			</div>
@@ -48,10 +49,18 @@
 				<img src="/assets/common/img/svg/warning.svg" alt="">
 				<div>
 					<p>
-						Les excursions suivantes ne sont pas organisées par le Cercle de Mycologie de Bruxelles mais par le <a href="https://guidenaturebrabant.wordpress.com/" target="_blank" class="ital">Cercle des Guides-Nature du Brabant</a> (voir aussi: <a href="https://cercles-naturalistes.be" target="_blank" class="ital">Cercles des Naturalistes de Belgique</a>).
+						Les excursions suivantes ne sont pas organisées par le Cercle de Mycologie de Bruxelles mais par le
+						<a href="https://guidenaturebrabant.wordpress.com/" target="_blank" class="ital">
+							Cercle des Guides-Nature du Brabant
+						</a>
+						(voir aussi:
+						<a href="https://cercles-naturalistes.be" target="_blank" class="ital">
+							Cercles des Naturalistes de Belgique
+						</a>).
 					</p>
 					<p>
-						Si une inscription est demandée, rendez vous sur <a href="https://cercles-naturalistes.be/cercles/cercle-cnb-bruxelles" target="_blank">la page des activités du CNB</a>.
+						Si une inscription est demandée, rendez vous sur
+						<a href="https://cercles-naturalistes.be/cercles/cercle-cnb-bruxelles" target="_blank">la page des activités du CNB</a>.
 					</p>
 				</div>
 			</div>
@@ -60,8 +69,9 @@
 		@php
 			$atLeastOneActivity = count($groupedActivities) != 0
 		@endphp
-		@if($hasNextActivity && !$groupedActivities[0]->activities[0]->isNext) {{-- only display if next activity is not the first --}}
-			@include("partials.activity.go-to-next-button")
+		@if($hasNextActivity && !$groupedActivities[0]->activities[0]->isNext)
+			{{-- only display if next activity is not the first --}}
+			@include("pages.activities.partials.go-to-next-button")
 		@endif
 		<div id="timeline-container" data-season-year="{{ $currentSeasonYear }}">
 			<div class="timeline">
@@ -75,7 +85,7 @@
 			</div>
 			<div class="activities-container">
 				@if(!$hasNextActivity)
-					@include("partials.activity.season-end-message", ['atLeastOneActivity' => $atLeastOneActivity, 'currentSeasonYear' => $currentSeasonYear])
+					@include("pages.activities.partials.season-end-message", ['atLeastOneActivity' => $atLeastOneActivity, 'currentSeasonYear' => $currentSeasonYear])
 				@endif
 
 				@foreach($groupedActivities as $activityGroup)
@@ -86,7 +96,8 @@
 					<section class="month">
 						<header>
 							<h3>
-								<time datetime="{{ $activityGroup->datetime }}" class="month-name" title="{{ $activityGroup->month }} {{ $activityGroup->year }}">
+								<time datetime="{{ $activityGroup->datetime }}" class="month-name"
+								      title="{{ $activityGroup->month }} {{ $activityGroup->year }}">
 									{{ $activityGroup->month }}
 									@if(!$sameYear)
 										{{ $activityGroup->year }}
@@ -97,14 +108,14 @@
 						<ol class="activities-list">
 							@foreach($activityGroup->activities as $activity)
 								<li class="activity-wrapper" @if($activity->isNext) id="next" @endif>
-									@include("partials.activity.activity", ['activity' => $activity, 'sameYear' => $sameYear])
+									@include("pages.activities.partials.activity", ['activity' => $activity, 'sameYear' => $sameYear])
 								</li>
 							@endforeach
 						</ol>
 					</section>
 				@endforeach
 				@if(!$hasNextActivity)
-					@include("partials.activity.end-indicator", ['atLeastOneActivity' => $atLeastOneActivity, 'currentSeasonYear' => $currentSeasonYear])
+					@include("pages.activities.partials.end-indicator", ['atLeastOneActivity' => $atLeastOneActivity, 'currentSeasonYear' => $currentSeasonYear])
 				@endif
 			</div>
 		</div>

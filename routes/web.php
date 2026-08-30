@@ -11,7 +11,7 @@ Route::get('/', [HomeController::class, 'display'])->name('home');
 Route::get('/activites', [ActivityController::class, 'publicDisplay'])->name('activities');
 Route::get('/activites/{id}', [ActivityController::class, 'redirectToHash'])->name('activityDetail');
 Route::get('/excursions', function () {
-	return view('excursions');
+	return view('pages.excursions.index');
 })->name('excursions');
 // TODO: exclude cookie middleware for /excursions/xx/abc
 //		 ->withoutMiddleware([CheckCookiesAccepted::class])
@@ -22,9 +22,9 @@ Route::get('/unsubscribe/{subId}/{token}', [SubscriptionController::class, 'unsu
 
 // Simple views routes
 
-Route::view('/publications', 'publications')->name('publications');
-Route::view('/devenir-membre', 'member')->name('member');
-Route::view('/champi-parasite-des-plantes', 'champi-parasite')->name('parasites');
+Route::view('/publications', 'pages.publications.index')->name('publications');
+Route::view('/devenir-membre', 'pages.member.index')->name('member');
+Route::view('/champi-parasite-des-plantes', 'pages.champi-parasite.index')->name('parasites');
 
 Route::view('/error/403', 'errors.403');
 Route::view('/error/404', 'errors.404');

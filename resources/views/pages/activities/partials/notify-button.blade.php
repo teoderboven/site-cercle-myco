@@ -9,7 +9,7 @@
 @endpushonce
 
 @pushonce('dialogs')
-    @include('partials.activity.subscription-mail-modal')
+    @include('pages.activities.partials.subscription-mail-modal')
 @endpushonce
 
 {{-- Component notification button --}}

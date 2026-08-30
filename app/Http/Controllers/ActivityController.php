@@ -49,7 +49,7 @@ class ActivityController extends Controller{
 
 		$groupedActivities = $this->groupActivitiesByMonth($activities);
 
-		return view('activities', [
+		return view('pages.activities.index', [
 			'currentSeasonYear' => $seasonYear,
 			'groupedActivities' => $groupedActivities,
 			'hasNextActivity' => $hasNextActivity

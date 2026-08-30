@@ -15,6 +15,6 @@ class HomeController extends Controller{
 			$nextActivity = null; // don't display next
 		}
 
-		return view('home', ['nextActivity' => $nextActivity]);
+		return view('pages.home.index', ['nextActivity' => $nextActivity]);
 	}
 }

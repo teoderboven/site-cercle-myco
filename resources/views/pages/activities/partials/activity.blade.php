@@ -18,7 +18,8 @@
         ])
          id="{{ $activity->id }}">
     <div class="pre-wrapper">
-        <time class="date" datetime="{{ $activity->start_date->format('Y-m-d\Th:i') }}" title="{{ $activity->start_date->translatedFormat('d F Y') }}">
+        <time class="date" datetime="{{ $activity->start_date->format('Y-m-d\Th:i') }}"
+              title="{{ $activity->start_date->translatedFormat('d F Y') }}">
             @if(!$sameYear)
                 {{ $activity->start_date->translatedFormat('l d/m/Y') }}
             @else
@@ -90,10 +91,10 @@
             </div>
             <div class="activity-actions">
                 @foreach($activity->links as $link)
-                    @include('partials.activity.link-button', ['url' => $link->url, 'text' => $link->text])
+                    @include('pages.activities.partials.link-button', ['url' => $link->url, 'text' => $link->text])
                 @endforeach
                 @if(!$hideActivity)
-                    @include("partials.activity.notify-button", ["activityId" => $activity->id, "activityTitle" => $activity->title])
+                    @include("pages.activities.partials.notify-button", ["activityId" => $activity->id, "activityTitle" => $activity->title])
                 @endif
             </div>
         </div>
