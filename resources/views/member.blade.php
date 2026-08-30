@@ -4,14 +4,14 @@
 
 @section('description', 'Découvrez comment devenir membre du Cercle de Mycologie de Bruxelles')
 
-@section('stylesheets')
+@pushonce('styles')
 	<link rel="stylesheet" href="/assets/membre/member.css">
 	<link rel="stylesheet" href="/assets/common/css/tip.css">
-@endsection
+@endpushonce
 
-@section('additions')
+@pushonce('additions')
 	<link rel="preload" as="image" href="/images/Tremella%20mesenterica.JPG">
-@endsection
+@endpushonce
 
 @section('main-content')
 	<header>

@@ -2,15 +2,15 @@
 
 @section('description', 'Découvrez le Cercle de Mycologie de Bruxelles, où les passionnés des champignons se réunissent pour partager leurs connaissances et rester à jour avec les dernières actualités fongiques. Rejoignez notre communauté et explorez le monde mystérieux des champignons !')
 
-@section('stylesheets')
+@pushonce('styles')
 	<link rel="stylesheet" href="/assets/home/home.css">
-@endsection
+@endpushonce
 
-@section('scripts')
+@pushonce('scripts')
 	<script src="/assets/home/home.js"></script>
-@endsection
+@endpushonce
 
-@section('additions')
+@pushonce('additions')
 	@if (config('services.google.site_verification'))
 		<meta name="google-site-verification" content="{{ config('services.google.site_verification') }}">
 	@endif
@@ -21,7 +21,7 @@
 	<link rel="preload" as="image" href="/images/parasites/Uromyces%20dactylidis%20sur%20Ranunculus%20ficaria.JPG">
 	<link rel="preload" as="image" href="/images/Flammulina%20velutipes.JPG">
 	<link rel="preload" as="image" href="/images/groupe/gr2.jpg">
-@endsection
+@endpushonce
 
 @section('main-content')
 	<div id="topCarousel">

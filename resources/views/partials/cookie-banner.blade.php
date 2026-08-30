@@ -1,3 +1,7 @@
+@pushonce('scripts')
+	<script src="/assets/common/js/cookie-banner.js"></script>
+@endpushonce
+
 <div id="cookie-banner" style="display:flex;gap:20px;position:fixed;bottom:0;width:100%;background-color:#cfd7ea;padding:10px;text-align:center;z-index:1000;box-shadow:#80808080 0 -5px 20px 0px;align-items:center;justify-content:center;">
 	<p style="color: black">
 		Ce site utilise des cookies pour assurer un bon fonctionnement et vous garantir une navigation sécurisée et confortable.

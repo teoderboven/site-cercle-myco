@@ -4,10 +4,10 @@
 
 @section('description', 'De 2001 à 2010, la Revue du Cercle de Mycologie de Bruxelles était publiée chaque année. Retrouvez ici tous les articles.')
 
-@section('stylesheets')
+@pushonce('styles')
 	<link rel="stylesheet" href="/assets/publications/publications.css">
 	<link rel="stylesheet" href="/assets/common/css/tip.css">
-@endsection
+@endpushonce
 
 @section('main-content')
 	<header>

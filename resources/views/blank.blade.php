@@ -4,17 +4,17 @@
 
 @section('description', '[Blank page]')
 
-@section('stylesheets')
+@pushonce('styles')
 	{{-- stylesheets --}}
-@endsection
+@endpushonce
 
-@section('scripts')
+@pushonce('scripts')
 	{{-- scripts --}}
-@endsection
+@endpushonce
 
-@section('additions') {{-- head other tags | optionnal --}}
+@pushonce('additions') {{-- head other tags | optionnal --}}
 	{{-- meta, link --}}
-@endsection
+@endpushonce
 
 @section('main-content')
 	{{-- hello there --}}

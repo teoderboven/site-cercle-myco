@@ -7,11 +7,11 @@
 @hasSection('description')
 	<meta name="description" content="@yield('description')">
 @endif
-@hasSection('additions')
-	@yield('additions') {{-- google & description meta or canonical link --}}
-@endif
+
+@stack('additions') {{-- additionals meta or links --}}
+
 @hasSection('title')
-	<title>@yield('title') - CMB</title>
+	<title>@yield('title') - Cercle de Mycologie de Bruxelles</title>
 @else
 	<title>Cercle de Mycologie de Bruxelles</title>
 @endif
@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="/assets/common/css/main.css">
 	<link rel="stylesheet" href="/assets/common/css/header.css">
 	<link rel="stylesheet" href="/assets/common/css/footer.css">
-@yield('stylesheets')
+@stack('styles')
 </head>
 <body>
 @includeWhen(config('app.debug'), 'partials.debug')
@@ -35,16 +35,12 @@
 <main>
 @yield('main-content')
 </main>
+
 @include('partials.footer')
 
-@hasSection('dialogs')
-	@yield('dialogs')
-@endif
+@stack('dialogs')
 
 <script src="/assets/common/js/navbar.js"></script>
-@yield('scripts')
-@if($showCookieBanner)
-	<script src="/assets/common/js/cookie-banner.js"></script>
-@endif
+@stack('scripts')
 </body>
 </html>

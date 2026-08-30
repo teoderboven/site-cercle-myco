@@ -4,15 +4,15 @@
 
 @section('description', 'Retrouvez les comptes-rendus des excursions réalisées de 2009 à nos jours.')
 
-@section('stylesheets')
+@pushonce('styles')
 	<link rel="stylesheet" href="/assets/common/css/calendar.css">
 	<link rel="stylesheet" href="/assets/excursions/history.css">
-@endsection
+@endpushonce
 
-@section('scripts')
+@pushonce('scripts')
 	<script src="/assets/common/js/scrollToHash.js"></script>
 	<script src="/assets/excursions/history.js"></script>
-@endsection
+@endpushonce
 
 @section('main-content')
 	<div id="nav-container">

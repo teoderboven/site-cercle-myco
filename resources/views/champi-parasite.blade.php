@@ -4,18 +4,13 @@
 
 @section('description', 'Renseignez-vous sur les champignons parasites des plantes avec une liste déterminée par Arthur Vanderweyen')
 
-@section('stylesheets')
-	<link rel="stylesheet" href="/assets/common/css/images.css">
+@pushonce('styles')
 	<link rel="stylesheet" href="/assets/champi-parasite/parasites.css">
-@endsection
+@endpushonce
 
-@section('scripts')
-	<script src="/assets/common/js/images.js"></script>
-@endsection
-
-@section('additions')
+@pushonce('additions')
 	<link rel="preload" as="image" href="/images/parasites/P.%20albescens.jpg">
-@endsection
+@endpushonce
 
 @section('main-content')
 	<article>

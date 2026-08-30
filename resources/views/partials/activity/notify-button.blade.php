@@ -1,5 +1,17 @@
 @props(['activityId', 'activityTitle'])
 
+@pushonce('styles')
+    <link rel="stylesheet" href="/assets/activites/notify-button.css">
+@endpushonce
+
+@pushonce('scripts')
+    <script src="/assets/activites/activity-subscription.js"></script>
+@endpushonce
+
+@pushonce('dialogs')
+    @include('partials.activity.subscription-mail-modal')
+@endpushonce
+
 {{-- Component notification button --}}
 <div class="notify-btn-wrapper">
     @php

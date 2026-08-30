@@ -1,3 +1,8 @@
+@pushonce('styles')
+    <link rel="stylesheet" href="/assets/common/css/modal.css">
+    <link rel="stylesheet" href="/assets/activites/subscription-modal.css">
+@endpushonce
+
 <dialog class="modal" id="subscription-mail-modal">
     <form method="dialog" class="modal-content" id="subscription-mail-form">
         <h1>S'inscrire aux notifications de l'activité <span class="activity-title"></span></h1>

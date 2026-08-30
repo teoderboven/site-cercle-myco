@@ -1,12 +1,8 @@
 @extends('layouts.default')
 
-@section('stylesheets')
+@pushonce('styles')
 	<link rel="stylesheet" href="/assets/unsubscribe/unsubscribe.css">
-@endsection
-
-@section('scripts')
-	
-@endsection
+@endpushonce
 
 @section('additions')
 	<meta name="robots" content="noindex">

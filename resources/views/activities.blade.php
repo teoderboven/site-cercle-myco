@@ -6,34 +6,23 @@
 
 @section('description', 'Découvrez quelles sont les prochaines activités du Cercle de Mycologie de Bruxelles')
 
-@section('stylesheets')
-	<link rel="stylesheet" href="/assets/common/css/calendar.css">
+@pushonce('styles')
 	<link rel="stylesheet" href="/assets/common/css/tip.css">
-	<link rel="stylesheet" href="/assets/common/css/stib.css">
-	<link rel="stylesheet" href="/assets/common/css/modal.css">
 	<link rel="stylesheet" href="/assets/activites/activities.css">
 	<link rel="stylesheet" href="/assets/activites/list.css">
-	<link rel="stylesheet" href="/assets/activites/activity-item.css">
-	<link rel="stylesheet" href="/assets/activites/notify-button.css">
-	<link rel="stylesheet" href="/assets/activites/subscription-modal.css">
-@endsection
+@endpushonce
 
-@section('scripts')
+@pushonce('scripts')
 	<script src="/assets/common/js/scrollToHash.js"></script>
 	<script src="/assets/activites/list.js"></script>
-	<script src="/assets/activites/activity-subscription.js"></script>
-@endsection
+@endpushonce
 
-@section('additions')
+@pushonce('additions')
 	<link rel="preload" as="image" href="/images/excursions/ViroinvalGr03.JPG">
 	<link rel="preload" as="image" type="image/svg+xml" href="/assets/common/img/svg/loading-spinner.svg">
 	<link rel="preload" as="image" type="image/svg+xml" href="/assets/common/img/svg/check.svg">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-@endsection
-
-@section('dialogs')
-	@include('partials.activity.subscription-mail-modal')
-@endsection
+@endpushonce
 
 @section('main-content')
 	<header>
