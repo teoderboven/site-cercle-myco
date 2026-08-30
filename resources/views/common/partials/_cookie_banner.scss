@@ -1,0 +1,24 @@
+@use '@/scss/abstracts/variables' as *;
+
+#cookie-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: $cmb-lightblue;
+  padding: 10px;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: #80808080 0 -5px 20px 0px;
+
+  p{
+    color: #000;
+  }
+
+  button.cmb-btn {
+    padding: 10px 20px;
+  }
+}

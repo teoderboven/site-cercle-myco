@@ -1,20 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
-html{
-	--scrollbar-color: #9e9e9e;
-	--basic-text-color: #252525;
-	--basic-bg-color: #f0f0f0;
-	--cmb-white: #f7f7f7;
-	--cmb-gray: #555;
-	--cmb-blue: #2e4dc0;
-	--cmb-red: #f62a2a;
-	--cmb-blue-hover: #4d65bd;
-	--cmb-lightblue: #cfd7ea;
-	--cmb-btn-outline-color: #90a4ae;
-	--cmb-btn-padding: 7px;
-	--cmb-btn-padding-large: 14px;
-	--cmb-btn-border-radius: 8px;
-}
 *{
 	margin: 0;
 	padding: 0;
