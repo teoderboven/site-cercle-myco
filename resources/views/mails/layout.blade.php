@@ -20,7 +20,7 @@
 			<tr>
 				<td class="c_top-title">
 					<a href="{{ route('home') }}" target="_blank">
-						<img src="{{ $message->embed(asset('common/img/icon256wt.png')) }}" alt="Cercle de Mycologie de Bruxelles" height="64">
+						<img src="{{ $message->embed(asset('assets/common/img/icon256wt.png')) }}" alt="Cercle de Mycologie de Bruxelles" height="64">
 					</a>
 				</td>
 			</tr>
@@ -34,7 +34,7 @@
 			<tr>
 				<td class="c_footer">
 					<a href="{{ route('home') }}" target="_blank">
-						<img src="{{ $message->embed(asset('common/img/cmb_title.png')) }}" alt="Cercle de Mycologie de Bruxelles" height=28>
+						<img src="{{ $message->embed(asset('assets/common/img/cmb_title.png')) }}" alt="Cercle de Mycologie de Bruxelles" height=28>
 					</a>
 					<p>
 						Cet e-mail a été envoyé à {{ $subscriber->email }}.<br>

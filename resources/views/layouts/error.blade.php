@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="/assets/error/error.css">
 </head>
 <body>
-@includeWhen(config('app.debug'), 'partials.debug')
+@includeWhen(config('app.debug'), 'common.partials.debug')
 	<header>
 		<div>
 			<div id="topTitle">

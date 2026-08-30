@@ -28,7 +28,7 @@
 </head>
 <body>
 @includeWhen(config('app.debug'), 'common.partials.debug')
-@includeWhen($showCookieBanner, 'common.partials.cookie-banner')
+@includeWhen($showCookieBanner, 'common.partials.cookie_banner')
 
 @include('common.partials.header')
 

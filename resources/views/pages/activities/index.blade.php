@@ -108,7 +108,7 @@
 						<ol class="activities-list">
 							@foreach($activityGroup->activities as $activity)
 								<li class="activity-wrapper" @if($activity->isNext) id="next" @endif>
-									@include("pages.activities.partials.activity", ['activity' => $activity, 'sameYear' => $sameYear])
+									@include("pages.activities.partials.activity_item", ['activity' => $activity, 'sameYear' => $sameYear])
 								</li>
 							@endforeach
 						</ol>
