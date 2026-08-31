@@ -1,0 +1,80 @@
+@use '@/scss/components/modal';
+
+#subscription-mail-form {
+  h1 {
+    .activity-title {
+      font-size: inherit;
+      font-weight: inherit;
+      font-style: italic;
+
+      &:before,
+      &:after {
+        content: '"';
+      }
+    }
+  }
+
+  .modal-description-container {
+    margin: 20px auto;
+
+    .highlight {
+      font-weight: 575;
+    }
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 20px auto 35px;
+
+    input {
+      border: solid 1px #777;
+      border-radius: 7px;
+
+      &[type=email] {
+        display: block;
+        padding: 10px;
+        width: 450px;
+        max-width: 100%;
+      }
+    }
+  }
+
+  label {
+    display: inline-block;
+  }
+
+  .text-sm {
+    margin: 10px 0;
+    font-size: .8rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  #subscription-mail-form {
+    h1 {
+      padding: 0;
+    }
+
+    .input-container {
+      .subscription-mail-wrapper,
+      input[type=email] {
+        width: 100%;
+      }
+
+      input[type=email] {
+        font-size: max(1em, 23px);
+      }
+    }
+
+    .bottom-btn-container {
+      button {
+        font-size: max(1em, 23px);
+      }
+    }
+  }
+}

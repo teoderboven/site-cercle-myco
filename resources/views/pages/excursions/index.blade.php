@@ -9,11 +9,6 @@
 	<link rel="stylesheet" href="/assets/excursions/history.css">
 @endpushonce
 
-@pushonce('scripts')
-	<script src="/assets/common/js/scrollToHash.js"></script>
-	<script src="/assets/excursions/history.js"></script>
-@endpushonce
-
 @section('main-content')
 	<div id="nav-container">
 		<nav>

@@ -1,0 +1,74 @@
+@use '@/scss/abstracts/variables' as *;
+
+dialog.modal {
+  margin: auto;
+  overflow: visible;
+  max-height: 100vh;
+
+  &::backdrop {
+    background-color: #00000030;
+    backdrop-filter: blur(1px);
+  }
+
+  > .modal-content {
+    $padding: 21px;
+    background-color: $basic-bg-color;
+    border-radius: calc($padding + $cmb-btn-border-radius);
+    box-shadow: 1px 3px 10px #00000080;
+    padding: $padding;
+    max-width: 725px;
+  }
+}
+
+.modal-content {
+  h1 {
+    font-size: 1.7rem;
+    padding: 0 7px;
+    text-align: center;
+  }
+
+  .bottom-btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 7px;
+
+    &.display-row {
+      flex-direction: row-reverse;
+    }
+
+    button {
+      padding: 8px 19px;
+      border: solid 2px transparent;
+    }
+
+    .close-btn {
+      border: solid 2px $cmb-gray;
+      color: $cmb-gray;
+      border-radius: $cmb-btn-border-radius;
+      transition: background-color .3s,
+      border .3s,
+      color .3s;
+
+      &:hover,
+      &:focus {
+        border-color: transparent;
+        background-color: $cmb-gray;
+        color: $cmb-white;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .modal-content {
+    .bottom-btn-container {
+      flex-direction: column !important;
+
+      button {
+        font-size: max(1em, 23px);
+        width: 100%;
+      }
+    }
+  }
+}
