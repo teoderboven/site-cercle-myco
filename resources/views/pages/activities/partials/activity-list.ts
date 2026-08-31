@@ -1,5 +1,4 @@
-// @ts-ignore
-import { ScrollToHash } from '@/js/common/scrollToHash';
+import { ScrollToHash } from '&/common/scrollToHash';
 
 const timelineContainer: HTMLElement | null = document.getElementById("timeline-container");
 const timelinePastTime: HTMLElement | null = timelineContainer?.querySelector(".timeline .time.past") ?? null;

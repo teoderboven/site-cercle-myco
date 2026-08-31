@@ -1,2 +1,1 @@
-// @ts-ignore
-import '@/views/pages/activities/index';
+import '&/../views/pages/activities/index';

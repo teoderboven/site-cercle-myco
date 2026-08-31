@@ -1,5 +1,4 @@
-// @ts-ignore
-import { ScrollToHash } from '@/js/common/scrollToHash';
+import { ScrollToHash } from '&/common/scrollToHash';
 
 document.querySelectorAll('.toggle').forEach((elt: Element) => {
     elt.addEventListener('click', () => {

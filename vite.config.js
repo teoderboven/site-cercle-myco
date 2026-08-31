@@ -5,7 +5,7 @@ import path from 'path';
 export default defineConfig({
     resolve: {
         alias: {
-            '@': path.resolve(import.meta.dirname, './resources'),
+            '@': path.resolve(import.meta.dirname, './resources/scss'),
         }
     },
     plugins: [
