@@ -1,7 +1,6 @@
 @props(['activity', 'sameYear'])
 
 @pushonce('styles')
-    <link rel="stylesheet" href="/assets/activites/activity-item.css">
     <link rel="stylesheet" href="/assets/common/css/calendar.css">
     <link rel="stylesheet" href="/assets/common/css/stib.css">
 @endpushonce

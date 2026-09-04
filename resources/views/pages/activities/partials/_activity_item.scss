@@ -1,1 +1,209 @@
-@use '@/abstracts/variables' as *;
+$activity-bg: #00000015;
+$activity-highlight-bg: #a4c2e8;
+$activity-ongoing-bg: #d3eada;
+$activity-cancelled-bg: #e3a3a3;
+
+.activity {
+  width: 100%;
+
+  .pre-wrapper {
+    font-size: .9rem;
+    margin-left: 5px;
+
+    > * {
+      font-size: inherit;
+    }
+
+    .date {
+      color: #999;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .activity-status {
+      display: inline;
+      font-weight: 700;
+
+      &::before {
+        content: "\2013";
+      }
+    }
+  }
+
+  &.passed,
+  &.cancelled {
+    .pre-wrapper .activity-status {
+      color: #d73f3f;
+    }
+  }
+
+  &.ongoing{
+    .pre-wrapper .activity-status {
+     color: #2b48cd;
+    }
+  }
+
+  .main-wrapper {
+    border: solid 1px #00000000;
+    border-radius: 15px;
+    box-shadow: 1px 3px 10px #00000080;
+    background-color: $activity-bg;
+  }
+
+  #next & .main-wrapper {
+    background-color: $activity-highlight-bg;
+  }
+
+  header {
+    padding-bottom: 2px;
+
+    .title-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .calendar {
+      transform: scale(.9);
+      align-self: flex-start;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-shadow: 1px 0 #f5f5f5;
+
+      > * {
+        font: inherit;
+      }
+    }
+  }
+
+  .reveal-btn {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    max-width: 100%;
+    margin-left: auto;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      width: 1.5em;
+      height: 1.5em;
+      transform: rotate(90deg);
+    }
+  }
+
+  &:not(.hidden) .reveal-btn,
+  &.hidden.revealed .reveal-btn {
+    display: none;
+  }
+
+  .main-content {
+    > * {
+      margin: 7px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .infos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: left;
+    border-bottom: solid 1px #000;
+
+    .info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      padding: 5px;
+      margin: 5px;
+      background-color: #f5f5f5;
+      border-radius: 10px;
+      box-shadow: 3px 2px 5px #00000080;
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      img {
+        width: 1.1rem;
+        margin-right: 3px;
+      }
+    }
+  }
+
+  .description {
+    a:not(.stib) {
+      font-style: italic;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .activity-actions {
+    display: flex;
+    gap: 7px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &.passed .main-wrapper {
+    filter: grayscale(.8);
+  }
+
+  &.hidden {
+    .main-content {
+      max-height: 0;
+      transition: max-height .5s;
+      overflow: hidden;
+    }
+
+    &:not(.revealed) .main-content > * {
+      display: none;
+    }
+
+    &.revealed .main-content {
+      max-height: 100vh;
+    }
+  }
+
+  &.ongoing .main-wrapper {
+    background-color: $activity-ongoing-bg;
+  }
+
+  &.cancelled {
+    .main-wrapper {
+      background-color: $activity-cancelled-bg;
+    }
+
+    header .title {
+      .crossed-out {
+        text-decoration: line-through;
+      }
+
+      .cancel-indication {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.season-end {
+  border: solid 1px #0000;
+  border-radius: 15px;
+  box-shadow: 1px 3px 10px #00000080;
+}

@@ -12,11 +12,6 @@
 	<link rel="stylesheet" href="/assets/activites/list.css">
 @endpushonce
 
-@pushonce('scripts')
-	<script src="/assets/common/js/scrollToHash.js"></script>
-	<script src="/assets/activites/list.js"></script>
-@endpushonce
-
 @pushonce('assets')
 	@vite(['resources/scss/activities.scss', 'resources/js/activities.ts'])
 @endpushonce
