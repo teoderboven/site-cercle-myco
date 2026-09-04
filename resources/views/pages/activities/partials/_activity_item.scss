@@ -1,3 +1,5 @@
+@use './info-group';
+
 $activity-bg: #00000015;
 $activity-highlight-bg: #a4c2e8;
 $activity-ongoing-bg: #d3eada;
@@ -109,36 +111,6 @@ $activity-cancelled-bg: #e3a3a3;
 
       &:first-child {
         margin-top: 0;
-      }
-    }
-  }
-
-  .infos {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: left;
-    border-bottom: solid 1px #000;
-
-    .info {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: center;
-      padding: 5px;
-      margin: 5px;
-      background-color: #f5f5f5;
-      border-radius: 10px;
-      box-shadow: 3px 2px 5px #00000080;
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      img {
-        width: 1.1rem;
-        margin-right: 3px;
       }
     }
   }

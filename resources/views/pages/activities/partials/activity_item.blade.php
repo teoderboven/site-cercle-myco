@@ -57,31 +57,35 @@
             @endif
         </header>
         <div class="main-content">
-            <div class="infos">
-                <div class="info location">
-                    <img src="/assets/common/img/svg/location.svg" alt="">
-                    <a href="{{ $activity->meetingPoint->getMapsLink() }}" target="_blank">
-                        Rdv&nbsp;: {{ $activity->meetingPoint->getFormatted() }}.
-                    </a>
-                </div>
-                <div class="info time">
-                    <img src="/assets/common/img/svg/clock.svg" alt="">
-                    <span>Rdv à {{ displayHourTime($activity->start_date) }}</span>
-                </div>
-                <div class="info duration">
-                    <img src="/assets/common/img/svg/clock-duration.svg" alt="">
-                    <span>Dure environ {{ displayDuration($activity->duration) }}</span>
-                </div>
-                <div class="info guide">
-                    <img src="/assets/common/img/svg/profile.svg" alt="">
-                    <span>Guide&nbsp;: {{ $activity->guide->name }}</span>
-                </div>
-                @isset($activity->guide->phone)
-                    <div class="info phone">
-                        <img src="/assets/common/img/svg/phone.svg" alt="">
-                        <a href="tel:{{ $activity->guide->phone }}">{!! formatPhoneNumber($activity->guide->phone) !!}</a>
+            <div class="info-group-container">
+                @component('pages.activities.partials.info-group', ['title' => 'Où et quand ?', 'class' => 'where-when'])
+                    <div class="info location">
+                        <img src="/assets/common/img/svg/location.svg" alt="">
+                        <a href="{{ $activity->meetingPoint->getMapsLink() }}" target="_blank">
+                            Rdv&nbsp;: {{ $activity->meetingPoint->getFormatted() }}.
+                        </a>
                     </div>
-                @endisset
+                    <div class="info">
+                        <img src="/assets/common/img/svg/clock.svg" alt="">
+                        <span>Rdv à {{ displayHourTime($activity->start_date) }}</span>
+                    </div>
+                    <div class="info">
+                        <img src="/assets/common/img/svg/clock-duration.svg" alt="">
+                        <span>Dure environ {{ displayDuration($activity->duration) }}</span>
+                    </div>
+                @endcomponent
+                @component('pages.activities.partials.info-group', ['title' => 'Guide', 'class' => 'guide'])
+                    <div class="info">
+                        <img src="/assets/common/img/svg/profile.svg" alt="">
+                        <span>{{ $activity->guide->name }}</span>
+                    </div>
+                    @isset($activity->guide->phone)
+                        <div class="info">
+                            <img src="/assets/common/img/svg/phone.svg" alt="">
+                            <a href="tel:{{ $activity->guide->phone }}">{!! formatPhoneNumber($activity->guide->phone) !!}</a>
+                        </div>
+                    @endisset
+                @endcomponent
             </div>
             <div class="description">
                 <p>

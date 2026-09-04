@@ -1,0 +1,53 @@
+.activity .main-content .info-group-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: left;
+  border-bottom: dashed 1px #000;
+  padding-bottom: 10px;
+  gap: 10px;
+
+  .info-group {
+    flex: 1;
+
+    &.where-when {
+      flex: 2 250px;
+    }
+
+    .group-title {
+      font-weight: 700;
+      margin-bottom: 5px;
+      border-bottom: solid 1px #000;
+      min-width: max-content;
+    }
+
+    .infos-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: left;
+
+      .info {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding: 5px;
+        margin: 5px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px #00000060;
+
+        a:hover {
+          text-decoration: underline;
+        }
+
+        img {
+          height: 1.4rem;
+          margin-right: 3px;
+        }
+      }
+    }
+  }
+}
