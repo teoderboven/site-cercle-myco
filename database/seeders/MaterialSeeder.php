@@ -13,10 +13,10 @@ class MaterialSeeder extends Seeder
     public function run(): void
     {
         $materials = [
-            ['name' => 'Chaussures de marche', 'icon' => ''],
-            ['name' => 'Chaussures de marche imperméables (ou bottes si pluie)', 'icon' => ''],
-            ['name' => 'Loupe', 'icon' => ''],
-            ['name' => 'Gourde et sac à dos', 'icon' => ''],
+            ['name' => 'Chaussures de marche', 'icon' => 'walking_shoe.svg'],
+            ['name' => 'Chaussures de marche imperméables (ou bottes si pluie)', 'icon' => 'rain_boot.svg'],
+            ['name' => 'Loupe', 'icon' => 'magnifier.svg'],
+            ['name' => 'Gourde et sac à dos', 'icon' => 'backpack_bottle.svg'],
         ];
 
         foreach ($materials as $material) {

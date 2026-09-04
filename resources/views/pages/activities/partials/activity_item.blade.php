@@ -86,6 +86,16 @@
                         </div>
                     @endisset
                 @endcomponent
+                @if(count($activity->materials))
+                    @component('pages.activities.partials.info-group', ['title' => 'Matériel recommandé', 'class' => 'materials'])
+                        @foreach($activity->materials as $material)
+                            <div class="info">
+                                <img src="/assets/activites/materials/{{ $material->icon }}" alt="">
+                                <span>{{ $material->name }}</span>
+                            </div>
+                        @endforeach
+                    @endcomponent
+                @endif
             </div>
             <div class="description">
                 <p>
