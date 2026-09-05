@@ -29,3 +29,9 @@ Route::view('/champi-parasite-des-plantes', 'pages.champi-parasite.index')->name
 Route::view('/error/403', 'errors.403');
 Route::view('/error/404', 'errors.404');
 Route::view('/error/500', 'errors.500');
+
+if (app()->environment('local')) {
+    Route::prefix('mail')->group(function () {
+        Route::get('/welcome', [MailPreviewController::class, 'welcome'])->name('mail.welcome');
+    });
+}
