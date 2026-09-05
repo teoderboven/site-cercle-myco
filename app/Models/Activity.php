@@ -19,6 +19,7 @@ use Carbon\Carbon;
  * @property int $duration The duration of the activity in minutes.
  * @property string|null $description A description of the activity.
  * @property string|null $meeting_point The ID of the meeting point for the activity.
+ * @property bool $harvest_allowed Indicates whether harvesting is allowed during the activity.
  * @property bool $visible Indicates whether the activity is visible to users.
  * @property bool $cancelled Indicates whether the activity has been cancelled.
  * @property string|null $updated_by The ID of the user who last updated the activity.
@@ -51,6 +52,7 @@ class Activity extends Model{
 	protected $casts = [
 		'cancelled' => 'boolean',
 		'visible' => 'boolean',
+        'harvest_allowed' => 'boolean',
 		'start_date' => 'datetime',
 	];
 

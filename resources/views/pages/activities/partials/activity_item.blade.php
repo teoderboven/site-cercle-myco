@@ -96,6 +96,19 @@
                         @endforeach
                     @endcomponent
                 @endif
+                @php
+                    $displayOtherInfoGroup = !$activity->harvest_allowed;
+                @endphp
+                @if($displayOtherInfoGroup)
+                    @component('pages.activities.partials.info-group', ['title' => 'Autres infos', 'class' => 'other'])
+                        @if(!$activity->harvest_allowed)
+                            <div class="info">
+                                <img src="/assets/common/img/svg/no-harvest.svg" alt="">
+                                <span>Sans cueillette</span>
+                            </div>
+                        @endif
+                    @endcomponent
+                @endif
             </div>
             <div class="description">
                 <p>
