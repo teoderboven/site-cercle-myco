@@ -1,3 +1,6 @@
+$info-container-padding: 5px;
+$info-gap: 10px;
+
 .activity .main-content .info-group-container {
   display: flex;
   flex-direction: row;
@@ -9,13 +12,14 @@
   gap: 10px;
 
   .info-group {
-    flex: 1;
+    flex: 1 200px;
 
     &.where-when {
-      flex: 2 250px;
+      flex: 3 400px;
     }
 
     .group-title {
+      padding: 0 $info-container-padding;
       font-weight: 700;
       margin-bottom: 5px;
       border-bottom: solid 1px #000;
@@ -27,6 +31,8 @@
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: left;
+      padding: $info-container-padding;
+      gap: $info-gap;
 
       .info {
         display: flex;
@@ -34,7 +40,6 @@
         flex-wrap: nowrap;
         align-items: center;
         padding: 5px;
-        margin: 5px;
         background-color: #f5f5f5;
         border-radius: 10px;
         box-shadow: 2px 2px 10px #00000060;
