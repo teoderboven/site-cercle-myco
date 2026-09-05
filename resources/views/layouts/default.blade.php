@@ -31,6 +31,12 @@
     @stack('assets')
 </head>
 <body>
+@hasStack('svgSymbols')
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        @stack('svgSymbols')
+    </svg>
+@endhasStack
+
 @includeWhen(config('app.debug'), 'common.partials.debug')
 @includeWhen($showCookieBanner, 'common.partials.cookie_banner')
 

@@ -69,35 +69,22 @@
   padding: 0 4px;
   z-index: 20;
 
+  svg.icon{
+    width: 1.7em;
+    height: 1.7em;
+    stroke: $cmb-blue;
+    fill: $cmb-blue;
+  }
+
   &:hover,
   &:focus {
     background-color: #e3e3e3;
     border-color: $cmb-blue-hover;
     color: $cmb-blue-hover;
 
-    .icon {
-      background-color: $cmb-blue-hover;
-    }
-  }
-
-  .icon {
-    display: block;
-    width: 1.7em;
-    height: 1.7em;
-    background-color: $cmb-blue;
-    mask-size: contain;
-    mask-repeat: no-repeat;
-
-    &.loading {
-      mask-image: url("/assets/common/img/svg/loading-spinner.svg");
-    }
-
-    &.check {
-      mask-image: url("/assets/common/img/svg/check.svg");
-    }
-
-    &.mail {
-      mask-image: url("/assets/common/img/svg/mail.svg");
+    svg.icon {
+      stroke: $cmb-blue-hover;
+      fill: $cmb-blue-hover;
     }
   }
 

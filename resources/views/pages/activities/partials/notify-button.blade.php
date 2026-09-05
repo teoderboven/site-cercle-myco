@@ -4,6 +4,12 @@
     @include('pages.activities.partials.subscription-mail-modal')
 @endpushonce
 
+@pushonce('svgSymbols')
+    @svgSymbol('check.svg', 'check-icon')
+    @svgSymbol('loading-spinner.svg', 'loading-spinner')
+    @svgSymbol('mail.svg', 'mail-icon')
+@endpushonce
+
 {{-- Component notification button --}}
 <div class="notify-btn-wrapper">
     @php
@@ -25,9 +31,15 @@
             title="{{ $defaultLabel }}"
             aria-label="{{ $defaultLabel }}"
     >
-        <span class="icon loading"></span>
-        <span class="icon check"></span>
-        <span class="icon mail"></span>
+        <svg class="icon loading">
+            <use href="#loading-spinner"></use>
+        </svg>
+        <svg class="icon check">
+            <use href="#check-icon"></use>
+        </svg>
+        <svg class="icon mail">
+            <use href="#mail-icon"></use>
+        </svg>
         <span class="notify-text">{{ $notSubscribedText }}</span>
     </button>
     <div class="status-message-wrapper">

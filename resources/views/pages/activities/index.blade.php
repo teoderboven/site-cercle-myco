@@ -18,8 +18,6 @@
 
 @pushonce('additions')
 	<link rel="preload" as="image" href="/images/excursions/ViroinvalGr03.JPG">
-	<link rel="preload" as="image" type="image/svg+xml" href="/assets/common/img/svg/loading-spinner.svg">
-	<link rel="preload" as="image" type="image/svg+xml" href="/assets/common/img/svg/check.svg">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 @endpushonce
 
