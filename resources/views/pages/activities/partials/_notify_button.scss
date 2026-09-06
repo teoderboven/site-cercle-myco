@@ -69,11 +69,9 @@
   padding: 0 4px;
   z-index: 20;
 
-  svg.icon{
+  .icon{
     width: 1.7em;
     height: 1.7em;
-    stroke: $cmb-blue;
-    fill: $cmb-blue;
   }
 
   &:hover,
@@ -81,11 +79,6 @@
     background-color: #e3e3e3;
     border-color: $cmb-blue-hover;
     color: $cmb-blue-hover;
-
-    svg.icon {
-      stroke: $cmb-blue-hover;
-      fill: $cmb-blue-hover;
-    }
   }
 
   &:not(.loading) .icon.loading,
