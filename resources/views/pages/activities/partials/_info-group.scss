@@ -40,6 +40,7 @@ $info-gap: 10px;
         flex-wrap: nowrap;
         align-items: center;
         padding: 5px;
+        gap: 3px;
         background-color: #f5f5f5;
         border-radius: 10px;
         box-shadow: 2px 2px 10px #00000060;
@@ -48,9 +49,10 @@ $info-gap: 10px;
           text-decoration: underline;
         }
 
+        .icon,
         img {
           height: 1.4rem;
-          margin-right: 3px;
+          flex-shrink: 0;
         }
       }
     }

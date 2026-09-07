@@ -90,7 +90,7 @@
                     @component('pages.activities.partials.info-group', ['title' => 'Matériel recommandé', 'class' => 'materials'])
                         @foreach($activity->materials as $material)
                             <div class="info">
-                                <img src="/assets/activites/materials/{{ $material->icon }}" alt="">
+                                <x-svg-icon :path="'materials/' . $material->icon" />
                                 <span>{{ $material->name }}</span>
                             </div>
                         @endforeach
