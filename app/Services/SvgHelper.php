@@ -21,6 +21,12 @@ class SvgHelper
             $content = File::get($fullPath);
 
             if (preg_match('/viewBox="([^"]+)"/i', $content, $matches)) {
+                $parts = preg_split('/[\s,]+/', trim($matches[1]));
+
+                if (count($parts) === 4) {
+                    return "0 0 {$parts[2]} {$parts[3]}";
+                }
+
                 return $matches[1];
             }
         }

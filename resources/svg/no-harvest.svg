@@ -1,10 +1,8 @@
 <?xml version="1.0" standalone="no"?>
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-  width="829" height="768" viewBox="290 0 829 768"
- preserveAspectRatio="xMidYMid meet">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="290 -3 829 777">
 
 <g transform="translate(0,768) scale(0.1,-0.1)"
-fill="#000000" stroke="#000000" stroke-width="50" stroke-linejoin="round" stroke-linecap="round">
+fill="currentColor" stroke="currentColor" stroke-width="50" stroke-linejoin="round" stroke-linecap="round">
 <path d="M6800 7674 c-140 -13 -320 -38 -430 -60 -983 -196 -1863 -856 -2359
 -1769 -214 -395 -363 -896 -403 -1358 l-12 -137 -40 -11 c-157 -42 -290 -165
 -353 -326 -24 -60 -27 -81 -27 -188 0 -107 3 -128 27 -188 61 -156 173 -263
