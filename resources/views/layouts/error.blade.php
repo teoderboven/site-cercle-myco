@@ -35,7 +35,7 @@
         </div>
     </div>
 </header>
-<main>
+<main class="error-main">
     <div id="error-wrapper">
         <section id="error-container">
             <p class="code">Erreur @yield('code')</p>
