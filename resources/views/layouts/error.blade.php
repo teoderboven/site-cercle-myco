@@ -8,13 +8,12 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="shortcut icon" type="image/x-icon" href="/assets/common/img/icon.ico">
-	<link rel="shortcut icon" type="image/png" sizes="64x64" href="/assets/common/img/icon64wt.png">
-	<link rel="shortcut icon" type="image/png" sizes="256x256" href="/assets/common/img/icon256wt.png">
-	<link rel="apple-touch-icon" sizes="256x256" href="/assets/common/img/icon256wt.png">
-	<link rel="stylesheet" href="/assets/common/css/main.css">
+	<link rel="shortcut icon" type="image/png" sizes="64x64" href="/assets/common/img/icon64.png">
+	<link rel="shortcut icon" type="image/png" sizes="256x256" href="/assets/common/img/icon256.png">
+	<link rel="apple-touch-icon" sizes="256x256" href="/assets/common/img/icon256.png">
 	<link rel="stylesheet" href="/assets/common/css/header.css">
 	<link rel="stylesheet" href="/assets/common/css/footer.css">
-	<link rel="stylesheet" href="/assets/error/error.css">
+	@vite(['resources/scss/app.scss'])
 </head>
 <body>
 @includeWhen(config('app.debug'), 'common.partials.debug')
@@ -22,11 +21,11 @@
 		<div>
 			<div id="topTitle">
 				<a href="{{ route('home', [], false) }}" id="title">
-					<img srcset="/assets/common/img/icon256wt.png 256w,
-								 /assets/common/img/icon1500wt.png 1500w"
+					<img srcset="/assets/common/img/icon256.png 256w,
+								 /assets/common/img/icon1500.png 1500w"
 						  sizes="(max-width: 420px) 1500px,
 								 256px"
-					 		src="/assets/common/img/icon256wt.png" alt="">
+					 		src="/assets/common/img/icon256.png" alt="">
 					<h1>
 						<span class="word">Cercle</span><span class="particle"> de </span><span class="word">Mycologie</span><span class="particle"> de </span><span class="word">Bruxelles</span>
 					</h1>

@@ -1,3 +1,5 @@
 // import main SCSS file for the application
 @use 'abstracts/variables';
+@use 'base/base';
 @use '../views/common/partials/cookie_banner';
+@use "../views/errors/error";

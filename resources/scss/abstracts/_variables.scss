@@ -11,20 +11,3 @@ $cmb-btn-outline-color: #90a4ae;
 $cmb-btn-padding: 7px;
 $cmb-btn-padding-large: 14px;
 $cmb-btn-border-radius: 8px;
-
-// legacy variables for backward compatibility
-html{
-  --scrollbar-color: #{$scrollbar-color};
-  --basic-text-color: #{$basic-text-color};
-  --basic-bg-color: #{$basic-bg-color};
-  --cmb-white: #{$cmb-white};
-  --cmb-gray: #{$cmb-gray};
-  --cmb-blue: #{$cmb-blue};
-  --cmb-red: #{$cmb-red};
-  --cmb-blue-hover: #{$cmb-blue-hover};
-  --cmb-lightblue: #{$cmb-lightblue};
-  --cmb-btn-outline-color: #{$cmb-btn-outline-color};
-  --cmb-btn-padding: #{$cmb-btn-padding};
-  --cmb-btn-padding-large: #{$cmb-btn-padding-large};
-  --cmb-btn-border-radius: #{$cmb-btn-border-radius};
-}

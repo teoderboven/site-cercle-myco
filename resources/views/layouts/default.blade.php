@@ -18,11 +18,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" type="image/x-icon" href="/assets/common/img/icon.ico">
-    <link rel="shortcut icon" type="image/png" sizes="64x64" href="/assets/common/img/icon64wt.png">
-    <link rel="shortcut icon" type="image/png" sizes="256x256" href="/assets/common/img/icon256wt.png">
-    <link rel="apple-touch-icon" sizes="256x256" href="/assets/common/img/icon256wt.png">
-
-    <link rel="stylesheet" href="/assets/common/css/main.css">
+    <link rel="shortcut icon" type="image/png" sizes="64x64" href="/assets/common/img/icon64.png">
+    <link rel="shortcut icon" type="image/png" sizes="256x256" href="/assets/common/img/icon256.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="/assets/common/img/icon256.png">
     <link rel="stylesheet" href="/assets/common/css/header.css">
     <link rel="stylesheet" href="/assets/common/css/footer.css">
     @stack('styles')
