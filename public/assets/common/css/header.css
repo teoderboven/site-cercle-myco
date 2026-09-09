@@ -23,6 +23,7 @@ body > header{
 }
 body > header > div{
 	display: flex;
+	justify-content: center;
 	padding: 5px 15px;
 	width: 100%;
 }
