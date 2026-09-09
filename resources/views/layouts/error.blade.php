@@ -11,6 +11,8 @@
     <link rel="shortcut icon" type="image/png" sizes="64x64" href="/assets/common/img/icon64.png">
     <link rel="shortcut icon" type="image/png" sizes="256x256" href="/assets/common/img/icon256.png">
     <link rel="apple-touch-icon" sizes="256x256" href="/assets/common/img/icon256.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,700;1,300&display=swap">
     <link rel="stylesheet" href="/assets/common/css/header.css">
     <link rel="stylesheet" href="/assets/common/css/footer.css">
     @vite(['resources/scss/app.scss'])
