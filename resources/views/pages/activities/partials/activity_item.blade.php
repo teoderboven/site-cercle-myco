@@ -59,40 +59,40 @@
         <div class="main-content">
             <div class="info-group-container">
                 @component('pages.activities.partials.info-group', ['title' => 'Où et quand ?', 'class' => 'where-when'])
-                    <div class="info location">
+                    <li class="info location">
                         <img src="/assets/common/img/svg/location.svg" alt="">
                         <a href="{{ $activity->meetingPoint->getMapsLink() }}" target="_blank">
                             Rdv&nbsp;: {{ $activity->meetingPoint->getFormatted() }}.
                         </a>
-                    </div>
-                    <div class="info">
+                    </li>
+                    <li class="info">
                         <img src="/assets/common/img/svg/clock.svg" alt="">
                         <span>Rdv à {{ displayHourTime($activity->start_date) }}</span>
-                    </div>
-                    <div class="info">
+                    </li>
+                    <li class="info">
                         <img src="/assets/common/img/svg/clock-duration.svg" alt="">
                         <span>Dure environ {{ displayDuration($activity->duration) }}</span>
-                    </div>
+                    </li>
                 @endcomponent
                 @component('pages.activities.partials.info-group', ['title' => 'Guide', 'class' => 'guide'])
-                    <div class="info">
+                    <li class="info">
                         <img src="/assets/common/img/svg/profile.svg" alt="">
                         <span>{{ $activity->guide->name }}</span>
-                    </div>
+                    </li>
                     @isset($activity->guide->phone)
-                        <div class="info">
+                        <li class="info">
                             <img src="/assets/common/img/svg/phone.svg" alt="">
                             <a href="tel:{{ $activity->guide->phone }}">{!! formatPhoneNumber($activity->guide->phone) !!}</a>
-                        </div>
+                        </li>
                     @endisset
                 @endcomponent
                 @if(count($activity->materials))
                     @component('pages.activities.partials.info-group', ['title' => 'Matériel recommandé', 'class' => 'materials'])
                         @foreach($activity->materials as $material)
-                            <div class="info">
+                            <li class="info">
                                 <x-svg-icon :path="'materials/' . $material->icon" />
                                 <span>{{ $material->name }}</span>
-                            </div>
+                            </li>
                         @endforeach
                     @endcomponent
                 @endif
@@ -102,10 +102,10 @@
                 @if($displayOtherInfoGroup)
                     @component('pages.activities.partials.info-group', ['title' => 'Autres infos', 'class' => 'other'])
                         @if(!$activity->harvest_allowed)
-                            <div class="info">
+                            <li class="info">
                                 <x-svg-icon :path="'no-harvest.svg'" />
                                 <span>Sans cueillette</span>
-                            </div>
+                            </li>
                         @endif
                     @endcomponent
                 @endif
