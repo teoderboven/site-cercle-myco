@@ -16,7 +16,7 @@
 	@endif
 	<link rel="canonical" href="{{ config('app.canonical_url') }}">
 	<meta name="keywords" content="Cercle de Mycologie de Bruxelles, cmb, Mycologie Belgique, Sorties mycologiques, Champignons Bruxelles, champi bruxelles, champi bxl, bxl, champi, bruxelles, belgique, mycologie, mycologique, champignon, Forêts de Bruxelles, Réserves naturelles Belgique, Cueillette de champignons, Excursions mycologiques, Brabant Wallon, Flore et faune de Belgique, Activités de plein air Bruxelles, Identification de champignons, Éducation environnementale, Mycologie amateur, Sciences naturelles Belgique, Activités écologiques Bruxelles, Cercle scientifique Belgique, Mycologues belges, Botanique Bruxelles">
-	<link rel="preload" as="image" href="/images/excursions/ViroinvalGr03.JPG">
+	<link rel="preload" as="image" href="/images/groupe/ParticipantsAuderghem28092025.JPG">
 	<link rel="preload" as="image" href="/images/parasites/P.%20albescens.jpg">
 	<link rel="preload" as="image" href="/images/parasites/Uromyces%20dactylidis%20sur%20Ranunculus%20ficaria.JPG">
 	<link rel="preload" as="image" href="/images/Flammulina%20velutipes.JPG">
@@ -38,9 +38,9 @@
 						</div>
 					</li>
 					<li>
-						<a href="{{ route('activities', [], false) }}" class="item" style="background-image: url('/images/excursions/ViroinvalGr03.JPG');">
+						<a href="{{ route('activities', [], false) }}" class="item" style="background-image: url('/images/groupe/ParticipantsAuderghem28092025.JPG');">
 							<div class="content">
-								<h2>La saison 2024 est lancée&nbsp;!</h2>
+								<h2>Le programme des activités 2026 est arrivé&nbsp;!</h2>
 							</div>
 						</a>
 					</li>
