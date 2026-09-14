@@ -32,7 +32,7 @@ a:hover{
 	text-align: center;
 }
 .c_main-content, .c_footer{
-	padding: 18px;
+	padding: 15px 10px;
 	box-shadow: 2px 2px 20px #00000033;
 }
 .c_main-content{
@@ -42,6 +42,7 @@ a:hover{
 .c_main-title{
 	font-size: 1.5rem;
 	text-align: center;
+	margin: 5px 10px;
 }
 .c_main-content p{
 	margin: 17px 5px;
