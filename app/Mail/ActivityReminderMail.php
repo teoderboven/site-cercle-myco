@@ -2,17 +2,11 @@
 
 namespace App\Mail;
 
-use App\Models\Activity;
-use App\Models\MailSubscriber as Subscriber;
-use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 
-class ActivityReminderMail extends Mailable{
-
-	public function __construct(public Subscriber $subscriber, public Activity $activity)
-	{}
-
+class ActivityReminderMail extends BaseActivityReminderMailable
+{
 	public function envelope(): Envelope{
 		return new Envelope(
 			subject: 'Prochaine activité dans ' . ceil(now()->diffInDays($this->activity->start_date)) . ' jours',
