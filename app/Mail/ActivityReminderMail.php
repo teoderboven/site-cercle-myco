@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Envelope;
 
 class ActivityReminderMail extends Mailable{
 
-	public function __construct(public Activity $activity, public Subscriber $subscriber)
+	public function __construct(public Subscriber $subscriber, public Activity $activity)
 	{}
 
 	public function envelope(): Envelope{

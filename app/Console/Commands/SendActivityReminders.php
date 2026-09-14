@@ -15,20 +15,22 @@ use Illuminate\Console\Command;
  * Class SendActivityReminders
  *
  * This command is responsible for sending reminder emails to subscribers for upcoming activities.
- * It sends reminders 7 days and 3 days before the activity start date.
+ * It sends reminders 7 days and 2 days before the activity start date.
  */
 #[Signature('reminders:send')]
-#[Description('Send 7-day and 3-day reminder emails for upcoming activities')]
+#[Description('Send 7-day and 2-day reminder emails for upcoming activities')]
 class SendActivityReminders extends Command
 {
     private const array REMINDERS = [
-//        [
-//            'type' => ActivityNotificationType::REMINDER_7_DAYS,
-//            'days_before' => 7,
-//        ],
         [
-            'type' => ActivityNotificationType::REMINDER_3_DAYS,
-            'days_before' => 3,
+            'type' => ActivityNotificationType::REMINDER_7_DAYS,
+            'days_before' => 7,
+            'mailable' => ActivityReminderMail::class,
+        ],
+        [
+            'type' => ActivityNotificationType::REMINDER_2_DAYS,
+            'days_before' => 2,
+            'mailable' => ActivityReminderMail::class,
         ],
     ];
 
@@ -39,7 +41,7 @@ class SendActivityReminders extends Command
     {
         $totalRemindersSent = 0;
         foreach (self::REMINDERS as $reminder) {
-            $totalRemindersSent += $this->processReminders($reminder['type'], $reminder['days_before']);
+            $totalRemindersSent += $this->processReminders($reminder['type'], $reminder['days_before'], $reminder['mailable']);
         }
 
         $this->info("{$totalRemindersSent} reminders have been sent.");
@@ -50,9 +52,10 @@ class SendActivityReminders extends Command
      *
      * @param ActivityNotificationType $type The type of reminder to send.
      * @param int $daysBefore The number of days before the activity to send the reminder.
+     * @param string $reminderMailable The mailable class to use for sending the reminder.
      * @return int The number of reminders sent.
      */
-    private function processReminders(ActivityNotificationType $type, int $daysBefore): int
+    private function processReminders(ActivityNotificationType $type, int $daysBefore, string $reminderMailable): int
     {
         $targetDate = Carbon::today()->addDays($daysBefore);
         $startOfWindow = $targetDate->copy()->startOfDay();
@@ -73,7 +76,7 @@ class SendActivityReminders extends Command
 
         foreach ($subscriptions as $subscription) {
             Mail::to($subscription->subscriber->email)
-                ->send(new ActivityReminderMail($subscription->activity, $subscription->subscriber));
+                ->send(new $reminderMailable($subscription->subscriber, $subscription->activity));
 
             $subscription->logs()->create([
                 'type' => $type->value,

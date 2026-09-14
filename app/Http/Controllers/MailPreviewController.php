@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\WelcomeMail;
+use App\Mail\ActivityReminderMail;
 use App\Models\Activity;
 use App\Models\MailSubscriber;
 use Illuminate\Mail\Mailable;
@@ -35,5 +36,14 @@ class MailPreviewController extends Controller
      */
     public function welcome() {
         return new WelcomeMail($this->subscriber);
+    }
+
+    /**
+     * Display a preview of the activity reminder email.
+     *
+     * @return Mailable
+     */
+    public function activityReminder() {
+        return new ActivityReminderMail($this->subscriber, $this->activity);
     }
 }

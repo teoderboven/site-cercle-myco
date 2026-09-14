@@ -10,7 +10,7 @@ namespace App\Enums;
 enum ActivityNotificationType : string
 {
     case REMINDER_7_DAYS = 'reminder_7_days';
-    case REMINDER_3_DAYS = 'reminder_3_days';
+    case REMINDER_2_DAYS = 'reminder_2_days';
     case ACTIVITY_UPDATED = 'activity_updated';
     case ACTIVITY_CANCELLED = 'activity_cancelled';
 }

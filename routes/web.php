@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailPreviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\HomeController;
@@ -35,5 +36,6 @@ Route::view('/error/503', 'errors.503');
 if (app()->environment('local')) {
     Route::prefix('mail')->group(function () {
         Route::get('/welcome', [MailPreviewController::class, 'welcome'])->name('mail.welcome');
+        Route::get('/activity-reminder', [MailPreviewController::class, 'activityReminder'])->name('mail.activity-reminder');
     });
 }
