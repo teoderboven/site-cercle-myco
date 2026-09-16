@@ -49,9 +49,5 @@ class AppServiceProvider extends ServiceProvider{
                 }
             ?>";
         });
-
-        Blade::if('hasStack', function ($stackName) {
-            return !empty(view()->yieldPushContent($stackName));
-        });
 	}
 }

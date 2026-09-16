@@ -34,7 +34,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         @stack('svgSymbols')
     </svg>
-@endhasStack
+@endif
 
 @includeWhen(config('app.debug'), 'common.partials.debug')
 @includeWhen($showCookieBanner, 'common.partials.cookie_banner')
