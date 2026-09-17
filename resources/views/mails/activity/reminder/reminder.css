@@ -8,13 +8,15 @@
 	border: solid 1px #555;
 	padding: 12px;
 	border-radius: 10px;
-	box-shadow: 2px 2px 20px #00000033;
 }
 .c_activity_resume .c_title{
 	font-size: 1.1rem;
 }
 .c_activity-info-table{
-	margin: 12px 0;
+	margin-bottom: 12px;
+}
+.c_activity-info-table table{
+	border-spacing: 0;
 }
 .c_activity-info-table td{
 	vertical-align: top;
@@ -22,11 +24,8 @@
 .c_activity-info-table .c_dot{
 	padding-right: 4px;
 }
-.c_description-table td{
-	vertical-align: top;
-}
-.c_description-table .stib{
-	text-decoration: underline;
+.c_activity-info-table .c_dash{
+	padding: 0 4px 0 12px;
 }
 .c_activity-detail{
 	display: block;

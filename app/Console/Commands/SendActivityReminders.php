@@ -3,13 +3,14 @@
 namespace App\Console\Commands;
 
 use App\Enums\ActivityNotificationType;
-use App\Mail\ActivityReminderMail;
+use App\Mail\activity\reminder\FirstActivityReminderMail;
+use App\Mail\activity\reminder\SecondActivityReminderMail;
 use App\Models\ActivityNotificationSubscription;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class SendActivityReminders
@@ -25,12 +26,12 @@ class SendActivityReminders extends Command
         [
             'type' => ActivityNotificationType::REMINDER_7_DAYS,
             'days_before' => 7,
-            'mailable' => ActivityReminderMail::class,
+            'mailable' => FirstActivityReminderMail::class,
         ],
         [
             'type' => ActivityNotificationType::REMINDER_2_DAYS,
             'days_before' => 2,
-            'mailable' => ActivityReminderMail::class,
+            'mailable' => SecondActivityReminderMail::class,
         ],
     ];
 

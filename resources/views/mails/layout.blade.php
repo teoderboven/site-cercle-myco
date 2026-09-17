@@ -7,7 +7,7 @@
 	<meta name="format-detection" content="date=no">
 	<meta name="format-detection" content="address=no">
 	<meta name="format-detection" content="email=no">
-	<title>@yield('pageTitle')</title>
+	<title>@yield('title', $emailSubject)</title>
 	<style>
 		{!! file_get_contents(resource_path('views/mails/common/mail-main.css')) !!}
 	</style>
@@ -18,7 +18,7 @@
 	<table class="c_main-container">
 		<tbody>
 			<tr>
-				<td class="c_top-title">
+				<td class="c_top-logo">
 					<a href="{{ route('home') }}" target="_blank">
 						<img src="{{ $message->embed(asset('assets/common/img/icon256wt.png')) }}" alt="Cercle de Mycologie de Bruxelles" height="64">
 					</a>
@@ -27,7 +27,11 @@
 			<tr>
 				<td>
 					<div class="c_main-content">
+						<h1 class="c_main-title">@yield('title', $emailSubject)</h1>
 						@yield('mainContent')
+						<p class="c_signature">
+							Le Cercle de Mycologie de Bruxelles
+						</p>
 					</div>
 				</td>
 			</tr>
@@ -38,7 +42,7 @@
 					</a>
 					<p>
 						Cet e-mail a été envoyé à {{ $subscriber->email }}.<br>
-						@yield('receiveExplaination', 'Vous recevez cet e-mail car vous êtes inscrit dans notre liste de diffusion.')
+						@yield('receiveExplanation', 'Vous recevez cet e-mail car vous êtes inscrit dans notre liste de diffusion.')
 					</p>
 					<p>
 						@yield('unsubscribeText')

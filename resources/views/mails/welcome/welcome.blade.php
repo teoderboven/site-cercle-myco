@@ -1,9 +1,6 @@
 @extends('mails.layout')
 
-@section('pageTitle', 'Confirmation de votre inscription aux notifications')
-
 @section('mainContent')
-	<h1 class="c_main-title">Confirmation de votre inscription aux notifications</h1>
 	<p>
 		Bonjour,
 	</p>
@@ -31,12 +28,9 @@
 	<p>
 		À bientôt&nbsp;!
 	</p>
-	<p class="c_signature">
-		Le Cercle de Mycologie de Bruxelles
-	</p>
 @endsection
 
-@section('receiveExplaination')
+@section('receiveExplanation')
 	Vous recevez cet e-mail suite à une demande d'inscription aux notifications du Cercle de Mycologie de Bruxelles.
 @endsection
 

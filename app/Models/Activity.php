@@ -26,7 +26,7 @@ use Carbon\Carbon;
  */
 class Activity extends Model{
 
-	protected $table = "activities";
+    protected $table = "activities";
 
 	public $incrementing = false;
 	protected $keyType = 'string';

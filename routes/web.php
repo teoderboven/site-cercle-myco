@@ -36,6 +36,7 @@ Route::view('/error/503', 'errors.503');
 if (app()->environment('local')) {
     Route::prefix('mail')->group(function () {
         Route::get('/welcome', [MailPreviewController::class, 'welcome'])->name('mail.welcome');
-        Route::get('/activity-reminder', [MailPreviewController::class, 'activityReminder'])->name('mail.activity-reminder');
+        Route::get('/activity-reminder/first', [MailPreviewController::class, 'firstActivityReminder'])->name('mail.activity-reminder.first');
+        Route::get('/activity-reminder/second', [MailPreviewController::class, 'secondActivityReminder'])->name('mail.activity-reminder.second');
     });
 }
