@@ -1,0 +1,64 @@
+$timeline-margin: 13px;
+$timeline-width: 7px;
+$timeline-border-radius: calc($timeline-width / 2);
+$timeline-past-color: #ccd8e6;
+$timeline-future-color: #4b68d1ff;
+$timeline-marker-color: #042e46;
+$timeline-marker-width: 20px;
+$timeline-arrow-width: calc(2.4 * $timeline-width);
+
+#timeline-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: center;
+  margin: $timeline-margin;
+  position: relative;
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    border-radius: $timeline-border-radius;
+    margin-right: 10px;
+
+    .time {
+      $time-offset : calc(0px - $timeline-marker-width / 2);
+
+      width: $timeline-width;
+      box-shadow: 1px 2px 5px #00000080;
+      z-index: 2;
+
+      &.past {
+        background-color: $timeline-past-color;
+        border-radius: $timeline-border-radius $timeline-border-radius 0 0;
+        max-height: calc(100% - $timeline-arrow-width);
+        margin-bottom: $time-offset;
+        transition: height 0.015s;
+      }
+
+      &.future {
+        background-color: $timeline-future-color;
+        margin-top: $time-offset;
+        flex: 1;
+      }
+    }
+
+    .marker {
+      background-color: $timeline-marker-color;
+      width: $timeline-marker-width;
+      height: $timeline-marker-width;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    svg.arrow {
+      fill: $timeline-future-color;
+      width: $timeline-arrow-width;
+      z-index: 5;
+      filter: drop-shadow(2px 2px 5px #000000a0);
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@use "timeline" as tl;
+
+$timeline-created-margin: calc((tl.$timeline-arrow-width - tl.$timeline-width) / 2);
+
+.go-to-next-btn{
+  $icon-size: 1.4em;
+  $icon-animation-amplitude: .3em;
+
+  margin: 15px
+          calc(tl.$timeline-margin + $timeline-created-margin)
+          5px;
+  font-size: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding-left: calc($icon-size + $icon-animation-amplitude) !important;
+
+  &::before{
+    @keyframes go-to-next-button-icon-animation {
+      from, to{
+        transform: translateX(0);
+      }
+      50%{
+        transform: translateX($icon-animation-amplitude);
+      }
+    }
+
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    width: $icon-size;
+    height: $icon-size;
+    background-color: currentColor;
+    mask-image: url("@@/svg/triangle-right-filled.svg");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    animation: go-to-next-button-icon-animation 3s infinite ease-in-out;
+  }
+}
