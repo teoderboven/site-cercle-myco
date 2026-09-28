@@ -6,6 +6,7 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve(import.meta.dirname, './resources/scss'),
+            '@@': path.resolve(import.meta.dirname, './resources'),
         },
         tsconfigPaths: true,
     },
