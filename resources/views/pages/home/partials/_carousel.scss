@@ -1,0 +1,73 @@
+@use '@/abstracts/right-arrow-mixin';
+
+@mixin carousel-border-gradient($angle) {
+  $gradient-color: rgba(240, 240, 240, 0.6);
+  $fade-color: rgba(240, 240, 240, 0.4);
+
+  background-image: linear-gradient($angle, $gradient-color, $fade-color);
+}
+
+#homeCarousel {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 25px;
+
+  .carousel-wrapper {
+    display: flex;
+
+    .carousel-border {
+      flex: auto;
+      width: auto;
+      z-index: 20;
+
+      &.left {
+        @include carousel-border-gradient(90deg);
+      }
+
+      &.right {
+        @include carousel-border-gradient(270deg);
+      }
+    }
+
+    .carousel-content {
+      width: 100%;
+      max-width: 1080px;
+      overflow: visible;
+      user-select: none;
+
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease;
+
+        li {
+          flex: 0 0 100%;
+          display: flex;
+          align-items: flex-end;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  .dots {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 20px;
+      background-color: #ccc;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: width 0.5s ease;
+
+      &.active {
+        width: 35px;
+        background-color: #333;
+      }
+    }
+  }
+}

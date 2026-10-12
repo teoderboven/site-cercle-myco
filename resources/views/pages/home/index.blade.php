@@ -6,10 +6,6 @@
 	<link rel="stylesheet" href="/assets/home/home.css">
 @endpushonce
 
-@pushonce('scripts')
-	<script src="/assets/home/home.js"></script>
-@endpushonce
-
 @pushonce('additions')
 	@if (config('services.google.site_verification'))
 		<meta name="google-site-verification" content="{{ config('services.google.site_verification') }}">
@@ -24,43 +20,18 @@
 @endpushonce
 
 @section('main-content')
-	<div id="topCarousel">
-		<div class="carousel-wrapper">
-			<div class="carousel-border left"></div>
-			<div class="carousel-content">
-				<ul class="carousel">
-					<li>
-						<div class="item" style="background-image: url('/assets/common/img/icon1500.png'), linear-gradient(35deg, #0079cd, #ffc700); background-position: center; background-size: contain; background-repeat: no-repeat;">
-							<div class="ratio"></div>
-							<div class="content">
-								<h2>Bienvenue sur le site du Cercle de Mycologie de Bruxelles</h2>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="{{ route('activities', [], false) }}" class="item" style="background-image: url('/images/groupe/ParticipantsAuderghem28092025.JPG');">
-							<div class="content">
-								<h2>Le programme des activités 2026 est arrivé&nbsp;!</h2>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="{{ route('parasites', [], false) }}" class="item" style="background-image: url('/images/parasites/P.\ albescens.jpg');">
-							<div class="content">
-								<h2>Article: Les champignons parasites des plantes</h2>
-							</div>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="carousel-border right"></div>
-		</div>
-		<div class="dots">
-			<button class="dot active" aria-label="Slide 1 du carousel"></button>
-			<button class="dot" aria-label="Slide 2 du carousel"></button>
-			<button class="dot" aria-label="Slide 3 du carousel"></button>
-		</div>
-	</div>
+	<x-home.carousel>
+		<x-home.carousel-item
+			:route="route('activities', [], false)"
+			image="/images/groupe/ParticipantsAuderghem28092025.JPG"
+			title="Le programme des activités 2026 est arrivé !"
+		/>
+		<x-home.carousel-item
+			:route="route('parasites', [], false)"
+			image="/images/parasites/P.%20albescens.jpg"
+			title="Article: Les champignons parasites des plantes"
+		/>
+	</x-home.carousel>
 
 @isset($nextActivity)
 	<article class="interesting flip">

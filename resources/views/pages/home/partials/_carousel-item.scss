@@ -1,0 +1,45 @@
+
+$carousel-item-default-bg: linear-gradient(50deg, #53ae8e, #2ab3cf);
+$carousel-content-bg-color: rgba(240, 240, 240, 0.8);
+
+#homeCarousel .carousel-track {
+
+  .carousel-item {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+
+  .item-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .content {
+      position: absolute;
+      inset: auto 0 0 0;
+      margin: 15px;
+
+      h2 {
+        display: inline;
+        background-color: $carousel-content-bg-color;
+        font-size: 3rem;
+        font-weight: bolder;
+        padding-right: 5px;
+
+        @media screen and (max-width: 720px) {
+          font-size: 2.2rem;
+        }
+      }
+    }
+  }
+}
