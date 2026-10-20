@@ -18,6 +18,16 @@
 			<ul id="foray-list">
 				<li>
 					<button class="toggle">
+						<span class="date">2026</span>
+					</button>
+					<ul>
+						<li>
+							<a href="#s18-10-26"><span class="date">18 Octobre</span>Watermael-Boitsfort (Forêt de Soignes)</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<button class="toggle">
 						<span class="date">2025</span>
 					</button>
 					<ul>
@@ -329,6 +339,27 @@
 					C167.487,127.696,281.54,189.602,348.298,221.77z"/>
 			</svg>
 		</div>
+		<section class="forays-group">
+			<h3 class="date">2026</h3>
+			<div class="foray-list">
+				<section class="foray" id="s18-10-26">
+					<div class="foray-infos toggle">
+						<time class="calendar" datetime="2026-10-18">
+							<span class="digit">18</span><span class="month">Octobre</span>
+						</time>
+						<h4>Watermael-Boitsfort (Forêt de Soignes)</h4>
+						<div class="frame-btn">
+							<button class="expand-btn" title="Basculer le mode d'affichage du contenu"></button>
+							<button class="new-tab-btn" title="Ouvrir le contenu dans un nouvel onglet"></button>
+						</div>
+						<button class="reveal-btn">&#9660;</button>
+					</div>
+					<div class="frame-container">
+						<iframe src="/excursions/watermael_boitsfort_20261018.html" allow="fullscreen" loading="lazy"></iframe>
+					</div>
+				</section>
+			</div>
+		</section>
 		<section class="forays-group">
 			<h3 class="date">2025</h3>
 			<div class="foray-list">
