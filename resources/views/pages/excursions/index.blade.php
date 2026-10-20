@@ -343,7 +343,7 @@
 			<h3 class="date">2026</h3>
 			<div class="foray-list">
 				<section class="foray" id="s18-10-26">
-					<div class="foray-infos toggle">
+					<div class="foray-infos toggle active">
 						<time class="calendar" datetime="2026-10-18">
 							<span class="digit">18</span><span class="month">Octobre</span>
 						</time>

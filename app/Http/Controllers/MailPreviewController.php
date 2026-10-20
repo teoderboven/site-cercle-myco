@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\activity\reminder\FirstActivityReminderMail;
 use App\Mail\activity\reminder\SecondActivityReminderMail;
+use App\Mail\activity\report\ActivityReportMail;
 use App\Mail\WelcomeMail;
 use App\Models\Activity;
 use App\Models\MailSubscriber;
@@ -55,5 +56,15 @@ class MailPreviewController extends Controller
      */
     public function secondActivityReminder() {
         return new SecondActivityReminderMail($this->subscriber, $this->activity);
+    }
+
+    /**
+     * Display a preview of the activity report email.
+     *
+     * @return Mailable
+     */
+    public function activityReport() {
+        $reportLink = "https://example.com/activity-report/{$this->activity->id}";
+        return new ActivityReportMail($this->subscriber, $this->activity, $reportLink);
     }
 }
