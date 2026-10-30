@@ -34,15 +34,7 @@
 			<div id="links">
 				<div id="utils">
 					<h2>Liens utiles</h2>
-					<nav>
-						<ul>
-							<li><a href="{{ route('home', [], false) }}">accueil</a></li>
-							<li><a href="{{ route('activities', [], false) }}">activités</a></li>
-							<li><a href="{{ route('publications', [], false) }}">publications</a></li>
-							<li><a href="{{ route('excursions', [], false) }}">historique des excursions</a></li>
-							<li><a href="{{ route('member', [], false) }}">devenir membre</a></li>
-						</ul>
-					</nav>
+					<x-common.nav-links display-home/>
 				</div>
 				<div id="legal">
 					<a href="#credit">Crédits</a>

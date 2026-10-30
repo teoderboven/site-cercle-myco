@@ -2,6 +2,7 @@
 @use 'abstracts/variables';
 @use 'base/base';
 @use '@@/views/common/partials/cookie_banner';
+@use '@@/views/common/partials/header';
 @use "@@/views/errors/error";
 
 // import page styles

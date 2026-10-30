@@ -60,13 +60,7 @@
                 Consultez notre liste de pages populaires ci-dessous&nbsp;:
             </p>
             <nav>
-                <ul>
-                    <li><a href="{{ route('activities', [], false) }}">prochaines activités</a></li>
-                    <li><a href="{{ route('publications', [], false) }}">publications</a></li>
-                    <li><a href="{{ route('excursions', [], false) }}/">Historique des excursions</a></li>
-                    <li><a href="{{ route('member', [], false) }}">Devenir membre</a></li>
-                    <li><a href="{{ route('parasites', [], false) }}">les champignons parasites des plantes</a></li>
-                </ul>
+                <x-common.nav-links display-parasites/>
             </nav>
         </section>
     </div>

@@ -20,10 +20,7 @@
 		</div>
 		
 		<nav>
-			<a href="{{ route('activities', [], false) }}">activités</a>
-			<a href="{{ route('publications', [], false) }}">publications</a>
-			<a href="{{ route('excursions', [], false) }}">historique des excursions</a>
-			<a href="{{ route('member', [], false) }}">devenir membre</a>
+			<x-common.nav-links/>
 		</nav>
 	</div>
 </header>
