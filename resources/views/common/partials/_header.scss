@@ -3,7 +3,7 @@
 $navbar-height: 3.25rem;
 
 html {
-  --navbar-height: $navbar-height;
+  --navbar-height: #{$navbar-height};
 }
 
 body {
