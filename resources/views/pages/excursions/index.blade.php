@@ -22,6 +22,9 @@
 					</button>
 					<ul>
 						<li>
+							<a href="#s01-11-26"><span class="date">1er Novembre</span>Hof ter Musschen</a>
+						</li>
+						<li>
 							<a href="#s18-10-26"><span class="date">18 Octobre</span>Watermael-Boitsfort (Forêt de Soignes)</a>
 						</li>
 					</ul>
@@ -342,8 +345,24 @@
 		<section class="forays-group">
 			<h3 class="date">2026</h3>
 			<div class="foray-list">
-				<section class="foray" id="s18-10-26">
+				<section class="foray" id="s01-11-26">
 					<div class="foray-infos toggle active">
+						<time class="calendar" datetime="2026-11-01">
+							<span class="digit">1</span><span class="month">Novembre</span>
+						</time>
+						<h4>Hof ter Musschen</h4>
+						<div class="frame-btn">
+							<button class="expand-btn" title="Basculer le mode d'affichage du contenu"></button>
+							<button class="new-tab-btn" title="Ouvrir le contenu dans un nouvel onglet"></button>
+						</div>
+						<button class="reveal-btn">&#9660;</button>
+					</div>
+					<div class="frame-container">
+						<iframe src="/excursions/hoftermusschen_20261101.html" allow="fullscreen" loading="lazy"></iframe>
+					</div>
+				</section>
+				<section class="foray" id="s18-10-26">
+					<div class="foray-infos toggle">
 						<time class="calendar" datetime="2026-10-18">
 							<span class="digit">18</span><span class="month">Octobre</span>
 						</time>
