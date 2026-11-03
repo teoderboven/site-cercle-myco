@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\MailPreviewController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailPreviewController;
 use App\Http\Controllers\SubscriptionController;
+use Illuminate\Support\Facades\Route;
 
 // Dynamic views routes
 
