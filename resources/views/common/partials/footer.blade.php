@@ -31,7 +31,7 @@
 						Il rassemble de nombreux mycophiles et mycologues du Brabant et n'a cessé de travailler à l'accroissement de nos connaissances sur les champignons de Belgique.
 					</p>
 					<p>
-						Le cercle n'organise actuellement plus de réunions de déterminations, mais continue de proposer un petit nombre de sorties guidées. Le programme est visible sur <a href="{{ route('activities', [], false) }}">la page des activités</a>.
+						Le cercle n'organise plus de réunions de déterminations, mais continue de proposer un petit nombre de sorties guidées. Le programme est visible sur <a href="{{ route('activities', [], false) }}">la page des activités</a>.
 					</p>
 					<p>
 						Il n'y a pour l'instant plus de cotisation nécessaire. Les activités du cercle sont ouvertes au public.

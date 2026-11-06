@@ -57,7 +57,7 @@
 			<h3>Nos Activités</h3>
 			<ul>
 				<li><span class="activity-name">Sorties Guidées :</span> Le Cercle organise régulièrement des sorties en pleine nature, encadrées par des <span class="highlight">guides expérimentés</span>. Explorez les merveilles fongiques de nos forêts tout en découvrant des <span class="highlight">endroits uniques riches en biodiversité</span> dans différentes régions.</li>
-				<li><span class="activity-name">Forum de Discussion :</span> En dehors de nos excursions, nos membres ont accès à un forum de discussion où ils peuvent poser des questions sur l'identification des champignons ou simplement partager leurs photos et découvertes.</li>
+{{--				<li><span class="activity-name">Forum de Discussion :</span> En dehors de nos excursions, nos membres ont accès à un forum de discussion où ils peuvent poser des questions sur l'identification des champignons ou simplement partager leurs photos et découvertes.</li>--}}
 			</ul>
 		</section>
 	</div>
@@ -67,10 +67,10 @@
 			<h2>Mais en fait, c'est quoi la <span class="highlight">mycologie</span>&nbsp;?</h2>
 			<p>La <span class="highlight">mycologie</span> est l'étude des champignons dans toutes leurs formes et leurs fonctions. Mais au-delà de la science, c'est une <span class="highlight">aventure fascinante</span> au cœur de la nature et de notre quotidien.</p>
 			<p>Imaginez explorer les forêts à la recherche de <span class="highlight">trésors cachés</span>, comprendre comment ces organismes étonnants décomposent la matière pour nourrir les sols, ou découvrir les mystères de leurs relations avec les autres êtres vivants.</p>
-			<p>Rejoindre le Cercle, c'est plonger dans <span class="highlight">ce monde mystérieux et diversifié</span>, <span class="highlight">rencontrer des passionnés</span>, et <span class="highlight">partager des découvertes surprenantes</span>. La mycologie, c'est plus qu'une science&nbsp;: c'est une <span class="highlight">aventure accessible à tous</span>, où chaque sortie et chaque discussion peut révéler des merveilles insoupçonnées.</p>
-			<p>Alors, prêt à découvrir ce qui se cache sous vos pieds et à être émerveillé par le monde des champignons&nbsp;? Rejoignez le Cercle de Mycologie de Bruxelles et <span class="highlight">laissez-vous surprendre&nbsp;!</span></p>
+			<p>Participer aux activités du cercle, c'est plonger dans <span class="highlight">ce monde mystérieux et diversifié</span>, <span class="highlight">rencontrer des passionnés</span>, et <span class="highlight">partager des découvertes surprenantes</span>. La mycologie, c'est plus qu'une science&nbsp;: c'est une <span class="highlight">aventure accessible à tous</span>, où chaque sortie et chaque discussion peut révéler des merveilles insoupçonnées.</p>
+			<p>Alors, prêt à découvrir ce qui se cache sous vos pieds et à être émerveillé par le monde des champignons&nbsp;? Visitez vite notre programme d'activités&nbsp;!</p>
 			<div id="member-btn-container">
-				<a href="{{ route('member', [], false) }}" id="member-btn" class="cmb-btn">Devenir membre</a>
+				<a href="{{ route('activities', [], false) }}" id="member-btn" class="cmb-btn">Programme des activités</a>
 			</div>
 		</section>
 		<div class="img-container fade-in">
