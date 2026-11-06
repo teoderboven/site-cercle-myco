@@ -78,7 +78,7 @@ body > main.error-main {
           text-transform: capitalize;
 
           &::before {
-            content: url("/assets/common/img/svg/mushroom-marker.svg");
+            content: url("@@/svg/mushroom-marker.svg");
             display: inline-block;
             width: 1rem;
             height: 1rem;
