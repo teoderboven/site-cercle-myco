@@ -12,7 +12,7 @@
 	<div class="main-container">
 		<section class="card">
 			<header>
-				<img src="/assets/common/img/svg/check.svg" alt="" class="icon" draggable="false">
+				<img src="/assets/common/img/svg/check-small.svg" alt="" class="icon" draggable="false">
 				<h2 class="title">@yield('unsubscribeTitle')</h2>
 			</header>
 			<p>@yield('unsubscribeDescription')</p>
