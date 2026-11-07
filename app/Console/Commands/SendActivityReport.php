@@ -28,10 +28,18 @@ class SendActivityReport extends Command
         $activity = Activity::findOrFail($this->argument('activityId'));
         $subscriptions = $activity->subscriptions()->with('subscriber')->get();
 
+        $nbNotificationsSent = 0;
+
         foreach ($subscriptions as $subscription) {
-            Mail::to($subscription->subscriber->email)
+            $subscriber = $subscription->subscriber;
+            if (!$subscriber->canReceiveNotifications()) {
+                $this->warn("Subscriber {$subscriber->email} (ID: {$subscriber->id}) cannot receive notifications. Skipping report for activity {$activity->title} (ID: {$activity->id}).");
+                continue;
+            }
+
+            Mail::to($subscriber->email)
                 ->send(new ActivityReportMail(
-                    $subscription->subscriber,
+                    $subscriber,
                     $activity,
                     $this->argument('reportLink'),
                 ));
@@ -39,8 +47,10 @@ class SendActivityReport extends Command
             $subscription->logs()->create([
                 'type' => ActivityNotificationType::ACTIVITY_REPORT->value,
             ]);
+
+            $nbNotificationsSent++;
         }
 
-        $this->info($subscriptions->count().' activity report emails have been sent.');
+        $this->info($nbNotificationsSent.' activity report emails have been sent.');
     }
 }

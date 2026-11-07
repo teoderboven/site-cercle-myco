@@ -103,8 +103,7 @@ class SubscriptionController extends Controller{
 	 * Marks subscriber as unsubscribed and delete associated reminders
 	 */
 	private function globalUnsubscribe(Subscriber $subscriber){
-		$subscriber->unsubscribed = true;
-		$subscriber->save();
+		$subscriber->unsubscribe();
 
 		ActivityNotificationSubscription::where('subscriber_id', $subscriber->id)->delete();
 	}

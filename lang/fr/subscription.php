@@ -17,5 +17,6 @@ return [
     'subscriptionToActivityAlreadyExists' => ':email était déjà inscrit pour recevoir les notifications de cette activité',
     'notSubscribedToActivity' => 'Vous n\'êtes pas abonné à cette activité',
     'subscriberNotFound' => 'Abonné non trouvé',
+    'subscriberBounced' => 'L\'adresse e-mail :email a été signalée comme non valide et ne peut pas recevoir de notifications. Contactez l\'administrateur du site pour résoudre ce problème.',
 
 ];

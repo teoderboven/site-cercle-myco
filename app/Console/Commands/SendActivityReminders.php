@@ -76,8 +76,14 @@ class SendActivityReminders extends Command
         $nbRemindersSent = 0;
 
         foreach ($subscriptions as $subscription) {
-            Mail::to($subscription->subscriber->email)
-                ->send(new $reminderMailable($subscription->subscriber, $subscription->activity));
+            $subscriber = $subscription->subscriber;
+
+            if (!$subscriber->canReceiveNotifications()) {
+                $this->warn("Subscriber {$subscriber->email} (ID: {$subscriber->id}) cannot receive notifications. Skipping reminder for activity {$subscription->activity->title} (ID: {$subscription->activity->id}).");
+                continue;
+            }
+            Mail::to($subscriber->email)
+                ->send(new $reminderMailable($subscriber, $subscription->activity));
 
             $subscription->logs()->create([
                 'type' => $type->value,

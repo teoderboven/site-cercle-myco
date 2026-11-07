@@ -44,6 +44,15 @@ class ActivityNotificationController extends Controller{
             'email' => $req->validated('email'),
         ]);
 
+        if($subscriber->bounced) {
+            return response()->json([
+                'success' => false,
+                'errors' => [
+                    'email' => __('subscription.subscriberBounced', ['email' => $subscriber->email])
+                ],
+            ], 409);
+        }
+
         $wasUnsubscribed = $subscriber->unsubscribed;
 
         if ($wasUnsubscribed) {
@@ -150,6 +159,13 @@ class ActivityNotificationController extends Controller{
                 'success' => false,
                 'message' => 'Unauthorized'
             ], 401);
+        }
+
+        if ($subscriber->bounced) {
+            return response()->json([
+                'success' => false,
+                'message' => __('subscription.subscriberBounced', ['email' => $subscriber->email])
+            ], 409);
         }
 
         $activityIds = $subscriber->activities()->pluck('activities.id');
