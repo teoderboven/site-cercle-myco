@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Hidehalo\Nanoid;
 use Carbon\Carbon;
 
@@ -24,23 +25,18 @@ use Carbon\Carbon;
  * @property bool $cancelled Indicates whether the activity has been cancelled.
  * @property string|null $updated_by The ID of the user who last updated the activity.
  */
+#[Table(name: "activities", keyType: 'string', incrementing: false, timestamps: false)]
+#[Fillable([
+    'title',
+    'guide_id',
+    'start_date',
+    'duration',
+    'description',
+    'meeting_point',
+    'visible',
+    'updated_by'
+])]
 class Activity extends Model{
-
-    protected $table = "activities";
-
-	public $incrementing = false;
-	protected $keyType = 'string';
-
-	protected $fillable = [
-		'title',
-		'guide_id',
-		'start_date',
-		'duration',
-		'description',
-		'meeting_point',
-		'visible',
-		'updated_by'
-	];
 
 	protected $with = [
 		'guide',
@@ -56,16 +52,6 @@ class Activity extends Model{
 		'start_date' => 'datetime',
 	];
 
-	public $timestamps = false;
-	/* /!\
-	the database is configured to update timestamps and not Eloquent
-		> (...)
-		> created_time timestamp default CURRENT_TIMESTAMP,
-		> updated_time timestamp default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-		> (...)
-	see the .sql file that creates the database
-	*/
-
 	/**
 	 * Generates a new unique identifier for the activity.
 	 *
@@ -79,18 +65,6 @@ class Activity extends Model{
 		
 		$nano = new Nanoid\Client();
 		return 'a' . $nano->generateId($length - 1, Nanoid\Client::MODE_DYNAMIC); // -1 because of the 'a' prefix
-	}
-
-	/**
-	 * Returns the unique identifiers for the model.
-	 *
-	 * This method is used by the HasUuids trait to determine which
-	 * attributes should be treated as unique identifiers.
-	 *
-	 * @return array<int, string> An array of attribute names that are unique identifiers.
-	 */
-	public function uniqueIds(): array{
-		return ['id'];
 	}
 
 	/**
@@ -125,7 +99,7 @@ class Activity extends Model{
 		return self::where('cancelled', false)
 					->where('visible', true)
 					->where('start_date', '>', now())
-					->orderBy('start_date', 'asc')
+					->oldest('start_date')
 					->first();
 	}
 
