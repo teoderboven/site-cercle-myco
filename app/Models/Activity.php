@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 use Hidehalo\Nanoid;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Activity
@@ -102,6 +103,17 @@ class Activity extends Model{
 					->oldest('start_date')
 					->first();
 	}
+
+    /**
+     * Defines the relationship between Activity and ActivitySeason.
+     *
+     * Each activity belongs to a specific season, identified by the 'season_id' foreign key.
+     *
+     * @return BelongsTo The relationship instance.
+     */
+    public function season(): BelongsTo {
+        return $this->belongsTo(ActivitySeason::class, 'season_id');
+    }
 
 	public function guide(){
 		return $this->belongsTo(Guide::class);

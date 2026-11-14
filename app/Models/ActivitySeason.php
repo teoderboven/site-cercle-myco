@@ -6,6 +6,7 @@ use App\Services\SeasonService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class ActivitySeason
@@ -33,5 +34,15 @@ class ActivitySeason extends Model
     public function getEndDate(): Carbon
     {
         return app(SeasonService::class)->getSeasonEndDate($this->id);
+    }
+
+    /**
+     * Get the activities associated with this season.
+     *
+     * @return HasMany The relationship to the Activity model.
+     */
+    public function activities() : HasMany
+    {
+        return $this->hasMany(Activity::class, 'season_id');
     }
 }
