@@ -45,4 +45,14 @@ class ActivitySeason extends Model
     {
         return $this->hasMany(Activity::class, 'season_id');
     }
+
+    /**
+     * Get the notification subscriptions associated with this season.
+     *
+     * @return HasMany The relationship to the ActivitySeasonNotificationSubscription model.
+     */
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(ActivitySeasonNotificationSubscription::class, 'activity_season_id');
+    }
 }

@@ -110,11 +110,18 @@ class MailSubscriber extends Model
 	}
 
     /**
-     * The subscriptions associated with the subscriber.
+     * The activity subscriptions associated with the subscriber.
      */
 	public function subscriptions() : HasMany {
 		return $this->hasMany(ActivityNotificationSubscription::class, 'subscriber_id');
 	}
+
+    /**
+     * The season subscriptions associated with the subscriber.
+     */
+    public function seasonSubscriptions() : HasMany {
+        return $this->hasMany(ActivitySeasonNotificationSubscription::class, 'subscriber_id');
+    }
 
     /**
      * The activities that the subscriber is subscribed to.
