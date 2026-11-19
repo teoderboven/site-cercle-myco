@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SeasonNotificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityNotificationController;
 use App\Http\Controllers\Cron\ActivityRemindersCronController;
@@ -9,6 +10,10 @@ Route::post('/activity/{activity}/notifications', [ActivityNotificationControlle
     ->name('activity.notifications.store');
 Route::delete('/activity/{activity}/notifications', [ActivityNotificationController::class, 'unsubscribe'])
     ->name('activity.notifications.destroy');
+Route::post('/season/{season}/notifications', [SeasonNotificationController::class, 'subscribe'])
+    ->name('season.notifications.store');
+Route::delete('/season/{season}/notifications', [SeasonNotificationController::class, 'unsubscribe'])
+    ->name('season.notifications.destroy');
 
 Route::get('/subscriber/{subscriber}/activities', [ActivityNotificationController::class, 'getSubscribedActivities'])
     ->name('subscriber.activities.index');
