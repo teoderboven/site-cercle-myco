@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Subscriptions\RegisterAction;
-use App\Actions\Subscriptions\UnregisterAction;
-use App\Http\Requests\NotificationRegisterRequest;
-use App\Http\Requests\NotificationUnregisterRequest;
+use App\Actions\Subscriptions\SubscribeAction;
+use App\Actions\Subscriptions\UnsubscribeAction;
+use App\Http\Requests\NotificationSubscribeRequest;
+use App\Http\Requests\NotificationUnsubscribeRequest;
 use App\Http\Requests\GetActivityNotificationSubscriptionsRequest;
 use App\Models\Activity;
 use App\Models\ActivityNotificationSubscription;
@@ -16,58 +16,58 @@ use Illuminate\Http\JsonResponse;
 /**
  * Class ActivityNotificationController
  *
- * Controller responsible for handling activity notification subscriptions and sending reminders.
+ * Controller responsible for handling activity notification subscriptions.
  */
 class ActivityNotificationController extends Controller{
 
     /**
      * ActivityNotificationController constructor.
      *
-     * @param RegisterAction $registerAction The action responsible for registering subscribers.
-     * @param UnregisterAction $unregisterAction The action responsible for unregistering subscribers.
+     * @param SubscribeAction $subscribeAction The action responsible for registering subscribers.
+     * @param UnsubscribeAction $unsubscribeAction The action responsible for unregistering subscribers.
      */
     public function __construct(
-        private readonly RegisterAction $registerAction,
-        private readonly UnregisterAction $unregisterAction
+        private readonly SubscribeAction   $subscribeAction,
+        private readonly UnsubscribeAction $unsubscribeAction
     ) {}
 
     /**
      * Register a subscriber to an activity notification subscription.
      *
-     * @param NotificationRegisterRequest $req The incoming HTTP request containing email and activity parameters.
+     * @param NotificationSubscribeRequest $req The incoming HTTP request containing email and activity parameters.
      * @param Activity $activity The activity for which the notification subscription is being registered.
      * @return Responsable JSON response with subscription status and subscriber details (201 Created or 409 Conflict).
      *
      */
-    public function register(NotificationRegisterRequest $req, Activity $activity): Responsable
+    public function subscribe(NotificationSubscribeRequest $req, Activity $activity): Responsable
     {
-        return $this->registerAction->execute(
+        return $this->subscribeAction->execute(
             email: $req->validated('email'),
             targetable: $activity,
             targetForeignKey: 'activity_id',
             subscriptionModelClass: ActivityNotificationSubscription::class,
             alreadyExistsLangKey: 'subscription.alreadySubscribedToActivity',
-            registeredLangKey: 'subscription.registeredToActivity'
+            registeredLangKey: 'subscription.subscribedToActivity'
         );
     }
 
     /**
      * Unregister a subscriber from an activity notification subscription.
      *
-     * @param NotificationUnregisterRequest $req The incoming HTTP request containing subscriber details.
+     * @param NotificationUnsubscribeRequest $req The incoming HTTP request containing subscriber details.
      * @param Activity $activity The activity for which the notification subscription is being unregistered.
      * @return Responsable JSON response with unregistration status (200 OK or 404 Not Found).
      *
      */
-    public function unregister(NotificationUnregisterRequest $req, Activity $activity): Responsable
+    public function unsubscribe(NotificationUnsubscribeRequest $req, Activity $activity): Responsable
     {
-        return $this->unregisterAction->execute(
+        return $this->unsubscribeAction->execute(
             subscriberData: $req->validated('subscriber'),
             targetable: $activity,
             targetForeignKey: 'activity_id',
             subscriptionModelClass: ActivityNotificationSubscription::class,
             notSubscribedLangKey: 'subscription.notSubscribedToActivity',
-            successLangKey: 'subscription.unregisteredToActivity'
+            successLangKey: 'subscription.unsubscribedFromActivity'
         );
     }
 

@@ -6,11 +6,11 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class NotificationUnregisterRequest
+ * Class NotificationSubscribeRequest
  *
- * This request class is responsible for validating the incoming request to unregister for notifications.
+ * This request class is responsible for validating the incoming request to subscribe to notifications.
  */
-class NotificationUnregisterRequest extends FormRequest
+class NotificationSubscribeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,10 +28,7 @@ class NotificationUnregisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'subscriber'       => ['required', 'array'],
-            'subscriber.id'    => ['required', 'uuid'],
-            'subscriber.email' => ['required', 'email'],
-            'subscriber.token' => ['required', 'string'],
+            'email' => ['required', 'email', 'max:255'],
         ];
     }
 }

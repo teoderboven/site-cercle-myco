@@ -12,8 +12,8 @@ return [
 	|
 	*/
 
-	'registeredToActivity' => ':email recevra les notifications de cette activité',
-    'unregisteredToActivity' => ':email n\'est plus inscrit aux notifications de cette activité',
+	'subscribedToActivity' => ':email recevra les notifications de cette activité',
+    'unsubscribedFromActivity' => ':email n\'est plus inscrit aux notifications de cette activité',
     'alreadySubscribedToActivity' => ':email était déjà inscrit pour recevoir les notifications de cette activité',
     'notSubscribedToActivity' => 'Vous n\'êtes pas abonné à cette activité',
     'subscriberNotFound' => 'Abonné non trouvé',

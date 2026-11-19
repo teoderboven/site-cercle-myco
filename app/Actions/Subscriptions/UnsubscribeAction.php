@@ -8,18 +8,18 @@ use App\Services\SubscriptionResponseService;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class UnregisterAction
+ * Class UnsubscribeAction
  *
- * This action handles the unregistration of a subscriber from a specific subscription.
+ * This action handles the unsubscribe of a subscriber from a specific subscription.
  */
-readonly class UnregisterAction
+readonly class UnsubscribeAction
 {
     public function __construct(
         private SubscriptionResponseService $responseService
     ) {}
 
     /**
-     * Execute the subscription unregistration process.
+     * Execute the subscription unsubscribe process.
      *
      * @param array $subscriberData The data used to identify the subscriber.
      * @param Model $targetable The targetable model instance (e.g., Activity or ActivitySeason).

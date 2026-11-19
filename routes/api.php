@@ -5,9 +5,9 @@ use App\Http\Controllers\ActivityNotificationController;
 use App\Http\Controllers\Cron\ActivityRemindersCronController;
 
 // AJAX routes
-Route::post('/activity/{activity}/notifications', [ActivityNotificationController::class, 'register'])
+Route::post('/activity/{activity}/notifications', [ActivityNotificationController::class, 'subscribe'])
     ->name('activity.notifications.store');
-Route::delete('/activity/{activity}/notifications', [ActivityNotificationController::class, 'unregister'])
+Route::delete('/activity/{activity}/notifications', [ActivityNotificationController::class, 'unsubscribe'])
     ->name('activity.notifications.destroy');
 
 Route::get('/subscriber/{subscriber}/activities', [ActivityNotificationController::class, 'getSubscribedActivities'])

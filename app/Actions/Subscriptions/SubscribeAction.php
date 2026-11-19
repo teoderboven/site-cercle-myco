@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
 /**
- * Class RegisterAction
+ * Class SubscribeAction
  *
  * This action handles the registration of a subscriber to a specific subscription.
  */
-readonly class RegisterAction
+readonly class SubscribeAction
 {
     public function __construct(
         private SubscriberMailService       $mailService,
