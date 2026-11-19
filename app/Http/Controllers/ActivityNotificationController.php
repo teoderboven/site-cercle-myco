@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ActivityNotificationRegisterRequest;
-use App\Http\Requests\ActivityNotificationUnregisterRequest;
+use App\Actions\Subscriptions\RegisterAction;
+use App\Actions\Subscriptions\UnregisterAction;
+use App\Http\Requests\NotificationRegisterRequest;
+use App\Http\Requests\NotificationUnregisterRequest;
 use App\Http\Requests\GetActivityNotificationSubscriptionsRequest;
 use App\Models\Activity;
 use App\Models\ActivityNotificationSubscription;
 use App\Models\MailSubscriber;
-use App\Services\SubscriberMailService;
+use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\ValidationException;
 
 /**
  * Class ActivityNotificationController
@@ -23,125 +23,52 @@ class ActivityNotificationController extends Controller{
     /**
      * ActivityNotificationController constructor.
      *
-     * @param SubscriberMailService $mailService The service responsible for sending emails to subscribers.
+     * @param RegisterAction $registerAction The action responsible for registering subscribers.
+     * @param UnregisterAction $unregisterAction The action responsible for unregistering subscribers.
      */
     public function __construct(
-        private readonly SubscriberMailService $mailService
+        private readonly RegisterAction $registerAction,
+        private readonly UnregisterAction $unregisterAction
     ) {}
 
     /**
      * Register a subscriber to an activity notification subscription.
      *
-     * @param ActivityNotificationRegisterRequest $req The incoming HTTP request containing email and activity parameters.
+     * @param NotificationRegisterRequest $req The incoming HTTP request containing email and activity parameters.
      * @param Activity $activity The activity for which the notification subscription is being registered.
-     * @return JsonResponse JSON response with subscription status and subscriber details (201 Created or 409 Conflict).
+     * @return Responsable JSON response with subscription status and subscriber details (201 Created or 409 Conflict).
      *
-     * @throws ValidationException If request validation fails.
      */
-    public function register(ActivityNotificationRegisterRequest $req, Activity $activity): JsonResponse
+    public function register(NotificationRegisterRequest $req, Activity $activity): Responsable
     {
-        $subscriber = MailSubscriber::firstOrCreate([
-            'email' => $req->validated('email'),
-        ]);
-
-        if($subscriber->bounced) {
-            return response()->json([
-                'success' => false,
-                'errors' => [
-                    'email' => __('subscription.subscriberBounced', ['email' => $subscriber->email])
-                ],
-            ], 409);
-        }
-
-        $wasUnsubscribed = $subscriber->unsubscribed;
-
-        if ($wasUnsubscribed) {
-            $subscriber->resubscribe();
-        }
-
-        // check if reminder already exists to handle conflict
-        $subscriptionExists = ActivityNotificationSubscription::where('activity_id', $activity->id)
-            ->where('subscriber_id', $subscriber->id)
-            ->exists();
-
-        if ($subscriptionExists) {
-            Log::alert(sprintf(
-                'Subscriber %s (ID: %s) attempted to register for activity %s (ID: %s) but is already subscribed.',
-                $subscriber->email,
-                $subscriber->id,
-                $activity->title,
-                $activity->id
-            ));
-            return response()->json([
-                'success' => false,
-                'reminderAlreadyExists' => true,
-                'message' => __('subscription.subscriptionToActivityAlreadyExists', ['email' => $subscriber->email]),
-                'subscriber' => $subscriber->only(['id', 'email', 'token']),
-            ], 409);
-        }
-
-        ActivityNotificationSubscription::create([
-            'activity_id' => $activity->id,
-            'subscriber_id' => $subscriber->id,
-        ]);
-
-        if ($subscriber->wasRecentlyCreated || $wasUnsubscribed) {
-            dispatch(function () use ($subscriber) {
-                $this->mailService->sendWelcomeMail($subscriber);
-            })->afterResponse();
-        }
-
-        return response()->json([
-            'success' => true,
-            'message' => __('subscription.registeredToActivity', ['email' => $subscriber->email]),
-            'subscriber' => $subscriber->only(['id', 'email', 'token']),
-        ], 201);
+        return $this->registerAction->execute(
+            email: $req->validated('email'),
+            targetable: $activity,
+            targetForeignKey: 'activity_id',
+            subscriptionModelClass: ActivityNotificationSubscription::class,
+            alreadyExistsLangKey: 'subscription.alreadySubscribedToActivity',
+            registeredLangKey: 'subscription.registeredToActivity'
+        );
     }
 
     /**
      * Unregister a subscriber from an activity notification subscription.
      *
-     * @param ActivityNotificationUnregisterRequest $req The incoming HTTP request containing subscriber details.
+     * @param NotificationUnregisterRequest $req The incoming HTTP request containing subscriber details.
      * @param Activity $activity The activity for which the notification subscription is being unregistered.
-     * @return JsonResponse JSON response with unregistration status (200 OK or 404 Not Found).
+     * @return Responsable JSON response with unregistration status (200 OK or 404 Not Found).
      *
-     * @throws ValidationException If request validation fails.
      */
-    public function unregister(ActivityNotificationUnregisterRequest $req, Activity $activity): JsonResponse
+    public function unregister(NotificationUnregisterRequest $req, Activity $activity): Responsable
     {
-        $subscriberData = $req->validated('subscriber');
-
-        $subscriber = MailSubscriber::where('id', $subscriberData['id'])
-            ->where('email', $subscriberData['email'])
-            ->where('token', $subscriberData['token'])
-            ->first();
-
-        if(!$subscriber) {
-            return response()->json([
-                'success' => false,
-                'reminderNotFound' => true,
-                'message' => __('subscription.subscriberNotFound'),
-            ], 404);
-        }
-
-        $subscription = ActivityNotificationSubscription::where('activity_id', $activity->id)
-            ->where('subscriber_id', $subscriber->id)
-            ->first();
-
-        if (!$subscription) {
-            return response()->json([
-                'success' => false,
-                'reminderNotFound' => true,
-                'message' => __('subscription.notSubscribedToActivity'),
-            ], 404);
-        }
-
-        $subscription->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => __('subscription.unregisteredToActivity', ['email' => $subscriber->email]),
-        ]);
+        return $this->unregisterAction->execute(
+            subscriberData: $req->validated('subscriber'),
+            targetable: $activity,
+            targetForeignKey: 'activity_id',
+            subscriptionModelClass: ActivityNotificationSubscription::class,
+            notSubscribedLangKey: 'subscription.notSubscribedToActivity',
+            successLangKey: 'subscription.unregisteredToActivity'
+        );
     }
 
     /**

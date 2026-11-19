@@ -6,11 +6,11 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class ActivityNotificationRegisterRequest
+ * Class NotificationRegisterRequest
  *
- * This request class is responsible for validating the incoming request to register for activity notifications.
+ * This request class is responsible for validating the incoming request to register for notifications.
  */
-class ActivityNotificationRegisterRequest extends FormRequest
+class NotificationRegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
