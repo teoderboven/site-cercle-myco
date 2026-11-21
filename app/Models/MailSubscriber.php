@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 /**
@@ -18,9 +19,10 @@ use Illuminate\Support\Str;
  *
  * @property string $id The unique identifier for the subscriber.
  * @property string $email The email address of the subscriber.
+ * @property string $token A unique token used for authenticate the subscriber.
+ * @property Carbon $first_subscribed_at The timestamp when the subscriber first subscribed.
  * @property bool $unsubscribed Indicates whether the subscriber has unsubscribed from notifications.
  * @property bool $bounced Indicates whether the subscriber's email has bounced.
- * @property string $token A unique token used for authenticate the subscriber.
  */
 #[Table(keyType: 'string', incrementing: false, timestamps: false)]
 #[Fillable(['email'])]
@@ -30,9 +32,10 @@ class MailSubscriber extends Model
 	use HasUuids;
 
 	protected $casts = [
-		'unsubscribed' => 'boolean'
+		'unsubscribed' => 'boolean',
+        'bounced' => 'boolean',
+        'first_subscribed_at' => 'datetime',
 	];
-
 
     /**
      * Determine if the subscriber can receive notifications.
