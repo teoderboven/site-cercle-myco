@@ -10,10 +10,10 @@ Route::post('/activity/{activity}/notifications', [ActivityNotificationControlle
     ->name('activity.notifications.store');
 Route::delete('/activity/{activity}/notifications', [ActivityNotificationController::class, 'unsubscribe'])
     ->name('activity.notifications.destroy');
-Route::post('/season/{season}/notifications', [SeasonNotificationController::class, 'subscribe'])
-    ->name('season.notifications.store');
-Route::delete('/season/{season}/notifications', [SeasonNotificationController::class, 'unsubscribe'])
-    ->name('season.notifications.destroy');
+Route::post('/season/upcoming/notifications', [SeasonNotificationController::class, 'subscribe'])
+    ->name('season.upcoming.notifications.store');
+Route::delete('/season/upcoming/notifications', [SeasonNotificationController::class, 'unsubscribe'])
+    ->name('season.upcoming.notifications.destroy');
 
 Route::get('/subscriber/{subscriber}/activities', [ActivityNotificationController::class, 'getSubscribedActivities'])
     ->name('subscriber.activities.index');

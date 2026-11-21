@@ -22,7 +22,7 @@ readonly class UnsubscribeAction
      * Execute the subscription unsubscribe process.
      *
      * @param array $subscriberData The data used to identify the subscriber.
-     * @param Model $targetable The targetable model instance (e.g., Activity or ActivitySeason).
+     * @param string|int|null $targetId The ID of the target model.
      * @param string $targetForeignKey The foreign key used to identify the targetable model.
      * @param string $subscriptionModelClass The class name of the subscription model.
      * @param string $notSubscribedLangKey The language key for the not subscribed message.
@@ -31,7 +31,7 @@ readonly class UnsubscribeAction
      */
     public function execute(
             array $subscriberData,
-            Model $targetable,
+            string|int|null $targetId,
             string $targetForeignKey,
             string $subscriptionModelClass,
             string $notSubscribedLangKey,
@@ -44,7 +44,7 @@ readonly class UnsubscribeAction
             return $this->responseService->subscriberNotFound();
         }
 
-        $subscription = $this->findSubscription($subscriptionModelClass, $targetForeignKey, $targetable, $subscriber);
+        $subscription = $this->findSubscription($subscriptionModelClass, $targetForeignKey, $targetId, $subscriber);
 
         if (!$subscription) {
             return $this->notSubscribedResponse($notSubscribedLangKey);
@@ -74,13 +74,13 @@ readonly class UnsubscribeAction
      *
      * @param string $subscriptionModelClass The class name of the subscription model.
      * @param string $targetForeignKey The foreign key used to identify the targetable model.
-     * @param Model $targetable The targetable model instance.
+     * @param string|int|null $targetId The ID of the target model.
      * @param MailSubscriber $subscriber The subscriber instance.
      * @return Model|null The found subscription or null if not found.
      */
-    private function findSubscription(string $subscriptionModelClass, string $targetForeignKey, Model $targetable, MailSubscriber $subscriber): ?Model
+    private function findSubscription(string $subscriptionModelClass, string $targetForeignKey, string|int|null $targetId, MailSubscriber $subscriber): ?Model
     {
-        return $subscriptionModelClass::where($targetForeignKey, $targetable->id)
+        return $subscriptionModelClass::where($targetForeignKey, $targetId)
             ->where('subscriber_id', $subscriber->id)
             ->first();
     }

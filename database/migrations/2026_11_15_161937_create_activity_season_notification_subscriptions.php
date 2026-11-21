@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('activity_season_notification_subscriptions', function (Blueprint $table) {
             $table->id();
             $table->char('subscriber_id', 36);
-            $table->year('activity_season_id');
+            $table->year('activity_season_id')->nullable();
 
             $table->foreign('subscriber_id', 'fk_activity_season_notification_subscriptions_subscriber_id')
                 ->references('id')->on('mail_subscribers')

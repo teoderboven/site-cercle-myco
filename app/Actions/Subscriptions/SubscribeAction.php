@@ -6,7 +6,6 @@ use App\DTOs\API\SubscriptionResponse;
 use App\Models\MailSubscriber;
 use App\Services\SubscriberMailService;
 use App\Services\SubscriptionResponseService;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -25,7 +24,7 @@ readonly class SubscribeAction
      * Execute the subscription registration process.
      *
      * @param string $email The email of the subscriber.
-     * @param Model $targetable The targetable model instance (e.g., Activity or ActivitySeason).
+     * @param string|int|null $targetId The ID of the target model.
      * @param string $targetForeignKey The foreign key used to identify the targetable model.
      * @param string $subscriptionModelClass The class name of the subscription model.
      * @param string $alreadyExistsLangKey The language key for the already exists message.
@@ -34,7 +33,7 @@ readonly class SubscribeAction
      */
     public function execute(
             string $email,
-            Model $targetable,
+            string|int|null $targetId,
             string $targetForeignKey,
             string $subscriptionModelClass,
             string $alreadyExistsLangKey,
@@ -52,11 +51,11 @@ readonly class SubscribeAction
             $subscriber->resubscribe();
         }
 
-        if ($this->subscriptionExists($subscriptionModelClass, $targetForeignKey, $targetable, $subscriber)) {
-            return $this->alreadyExistsResponse($subscriber, $targetable, $alreadyExistsLangKey);
+        if ($this->subscriptionExists($subscriptionModelClass, $targetForeignKey, $targetId, $subscriber)) {
+            return $this->alreadyExistsResponse($subscriber, $targetId, $alreadyExistsLangKey);
         }
 
-        $this->createSubscription($subscriptionModelClass, $targetForeignKey, $targetable, $subscriber);
+        $this->createSubscription($subscriptionModelClass, $targetForeignKey, $targetId, $subscriber);
 
         $this->handleWelcomeEmail($subscriber, $wasUnsubscribed);
 
@@ -81,13 +80,13 @@ readonly class SubscribeAction
      *
      * @param string $subscriptionModelClass The class name of the subscription model.
      * @param string $targetForeignKey The foreign key used to identify the targetable model.
-     * @param Model $targetable The targetable model instance.
+     * @param string|int|null $targetId The ID of the target model.
      * @param MailSubscriber $subscriber The subscriber instance.
      * @return bool True if the subscription exists, false otherwise.
      */
-    private function subscriptionExists(string $subscriptionModelClass, string $targetForeignKey, Model $targetable, MailSubscriber $subscriber): bool
+    private function subscriptionExists(string $subscriptionModelClass, string $targetForeignKey, string|int|null $targetId, MailSubscriber $subscriber): bool
     {
-        return $subscriptionModelClass::where($targetForeignKey, $targetable->id)
+        return $subscriptionModelClass::where($targetForeignKey, $targetId)
             ->where('subscriber_id', $subscriber->id)
             ->exists();
     }
@@ -97,13 +96,13 @@ readonly class SubscribeAction
      *
      * @param string $subscriptionModelClass The class name of the subscription model.
      * @param string $targetForeignKey The foreign key used to identify the targetable model.
-     * @param Model $targetable The targetable model instance.
+     * @param string|int|null $targetId The ID of the target model.
      * @param MailSubscriber $subscriber The subscriber instance.
      */
-    private function createSubscription(string $subscriptionModelClass, string $targetForeignKey, Model $targetable, MailSubscriber $subscriber): void
+    private function createSubscription(string $subscriptionModelClass, string $targetForeignKey, string|int|null $targetId, MailSubscriber $subscriber): void
     {
         $subscriptionModelClass::create([
-            $targetForeignKey => $targetable->id,
+            $targetForeignKey => $targetId,
             'subscriber_id' => $subscriber->id,
         ]);
     }
@@ -127,17 +126,17 @@ readonly class SubscribeAction
      * Generate a response indicating that the subscription already exists.
      *
      * @param MailSubscriber $subscriber The subscriber instance.
-     * @param Model $targetable The targetable model instance.
+     * @param string|int|null $targetId The ID of the target model.
      * @param string $alreadyExistsLangKey The language key for the already exists message.
      * @return SubscriptionResponse The response data.
      */
-    private function alreadyExistsResponse(MailSubscriber $subscriber, Model $targetable, string $alreadyExistsLangKey): SubscriptionResponse
+    private function alreadyExistsResponse(MailSubscriber $subscriber, string|int|null $targetId, string $alreadyExistsLangKey): SubscriptionResponse
     {
         Log::alert(sprintf(
             'Subscriber %s (ID: %s) attempted to register for target %s but is already subscribed.',
             $subscriber->email,
             $subscriber->id,
-            $targetable->id
+            $targetId
         ));
 
         return new SubscriptionResponse(

@@ -43,7 +43,7 @@ class ActivityNotificationController extends Controller{
     {
         return $this->subscribeAction->execute(
             email: $req->validated('email'),
-            targetable: $activity,
+            targetId: $activity->id,
             targetForeignKey: 'activity_id',
             subscriptionModelClass: ActivityNotificationSubscription::class,
             alreadyExistsLangKey: 'subscription.alreadySubscribedToActivity',
@@ -63,7 +63,7 @@ class ActivityNotificationController extends Controller{
     {
         return $this->unsubscribeAction->execute(
             subscriberData: $req->validated('subscriber'),
-            targetable: $activity,
+            targetId: $activity->id,
             targetForeignKey: 'activity_id',
             subscriptionModelClass: ActivityNotificationSubscription::class,
             notSubscribedLangKey: 'subscription.notSubscribedToActivity',
