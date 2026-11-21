@@ -1,0 +1,25 @@
+@use '@/abstracts/mixins-activity';
+@use './activity_item' as activity;
+
+.season-end {
+  @include mixins-activity.card-style;
+  padding: 7px;
+  background-color: activity.$activity-highlight-bg;
+  margin-bottom: 25px;
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  a.history-btn {
+    display: inline-block;
+  }
+}
+
+.end-indicator {
+  margin: 30px 0;
+}

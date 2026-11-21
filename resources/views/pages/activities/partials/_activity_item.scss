@@ -1,3 +1,4 @@
+@use '@/abstracts/mixins-activity';
 @use './info-group';
 
 $activity-bg: #00000015;
@@ -46,9 +47,7 @@ $activity-cancelled-bg: #e3a3a3;
   }
 
   .main-wrapper {
-    border: solid 1px #00000000;
-    border-radius: 15px;
-    box-shadow: 1px 3px 10px #00000080;
+    @include mixins-activity.card-style;
     background-color: $activity-bg;
   }
 
@@ -172,10 +171,4 @@ $activity-cancelled-bg: #e3a3a3;
       }
     }
   }
-}
-
-.season-end {
-  border: solid 1px #0000;
-  border-radius: 15px;
-  box-shadow: 1px 3px 10px #00000080;
 }

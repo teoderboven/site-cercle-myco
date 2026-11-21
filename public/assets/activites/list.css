@@ -14,21 +14,3 @@
 .month .activity-wrapper:first-of-type{
 	margin-top: 3px;
 }
-
-.season-end{
-	padding: 7px;
-	background-color: var(--activity-highlight-bg);
-	margin-bottom: 25px;
-}
-.season-end h4{
-	font-size: 1.3rem;
-}
-.season-end p{
-	margin: 10px 0;
-}
-.season-end a.history-btn{
-	display: inline-block;
-}
-.end-indicator{
-	margin: 30px 0;
-}
