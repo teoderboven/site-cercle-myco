@@ -8,8 +8,6 @@
 
 @pushonce('styles')
 	<link rel="stylesheet" href="/assets/common/css/tip.css">
-	<link rel="stylesheet" href="/assets/activites/activities.css">
-	<link rel="stylesheet" href="/assets/activites/list.css">
 @endpushonce
 
 @pushonce('assets')

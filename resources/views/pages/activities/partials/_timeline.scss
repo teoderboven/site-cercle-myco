@@ -61,4 +61,27 @@ $timeline-arrow-width: calc(2.4 * $timeline-width);
       filter: drop-shadow(2px 2px 5px #000000a0);
     }
   }
+
+  .activities-container {
+    padding: 20px 0;
+    width: 100%;
+
+    .month {
+      .month-name {
+        font-weight: 700;
+      }
+
+      ol {
+        list-style-type: none;
+
+        .activity-wrapper {
+          margin: 17px 5px;
+
+          &:first-of-type {
+            margin-top: 3px;
+          }
+        }
+      }
+    }
+  }
 }
