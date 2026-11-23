@@ -21,5 +21,11 @@
         </p>
     @endif
 
-    <a href="{{ route('excursions', [], false) }}" class="cmb-btn history-btn">(Re)découvrir les excursions de {{$atLeastOneActivity? "l'année": 'la saison précédente'}} &#9658;</a>
+    <div class="buttons-container">
+        @include('pages.activities.partials.notify-button', [
+            'activityId' => 'season-end',
+            'activityTitle' => "Saison $currentSeasonYear"
+        ])
+        <a href="{{ route('excursions', [], false) }}" class="cmb-btn history-btn">(Re)découvrir les excursions de {{$atLeastOneActivity? "l'année": 'la saison précédente'}} &#9658;</a>
+    </div>
 </section>
