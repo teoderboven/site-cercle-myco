@@ -1,4 +1,4 @@
-.c_report-detail{
+.c_button{
     display: block;
     width: max-content;
     background-color: #2e4dc0;
@@ -6,7 +6,7 @@
     padding: 7px;
     border-radius: 5px;
 }
-.c_report-detail:hover{
+.c_button:hover{
     background-color: #4d65bd;
     text-decoration: none;
 }

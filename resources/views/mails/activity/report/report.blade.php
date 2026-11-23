@@ -10,7 +10,7 @@
 
 @push('styles')
     <style>
-        {!! file_get_contents(resource_path('views/mails/activity/report/report.css')) !!}
+        {!! file_get_contents(resource_path('views/mails/common/button.css')) !!}
     </style>
 @endpush
 
@@ -21,7 +21,7 @@
         est désormais disponible en ligne.
     </p>
     <p>
-        <a href="{{ $reportLink }}" target="_blank" class="c_report-detail">Voir le compte-rendu en ligne</a>
+        <a href="{{ $reportLink }}" target="_blank" class="c_button">Voir le compte-rendu en ligne</a>
     </p>
     <p>
         Vous pouvez également consulter <a href="{{ route('excursions') }}" target="_blank">l'historique des excursions</a>

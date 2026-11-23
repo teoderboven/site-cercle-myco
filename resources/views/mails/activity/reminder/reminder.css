@@ -27,15 +27,3 @@
 .c_activity-info-table .c_dash{
 	padding: 0 4px 0 12px;
 }
-.c_activity-detail{
-	display: block;
-	width: max-content;
-	background-color: #2e4dc0;
-	color: #f7f7f7 !important;
-	padding: 7px;
-	border-radius: 5px;
-}
-.c_activity-detail:hover{
-	background-color: #4d65bd;
-	text-decoration: none;
-}
