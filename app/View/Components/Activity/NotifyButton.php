@@ -5,6 +5,12 @@ namespace App\View\Components\Activity;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
+/**
+ * Class NotifyButton
+ *
+ * This component represents a notification button for activities or seasons.
+ * It provides the necessary data and labels for rendering the button and handling subscriptions.
+ */
 class NotifyButton extends Component
 {
     public string $notSubscribedText;

@@ -12,7 +12,7 @@ return [
     'subscribeError' => 'Une erreur est survenue lors de l’inscription.',
     'unsubscribeError' => 'Une erreur est survenue lors de la désinscription.',
     'modalTitleActivity' => 'S’inscrire aux notifications de l’activité',
-    'modalTitleSeason' => 'S’inscrire aux notifications de la prochaine saison',
+    'modalTitleSeason' => 'Être notifié de la publication du prochain programme',
     'modalDescriptionActivity' => 'Recevez des rappels par e-mail pour ne pas manquer cette activité, ainsi que toute information importante en cas d’imprévu. L’inscription aux notifications n’engage pas à participer à l’activité.',
     'modalDescriptionSeason' => 'Recevez un e-mail dès que le programme de la prochaine saison est publié.',
     'modalEmailLabel' => 'Adresse e-mail',
