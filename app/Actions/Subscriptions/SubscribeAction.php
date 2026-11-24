@@ -46,7 +46,7 @@ readonly class SubscribeAction
             return $this->responseService->bounced($subscriber);
         }
 
-        $wasUnsubscribed = $subscriber->unsubscribed;
+        $wasUnsubscribed = (bool) $subscriber->unsubscribed; // bool cast is necessary because the value can be null in the database, but we want to treat it as false in that case.
         if ($wasUnsubscribed) {
             $subscriber->resubscribe();
         }
