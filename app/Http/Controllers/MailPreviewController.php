@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\activity\reminder\FirstActivityReminderMail;
 use App\Mail\activity\reminder\SecondActivityReminderMail;
 use App\Mail\activity\report\ActivityReportMail;
+use App\Mail\EndSeasonSurvey;
 use App\Mail\WelcomeMail;
 use App\Models\Activity;
 use App\Models\MailSubscriber;
@@ -66,5 +67,15 @@ class MailPreviewController extends Controller
     public function activityReport() {
         $reportLink = "https://example.com/activity-report/{$this->activity->id}";
         return new ActivityReportMail($this->subscriber, $this->activity, $reportLink);
+    }
+
+    /**
+     * Display a preview of the end season form email.
+     *
+     * @return Mailable
+     */
+    public function endSeasonForm() {
+        $surveyLink = "https://example.com/end-season-survey";
+        return new EndSeasonSurvey($this->subscriber, $surveyLink);
     }
 }

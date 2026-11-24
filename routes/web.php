@@ -39,5 +39,6 @@ if (app()->environment('local')) {
         Route::get('/activity-reminder/first', [MailPreviewController::class, 'firstActivityReminder'])->name('mail.activity-reminder.first');
         Route::get('/activity-reminder/second', [MailPreviewController::class, 'secondActivityReminder'])->name('mail.activity-reminder.second');
         Route::get('/activity-report', [MailPreviewController::class, 'activityReport'])->name('mail.activity-report');
+        Route::get('/end-season-form', [MailPreviewController::class, 'endSeasonForm'])->name('mail.end-season-form');
     });
 }
