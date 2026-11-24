@@ -21,6 +21,6 @@
             :target-title="'Saison $currentSeasonYear'"
             notification-type="season"
         />
-        <a href="{{ route('excursions', [], false) }}" class="cmb-btn history-btn">Consulter l'historique des relevés &#9658;</a>
+        <a href="{{ route('excursions', [], false) }}" class="cmb-btn history-btn">Consulter l'historique des relevés</a>
     </div>
 </section>
