@@ -96,10 +96,14 @@ class ActivityNotificationController extends Controller{
         }
 
         $activityIds = $subscriber->activities()->pluck('activities.id');
+        $seasonSubscribed = $subscriber->seasonSubscriptions()
+            ->whereNull('activity_season_id')
+            ->exists();
 
         return response()->json([
             'success' => true,
             'activityIds' => $activityIds,
+            'seasonSubscribed' => $seasonSubscribed,
         ]);
     }
 

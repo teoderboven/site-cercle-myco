@@ -16,7 +16,6 @@
 
 @pushonce('additions')
 	<link rel="preload" as="image" href="/images/excursions/ViroinvalGr03.JPG">
-	<meta name="csrf-token" content="{{ csrf_token() }}">
 @endpushonce
 
 @section('main-content')

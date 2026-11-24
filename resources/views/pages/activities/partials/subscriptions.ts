@@ -20,13 +20,28 @@ interface ApiResponse {
 
 const subscriptionMailModal = document.getElementById("subscription-mail-modal") as HTMLDialogElement | null;
 const mailForm = document.getElementById("subscription-mail-form") as HTMLFormElement | null;
+const mailModalTitleElement = subscriptionMailModal?.querySelector(".modal-title") as HTMLElement | null;
 const mailModalActivityTitleElement = subscriptionMailModal?.querySelector(".activity-title") as HTMLElement | null;
+const mailModalDescriptionElement = subscriptionMailModal?.querySelector(".modal-description") as HTMLElement | null;
 
-const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '';
+function getMetaContent(name: string, fallback = ''): string {
+    return document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`)?.content ?? fallback;
+}
+
+const csrfToken = getMetaContent('csrf-token');
+const subscribedText = getMetaContent('notification-subscribed-text');
+const emailMarker = getMetaContent('notification-email-marker');
+const unsubscribeLabel = getMetaContent('notification-unsubscribe-label');
+const unsubscribeClickSuffix = getMetaContent('notification-unsubscribe-click-suffix');
+const subscribeErrorText = getMetaContent('notification-subscribe-error');
+const unsubscribeErrorText = getMetaContent('notification-unsubscribe-error');
+const activityApiBase = getMetaContent('notification-api-activity');
+const seasonApiUrl = getMetaContent('notification-api-season');
 
 // storage keys
 const storageSubscriberKey = 'subscriber';
-const storageSubscribedActivityIdsKey = 'subscribed_activity_ids';
+const storageSubscribedTargetIdsKey = 'subscribed_target_ids';
+const upcomingSeasonSubscriptionId = 'season-upcoming';
 
 // error messages
 const errorEmailPromptCancelledMessage = 'email_prompt_cancelled';
@@ -34,6 +49,7 @@ const errorEmailPromptCancelledMessage = 'email_prompt_cancelled';
 // global state variables
 let pendingEmailPromise: PendingEmailPromise | null = null;
 let activeActivityTitle: string | null = null;
+let activeNotificationType = 'activity';
 
 // event listeners registration
 mailForm?.addEventListener('submit', handleMailFormSubmit);
@@ -42,7 +58,7 @@ subscriptionMailModal?.querySelectorAll<HTMLElement>(".close-btn").forEach(regis
 subscriptionMailModal?.addEventListener('close', handleModalClose);
 
 window.addEventListener('storage', (e: StorageEvent) => {
-    if (e.key === storageSubscribedActivityIdsKey) {
+    if (e.key === storageSubscribedTargetIdsKey) {
         syncSubscribedButtons();
     }
 });
@@ -56,19 +72,22 @@ document.addEventListener('DOMContentLoaded', updateAndSyncActivitySubscriptions
  */
 function updateButtonState(notifyBtn: HTMLButtonElement, isSubscribed: boolean): void {
     const email = getCachedSubscriber()?.email;
-    const {
-        subscribedText = "Inscrit(e) aux notifications",
-        notSubscribedText = "M'informer par e-mail",
-        defaultLabel = "S'abonner aux notifications",
-        subscribedLabel: templateLabel,
-        emailMarker
-    } = notifyBtn.dataset; // Destructure dataset with default values
+    const notificationType = notifyBtn.dataset.notificationType ?? 'activity';
+    const notSubscribedText = getMetaContent(`notification-not-subscribed-text-${notificationType}`);
+    const defaultLabel = getMetaContent(
+        `notification-default-label-${notificationType}`,
+        ''
+    );
+    const templateLabel = getMetaContent(
+        `notification-subscribed-label-${notificationType}`,
+        unsubscribeLabel
+    );
 
     const baseLabel = (templateLabel && emailMarker && email)
         ? templateLabel.replace(emailMarker, email)
-        : "Se désabonner des notifications";
+        : unsubscribeLabel;
 
-    const subscribedLabel = `${baseLabel}\nCliquez pour vous désabonner`;
+    const subscribedLabel = `${baseLabel}\n${unsubscribeClickSuffix}`;
 
     const notifyBtnText = notifyBtn.querySelector(".notify-text");
     notifyBtn.dataset.subscribed = isSubscribed ? "true" : "false";
@@ -84,22 +103,22 @@ function updateButtonState(notifyBtn: HTMLButtonElement, isSubscribed: boolean):
  * Synchronizes the display state of all notification buttons based on local storage.
  */
 function syncSubscribedButtons(): void {
-    const cachedIds = getCachedSubscribedActivityIds();
+    const cachedIds = getCachedSubscribedTargetIds();
 
     document.querySelectorAll(".notify-btn-wrapper").forEach(btnWrapper => {
         const notifyBtn = btnWrapper.querySelector<HTMLButtonElement>(".notify-btn");
         if (!notifyBtn) return;
 
-        const activityId = notifyBtn.dataset.activityId;
-        if (activityId) {
-            updateButtonState(notifyBtn, cachedIds.includes(activityId));
+        const targetId = notifyBtn.dataset.targetId;
+        if (targetId) {
+            updateButtonState(notifyBtn, cachedIds.includes(targetId));
         }
     });
 }
 
 function updateAndSyncActivitySubscriptions(): void {
     getActivitySubscriptions().then((subscriptions: string[]) => {
-        setCachedSubscribedActivityIds(subscriptions);
+        setCachedSubscribedTargetIds(subscriptions);
     }).finally(() => {
         syncSubscribedButtons();
     });
@@ -110,8 +129,21 @@ function registerMailModalCloseListener(closeBtn: HTMLElement): void {
 }
 
 function openMailModal(): void {
-    if (mailModalActivityTitleElement && activeActivityTitle) {
-        mailModalActivityTitleElement.innerText = activeActivityTitle;
+    if (mailModalTitleElement) {
+        mailModalTitleElement.textContent = getMetaContent(
+            `notification-modal-title-${activeNotificationType}`
+        );
+    }
+    if (mailModalActivityTitleElement && activeNotificationType === 'activity') {
+        mailModalActivityTitleElement.textContent = activeActivityTitle;
+        mailModalActivityTitleElement.style.visibility = 'visible';
+    } else if (mailModalActivityTitleElement) {
+        mailModalActivityTitleElement.style.visibility = 'hidden';
+    }
+    if (mailModalDescriptionElement) {
+        mailModalDescriptionElement.textContent = getMetaContent(
+            `notification-modal-description-${activeNotificationType}`
+        );
     }
     subscriptionMailModal?.showModal();
 }
@@ -160,13 +192,15 @@ function initNotifyButton(btnWrapper: HTMLElement): void {
 
     if (!notifyBtn || !statusMessage) return;
 
-    const activityId = notifyBtn.dataset.activityId ?? '';
-    const activityTitle = notifyBtn.dataset.activityTitle ?? '';
+    const targetId = notifyBtn.dataset.targetId ?? '';
+    const targetTitle = notifyBtn.dataset.targetTitle ?? '';
+    const notificationType = notifyBtn.dataset.notificationType ?? 'activity';
 
     notifyBtn.addEventListener("click", handleNotifyBtnClick);
 
     function handleNotifyBtnClick(_e: MouseEvent): void {
-        activeActivityTitle = activityTitle;
+        activeActivityTitle = targetTitle;
+        activeNotificationType = notificationType;
 
         if (!isSubscribed()) handleSubscriptionRequest();
         else handleUnsubscribeRequest();
@@ -175,12 +209,12 @@ function initNotifyButton(btnWrapper: HTMLElement): void {
     function handleSubscriptionRequest(): void {
         setLoading();
         getUserMail()
-            .then(email => sendSubscriptionRequest(email, activityId))
+            .then(email => sendSubscriptionRequest(email, targetId, notificationType))
             .then(handleSubscriptionResponse)
             .catch(err => {
                 if (err.message !== errorEmailPromptCancelledMessage) {
                     console.error(err.message);
-                    displayStatus('Une erreur est survenue lors de l\'inscription.', true);
+                    displayStatus(subscribeErrorText, true);
                 }
             })
             .finally(() => setLoadingComplete());
@@ -188,12 +222,12 @@ function initNotifyButton(btnWrapper: HTMLElement): void {
 
     function handleUnsubscribeRequest(): void {
         setLoading();
-        sendUnsubscriptionRequest(activityId)
+        sendUnsubscriptionRequest(targetId, notificationType)
             .then(handleUnsubscribeResponse)
             .catch(err => {
                 if (err.message !== errorEmailPromptCancelledMessage) {
                     console.error(err.message);
-                    displayStatus('Une erreur est survenue lors de la désinscription.', true);
+                    displayStatus(unsubscribeErrorText, true);
                 }
             })
             .finally(() => setLoadingComplete());
@@ -240,14 +274,14 @@ function initNotifyButton(btnWrapper: HTMLElement): void {
         if (notifyBtn) {
             updateButtonState(notifyBtn, true);
         }
-        addCachedSubscribedActivityId(activityId);
+        addCachedSubscribedTargetId(targetId);
     }
 
     function setUnsubscribed(): void {
         if (notifyBtn) {
             updateButtonState(notifyBtn, false);
         }
-        removeCachedSubscribedActivityId(activityId);
+        removeCachedSubscribedTargetId(targetId);
     }
 
     function isSubscribed(): boolean {
@@ -338,35 +372,39 @@ function getCachedSubscriber(): Subscriber | null {
     return subscriber ? (JSON.parse(subscriber) as Subscriber) : null;
 }
 
-function getCachedSubscribedActivityIds(): string[] {
-    const activityIds = localStorage.getItem(storageSubscribedActivityIdsKey);
-    return activityIds ? (JSON.parse(activityIds) as string[]) : [];
+function getCachedSubscribedTargetIds(): string[] {
+    const targetIds = localStorage.getItem(storageSubscribedTargetIdsKey);
+    return targetIds ? (JSON.parse(targetIds) as string[]) : [];
 }
 
-function addCachedSubscribedActivityId(activityId: string): void {
-    const activityIds = getCachedSubscribedActivityIds();
-    if (!activityIds.includes(activityId)) {
-        activityIds.push(activityId);
-        localStorage.setItem(storageSubscribedActivityIdsKey, JSON.stringify(activityIds));
+function addCachedSubscribedTargetId(targetId: string): void {
+    const targetIds = getCachedSubscribedTargetIds();
+    if (!targetIds.includes(targetId)) {
+        targetIds.push(targetId);
+        localStorage.setItem(storageSubscribedTargetIdsKey, JSON.stringify(targetIds));
     }
 }
 
-function removeCachedSubscribedActivityId(activityId: string): void {
-    const activityIds = getCachedSubscribedActivityIds();
-    const index = activityIds.indexOf(activityId);
+function removeCachedSubscribedTargetId(targetId: string): void {
+    const targetIds = getCachedSubscribedTargetIds();
+    const index = targetIds.indexOf(targetId);
     if (index !== -1) {
-        activityIds.splice(index, 1);
-        localStorage.setItem(storageSubscribedActivityIdsKey, JSON.stringify(activityIds));
+        targetIds.splice(index, 1);
+        localStorage.setItem(storageSubscribedTargetIdsKey, JSON.stringify(targetIds));
     }
 }
 
-function setCachedSubscribedActivityIds(activityIds: string[]): void {
-    localStorage.setItem(storageSubscribedActivityIdsKey, JSON.stringify(activityIds));
+function setCachedSubscribedTargetIds(targetIds: string[]): void {
+    localStorage.setItem(storageSubscribedTargetIdsKey, JSON.stringify(targetIds));
 }
 
 // api helpers
-function sendNotificationApi(activityId: string, method: string, body: unknown): Promise<ApiResponse> {
-    return fetch(`/api/activity/${activityId}/notifications`, {
+function sendNotificationApi(targetId: string, notificationType: string, method: string, body: unknown): Promise<ApiResponse> {
+    const url = notificationType === 'season'
+        ? seasonApiUrl
+        : `${activityApiBase}/${targetId}/notifications`;
+
+    return fetch(url, {
         method: method,
         headers: {
             'Content-Type': 'application/json',
@@ -378,12 +416,12 @@ function sendNotificationApi(activityId: string, method: string, body: unknown):
         .then(response => response.json());
 }
 
-function sendSubscriptionRequest(email: string, activityId: string): Promise<ApiResponse> {
-    return sendNotificationApi(activityId, 'POST', { email });
+function sendSubscriptionRequest(email: string, targetId: string, notificationType = 'activity'): Promise<ApiResponse> {
+    return sendNotificationApi(targetId, notificationType, 'POST', { email });
 }
 
-function sendUnsubscriptionRequest(activityId: string): Promise<ApiResponse> {
-    return sendNotificationApi(activityId, 'DELETE', { subscriber: getCachedSubscriber() });
+function sendUnsubscriptionRequest(targetId: string, notificationType = 'activity'): Promise<ApiResponse> {
+    return sendNotificationApi(targetId, notificationType, 'DELETE', { subscriber: getCachedSubscriber() });
 }
 
 /**
@@ -395,12 +433,18 @@ function getActivitySubscriptions(): Promise<string[]> {
         return Promise.resolve([]);
     }
 
-    return fetch(`api/subscriber/${subscriber.id}/activities`, {
+    return fetch(`/api/subscriber/${subscriber.id}/activities`, {
         headers: {
             'X-Subscriber-Token': subscriber.token,
             'Accept': 'application/json'
         }
     })
         .then(response => response.json())
-        .then((data: { activityIds?: string[] }) => data.activityIds || []);
+        .then((data: { activityIds?: string[]; seasonSubscribed?: boolean }) => {
+            const activityIds = data.activityIds || [];
+            if (data.seasonSubscribed && !activityIds.includes(upcomingSeasonSubscriptionId)) {
+                activityIds.push(upcomingSeasonSubscriptionId);
+            }
+            return activityIds;
+        });
 }

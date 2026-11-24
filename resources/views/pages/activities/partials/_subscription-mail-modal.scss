@@ -2,9 +2,12 @@
 
 #subscription-mail-form {
   h1 {
-    .activity-title {
+    > * {
       font-size: inherit;
       font-weight: inherit;
+    }
+
+    .activity-title {
       font-style: italic;
 
       &:before,

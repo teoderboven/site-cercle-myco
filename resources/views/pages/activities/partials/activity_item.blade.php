@@ -120,7 +120,11 @@
                     @include('pages.activities.partials.link-button', ['url' => $link->url, 'text' => $link->text])
                 @endforeach
                 @if(!$hideActivity)
-                    @include("pages.activities.partials.notify-button", ["activityId" => $activity->id, "activityTitle" => $activity->title])
+                    <x-activity.notify-button
+                        :target-id="$activity->id"
+                        :target-title="$activity->title"
+                        notification-type="activity"
+                    />
                 @endif
             </div>
         </div>

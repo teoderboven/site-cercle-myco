@@ -1,4 +1,4 @@
-@props(['$atLeastOneActivity', '$currentSeasonYear'])
+@props(['atLeastOneActivity', 'currentSeasonYear'])
 
 <section class="season-end">
     <h4>
@@ -22,10 +22,11 @@
     @endif
 
     <div class="buttons-container">
-        @include('pages.activities.partials.notify-button', [
-            'activityId' => 'season-end',
-            'activityTitle' => "Saison $currentSeasonYear"
-        ])
+        <x-activity.notify-button
+            target-id="season-upcoming"
+            :target-title="'Saison $currentSeasonYear'"
+            notification-type="season"
+        />
         <a href="{{ route('excursions', [], false) }}" class="cmb-btn history-btn">(Re)découvrir les excursions de {{$atLeastOneActivity? "l'année": 'la saison précédente'}} &#9658;</a>
     </div>
 </section>
